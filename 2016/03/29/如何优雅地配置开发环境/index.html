@@ -69,7 +69,7 @@
 事情就发生在我安装Intel Parallel Studi">
 <meta property="og:image" content="http://yoursite.com/2016/03/29/如何优雅地配置开发环境/1.png">
 <meta property="og:image" content="http://yoursite.com/2016/03/29/如何优雅地配置开发环境/2.jpg">
-<meta property="og:updated_time" content="2016-03-30T06:34:59.305Z">
+<meta property="og:updated_time" content="2016-03-30T06:39:45.507Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="如何优雅地配置开发环境">
 <meta name="twitter:description" content="配置Fortran，需要用MPI并行计算。从一次浪费几小时的经验中总结出的一个血泪教训：
@@ -282,11 +282,13 @@
 <p>接近崩溃的我决定下楼吃顿夜宵，顺便用这时间重装一遍Parallel Studio</p>
 <p><strong>64位和32位都装上，全部用默认选项</strong></p>
 <p>讲道理，虽然机器是64位的，应该也是可以用32位编译器和对应的库balabala的东西编出32位程序的。可是这个Parallel Studio好像不怎么讲道理。反正我也不想知道原因，也根本用不着知道了</p>
-<p>###安装好之后正确的MPI配置方法</p>
-<p>其实官网上文档也有点不太清晰，找了好几处文档才总结出来的：</p>
-<p><strong> 在TOOLS -&gt; Options -&gt; Intel Compiler and Tools -&gt; Visual Fortran -&gt; Compilers 里面</strong><br>Include Path 加上 $(IFortInstallDir)mpi\intel64\include<br>Library Path 加上 $(IFortInstallDir)mpi\intel64\lib</p>
+<h3 id="u5B89_u88C5_u597D_u4E4B_u540E_u6B63_u786E_u7684MPI_u914D_u7F6E_u65B9_u6CD5"><a href="#u5B89_u88C5_u597D_u4E4B_u540E_u6B63_u786E_u7684MPI_u914D_u7F6E_u65B9_u6CD5" class="headerlink" title="安装好之后正确的MPI配置方法"></a>安装好之后正确的MPI配置方法</h3><p>其实官网上文档也有点不太清晰，找了好几处文档才总结出来的：</p>
+<p><strong> 在TOOLS -&gt; Options -&gt; Intel Compiler and Tools -&gt; Visual Fortran -&gt; Compilers 里面</strong></p>
+<p>Include Path加上$(IFortInstallDir)mpi\intel64\include</p>
+<p>Library Path加上$(IFortInstallDir)mpi\intel64\lib</p>
 <p>这只是64位的。如果你问32位的呢？去他妈的32位。</p>
-<p><strong> 在PROJECT -&gt; Properties -&gt; Fortran -&gt; General 里面</strong><br>Additional Include Directories 加上$(IFortInstallDir)mpi\intel64\include</p>
+<p><strong> 在PROJECT -&gt; Properties -&gt; Fortran -&gt; General 里面</strong></p>
+<p>Additional Include Directories 加上$(IFortInstallDir)mpi\intel64\include</p>
 <p><strong> 到这里编译和连接应该都没问题了</strong></p>
 <p>运行不能用Ctrl+F5，因为那样只能运行单进程的。</p>
 <p>打开Visual Studio的命令行(TOOLS里面)，cd到exe生成的那个目录，执行<code>mpiexec (文件名.exe)</code></p>
@@ -466,7 +468,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#u4F7F_u7528_u9ED8_u8BA4_u5B89_u88C5_u9009_u9879_uFF01"><span class="nav-number">1.</span> <span class="nav-text">使用默认安装选项！</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#u4F7F_u7528_u9ED8_u8BA4_u5B89_u88C5_u9009_u9879_uFF01"><span class="nav-number">1.</span> <span class="nav-text">使用默认安装选项！</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#u5B89_u88C5_u597D_u4E4B_u540E_u6B63_u786E_u7684MPI_u914D_u7F6E_u65B9_u6CD5"><span class="nav-number">1.0.1.</span> <span class="nav-text">安装好之后正确的MPI配置方法</span></a></li></ol></li></ol></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator">
