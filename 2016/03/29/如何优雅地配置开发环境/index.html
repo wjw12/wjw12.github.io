@@ -41,7 +41,7 @@
 <link href="/css/main.css?v=0.5.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="东野圭吾,数学," />
+  <meta name="keywords" content="Fortran,Intel Parallel Studio,MPI," />
 
 
 
@@ -57,25 +57,24 @@
 
 
 
-<meta name="description" content="先来看一道问题：
-平面上有A,B,Ti(i=1,2,3,4)六个点，求证存在i,j,使得|sin∠ATiB-sin∠ATjB|≤ 1/3
-嗯，看似是一个几何问题吧，有两个角正弦值相减出现，先不妨画个图试试，正弦值用解析几何的手段表示之……先思考一下吧，最后再公布解答。
-“看似是几何问题，实际是函数问题”这句话出自刚看的《嫌疑人x的献身》中数学天才石神说的话，这是他给高中生出题的惯用手段。早就读过小">
+<meta name="description" content="配置Fortran，需要用MPI并行计算。从一次浪费几小时的经验中总结出的一个血泪教训：
+使用默认安装选项！以前有个老师总是说，”Don’t wake the sleeping dog”，对，当你点下“自定义安装”，甚至深入安装目录修改配置文件的时候，记住，这时候每一步都可能是一条”Sleeping Dog”，过不久就会猛地醒来咬你一口。
+事情就发生在我安装Intel Parallel Studi">
 <meta property="og:type" content="article">
-<meta property="og:title" content="看似是几何问题，实际是组合问题">
-<meta property="og:url" content="http://yoursite.com/2015/02/06/看似是几何问题，实际是组合问题/index.html">
+<meta property="og:title" content="如何优雅地配置开发环境">
+<meta property="og:url" content="http://yoursite.com/2016/03/29/如何优雅地配置开发环境/index.html">
 <meta property="og:site_name" content="NekoLab">
-<meta property="og:description" content="先来看一道问题：
-平面上有A,B,Ti(i=1,2,3,4)六个点，求证存在i,j,使得|sin∠ATiB-sin∠ATjB|≤ 1/3
-嗯，看似是一个几何问题吧，有两个角正弦值相减出现，先不妨画个图试试，正弦值用解析几何的手段表示之……先思考一下吧，最后再公布解答。
-“看似是几何问题，实际是函数问题”这句话出自刚看的《嫌疑人x的献身》中数学天才石神说的话，这是他给高中生出题的惯用手段。早就读过小">
-<meta property="og:updated_time" content="2016-01-21T04:05:06.048Z">
+<meta property="og:description" content="配置Fortran，需要用MPI并行计算。从一次浪费几小时的经验中总结出的一个血泪教训：
+使用默认安装选项！以前有个老师总是说，”Don’t wake the sleeping dog”，对，当你点下“自定义安装”，甚至深入安装目录修改配置文件的时候，记住，这时候每一步都可能是一条”Sleeping Dog”，过不久就会猛地醒来咬你一口。
+事情就发生在我安装Intel Parallel Studi">
+<meta property="og:image" content="http://yoursite.com/2016/03/29/如何优雅地配置开发环境/1.png">
+<meta property="og:image" content="http://yoursite.com/2016/03/29/如何优雅地配置开发环境/2.jpg">
+<meta property="og:updated_time" content="2016-03-30T06:34:59.305Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="看似是几何问题，实际是组合问题">
-<meta name="twitter:description" content="先来看一道问题：
-平面上有A,B,Ti(i=1,2,3,4)六个点，求证存在i,j,使得|sin∠ATiB-sin∠ATjB|≤ 1/3
-嗯，看似是一个几何问题吧，有两个角正弦值相减出现，先不妨画个图试试，正弦值用解析几何的手段表示之……先思考一下吧，最后再公布解答。
-“看似是几何问题，实际是函数问题”这句话出自刚看的《嫌疑人x的献身》中数学天才石神说的话，这是他给高中生出题的惯用手段。早就读过小">
+<meta name="twitter:title" content="如何优雅地配置开发环境">
+<meta name="twitter:description" content="配置Fortran，需要用MPI并行计算。从一次浪费几小时的经验中总结出的一个血泪教训：
+使用默认安装选项！以前有个老师总是说，”Don’t wake the sleeping dog”，对，当你点下“自定义安装”，甚至深入安装目录修改配置文件的时候，记住，这时候每一步都可能是一条”Sleeping Dog”，过不久就会猛地醒来咬你一口。
+事情就发生在我安装Intel Parallel Studi">
 
 
 
@@ -93,7 +92,7 @@
   };
 </script>
 
-  <title> 看似是几何问题，实际是组合问题 | NekoLab </title>
+  <title> 如何优雅地配置开发环境 | NekoLab </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -223,7 +222,7 @@
             
             
               
-                看似是几何问题，实际是组合问题
+                如何优雅地配置开发环境
               
             
           </h1>
@@ -235,8 +234,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2015-02-06T00:00:00+08:00" content="2015-02-06">
-              2015-02-06
+            <time itemprop="dateCreated" datetime="2016-03-29T23:19:39+08:00" content="2016-03-29">
+              2016-03-29
             </time>
           </span>
 
@@ -246,8 +245,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2015/02/06/看似是几何问题，实际是组合问题/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/02/06/看似是几何问题，实际是组合问题/" itemprop="commentsCount"></span>
+                <a href="/2016/03/29/如何优雅地配置开发环境/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/03/29/如何优雅地配置开发环境/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -268,18 +267,31 @@
       
 
       
-        <p>先来看一道问题：</p>
-<p>平面上有A,B,Ti(i=1,2,3,4)六个点，求证存在i,j,使得|sin∠ATiB-sin∠ATjB|≤ 1/3</p>
-<p>嗯，看似是一个几何问题吧，有两个角正弦值相减出现，先不妨画个图试试，正弦值用解析几何的手段表示之……先思考一下吧，最后再公布解答。</p>
-<p>“看似是几何问题，实际是函数问题”这句话出自刚看的《嫌疑人x的献身》中数学天才石神说的话，这是他给高中生出题的惯用手段。早就读过小说，前两天又看了电影，电影是伽利略系列中制作相当精良的一部。故事中石神是杀人案的帮凶，设下一个巧妙的局使得案件搜查迟迟无法转向正确的方向，他说这句话时正在接受审问，伽利略老师也在场，也许就是这句话的暗示，让人突然醒悟到之前对案件的推断完全是错误的，而真相往往在彻底换一个角度之后才有可能找出。</p>
-<p>石神是个生活屡屡受挫的中学数学老师，却是汤川唯一奉为知己的天才，故事中石神在学生时代思考着“四色定理现存的证法不美，我要找出一种更美的证法”，这种态度打动了汤川，两位分别在数学和物理领域的天才因此相遇相知<del>相爱了</del>(此处一定有基情！)</p>
-<p>但是我在想，是不是汤川想证明自己比另一个天才石神更加高明，还是仅仅出于对真相的执念，坚持自行调查案件甚至不惜破坏司法秩序，一定要揭开石神犯罪的真相。是不是说，一个天才就容不下另一个天才呢，或者是说，天才的执迷会对其他人，甚至是亲密的人，造成伤害呢。</p>
+        <p>配置Fortran，需要用MPI并行计算。从一次浪费几小时的经验中总结出的一个血泪教训：</p>
+<h1 id="u4F7F_u7528_u9ED8_u8BA4_u5B89_u88C5_u9009_u9879_uFF01"><a href="#u4F7F_u7528_u9ED8_u8BA4_u5B89_u88C5_u9009_u9879_uFF01" class="headerlink" title="使用默认安装选项！"></a>使用默认安装选项！</h1><p>以前有个老师总是说，”Don’t wake the sleeping dog”，对，当你点下“自定义安装”，甚至深入安装目录修改配置文件的时候，记住，这时候每一步都可能是一条”Sleeping Dog”，过不久就会猛地醒来咬你一口。</p>
+<p>事情就发生在我安装Intel Parallel Studio的时候。特地说一下，Parallel Studio版本是2016，电脑上Visual Studio版本是Community 2013，不同版本的安装可能会有差别，记下来以鉴后车之师</p>
+<p>因为这不是安装盗版软件，不是一不小心就附赠百度大礼包，这是Intel, Microsoft这种大公司靠谱的工程师，让你一路点着”next”就能顺利装完，而如果不信任他们的工作，恐怕就要受到惩罚了</p>
+<p>我后来看到Visual Studio里面复杂的选项：</p>
+<img src="/2016/03/29/如何优雅地配置开发环境/1.png" alt="1.png" title="">
+<p>此时我的感觉是这样的：</p>
+<img src="/2016/03/29/如何优雅地配置开发环境/2.jpg" alt="2.jpg" title="">
 <a id="more"></a>
-<p>最后案件的解决令所有读者拍案叫绝，看似是12月2日的案件，实际上发生着12月1日，看似是一个人的死亡，实际上还有另一个人的死亡。回头再看之前案件侦察走过的弯路（内海薰警官真可怜 看到一群男刑警开会时让她倒咖啡那一段笑了……） 又发现暗合之前石神提出的“盲点理论”，陷入看似是几何问题的障眼法中无法脱身。</p>
-<p>但是汤川的破案断送了石神的前途，电影中的他最后在审讯室里独自面对着墙壁，痛苦的绝望的眼神令人久久不能忘记。最后剩下恼怒和遗憾，“为什么，这么优秀的头脑，却要用来做这样的事情。”</p>
-<p>被命运祝福的天才汤川接着做物理教授，但同样是天才的却郁郁不得志的石神最后身陷牢狱之灾，同是一类不寻常的人，走向了相反的命运轨迹，电影中间石神曾问过汤川 “为什么，你就那么幸运呢？”，这个问题一直指向对人世命运的逼问。</p>
-<p>不多说了，最后回到开头提出的数学题。昨天回高中母校偶然看到这道题，还问了数学老师他也想了好久。正是这道题的解答让我突然想到，这看似是几何问题，实际是组合问题啊！</p>
-<p>因为sin的取值在[0,1]之中，四个正弦值落在三个“抽屉”[0,1/3) [1/3,2/3) [2/3,1]之中，必有两个在同一抽屉里，绝对值之差就小于等于1/3！如此简单！竟然与几何毫无关系！</p>
+<p>怎么说呢，一开始装Intel Parallel Studio的时候，为了节省下载时间，我就没有选64位版本，只装32位，还自作主张取消了几个不明觉厉的插件功能。很快装完了，第一次运行mpi的一个测试程序，也就相当于多进程版的hello world，编译器瞬间给我了十几个error</p>
+<p>于是找哪个路径没有include，哪个lib没有添加，开了无数个浏览器标签页查教程查资料……于是从天还亮着的时间工作到天黑，终于过了Compiler一关</p>
+<p><strong>但是还有Linker</strong> 死活通不过，每次报一排”Unresolved external symbol”</p>
+<p>接近崩溃的我决定下楼吃顿夜宵，顺便用这时间重装一遍Parallel Studio</p>
+<p><strong>64位和32位都装上，全部用默认选项</strong></p>
+<p>讲道理，虽然机器是64位的，应该也是可以用32位编译器和对应的库balabala的东西编出32位程序的。可是这个Parallel Studio好像不怎么讲道理。反正我也不想知道原因，也根本用不着知道了</p>
+<p>###安装好之后正确的MPI配置方法</p>
+<p>其实官网上文档也有点不太清晰，找了好几处文档才总结出来的：</p>
+<p><strong> 在TOOLS -&gt; Options -&gt; Intel Compiler and Tools -&gt; Visual Fortran -&gt; Compilers 里面</strong><br>Include Path 加上 $(IFortInstallDir)mpi\intel64\include<br>Library Path 加上 $(IFortInstallDir)mpi\intel64\lib</p>
+<p>这只是64位的。如果你问32位的呢？去他妈的32位。</p>
+<p><strong> 在PROJECT -&gt; Properties -&gt; Fortran -&gt; General 里面</strong><br>Additional Include Directories 加上$(IFortInstallDir)mpi\intel64\include</p>
+<p><strong> 到这里编译和连接应该都没问题了</strong></p>
+<p>运行不能用Ctrl+F5，因为那样只能运行单进程的。</p>
+<p>打开Visual Studio的命令行(TOOLS里面)，cd到exe生成的那个目录，执行<code>mpiexec (文件名.exe)</code></p>
+<p>(之前好像还要注册电脑的用户账号和密码，才能让系统给程序分配多个核。我已经忘了这一步怎么做，出问题查文档吧)</p>
+<p><strong> 以上desu！</strong></p>
 
       
     </div>
@@ -288,9 +300,11 @@
       
         <div class="post-tags">
           
-            <a href="/tags/东野圭吾/" rel="tag">#东野圭吾</a>
+            <a href="/tags/Fortran/" rel="tag">#Fortran</a>
           
-            <a href="/tags/数学/" rel="tag">#数学</a>
+            <a href="/tags/Intel-Parallel-Studio/" rel="tag">#Intel Parallel Studio</a>
+          
+            <a href="/tags/MPI/" rel="tag">#MPI</a>
           
         </div>
       
@@ -299,17 +313,13 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2015/01/18/初识树莓派-无显示器安装/" rel="next" title="初识树莓派 无显示器安装">
-                <i class="fa fa-chevron-left"></i> 初识树莓派 无显示器安装
+              <a href="/2016/02/03/译诗：六节诗-Sestina/" rel="next" title="译诗：六节诗 Sestina">
+                <i class="fa fa-chevron-left"></i> 译诗：六节诗 Sestina
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2015/02/26/Python爬虫入门：下载Pixiv特定关键词的高赞作品/" rel="prev" title="Python爬虫入门：下载Pixiv特定关键词的高赞作品">
-                Python爬虫入门：下载Pixiv特定关键词的高赞作品 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -335,8 +345,8 @@
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2015/02/06/看似是几何问题，实际是组合问题/"
-           data-title="看似是几何问题，实际是组合问题" data-url="http://yoursite.com/2015/02/06/看似是几何问题，实际是组合问题/">
+      <div class="ds-thread" data-thread-key="2016/03/29/如何优雅地配置开发环境/"
+           data-title="如何优雅地配置开发环境" data-url="http://yoursite.com/2016/03/29/如何优雅地配置开发环境/">
       </div>
     
   </div>
@@ -456,7 +466,7 @@
               
             
             
-              <p class="post-toc-empty">此文章未包含目录</p>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#u4F7F_u7528_u9ED8_u8BA4_u5B89_u88C5_u9009_u9879_uFF01"><span class="nav-number">1.</span> <span class="nav-text">使用默认安装选项！</span></a></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator">
