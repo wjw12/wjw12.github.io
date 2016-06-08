@@ -57,25 +57,19 @@
 
 
 
-<meta name="description" content="前不久抱着折腾不休的态度买了树莓派玩，这就是个给大人的玩具，嗯，成人玩具，好想有点不对
-
-虽然早就知道树莓派只有一片信用卡大小，不过第一次拿到手上的时候还是被惊艳到了~ 像一片塑料一样很轻很轻，精巧的电路板，元件都裸露在外面没有外壳（所以防静电很重要！特别是在北方干燥的秋冬时候），有4个USB接口（Model B+），更显眼的是一排GPIO接口为树莓派提供了更强大的扩展能力（可是我还不会ToT）。">
+<meta name="description" content="前不久抱着折腾不休的态度买了树莓派玩，这就是个给大人的玩具，嗯，成人玩具，好想有点不对">
 <meta property="og:type" content="article">
 <meta property="og:title" content="初识树莓派 无显示器安装">
 <meta property="og:url" content="http://yoursite.com/2015/01/18/初识树莓派-无显示器安装/index.html">
 <meta property="og:site_name" content="NekoLab">
-<meta property="og:description" content="前不久抱着折腾不休的态度买了树莓派玩，这就是个给大人的玩具，嗯，成人玩具，好想有点不对
-
-虽然早就知道树莓派只有一片信用卡大小，不过第一次拿到手上的时候还是被惊艳到了~ 像一片塑料一样很轻很轻，精巧的电路板，元件都裸露在外面没有外壳（所以防静电很重要！特别是在北方干燥的秋冬时候），有4个USB接口（Model B+），更显眼的是一排GPIO接口为树莓派提供了更强大的扩展能力（可是我还不会ToT）。">
+<meta property="og:description" content="前不久抱着折腾不休的态度买了树莓派玩，这就是个给大人的玩具，嗯，成人玩具，好想有点不对">
 <meta property="og:image" content="http://yoursite.com/2015/01/18/初识树莓派-无显示器安装/pi.jpg">
 <meta property="og:image" content="http://yoursite.com/2015/01/18/初识树莓派-无显示器安装/1.png">
 <meta property="og:image" content="http://yoursite.com/2015/01/18/初识树莓派-无显示器安装/2.png">
-<meta property="og:updated_time" content="2016-01-21T01:11:36.543Z">
+<meta property="og:updated_time" content="2016-06-08T09:50:04.229Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="初识树莓派 无显示器安装">
-<meta name="twitter:description" content="前不久抱着折腾不休的态度买了树莓派玩，这就是个给大人的玩具，嗯，成人玩具，好想有点不对
-
-虽然早就知道树莓派只有一片信用卡大小，不过第一次拿到手上的时候还是被惊艳到了~ 像一片塑料一样很轻很轻，精巧的电路板，元件都裸露在外面没有外壳（所以防静电很重要！特别是在北方干燥的秋冬时候），有4个USB接口（Model B+），更显眼的是一排GPIO接口为树莓派提供了更强大的扩展能力（可是我还不会ToT）。">
+<meta name="twitter:description" content="前不久抱着折腾不休的态度买了树莓派玩，这就是个给大人的玩具，嗯，成人玩具，好想有点不对">
 
 
 
@@ -183,6 +177,26 @@
           </a>
         </li>
       
+        
+        <li class="menu-item menu-item-friends">
+          <a href="/friends" rel="section">
+            
+              <i class="menu-item-icon fa fa-group fa-fw"></i> <br />
+            
+            友链
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-video">
+          <a href="/video" rel="section">
+            
+              <i class="menu-item-icon fa fa-tv fa-fw"></i> <br />
+            
+            视频(测试版)
+          </a>
+        </li>
+      
 
       
       
@@ -270,10 +284,11 @@
       
         <p>前不久抱着折腾不休的态度买了树莓派玩，这就是个给大人的玩具，嗯，成人玩具，好想有点不对</p>
 <img src="/2015/01/18/初识树莓派-无显示器安装/pi.jpg" alt="pi.jpg" title="">
+<a id="more"></a>
 <p>虽然早就知道树莓派只有一片信用卡大小，不过第一次拿到手上的时候还是被惊艳到了~ 像一片塑料一样很轻很轻，精巧的电路板，元件都裸露在外面没有外壳（所以防静电很重要！特别是在北方干燥的秋冬时候），有4个USB接口（Model B+），更显眼的是一排GPIO接口为树莓派提供了更强大的扩展能力（可是我还不会ToT）。由于寝室里条件艰苦朴素，除了路由器、网线和笔记本电脑就没别的设备了，第一次安装树莓派就需要费一点工夫。</p>
 <p>首先需要准备一张至少4G的Micro SD卡，从官网上下载系统映像文件，它为初学者推荐的是更简单的安装程序NOOBS，其中不仅包含raspbian系统，还预装了其他的比如Pidora（基于Fedora的系统）、RISC OS 、Arch（Arch Linux的树莓派版）之类的系统，但是更占空间。我就只单独下载了raspbian映像文件，然后用Win32DiskManager烧录到SD卡中，给树莓派插上卡，接上电源，能看到红灯亮绿灯偶尔闪烁，就说明系统载入成功了。</p>
 <p>接下来该怎么连接树莓派呢？如果有一台显示器就可以用HDMI把图形界面输出到屏幕了，再连上USB鼠标键盘就大功告成了。当然寝室里只有那三样装备没有显示器没有其他外设，有一种方法是网线直连电脑，可是在树莓派装上系统之前没法完成，要给空白的树莓派装系统，还有一种办法是用SSH方式远程登陆命令台，我就用了这种办法。</p>
-<a id="more"></a>
+<!--more-->
 <p>Secure Shell（缩写为SSH），由IETF的网络工作小组（Network Working Group）所制定；SSH为一项创建在应用层和传输层基础上的安全协议，为计算机上的Shell（壳层）提供安全的传输和使用环境。</p>
 <p>传统的网络服务程序，如rsh、FTP、POP和Telnet其本质上都是不安全的；因为它们在网络上用明文传送数据、用户帐号和用户口令，很容易受到中间人（man-in-the-middle）攻击方式的攻击。就是存在另一个人或者一台机器冒充真正的服务器接收用户传给服务器的数据，然后再冒充用户把数据传给真正的服务器。</p>
 <p>而SSH是目前较可靠，专为远程登录会话和其他网络服务提供安全性的协议。利用SSH协议可以有效防止远程管理过程中的信息泄露问题。通过SSH可以对所有传输的数据进行加密，也能够防止DNS欺骗和IP欺骗。</p>
@@ -382,7 +397,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">18</span>
+              <span class="site-state-item-count">14</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -396,7 +411,7 @@
 
           <div class="site-state-item site-state-tags">
             <a href="/tags">
-              <span class="site-state-item-count">26</span>
+              <span class="site-state-item-count">24</span>
               <span class="site-state-item-name">标签</span>
               </a>
           </div>
