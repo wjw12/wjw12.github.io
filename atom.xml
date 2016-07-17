@@ -1,0 +1,794 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>NekoLab</title>
+  
+  <link href="/atom.xml" rel="self"/>
+  
+  <link href="http://yoursite.com/"/>
+  <updated>2016-07-17T11:19:38.038Z</updated>
+  <id>http://yoursite.com/</id>
+  
+  <author>
+    <name>Quantumneko</name>
+    
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>分享几首极简主义音乐</title>
+    <link href="http://yoursite.com/2016/07/16/%E5%88%86%E4%BA%AB%E5%87%A0%E9%A6%96%E6%9E%81%E7%AE%80%E4%B8%BB%E4%B9%89%E9%9F%B3%E4%B9%90/"/>
+    <id>http://yoursite.com/2016/07/16/分享几首极简主义音乐/</id>
+    <published>2016-07-16T08:17:37.000Z</published>
+    <updated>2016-07-17T11:19:38.038Z</updated>
+    
+    <content type="html">&lt;p&gt;说到极简主义，可能最先想到的是这样的：&lt;br&gt;&lt;img src=&quot;/2016/07/16/分享几首极简主义音乐/minimalist-design.jpg&quot; alt=&quot;minimalist-design.jpg&quot; title=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;这叫做极简主义设计。&lt;/p&gt;
+&lt;p&gt;或者是这样的：&lt;br&gt;&lt;img src=&quot;/2016/07/16/分享几首极简主义音乐/die-fahne-hoch.jpg&quot; alt=&quot;die-fahne-hoch.jpg&quot; title=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;这是极简主义美术。&lt;/p&gt;
+&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
+&lt;p&gt;音乐上的极简主义，跟视觉艺术的“极简”还是有很大区别。视觉是空间性的，艺术存在于二维画布或三维空间中；音乐是时间性的，在单向流动的无数瞬间组合。维度的区别，造成了音乐与视觉艺术的一切差异。&lt;/p&gt;
+&lt;p&gt;自从20世纪音乐走向现代性，调性的解体冲破了古典主义、浪漫主义一脉相传的范式，音乐的形式、范围、表达能力一下子被拓宽。这一阶段，最为人熟知的是提出十二音列理论的勋伯格，由此诞生了序列主义，贯穿了20世纪前几十年的音乐发展脉络。&lt;/p&gt;
+&lt;p&gt;然而站在普通非专业的听者角度，序列音乐最大的问题是：&lt;strong&gt;太难听了！&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;所以比起这些，20世纪还有另外一些音乐（从古典乐的范畴讲），明显更为动听。时间转向20世纪后半叶，地点也不再是古典乐发源的欧洲，而是新兴的艺术之都纽约，极简音乐从五个最具代表性的音乐家Terry Riley, Steve Reich, Philip Glass, John Adams, La Monte Young发展起来。虽然在初期，还是显得有些怪异。&lt;/p&gt;
+&lt;p&gt;早期最著名的，是Terry Riley的&lt;em&gt;In C&lt;/em&gt;&lt;/p&gt;
+&lt;audio controls&gt;&lt;br&gt;  &lt;source src=&quot;http://wjwtest.oss-cn-qingdao.aliyuncs.com/Music/Terry%20Riley%20-%20In%20C.mp3&quot; type=&quot;audio/mpeg&quot;&gt;&lt;br&gt;&lt;/audio&gt;
+
+&lt;p&gt;以连续的C音起始，整首音乐贯穿着急促的八分音符，不间断的背景之上，是53个短小的片段，每个片段可以由音乐家自行决定重复任意多的次数。带着偶然音乐的特性，整首乐曲的长度可以持续十几分钟直至一个多小时。这里分享的只是众多版本中的一个。&lt;/p&gt;
+&lt;p&gt;这个版本前几分钟确实可能感觉枯燥，即使有少量难以捉摸的音符改变。不如发挥一下随机性，任意切到10分钟以后的某个时间，层次就更丰富了，四个以上声部的组合带来一种色彩感，但与德彪西那种抒情的、印象主义的色彩不同，这里的基本单元，仍是53个片段中某些组合。&lt;/p&gt;
+&lt;p&gt;而如果整首乐曲全部是单调的重复，听感就很诡异了。比如Steve Reich的第一部实验性极简主义作品&lt;em&gt;It’s gonna rain&lt;/em&gt;.&lt;/p&gt;
+&lt;audio controls&gt;&lt;br&gt;  &lt;source src=&quot;http://wjwtest.oss-cn-qingdao.aliyuncs.com/Music/Steve%20Reich%20-%20It&#39;s%20Gonna%20Rain,%20Part%20I%20(1965).mp3&quot; type=&quot;audio/mpeg&quot;&gt;&lt;br&gt;&lt;/audio&gt;
+
+&lt;p&gt;不要被鬼畜的人声吓到（虽然很有可能），戴上耳机仔细听，左右声道的声音逐渐错位。这是Reich运用他所谓“Phasing”的作曲法作成。&lt;/p&gt;
+&lt;p&gt;人声原本来源于布道者讲述诺亚的故事，连同背景噪音被录进磁带。然后只选取了“It’s gonna rain”的一段话，用两卷磁带以稍有差别的速度播放，一卷就渐渐落在后面。在重复和混合中变得抽象，由人声变成了乐声。&lt;/p&gt;
+&lt;p&gt;同样的技法被运用到钢琴曲上，就有了这一首&lt;em&gt;Piano Phase&lt;/em&gt;.&lt;/p&gt;
+&lt;audio controls&gt;&lt;br&gt;  &lt;source src=&quot;http://wjwtest.oss-cn-qingdao.aliyuncs.com/Music/Steve%20Reich%20-%20It&#39;s%20Gonna%20Rain,%20Part%20I%20(1965).mp3&quot; type=&quot;audio/mpeg&quot;&gt;&lt;br&gt;&lt;/audio&gt;
+
+&lt;p&gt;其实很好听的，不是吗？和声进行简单而和谐，左右相位的失谐并没有破坏整体性，而是在重复中带来变化。而后两条声道又合二为一，终于追上时，迎来舒畅的结尾。&lt;/p&gt;
+&lt;p&gt;到七、八十年代的时候，极简音乐就不仅是重复片段那么简单了。John Adams于1987年创作的&lt;em&gt;Nixon in China&lt;/em&gt;(尼克松在中国)，是中国人喜闻乐见的主题（可惜是个敏感话题，从没有在中国上演过）&lt;/p&gt;
+&lt;p&gt;比如这一段&lt;em&gt;I am the wife of Mao Tse-tung&lt;/em&gt;，“江青”唱的《我是毛泽东的夫人》……&lt;/p&gt;
+&lt;audio controls&gt;&lt;br&gt;  &lt;source src=&quot;http://wjwtest.oss-cn-qingdao.aliyuncs.com/Music/John%20Adams%20-%20Act%20II,%20Scene%202%EF%BC%9A%20%EF%BC%82I%20Am%20the%20Wife%20of%20Mao%20Tse-tung.mp3&quot; type=&quot;audio/mpeg&quot;&gt;&lt;br&gt;&lt;/audio&gt;
+
+&lt;p&gt;有重复的节奏模式，让人想起极简音乐的要素，但是管弦乐、复杂的和声完全超越了极简主义。有人说Adams是坚持传统的新古典主义者。&lt;/p&gt;
+&lt;p&gt;发源于美国的极简主义也影响了一批欧洲音乐家。Arvo Pärt的许多作品我都很喜欢。如这首&lt;em&gt;Spiegel im Spiegel&lt;/em&gt;，镜中之镜。宁静，空灵，神秘。&lt;/p&gt;
+&lt;audio controls&gt;&lt;br&gt;  &lt;source src=&quot;http://wjwtest.oss-cn-qingdao.aliyuncs.com/Music/Arvo%20P%C3%A4rt%20-%20Spiegel%20im%20Spiegel.mp3&quot; type=&quot;audio/mpeg&quot;&gt;&lt;br&gt;&lt;/audio&gt;
+
+
+&lt;p&gt;极简主义从初期的先锋、实验性开始，逐渐融入其他风格题材，也变得易于接受。其实极简主义也对早期的摇滚乐比如Velvet Underground产生了影响，那就是另一个话题了。&lt;/p&gt;
+&lt;p&gt;最后再推一首马林巴音乐，Reich的&lt;em&gt;Nagoya Marimba&lt;/em&gt;。马林巴是类似木琴的一种打击乐，音色更圆润，悠长的回声十分迷人。&lt;br&gt;&lt;img src=&quot;/2016/07/16/分享几首极简主义音乐/marimba.jpg&quot; alt=&quot;marimba.jpg&quot; title=&quot;&quot;&gt;&lt;/p&gt;
+&lt;audio controls&gt;&lt;br&gt;  &lt;source src=&quot;http://wjwtest.oss-cn-qingdao.aliyuncs.com/Music/Steve%20Reich%20-%20Nagoya%20Marimba%20(Hnny%20Edit).mp3&quot; type=&quot;audio/mpeg&quot;&gt;&lt;br&gt;&lt;/audio&gt;
+
+
+&lt;p&gt;&lt;div class=&quot;jiathis_style&quot;&gt;&lt;br&gt;    &lt;a class=&quot;jiathis_button_qzone&quot;&gt;&lt;a class=&quot;jiathis_button_tsina&quot;&gt;&lt;a class=&quot;jiathis_button_tqq&quot;&gt;&lt;a class=&quot;jiathis_button_weixin&quot;&gt;&lt;a class=&quot;jiathis_button_renren&quot;&gt;&lt;a href=&quot;http://www.jiathis.com/share&quot; class=&quot;jiathis jiathis_txt jtico jtico_jiathis&quot; target=&quot;_blank&quot;&gt;&lt;a class=&quot;jiathis_counter_style&quot;&gt;&lt;br&gt;&lt;/a&gt;&lt;/a&gt;&lt;/a&gt;&lt;/a&gt;&lt;/a&gt;&lt;/a&gt;&lt;/a&gt;&lt;/div&gt;&lt;/p&gt;
+&lt;script type=&quot;text/javascript&quot; src=&quot;http://v3.jiathis.com/code/jia.js&quot; charset=&quot;utf-8&quot;&gt;&lt;/script&gt;</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;说到极简主义，可能最先想到的是这样的：&lt;br&gt;&lt;img src=&quot;/2016/07/16/分享几首极简主义音乐/minimalist-design.jpg&quot; alt=&quot;minimalist-design.jpg&quot; title=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;这叫做极简主义设计。&lt;/p&gt;
+&lt;p&gt;或者是这样的：&lt;br&gt;&lt;img src=&quot;/2016/07/16/分享几首极简主义音乐/die-fahne-hoch.jpg&quot; alt=&quot;die-fahne-hoch.jpg&quot; title=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;这是极简主义美术。&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="音乐" scheme="http://yoursite.com/tags/%E9%9F%B3%E4%B9%90/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>细雨湿流光</title>
+    <link href="http://yoursite.com/2016/06/17/%E7%BB%86%E9%9B%A8%E6%B9%BF%E6%B5%81%E5%85%89/"/>
+    <id>http://yoursite.com/2016/06/17/细雨湿流光/</id>
+    <published>2016-06-17T08:04:21.000Z</published>
+    <updated>2016-07-17T11:21:27.700Z</updated>
+    
+    <content type="html">&lt;blockquote&gt;
+&lt;p&gt;我编的第一批软件极有诗意，李后主有词云：&lt;/p&gt;
+&lt;p&gt;红豆啄残鹦鹉粒。&lt;/p&gt;
+&lt;p&gt;我的软件就曲折和弹性而言，达到了此句的境界。后主又有残句云：&lt;/p&gt;
+&lt;p&gt;细雨流湿光。&lt;/p&gt;
+&lt;p&gt;我的软件就有这么简约，别人编十行，我只用一行。等到交活时，教授看了吃一惊：这么短！能跑(run)吗？我说你试试嘛。试完了他和我握手道：谢谢！但是到了开支时，我的钱比别人都少。原来是按行算钱，真把我气死了。&lt;/p&gt;
+&lt;p&gt;———— 王小波 《革命时期的爱情》&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
+&lt;p&gt;编程也是有美学追求的。这是王小波给人很大启发的一点。简约、优雅的代码不论对编程者本人还是其他阅读修改的人都能带来很大方便。今天我就想介绍一个，能让GPU计算编程十行代码变一行的技术：C++ AMP&lt;/p&gt;
+&lt;p&gt;C++ AMP是微软为并行异构计算为C++作出的扩展，目前只能在Windows上Visual Studio 2012以上版本使用。对GPU底层操作进行了封装，在不同厂商的显卡上都能用同样的代码运行（显卡需要支持DX11才行）&lt;/p&gt;
+&lt;p&gt;用一个简单的矩阵乘法作例子。在我的笔记本上GPU比CPU快了大约50倍，而代码相当简短，不用配置一堆环境再加上编写OpenCL的Kernel文件了。一切都完美融入C++语言本身。&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;#include &amp;lt;amp.h&amp;gt;
+using namespace concurrency;
+using std::vector;
+
+int main(int argc, char *argv[])
+{
+    const int M = 1024, N = 1024, W = 1024;
+    vector&amp;lt;int&amp;gt; vA(M*W), vB(W*N), vC(M*N);
+
+    /* 初始化元素... */
+
+    array_view&amp;lt;const int, 2&amp;gt; a(M, W, vA), b(W, N, vB);
+    array_view&amp;lt;int, 2&amp;gt; c(M, N, vC);
+    c.discard_data();
+
+    parallel_for_each(c.extent, [a,b,c](index&amp;lt;2&amp;gt; idx) restrict(amp)
+    {
+        int row = idx[0]; int col = idx[1];
+        int sum = 0;
+        for (int i = 0; i &amp;lt; b.extent[0]; i++)
+            sum += a(row, i) * b(i, col);
+        c[idx] = sum;
+    });
+    c.synchronize();
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;主要的流程是这样的：首先，存在vector里的数据需要用AMP特定的数组容器array_view储存，相当于把数据存入GPU的global memory；然后，用parallel_for_each函数传递一个lambda函数给每个GPU线程运算，并行程序的主体就放在lambda表达式里面；最后执行synchronize，把数据传回内存，就可以用索引访问array_view对象里的数据了。&lt;/p&gt;
+&lt;p&gt;parallel_for_each用到了一个特殊的关键词restrict(amp)，是C++ AMP新引入的。有了这个提示，lambda表达式里的语句就会用AMP限定的accelerator(一般是显卡，也可以是别的，可以自行设定)运算，涉及的操作也被限制在GPU能执行的范围内，编译器会做一些检查。&lt;/p&gt;
+&lt;p&gt;GPU要访问数组里的数据，需要用index这个对象。写起来也和数组索引指标没什么区别，1~3维都可以。&lt;/p&gt;
+&lt;p&gt;至于GPU计算涉及的种种dirty work，像显存的分配与释放，线程的管理等等，都由AMP自动做了，对我这种拿来主义者实在是解放生产力的好事。至于效率肯定会损失一部分，不过起码比CPU提高了一个数量级不是吗？&lt;/p&gt;
+&lt;p&gt;更详细的介绍可以见这里&lt;a href=&quot;https://msdn.microsoft.com/en-us/magazine/hh882446.aspx&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;https://msdn.microsoft.com/en-us/magazine/hh882446.aspx&lt;/a&gt; 本文的代码也来源于此。&lt;/p&gt;
+&lt;p&gt;&lt;div class=&quot;jiathis_style&quot;&gt;&lt;br&gt;    &lt;a class=&quot;jiathis_button_qzone&quot;&gt;&lt;a class=&quot;jiathis_button_tsina&quot;&gt;&lt;a class=&quot;jiathis_button_tqq&quot;&gt;&lt;a class=&quot;jiathis_button_weixin&quot;&gt;&lt;a class=&quot;jiathis_button_renren&quot;&gt;&lt;a href=&quot;http://www.jiathis.com/share&quot; class=&quot;jiathis jiathis_txt jtico jtico_jiathis&quot; target=&quot;_blank&quot;&gt;&lt;a class=&quot;jiathis_counter_style&quot;&gt;&lt;br&gt;&lt;/a&gt;&lt;/a&gt;&lt;/a&gt;&lt;/a&gt;&lt;/a&gt;&lt;/a&gt;&lt;/a&gt;&lt;/div&gt;&lt;/p&gt;
+&lt;script type=&quot;text/javascript&quot; src=&quot;http://v3.jiathis.com/code/jia.js&quot; charset=&quot;utf-8&quot;&gt;&lt;/script&gt;</content>
+    
+    <summary type="html">
+    
+      &lt;blockquote&gt;
+&lt;p&gt;我编的第一批软件极有诗意，李后主有词云：&lt;/p&gt;
+&lt;p&gt;红豆啄残鹦鹉粒。&lt;/p&gt;
+&lt;p&gt;我的软件就曲折和弹性而言，达到了此句的境界。后主又有残句云：&lt;/p&gt;
+&lt;p&gt;细雨流湿光。&lt;/p&gt;
+&lt;p&gt;我的软件就有这么简约，别人编十行，我只用一行。等到交活时，教授看了吃一惊：这么短！能跑(run)吗？我说你试试嘛。试完了他和我握手道：谢谢！但是到了开支时，我的钱比别人都少。原来是按行算钱，真把我气死了。&lt;/p&gt;
+&lt;p&gt;———— 王小波 《革命时期的爱情》&lt;/p&gt;
+&lt;/blockquote&gt;
+    
+    </summary>
+    
+    
+      <category term="C++ AMP" scheme="http://yoursite.com/tags/C-AMP/"/>
+    
+      <category term="GPU" scheme="http://yoursite.com/tags/GPU/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>认真地安利一部日剧 - 家族的形式</title>
+    <link href="http://yoursite.com/2016/04/03/%E8%AE%A4%E7%9C%9F%E5%9C%B0%E5%AE%89%E5%88%A9%E4%B8%80%E9%83%A8%E6%97%A5%E5%89%A7-%E5%AE%B6%E6%97%8F%E7%9A%84%E5%BD%A2%E5%BC%8F/"/>
+    <id>http://yoursite.com/2016/04/03/认真地安利一部日剧-家族的形式/</id>
+    <published>2016-04-03T09:47:18.000Z</published>
+    <updated>2016-07-17T11:21:17.187Z</updated>
+    
+    <content type="html">&lt;p&gt;最初把我吸引到这么一部不太热门的日剧的，是这样一条微博：&lt;/p&gt;
+&lt;img src=&quot;/2016/04/03/认真地安利一部日剧-家族的形式/1.jpg&quot; alt=&quot;1.jpg&quot; title=&quot;&quot;&gt;
+&lt;img src=&quot;/2016/04/03/认真地安利一部日剧-家族的形式/6.jpg&quot; alt=&quot;6.jpg&quot; title=&quot;&quot;&gt;
+&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
+&lt;p&gt;看到这些台词心中瞬间一惊，很少见到这么尖锐的价值观碰撞，很少听见这么直白的反群居宣言，可能许多人都不会认同，认同的人也不太敢大声发表观念。但是这些话，关于一个人生活的种种好处，许多对我来说尚未成型的观念，全被男主精准的点出。&lt;/p&gt;
+&lt;p&gt;“我自己的城堡，我自己的时间，只属于我一个人的空间，自己和自己分享兴趣”&lt;/p&gt;
+&lt;p&gt;这是男主大介始终挂在嘴边，奉之为生活真谛的格言。说出这话的他，时年39岁，未婚，刚贷款买下一间精致的复式公寓，准备从此享受自己梦寐以求的独身生活。&lt;/p&gt;
+&lt;p&gt;会觉得一个人生活比两个人好的人，多半会有些孤僻，比如厌恶应酬，回避不必要的社交，与人保持距离。但现代社会完全可以为孤僻人格提供充分的自我满足的空间：大介的生活单调却并不缺少乐趣，每天下班后去健身房，周末独自骑车郊游，饮食规律健康，喜好去酒吧喝啤酒。而且，工作也不令人讨厌，大介是做设计文具的工作，也符合自己的期待，“会使用优质文具的人，生活标准一定不会差”&lt;/p&gt;
+&lt;p&gt;不结婚，没有伴侣，生活就不会幸福。这种观点可能在老一辈人身上还适用，但如今事实早已不是这样，只是很多人如此坚信也好，无形被灌输也好，不加选择了就接受了这种想法。&lt;/p&gt;
+&lt;p&gt;选择了这种生活方式，也就意味着背离社会主流价值。正常人三十多岁早就应该结婚，大介的大龄单身同事忙着相亲，也劝大介早点结婚。还有不请自来赖在家里的老父亲，更是为大介的结婚大事担忧。再婚不久的父亲才体会到家庭的甜蜜不久，理所当然地认为适龄青年都应该结婚，不可能认同“一个人生活很好”的说法，甚至老头第一次碰见公寓楼上的女青年葉菜子，就问她结婚了没有，想把儿子介绍给她。&lt;/p&gt;
+&lt;img src=&quot;/2016/04/03/认真地安利一部日剧-家族的形式/5.jpg&quot; alt=&quot;5.jpg&quot; title=&quot;&quot;&gt;
+&lt;p&gt;大介在价值观念上是个毫不退让的人，可能是习惯独自生活的缘故，说话从来以自我为中心，不顾及别人感受，更是因为父亲赖在家里不走，还点火烧烤触发了火警造成好多麻烦。大介的“专属城堡”遭人侵犯，所以一心想把父亲赶走。没想到的是后来父亲在家办联谊，和大介的同事也结为好友，都站在父亲一边，一起劝大介结婚，大介几经暴走争吵。&lt;/p&gt;
+&lt;p&gt;上野树里饰演的32岁女主葉菜子的许多情况跟大介有点像，住在楼上，也被母亲催婚，同样认同不结婚的自由生活，倒也没大介那么固执。因为楼下大介父亲烤鱼的油烟下楼找大介投诉，于是这两人巧合地认识，竟发现颇有共鸣。&lt;/p&gt;
+&lt;img src=&quot;/2016/04/03/认真地安利一部日剧-家族的形式/7.jpg&quot; alt=&quot;7.jpg&quot; title=&quot;&quot;&gt;
+&lt;img src=&quot;/2016/04/03/认真地安利一部日剧-家族的形式/9.jpg&quot; alt=&quot;9.jpg&quot; title=&quot;&quot;&gt;
+&lt;p&gt;故事开头的冲突就是这么尖锐，绝对不同于狗血的午间家庭剧，首先在于直白地揭示了一种小众价值观。日本的许多家庭观念跟中国比较相像，甚至是更保守，主流观念的影响强势，父母理所当然地干涉子女，同事之间也无所遮拦地指点别人私生活。像大介这样小众观念的持有者从来都不会轻松，也就明白了为什么他会一遍遍的重复“我自己的城堡，我一个人的空间”的重要性。&lt;/p&gt;
+&lt;p&gt;大介与父亲、与同事的冲突其实是不同价值观的必然冲突。价值观驱使人做出“对”和“错”的判断，本来观念对错与否纯属私事，只能反映对自我的价值判断，却常常让人误以为掌握了评判别人的普适标准，难免将个人想法强加于他人。逃避社交的一个原因，就是为了避开可能的冲突，大介选择单身独居，一定也明白自己的观念会给别人带来困扰，排斥家庭关系其实是避免不和与争吵。&lt;/p&gt;
+&lt;p&gt;顺便一提，尽管日本社会男权盛行，这部剧的视角其实相当的女性主义。葉菜子和剧中出现的所有女性角色一样，都是有全职工作的上班族，并没有日本典型的家庭主妇；葉菜子的母亲是厌倦了在家与丈夫的生活，“出逃”到女儿家；至于下面这段话，一方面是说葉菜子不愿结婚的心态，也是在反对女性依附男人的观念。而且，水原希子饰演走后门进入会社的大小姐形象，后来迷恋上大介，受到影响性格变得独立许多，也开始认真对待工作。&lt;/p&gt;
+&lt;img src=&quot;/2016/04/03/认真地安利一部日剧-家族的形式/4.jpg&quot; alt=&quot;4.jpg&quot; title=&quot;&quot;&gt;
+&lt;p&gt;说了这些严肃的主题，这部剧细节上也可圈可点。比如男女主都是重度文具控强迫症。男主在文具公司上班，第一集走过公司大堂的时候刻意摆正柜台上展示的笔，强迫症的举动看着特别好笑。巧合的是葉菜子是这家文具品牌的资深重度用户，新一年的手账设计发布后，因为不喜欢横线的间距和少了几毫米空间而化名hanako在网上吐槽，大介一直抱怨网上有个“投诉狂hanako”，而谈话中葉菜子无意暴露自己身份后大介更是火冒三丈，葉菜子则直接拿出新款记事本指责。看这一幕，就觉得他们应该在一起……&lt;/p&gt;
+&lt;img src=&quot;/2016/04/03/认真地安利一部日剧-家族的形式/10.jpg&quot; alt=&quot;10.jpg&quot; title=&quot;&quot;&gt;
+&lt;p&gt;上野树里在剧中的服装特别引人注意，精致的职场风和优雅的休闲服。&lt;/p&gt;
+&lt;img src=&quot;/2016/04/03/认真地安利一部日剧-家族的形式/11.jpg&quot; alt=&quot;11.jpg&quot; title=&quot;&quot;&gt;
+&lt;img src=&quot;/2016/04/03/认真地安利一部日剧-家族的形式/12.jpg&quot; alt=&quot;12.jpg&quot; title=&quot;&quot;&gt;
+&lt;p&gt;而男主服装几乎全是是黑白灰纯色基本款，尽显冷淡特质。&lt;/p&gt;
+&lt;img src=&quot;/2016/04/03/认真地安利一部日剧-家族的形式/13.jpg&quot; alt=&quot;13.jpg&quot; title=&quot;&quot;&gt;
+&lt;p&gt;&lt;div class=&quot;jiathis_style&quot;&gt;&lt;br&gt;    &lt;a class=&quot;jiathis_button_qzone&quot;&gt;&lt;a class=&quot;jiathis_button_tsina&quot;&gt;&lt;a class=&quot;jiathis_button_tqq&quot;&gt;&lt;a class=&quot;jiathis_button_weixin&quot;&gt;&lt;a class=&quot;jiathis_button_renren&quot;&gt;&lt;a href=&quot;http://www.jiathis.com/share&quot; class=&quot;jiathis jiathis_txt jtico jtico_jiathis&quot; target=&quot;_blank&quot;&gt;&lt;a class=&quot;jiathis_counter_style&quot;&gt;&lt;br&gt;&lt;/a&gt;&lt;/a&gt;&lt;/a&gt;&lt;/a&gt;&lt;/a&gt;&lt;/a&gt;&lt;/a&gt;&lt;/div&gt;&lt;/p&gt;
+&lt;script type=&quot;text/javascript&quot; src=&quot;http://v3.jiathis.com/code/jia.js&quot; charset=&quot;utf-8&quot;&gt;&lt;/script&gt;</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;最初把我吸引到这么一部不太热门的日剧的，是这样一条微博：&lt;/p&gt;
+&lt;img src=&quot;/2016/04/03/认真地安利一部日剧-家族的形式/1.jpg&quot; alt=&quot;1.jpg&quot; title=&quot;&quot;&gt;
+&lt;img src=&quot;/2016/04/03/认真地安利一部日剧-家族的形式/6.jpg&quot; alt=&quot;6.jpg&quot; title=&quot;&quot;&gt;
+    
+    </summary>
+    
+    
+      <category term="家族ノカタチ" scheme="http://yoursite.com/tags/%E5%AE%B6%E6%97%8F%E3%83%8E%E3%82%AB%E3%82%BF%E3%83%81/"/>
+    
+      <category term="日剧" scheme="http://yoursite.com/tags/%E6%97%A5%E5%89%A7/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>如何优雅地配置开发环境</title>
+    <link href="http://yoursite.com/2016/03/29/%E5%A6%82%E4%BD%95%E4%BC%98%E9%9B%85%E5%9C%B0%E9%85%8D%E7%BD%AE%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/"/>
+    <id>http://yoursite.com/2016/03/29/如何优雅地配置开发环境/</id>
+    <published>2016-03-29T15:19:39.000Z</published>
+    <updated>2016-06-08T09:52:38.274Z</updated>
+    
+    <content type="html">&lt;p&gt;配置Fortran，需要用MPI并行计算。从一次浪费几小时的经验中总结出的一个血泪教训：&lt;/p&gt;
+&lt;h1 id=&quot;u4F7F_u7528_u9ED8_u8BA4_u5B89_u88C5_u9009_u9879_uFF01&quot;&gt;&lt;a href=&quot;#u4F7F_u7528_u9ED8_u8BA4_u5B89_u88C5_u9009_u9879_uFF01&quot; class=&quot;headerlink&quot; title=&quot;使用默认安装选项！&quot;&gt;&lt;/a&gt;使用默认安装选项！&lt;/h1&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
+&lt;p&gt;以前有个老师总是说，”Don’t wake the sleeping dog”，对，当你点下“自定义安装”，甚至深入安装目录修改配置文件的时候，记住，这时候每一步都可能是一条”Sleeping Dog”，过不久就会猛地醒来咬你一口。&lt;/p&gt;
+&lt;p&gt;事情就发生在我安装Intel Parallel Studio的时候。特地说一下，Parallel Studio版本是2016，电脑上Visual Studio版本是Community 2013，不同版本的安装可能会有差别，记下来以鉴后车之师&lt;/p&gt;
+&lt;p&gt;因为这不是安装盗版软件，不是一不小心就附赠百度大礼包，这是Intel, Microsoft这种大公司靠谱的工程师，让你一路点着”next”就能顺利装完，而如果不信任他们的工作，恐怕就要受到惩罚了&lt;/p&gt;
+&lt;p&gt;我后来看到Visual Studio里面复杂的选项：&lt;/p&gt;
+&lt;img src=&quot;/2016/03/29/如何优雅地配置开发环境/1.png&quot; alt=&quot;1.png&quot; title=&quot;&quot;&gt;
+&lt;p&gt;此时我的感觉是这样的：&lt;/p&gt;
+&lt;img src=&quot;/2016/03/29/如何优雅地配置开发环境/2.jpg&quot; alt=&quot;2.jpg&quot; title=&quot;&quot;&gt;
+&lt;p&gt;怎么说呢，一开始装Intel Parallel Studio的时候，为了节省下载时间，我就没有选64位版本，只装32位，还自作主张取消了几个不明觉厉的插件功能。很快装完了，第一次运行mpi的一个测试程序，也就相当于多进程版的hello world，编译器瞬间给我了十几个error&lt;/p&gt;
+&lt;p&gt;于是找哪个路径没有include，哪个lib没有添加，开了无数个浏览器标签页查教程查资料……于是从天还亮着的时间工作到天黑，终于过了Compiler一关&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;但是还有Linker&lt;/strong&gt; 死活通不过，每次报一排”Unresolved external symbol”&lt;/p&gt;
+&lt;p&gt;接近崩溃的我决定下楼吃顿夜宵，顺便用这时间重装一遍Parallel Studio&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;64位和32位都装上，全部用默认选项&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;讲道理，虽然机器是64位的，应该也是可以用32位编译器和对应的库balabala的东西编出32位程序的。可是这个Parallel Studio好像不怎么讲道理。反正我也不想知道原因，也根本用不着知道了&lt;/p&gt;
+&lt;h3 id=&quot;u5B89_u88C5_u597D_u4E4B_u540E_u6B63_u786E_u7684MPI_u914D_u7F6E_u65B9_u6CD5&quot;&gt;&lt;a href=&quot;#u5B89_u88C5_u597D_u4E4B_u540E_u6B63_u786E_u7684MPI_u914D_u7F6E_u65B9_u6CD5&quot; class=&quot;headerlink&quot; title=&quot;安装好之后正确的MPI配置方法&quot;&gt;&lt;/a&gt;安装好之后正确的MPI配置方法&lt;/h3&gt;&lt;p&gt;其实官网上文档也有点不太清晰，找了好几处文档才总结出来的：&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt; 在TOOLS -&amp;gt; Options -&amp;gt; Intel Compiler and Tools -&amp;gt; Visual Fortran -&amp;gt; Compilers 里面&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Include Path加上$(IFortInstallDir)mpi\intel64\include&lt;/p&gt;
+&lt;p&gt;Library Path加上$(IFortInstallDir)mpi\intel64\lib&lt;/p&gt;
+&lt;p&gt;这只是64位的。如果你问32位的呢？去他妈的32位。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt; 在PROJECT -&amp;gt; Properties -&amp;gt; Fortran -&amp;gt; General 里面&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Additional Include Directories 加上$(IFortInstallDir)mpi\intel64\include&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt; 到这里编译和连接应该都没问题了&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;运行不能用Ctrl+F5，因为那样只能运行单进程的。&lt;/p&gt;
+&lt;p&gt;打开Visual Studio的命令行(TOOLS里面)，cd到exe生成的那个目录，执行&lt;code&gt;mpiexec (文件名.exe)&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;(之前好像还要注册电脑的用户账号和密码，才能让系统给程序分配多个核。我已经忘了这一步怎么做，出问题查文档吧)&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt; 以上desu！&lt;/strong&gt;&lt;/p&gt;
+&lt;h3 id=&quot;2016-4-2_u66F4_u65B0__u66F4_u7B80_u5355_u7684mpi_u8FD0_u884C_u65B9_u5F0F&quot;&gt;&lt;a href=&quot;#2016-4-2_u66F4_u65B0__u66F4_u7B80_u5355_u7684mpi_u8FD0_u884C_u65B9_u5F0F&quot; class=&quot;headerlink&quot; title=&quot;2016.4.2更新 更简单的mpi运行方式&quot;&gt;&lt;/a&gt;2016.4.2更新 更简单的mpi运行方式&lt;/h3&gt;&lt;p&gt;不一定必须用命令行mpiexec，可以在&lt;strong&gt; PROJECT -&amp;gt; Properties -&amp;gt; Debugging &lt;/strong&gt;里面设置运行程序时执行的命令&lt;/p&gt;
+&lt;img src=&quot;/2016/03/29/如何优雅地配置开发环境/mpiexec.png&quot; alt=&quot;mpiexec.png&quot; title=&quot;&quot;&gt;
+&lt;p&gt;Command写mpiexec.exe安装的位置&lt;/p&gt;
+&lt;p&gt;Arguments写&lt;code&gt;&amp;quot;$(TargetPath)&amp;quot;&lt;/code&gt;也就是编译生成的exe文件，再加上其他参数，比如几个进程就用&lt;code&gt;-n&lt;/code&gt;&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;配置Fortran，需要用MPI并行计算。从一次浪费几小时的经验中总结出的一个血泪教训：&lt;/p&gt;
+&lt;h1 id=&quot;u4F7F_u7528_u9ED8_u8BA4_u5B89_u88C5_u9009_u9879_uFF01&quot;&gt;&lt;a href=&quot;#u4F7F_u7528_u9ED8_u8BA4_u5B89_u88C5_u9009_u9879_uFF01&quot; class=&quot;headerlink&quot; title=&quot;使用默认安装选项！&quot;&gt;&lt;/a&gt;使用默认安装选项！&lt;/h1&gt;
+    
+    </summary>
+    
+    
+      <category term="Fortran" scheme="http://yoursite.com/tags/Fortran/"/>
+    
+      <category term="Intel Parallel Studio" scheme="http://yoursite.com/tags/Intel-Parallel-Studio/"/>
+    
+      <category term="MPI" scheme="http://yoursite.com/tags/MPI/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>译诗：六节诗 Sestina</title>
+    <link href="http://yoursite.com/2016/02/03/%E8%AF%91%E8%AF%97%EF%BC%9A%E5%85%AD%E8%8A%82%E8%AF%97-Sestina/"/>
+    <id>http://yoursite.com/2016/02/03/译诗：六节诗-Sestina/</id>
+    <published>2016-02-03T05:10:11.000Z</published>
+    <updated>2016-06-08T09:54:30.287Z</updated>
+    
+    <content type="html">&lt;blockquote&gt;
+&lt;p&gt;Sestina - Poem by Elizabeth Bishop&lt;/p&gt;
+&lt;p&gt;September rain falls on the house.&lt;br&gt;In the failing light, the old grandmother&lt;br&gt;sits in the kitchen with the child&lt;br&gt;beside the Little Marvel Stove,&lt;br&gt;reading the jokes from the almanac,&lt;br&gt;laughing and talking to hide her tears.&lt;/p&gt;
+&lt;p&gt;She thinks that her equinoctial tears&lt;br&gt;and the rain that beats on the roof of the house&lt;br&gt;were both foretold by the almanac,&lt;br&gt;but only known to a grandmother.&lt;br&gt;The iron kettle sings on the stove.&lt;br&gt;She cuts some bread and says to the child,&lt;/p&gt;
+&lt;p&gt;It’s time for tea now; but the child&lt;br&gt;is watching the teakettle’s small hard tears&lt;br&gt;dance like mad on the hot black stove,&lt;br&gt;the way the rain must dance on the house.&lt;br&gt;Tidying up, the old grandmother&lt;br&gt;hangs up the clever almanac&lt;/p&gt;
+&lt;p&gt;on its string. Birdlike, the almanac&lt;br&gt;hovers half open above the child,&lt;br&gt;hovers above the old grandmother&lt;br&gt;and her teacup full of dark brown tears.&lt;br&gt;She shivers and says she thinks the house&lt;br&gt;feels chilly, and puts more wood in the stove.&lt;/p&gt;
+&lt;p&gt;It was to be, says the Marvel Stove.&lt;br&gt;I know what I know, says the almanac.&lt;br&gt;With crayons the child draws a rigid house&lt;br&gt;and a winding pathway. Then the child&lt;br&gt;puts in a man with buttons like tears&lt;br&gt;and shows it proudly to the grandmother.&lt;/p&gt;
+&lt;p&gt;But secretly, while the grandmother&lt;br&gt;busies herself about the stove,&lt;br&gt;the little moons fall down like tears&lt;br&gt;from between the pages of the almanac&lt;br&gt;into the flower bed the child&lt;br&gt;has carefully placed in the front of the house.&lt;/p&gt;
+&lt;p&gt;Time to plant tears, says the almanac.&lt;br&gt;The grandmother sings to the marvelous stove&lt;br&gt;and the child draws another inscrutable house. &lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
+&lt;h1 id=&quot;u516D_u8282_u8BD7&quot;&gt;&lt;a href=&quot;#u516D_u8282_u8BD7&quot; class=&quot;headerlink&quot; title=&quot;六节诗&quot;&gt;&lt;/a&gt;六节诗&lt;/h1&gt;&lt;p&gt;九月的雨落在房屋&lt;br&gt;微茫灯光下，老奶奶&lt;br&gt;坐在厨房陪孩子&lt;br&gt;身边是奇妙小火炉&lt;br&gt;读着笑话翻阅年历&lt;br&gt;说着笑着藏起泪水&lt;/p&gt;
+&lt;p&gt;她觉着她秋分的泪水&lt;br&gt;还有雨滴敲打房屋&lt;br&gt;都是预言记在年历&lt;br&gt;这秘密却只属于奶奶&lt;br&gt;铁壶欢唱于火炉&lt;br&gt;她切了些面包，告诉孩子&lt;/p&gt;
+&lt;p&gt;该喝茶了；但是孩子&lt;br&gt;在看茶壶又小又硬的泪水&lt;br&gt;狂舞于滚烫的黑火炉&lt;br&gt;如同雨滴舞于房屋&lt;br&gt;收拾整齐，老奶奶&lt;br&gt;挂上那聪明的年历&lt;/p&gt;
+&lt;p&gt;绳上，飞鸟一般，那年历&lt;br&gt;半张着飞旋绕着孩子&lt;br&gt;飞旋绕着老奶奶&lt;br&gt;她颤抖地说觉着房屋&lt;br&gt;刺骨的冷，就喂更多柴火给火炉&lt;/p&gt;
+&lt;p&gt;曾经是如此，说道奇妙火炉&lt;br&gt;我知我所知，说道年历&lt;br&gt;孩子用蜡笔画笔直的房屋&lt;br&gt;和弯曲的走廊，然后孩子&lt;br&gt;画一个人，扣子像泪水&lt;br&gt;得意地展示给奶奶&lt;/p&gt;
+&lt;p&gt;背地里，一边奶奶&lt;br&gt;又忙活着火炉&lt;br&gt;一边月亮沉下如泪水&lt;br&gt;从纸页年历&lt;br&gt;沉入花床，那是孩子&lt;br&gt;细心布置的，靠在房屋&lt;/p&gt;
+&lt;p&gt;该种下泪水了，说道年历&lt;br&gt;奶奶唱向奇妙火炉&lt;br&gt;孩子又画谜一样的房屋&lt;/p&gt;
+&lt;p&gt;诗的内容乍看颇有些诡异，如同风烛残年的老奶奶讲着黑色童话一般，词语间弥漫着不祥的气息。先不谈内容，这首诗形式上最突出的特点，在于每一节的每一行结尾词，都是相同的六个词：house, grandmother, child, stove, almanac, tears，以不同的顺序反复出现，循环往复，持续着一环扣着一环的结构直至结尾，无形中加深了语言的内涵&lt;br&gt;更仔细地看，六个结尾词的排列是很有规律的，下一段的排列是由上一段的倒数第一和正数第一，倒数第二和正数第二……这样的顺序组成，这样重复六次之后就能回到最初的排列。同时，最后一节是三行(Tercet)，又重复用到所有六个结尾词，严丝合缝&lt;br&gt;&lt;img src=&quot;/2016/02/03/译诗：六节诗-Sestina/sestina.png&quot; alt=&quot;sestina.png&quot; title=&quot;&quot;&gt;&lt;br&gt;来自&lt;a href=&quot;https://en.wikipedia.org/wiki/Sestina&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Wikipedia&lt;/a&gt;&lt;br&gt;将六个词循环的结构画出来，更能看出排列的美感&lt;/p&gt;
+&lt;p&gt;当然，这种精妙而严格的格式规定，会有形式压倒内容的文字游戏之嫌，也由于创作本身的难度，这类诗在历史上并不流行，流传的有名作品并不多。Bishop的这一首，确实能算作六节诗之中的精品之作&lt;br&gt;一边是老奶奶伤感地读着年历藏起泪水，一边是孩子漫不经心地听，不会理解奶奶和年历预言中的秘密，自顾自画出谜一样的儿童图画。这个场景显然是阴沉而神秘的。在我的理解中，年历记载过去又能预言未来，是衔接过去和未来的纽带，老奶奶读年历时留下的泪水，有哀惋逝去生命的感情在其中，也有对未来不确定的迷惑甚至是恐惧，加之浓重渲染的神秘气氛，如欢唱的水壶、寒冷刺骨的房屋，以至让人感到阴森可怖&lt;br&gt;老奶奶和孩子的关联也是时间上连接过去和未来的另一条纽带，孩子尚年少无知，奶奶已垂垂老矣，担心老奶奶骤然死去也是不无道理，而在这首诗的氛围中幻化成老巫婆可能是更合理的结局。孩子就继承了奶奶身上的古怪神秘，恐怕还有洞悉世间秘密的特殊能力&lt;br&gt;许多童话或传说中，小孩子内心由于纯净无垢是拥有通灵的能力的，能看到成人看不见的事物，这首诗里的孩子画出谜一样的房屋，似乎就是他对于世事特殊理解力的体现。有时看一些儿童画，虽然绘画技法在成人角度看是拙劣的，却表达出儿童未经世事的独特的观念&lt;br&gt;过去和未来的衔接，体现在老奶奶和孩子的继承关系上(应该是意识和神秘能力的继承而不仅仅是血缘上的)，也体现在全诗结构上的循环和部分对偶，正说明了奶奶和孩子的生命联络在一起，循环的诗句像锁链一样紧扣，这种结构和内容的重合甚至让人体会到生命的轮回&lt;/p&gt;
+&lt;p&gt;更有趣的是，有一篇脑洞有点大的论文题为&lt;a href=&quot;https://www.questia.com/library/journal/1G1-222558942/life-forms-elizabeth-bishop-s-sestina-and-dna-structure&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Life Forms: Elizabeth Bishop’s “Sestina” and DNA Structure&lt;/a&gt; 论证这首诗与遗传、家庭继承与DNA结构的关系，因为此诗写于1956年，正是Watson和Crick等人发现DNA双螺旋结构的三年后，当时人们都惊异于这个生物学大发现，也在文化界产生很大反响。恰好这首诗的结构又与DNA双螺旋不谋而合，主题也跟家庭传承相关，于是这篇论文”有理有据“的从文学、生物学、心理学的种种角度解读了这首诗&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;blockquote&gt;
+&lt;p&gt;Sestina - Poem by Elizabeth Bishop&lt;/p&gt;
+&lt;p&gt;September rain falls on the house.&lt;br&gt;In the failing light, the old grandmother&lt;br&gt;sits in the kitchen with the child&lt;br&gt;beside the Little Marvel Stove,&lt;br&gt;reading the jokes from the almanac,&lt;br&gt;laughing and talking to hide her tears.&lt;/p&gt;
+&lt;p&gt;She thinks that her equinoctial tears&lt;br&gt;and the rain that beats on the roof of the house&lt;br&gt;were both foretold by the almanac,&lt;br&gt;but only known to a grandmother.&lt;br&gt;The iron kettle sings on the stove.&lt;br&gt;She cuts some bread and says to the child,&lt;/p&gt;
+&lt;p&gt;It’s time for tea now; but the child&lt;br&gt;is watching the teakettle’s small hard tears&lt;br&gt;dance like mad on the hot black stove,&lt;br&gt;the way the rain must dance on the house.&lt;br&gt;Tidying up, the old grandmother&lt;br&gt;hangs up the clever almanac&lt;/p&gt;
+&lt;p&gt;on its string. Birdlike, the almanac&lt;br&gt;hovers half open above the child,&lt;br&gt;hovers above the old grandmother&lt;br&gt;and her teacup full of dark brown tears.&lt;br&gt;She shivers and says she thinks the house&lt;br&gt;feels chilly, and puts more wood in the stove.&lt;/p&gt;
+&lt;p&gt;It was to be, says the Marvel Stove.&lt;br&gt;I know what I know, says the almanac.&lt;br&gt;With crayons the child draws a rigid house&lt;br&gt;and a winding pathway. Then the child&lt;br&gt;puts in a man with buttons like tears&lt;br&gt;and shows it proudly to the grandmother.&lt;/p&gt;
+&lt;p&gt;But secretly, while the grandmother&lt;br&gt;busies herself about the stove,&lt;br&gt;the little moons fall down like tears&lt;br&gt;from between the pages of the almanac&lt;br&gt;into the flower bed the child&lt;br&gt;has carefully placed in the front of the house.&lt;/p&gt;
+&lt;p&gt;Time to plant tears, says the almanac.&lt;br&gt;The grandmother sings to the marvelous stove&lt;br&gt;and the child draws another inscrutable house. &lt;/p&gt;
+&lt;/blockquote&gt;
+    
+    </summary>
+    
+    
+      <category term="Elizabeth Bishop" scheme="http://yoursite.com/tags/Elizabeth-Bishop/"/>
+    
+      <category term="诗" scheme="http://yoursite.com/tags/%E8%AF%97/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>NekoLab新的起点</title>
+    <link href="http://yoursite.com/2016/01/21/Hexo-Github%E6%9E%81%E7%AE%80%E5%BB%BA%E7%AB%99/"/>
+    <id>http://yoursite.com/2016/01/21/Hexo-Github极简建站/</id>
+    <published>2016-01-21T08:03:57.000Z</published>
+    <updated>2016-06-08T09:48:18.252Z</updated>
+    
+    <content type="html">&lt;p&gt;用了一年的亚马逊免费云服务器刚好快要到期，正想着以后该用什么云主机搭网站呢，恰好&lt;a href=&quot;http://quincy.hk&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Quincy君&lt;/a&gt;告诉了我这个好东西：&lt;a href=&quot;https://hexo.io&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Hexo&lt;/a&gt;&lt;/p&gt;
+&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
+&lt;p&gt;这才发现现在的黑科技竟然能让个人网站变得这么简单，都不用租服务器了，省去好多麻烦，可以直接用Markdown语言写文章然后自动上传到Github就行，虽然原理不是很清楚，但效果是绝对惊艳的&lt;/p&gt;
+&lt;p&gt;一开始就照着这个教程&lt;a href=&quot;http://www.jianshu.com/p/465830080ea9/comments/899439&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://www.jianshu.com/p/465830080ea9/comments/899439&lt;/a&gt; ，在本地安装Node.js和Hexo，部署Github，竟然半个多小时就完成了，真的十分简单。然后直接戳&lt;a href=&quot;https://wjw12.github.io&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;https://wjw12.github.io&lt;/a&gt;就能看到一个完整的主页了（而且有点像Github送了一个域名呢hhhh）&lt;/p&gt;
+&lt;p&gt;遇到的唯一小问题就是在配置&lt;code&gt;_config.yml&lt;/code&gt;的时候版本不同会有区别，按照官网当前的文档我是像下面这样写的，并且要注意冒号后面必须要加一个空格，是yml格式的规定&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;deploy:
+    type: git 
+    repo: https://github.com/wjw12/wjw12.github.io
+    branch: master
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;写文章只需要在Git Bash里面输入&lt;code&gt;hexo new post 文章名&lt;/code&gt;就可以新建一个Markdown格式的文档，关于Markdown格式参考&lt;a href=&quot;http://wowubuntu.com/Markdown&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://wowubuntu.com/Markdown&lt;/a&gt;&lt;br&gt;插入图片并不需要像编辑Markdown一般的做法那样插入图片外链，Hexo有自己的语法，把图片放在指定文件夹然后在文档中输入&lt;code&gt;&lt;/code&gt;就可以了，参见&lt;a href=&quot;https://hexo.io/docs/asset-folders.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;https://hexo.io/docs/asset-folders.html&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;把本地写好的东西传到Github也很容易，执行&lt;code&gt;hexo generate&lt;/code&gt;就能像编译一样把文档和各种自动的主题模板变成静态网页的html和css文件，然后再&lt;code&gt;hexo deploy&lt;/code&gt;就上传好了。用Github储存页面文件不仅访问速度有保障，不用担心被攻击或者数据丢失，而且版本管理功能也能在文件更改后回退到过去版本，也可以放心大胆地尝试一些新技术了。&lt;/p&gt;
+&lt;p&gt;把以前网站上的大部分文章连带图片移植到这里很费了点精力，轻微的格式强迫症让我在不少细节上一遍遍地调整，后来意识到，有的地方怎么都不好看的原因是默认主题有点问题，下一步就是安装新的主题&lt;/p&gt;
+&lt;p&gt;好看的Hexo主题并不是很多，有详细文档支持的就更少了，就选了一个Star数最多文档也很完整的主题&lt;a href=&quot;https://github.com/iissnan/hexo-theme-next&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;NexT&lt;/a&gt;，看样子这个主题还在继续开发，简约风格，挺好看，简单地配置一样就大功告成了&lt;/p&gt;
+&lt;p&gt;事情就是这么简单，新的域名&lt;code&gt;nekolab.cn&lt;/code&gt;很快就会启用。在这个寒潮来临的2016年初，NekoLab重新与大家见面，请多多指教！&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;用了一年的亚马逊免费云服务器刚好快要到期，正想着以后该用什么云主机搭网站呢，恰好&lt;a href=&quot;http://quincy.hk&quot;&gt;Quincy君&lt;/a&gt;告诉了我这个好东西：&lt;a href=&quot;https://hexo.io&quot;&gt;Hexo&lt;/a&gt;&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="Github" scheme="http://yoursite.com/tags/Github/"/>
+    
+      <category term="Hexo" scheme="http://yoursite.com/tags/Hexo/"/>
+    
+      <category term="网络" scheme="http://yoursite.com/tags/%E7%BD%91%E7%BB%9C/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>2016年1月1日</title>
+    <link href="http://yoursite.com/2016/01/01/2016%E5%B9%B41%E6%9C%881%E6%97%A5/"/>
+    <id>http://yoursite.com/2016/01/01/2016年1月1日/</id>
+    <published>2016-01-01T03:43:52.000Z</published>
+    <updated>2016-01-21T12:44:22.139Z</updated>
+    
+    <content type="html">&lt;p&gt;新年了！一觉醒来已是2016,半夜一旦醒来就有点难以入眠，在社交网络上回复再发送几条新年问候，领了几个迟来的红包。突然非常非常想念我爸妈。&lt;/p&gt;
+&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
+&lt;p&gt;昨晚妈妈给我发来一张图片，家门换了新的密码锁，看到留言时刚写完作业。第一反应就是看了看手中的家门钥匙，以后用不上了。妈妈打来电话寒暄两句，话题开始是我说用密码锁要注意安全，小心黑客入侵，然后是她一如既往地问候我吃得过得怎么样，都还好吧，我一一回答，嗯，不错，还好。&lt;/p&gt;
+&lt;p&gt;当时挺想说一年过完了，祝妈妈新年怎么怎么样，话到嘴边还是不知怎么说。妈妈接着说，元旦了有空跟同学出去吃点好吃的，我说，嗯，要复习，她说，等元旦过了再问问我怎么样吧。&lt;/p&gt;
+&lt;p&gt;还有呢，爸爸在广西出差还没有回家呢。新年了还没有回家，我这么想，没说什么。妈妈说，放假有点无聊，我想，我也是啊。&lt;/p&gt;
+&lt;p&gt;终究是没有提到新年这个词，仅仅是说元旦，1月1日开始放三天假的法定节假日。我觉得，在我家里的语境下，说新年快乐都太过矫情。&lt;/p&gt;
+&lt;p&gt;平日里和爸妈的交流方式大多是QQ上的留言，和每周六晚上定期定时的电话。常常是他们给我发来一张图，三两句话，说他们在干什么，看到了什么，吃了什么之类，我还经常无视，过几小时才回复，哦，不错，好呀。&lt;/p&gt;
+&lt;p&gt;而他们总问我学校里发生了什么，有些什么新闻，我总回答，没什么，上课，写作业，好好吃饭，锻炼身体。&lt;/p&gt;
+&lt;p&gt;我想，这种交流方式下，几乎不会有任何直接的情感表达。我还有点想给爸爸打个电话，然而手机一个月没充话费，就这么算了。等到2016年再问候吧。&lt;/p&gt;
+&lt;p&gt;而且，如果我现在在夜里发消息问候的话，第二天他们一定要责怪，这么晚了，还不睡。&lt;/p&gt;
+&lt;p&gt;过几天爸爸也要回家了，再过两周我也要回家了，一切都在计划之内。而我也许离家太久，反不习惯家人间相处淡然的状态了。&lt;/p&gt;
+&lt;p&gt;我也不想总结什么，都会显得多余。离回家还有漫长的两周和五门考试。平时爸妈有时会问：想不想家呀？回答：还好，有点。昨天我的回答是：想。&lt;/p&gt;
+&lt;p&gt;结果最后还是有点矫情，也并不太希望爸妈有可能看到这里。万一有可能的话，简单说一句：我想你们。&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;新年了！一觉醒来已是2016,半夜一旦醒来就有点难以入眠，在社交网络上回复再发送几条新年问候，领了几个迟来的红包。突然非常非常想念我爸妈。&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="2016" scheme="http://yoursite.com/tags/2016/"/>
+    
+      <category term="日记" scheme="http://yoursite.com/tags/%E6%97%A5%E8%AE%B0/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>2015好片推荐</title>
+    <link href="http://yoursite.com/2015/12/26/2015%E5%A5%BD%E7%89%87%E6%8E%A8%E8%8D%90/"/>
+    <id>http://yoursite.com/2015/12/26/2015好片推荐/</id>
+    <published>2015-12-26T03:38:53.000Z</published>
+    <updated>2016-06-08T09:47:31.159Z</updated>
+    
+    <content type="html">&lt;p&gt;推荐一下这一年里个人感觉不错的电影和剧集, 纪念即将过去的2015&lt;/p&gt;
+&lt;img src=&quot;/2015/12/26/2015好片推荐/小森林.jpg&quot; alt=&quot;小森林.jpg&quot; title=&quot;&quot;&gt;
+&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
+&lt;p&gt;小森林  夏秋篇和冬春篇&lt;/p&gt;
+&lt;p&gt;可以说是今年最喜欢的小清新电影。整部影片看下来的感觉就是: 舒服。令人陶醉的田园风情，四季风光，日式小清新色调，更重要的是，堪称舌尖上的日本的美食描绘。桥本爱清新自然的演出几近完美地还原出对于田园生活的想象，也反映出生活真实的一面，女主角心理矛盾随着季节推移渐渐发生微妙的变化。一边吃东西边看这部电影，心情就沉浸在影片温暖淡然的氛围中了。&lt;/p&gt;
+&lt;p&gt;百元之恋&lt;/p&gt;
+&lt;img src=&quot;/2015/12/26/2015好片推荐/百元之恋.jpg&quot; alt=&quot;百元之恋.jpg&quot; title=&quot;&quot;&gt;
+&lt;p&gt;讲述社会底层人的落魄和挣扎。从头到尾的心塞感。安藤樱的眼神让人难忘，混合着绝望与不屈，委屈又叛逆的表情。女主角想要改变堕落的生活学习拳击，在比赛和生活的一次次打击中倒下，又灰头土脸的站起，倒下，站起，死磕到底，与命运搏斗，也是与自己的软弱无能搏斗，虽败犹荣，够燃。&lt;/p&gt;
+&lt;p&gt;罪恶之家&lt;/p&gt;
+&lt;img src=&quot;/2015/12/26/2015好片推荐/罪恶之家.jpg&quot; alt=&quot;罪恶之家.jpg&quot; title=&quot;&quot;&gt;
+&lt;p&gt;Priestley的经典话剧改编。BBC良心制作，对白布景都是浓浓的维多利亚风格。演员的表演几乎无懈可击，几乎每个细节都表现得恰到好处，如同话剧一般的精致感。剧情是个教科书一般的反资本主义故事，无非是揭露资本家的虚伪人性的丑陋云云，并不妨碍故事很吸引人，最后探长的身份也是留足了想象空间。&lt;/p&gt;
+&lt;p&gt;福尔摩斯先生&lt;/p&gt;
+&lt;img src=&quot;/2015/12/26/2015好片推荐/福尔摩斯先生.jpg&quot; alt=&quot;福尔摩斯先生.jpg&quot; title=&quot;&quot;&gt;
+&lt;p&gt;老年的福尔摩斯先生退隐乡下，偶然开始处理当年最后一个案件，几十年前的陈年往事，揭开他退隐的原因。一个充满人情味的故事，推理成分其实很弱，主要以情动人，让洞察理性的福尔摩斯终于展现温情一面。看着这位大侦探晚年衰老的身体令人有点唏嘘，更是被人与人之间的温暖所感动。英国人真的很会拿福尔摩斯说事，经典的人物一次次推陈出新，这次是晚年生活，始终给人展现不同的角度&lt;/p&gt;
+&lt;p&gt;火星救援&lt;/p&gt;
+&lt;img src=&quot;/2015/12/26/2015好片推荐/火星救援.jpg&quot; alt=&quot;火星救援.jpg&quot; title=&quot;&quot;&gt;
+&lt;p&gt;超好看的硬科幻大片！后来看了原著愈发觉得电影改编的很棒，小说更像是带着点交互感的游戏，在某一节点主角面临某些情况然后做出某种选择推动情节发展的模式，电影的情节就更流畅了，小说中有时真的记不清MAV和MDV是什么了……又完美保留了原作的科幻硬核，再次为NASA做足了宣传，第一次了解JPL竟然如此酷炫！马特达蒙的演出也是无可挑剔，主角的日常吐槽和行动看起来太有代入感，感觉整个人都阳光起来了&lt;br&gt;经常把它跟近两年的地心引力和星际穿越比较，我觉得地心引力&amp;gt;火星救援&amp;gt;星际穿越，孤身一人流浪外太空的苍凉感还是地心引力表现得更艺术化一些，但是开着火星车跨越几千公里的情景也很棒。之所以觉得优于星际穿越原因是: 不矫情！没有什么多余的情情爱爱，中心就是生存本身，这样才更纯粹嘛&lt;/p&gt;
+&lt;p&gt;旅程终点&lt;/p&gt;
+&lt;img src=&quot;/2015/12/26/2015好片推荐/旅程终点.jpg&quot; alt=&quot;旅程终点.jpg&quot; title=&quot;&quot;&gt;
+&lt;p&gt;很有点话唠的电影。讲的就是一个记者跟着作家David Foster Wallace辗转各地参加新书Infinite Jest的发布会，作家聊着创作历程，种种个人思索，在旅程中逐渐发生着三观的碰撞。总的来说氛围偏于悲观阴沉，Wallace患有长期的抑郁(现实中他在2008年死于自杀) 作为作家更多地沉浸在自己的创作中，相对的与世隔绝，而发布会时又必须跟大量的人接触，成为矛盾的爆发点，故事就由此展开。大概每个内向并且孤独的人看过之后都会有些感触，听他们话唠确实需要一点心情，但听着听着或多或少就会感觉有些共鸣，有些话题自己也曾思索，影片中听他们一针见血地说出来瞬间有被戳中的感觉&lt;/p&gt;
+&lt;p&gt;再次出发&lt;/p&gt;
+&lt;img src=&quot;/2015/12/26/2015好片推荐/再次出发.jpg&quot; alt=&quot;再次出发.jpg&quot; title=&quot;&quot;&gt;
+&lt;p&gt;温暖治愈的音乐片，Once导演的续作，配乐都超级好听，看完电影就忘不了Lost Stars那个温柔又带着忧伤的旋律。两个失意的独立音乐人走到一起，最后在感情上又无疾而终，却留下了共同创作的音乐印证心路。所有情感都凝在音乐中了，我就不多说，推荐这张电影原声集: &lt;a href=&quot;http://music.163.com/album/2883909/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://music.163.com/album/2883909/&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;烈日灼心&lt;/p&gt;
+&lt;img src=&quot;/2015/12/26/2015好片推荐/烈日灼心.jpg&quot; alt=&quot;烈日灼心.jpg&quot; title=&quot;&quot;&gt;
+&lt;p&gt;相当吸引人眼球的国产犯罪片，虽然故事情节上不少瑕疵，但是足够紧张刺激，观影时完全可以忽略那些不足，最后印象最深的大概是各种血腥暴力镜头和结尾高空追逐的一场戏，全程惊心动魄，国产的类型片做到这种程度真心不容易&lt;/p&gt;
+&lt;p&gt;然后推荐一部这一年感觉最好看的一部剧:真实的人类&lt;/p&gt;
+&lt;img src=&quot;/2015/12/26/2015好片推荐/真实的人类.jpg&quot; alt=&quot;真实的人类.jpg&quot; title=&quot;&quot;&gt;
+&lt;p&gt;主题和黑镜很像，又是一部科幻神剧，讲的是合成人引发的社会问题，比黑镜还要过瘾很多因为一季有12集啊并且明年还要出第二季！面无表情的家居型合成人女主长得很漂亮，还有着不为人知的过去，然后被家里的熊孩子调查出真相，牵扯到一群反叛的合成人。这些合成人拥有了独立意识但是在人类社会得不到平等的地位，每个都有着独特的性格，最后也得到了那一家人的理解然后共同行动……总之是各种家庭社会科技人伦道德的问题都有所涉及，合成人的设定也毫无违和感，真实地让人感觉合成人就是人类身边平等的一元，合成人之间的感情和他们对人的感情都是真实存在的&lt;/p&gt;
+&lt;p&gt;还有一部脑洞无限大的科幻动画片Rick and Morty&lt;/p&gt;
+&lt;img src=&quot;/2015/12/26/2015好片推荐/Rick-and-Morty.jpg&quot; alt=&quot;Rick-and-Morty.jpg&quot; title=&quot;&quot;&gt;
+&lt;p&gt;诡异的画风一旦接受了就欲罢不能，情节总能让人惊呼“whatthefuck” “这tm也可以”，疯狂科学家Rick带着小学生孙子Morty在全宇宙探险，有时也有温情讲述外星生物的感情故事，Morty一家人都特别有爱并且也被卷入各种奇幻事件……&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;推荐一下这一年里个人感觉不错的电影和剧集, 纪念即将过去的2015&lt;/p&gt;
+&lt;img src=&quot;/2015/12/26/2015好片推荐/小森林.jpg&quot; alt=&quot;小森林.jpg&quot; title=&quot;&quot;&gt;
+    
+    </summary>
+    
+    
+      <category term="2015" scheme="http://yoursite.com/tags/2015/"/>
+    
+      <category term="电影" scheme="http://yoursite.com/tags/%E7%94%B5%E5%BD%B1/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>背景虚化的原理</title>
+    <link href="http://yoursite.com/2015/12/17/%E8%83%8C%E6%99%AF%E8%99%9A%E5%8C%96%E7%9A%84%E5%8E%9F%E7%90%86/"/>
+    <id>http://yoursite.com/2015/12/17/背景虚化的原理/</id>
+    <published>2015-12-17T03:29:57.000Z</published>
+    <updated>2016-06-08T09:49:52.581Z</updated>
+    
+    <content type="html">&lt;p&gt;（这个内容原本是这学期光学课作报告的题目，选了个特别科普的话题，过程中就发现了不少有趣的的东西，于是把要交的报告作业改了改放到这里了）&lt;/p&gt;
+&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
+&lt;h2 id=&quot;u666F_u6DF1_u7684_u6765_u7531&quot;&gt;&lt;a href=&quot;#u666F_u6DF1_u7684_u6765_u7531&quot; class=&quot;headerlink&quot; title=&quot;景深的来由&quot;&gt;&lt;/a&gt;景深的来由&lt;/h2&gt;&lt;p&gt;众所周知，照相机成像的基本原理是凸透镜在物距大于两倍焦距的时候成一个倒立实像，不管相机的结构是复杂还是简单，成像的光路都可以简化为物体—进入镜头光圈—通过透镜—在底片(或传感器)上成像，通过前后移动透镜或底片使被摄物体准确对焦，在底片上成一个清晰的像。&lt;/p&gt;
+&lt;p&gt;从理想薄凸透镜成像的理论上来说，对应确定的焦距和像距，只有唯一的物距上的物体才能清晰成像，其余位置的物体成像或多或少都有一定模糊，而事实上我们不一定总能观察到模糊，在被对焦物体的前后一定范围内成像都是清晰的。这是由于不合焦的每一点所成的像都是一个弥散的圆形，称作“弥散圆”，在合焦位置附近物体发出的光线，产生的弥散圆直径都很小，小于感光元件所能分辨的极限，于是最终记录下来的还是完全清晰的。&lt;/p&gt;
+&lt;p&gt;偏离合焦位置越远的物光线，成的弥散圆直径就越大，直到直径大于感光元件的分辨能力，就会出现可见的模糊，这一极限位置对应的弥散圆，成为容许弥散圆。在合焦位置前后一定范围内，景物是清晰的，这一范围就称作景深。&lt;/p&gt;
+&lt;img src=&quot;/2015/12/17/背景虚化的原理/yuanli.jpg&quot; alt=&quot;yuanli.jpg&quot; title=&quot;&quot;&gt;
+&lt;h2 id=&quot;u5236_u9020_u6D45_u666F_u6DF1_u7684_u65B9_u5F0F&quot;&gt;&lt;a href=&quot;#u5236_u9020_u6D45_u666F_u6DF1_u7684_u65B9_u5F0F&quot; class=&quot;headerlink&quot; title=&quot;制造浅景深的方式&quot;&gt;&lt;/a&gt;制造浅景深的方式&lt;/h2&gt;&lt;p&gt;关于景深的话题如果感兴趣可以参考喂鸡&lt;a href=&quot;https://en.wikipedia.org/wiki/Depth_of_field#Derivation_of_the_DOF_formulae&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;https://en.wikipedia.org/wiki/Depth_of_field#Derivation_of_the_DOF_formulae&lt;/a&gt; （难道会有人感兴趣吗，会不会有人看这篇博文我都不确定）&lt;/p&gt;
+&lt;p&gt;简单的说要想景深更浅, 获得更虚化的背景，就要减小物距，加大焦距，加大光圈。实际上构图确定的时候只能调整光圈，更大光圈的镜头就意味着more money.&lt;/p&gt;
+&lt;h3 id=&quot;u80CC_u666F_u865A_u5316_u7684_u89C6_u89C9_u5F62_u6001&quot;&gt;&lt;a href=&quot;#u80CC_u666F_u865A_u5316_u7684_u89C6_u89C9_u5F62_u6001&quot; class=&quot;headerlink&quot; title=&quot;背景虚化的视觉形态&quot;&gt;&lt;/a&gt;背景虚化的视觉形态&lt;/h3&gt;&lt;p&gt;背景虚化的样子，实际上就是弥散圆的形态。对于虚化的一个个光斑，还有一个英文词叫做bokeh, 来源于日文里面的“暈け”。下面两张图，常见的应该是A还是B？&lt;/p&gt;
+&lt;img src=&quot;/2015/12/17/背景虚化的原理/bokeh.jpg&quot; alt=&quot;bokeh.jpg&quot; title=&quot;&quot;&gt;
+&lt;!--more--&gt;
+&lt;p&gt;我其实没有见过B形状的，但实际上这两种都是存在的。&lt;/p&gt;
+&lt;p&gt;一般都是A这种，边缘模糊，中间亮暗不均，亮度分布有一定的中心对称性。之所以是这样，主要因素是镜头的球差。球差是像差的一种，所谓像差，是实际光学系统偏离理想情况，镜头的镜片组并不是理想的薄透镜，物体发出的光也不是近轴光线（在推导球面透镜物象关系1/u+1/v=1/f的时候就用到了近轴近似），这样成像就与理想情况有了偏差。球差是说，光轴上物点发出的同心光束偏离近轴近似，导致出射光束不再是同心光束，在底片上产生中心对称的弥散斑，像图中这样：&lt;/p&gt;
+&lt;img src=&quot;/2015/12/17/背景虚化的原理/257a40da81cb39dbc3d309ddd2160924aa18306c.jpg&quot; alt=&quot;257a40da81cb39dbc3d309ddd2160924aa18306c.jpg&quot; title=&quot;&quot;&gt;
+&lt;p&gt;因此光斑亮暗不均，中心对称，而对于光轴之外的点情况会更复杂一些，可能还有彗差和像散的因素，具体还有待分析。&lt;/p&gt;
+&lt;p&gt;有些镜头采用的透镜组会对球差有所修正，修正与否以及修正的结果如何，都会改变弥散圆的形态。如果将球差完全消除，那么弥散圆的亮度就是均一的，并且具有锐利的边缘，虽然，一般来说这种结果挺难看的，但有时尖锐边缘恰恰是所需要的效果。&lt;/p&gt;
+
+&lt;p&gt;弥散圆边缘的形态和光圈边缘的形状是一致的，光圈一般是几叶平直的叶片组成，如果产生锐利的光斑，边缘就是多边形的，有的光圈叶片边缘制造得更平滑，能产生更圆润的光斑&lt;/p&gt;
+&lt;p&gt;利用这个特性，改变光圈的形状就可以改变虚化的光斑边缘的形状，造成一些特殊的效果。简单的方法是在黑纸上剪出一个特定形状的小孔，将黑纸罩在镜头前，小孔就能发挥光圈的作用，产生相应形状的光斑。&lt;br&gt;我剪了一个星形的黑纸:&lt;/p&gt;
+&lt;img src=&quot;/2015/12/17/背景虚化的原理/0.jpg&quot; alt=&quot;0.jpg&quot; title=&quot;&quot;&gt;
+&lt;p&gt;就在宿舍里用电脑屏幕上的亮斑摆了个背景，亮斑就变成星形的了&lt;/p&gt;
+&lt;img src=&quot;/2015/12/17/背景虚化的原理/00.jpg&quot; alt=&quot;00.jpg&quot; title=&quot;&quot;&gt;
+&lt;p&gt;实际照片是这样拍出来的，背景都是圆点&lt;/p&gt;
+&lt;img src=&quot;/2015/12/17/背景虚化的原理/000.jpg&quot; alt=&quot;000.jpg&quot; title=&quot;&quot;&gt;
+&lt;p&gt;这里主要的问题主要是在于，镜头本身光圈不够大，如果剪出的小孔大于光圈大小就几乎没用了，照片中我用的18-105狗头大约是70mm的焦段，f/5.0, 对应就是1cm多的光圈孔径，发现这样剪的小孔在1cm左右效果还可以，再大就没效果了。其次，可以取景的范围非常小，如果光圈不够大，就只能拍一点小东西，并且还很暗。用这种方法拍手办也许是个不错的主意。&lt;/p&gt;
+&lt;h2 id=&quot;u80CC_u666F_u865A_u5316_u7684_u66FF_u4EE3_u65B9_u6CD5_uFF08_u5F53_u7136_u8FD9_u91CC_u8BA8_u8BBA_u7684_u662F_u7269_u7406_u65B9_u6CD5_uFF0CPS_u4E0D_u7B97_uFF09&quot;&gt;&lt;a href=&quot;#u80CC_u666F_u865A_u5316_u7684_u66FF_u4EE3_u65B9_u6CD5_uFF08_u5F53_u7136_u8FD9_u91CC_u8BA8_u8BBA_u7684_u662F_u7269_u7406_u65B9_u6CD5_uFF0CPS_u4E0D_u7B97_uFF09&quot; class=&quot;headerlink&quot; title=&quot;背景虚化的替代方法（当然这里讨论的是物理方法，PS不算）&quot;&gt;&lt;/a&gt;背景虚化的替代方法（当然这里讨论的是物理方法，PS不算）&lt;/h2&gt;&lt;h3 id=&quot;u79FB_u8F74_u955C_u5934&quot;&gt;&lt;a href=&quot;#u79FB_u8F74_u955C_u5934&quot; class=&quot;headerlink&quot; title=&quot;移轴镜头&quot;&gt;&lt;/a&gt;移轴镜头&lt;/h3&gt;
+&lt;p&gt;原理上很好理解，镜头是斜着的，成像清晰的面相对底片也就不完全重合，不重合的地方就虚化了。移轴镜头更主要的用途是修正透视，比如拍高楼的时候可以修正近大远小的透视形状，让斜的成像面刚好在底片上显示清晰。&lt;/p&gt;
+&lt;p&gt;现在还有一种玩具镜头Lensbaby也是可以扭动倾斜镜头, 产生类似移轴的效果, 还可以产生其他一些扭曲的特效, 并且比移轴镜头便宜很多, 只要两三千RMB, 据说原型是摄影师Craig Strong用普通镜头接在吸尘器的管子上发明出来的&lt;/p&gt;
+&lt;h3 id=&quot;u201C_u955C_u5934_u91CD_u51FB_3F_3F_u201D_3A_Lens_whacking&quot;&gt;&lt;a href=&quot;#u201C_u955C_u5934_u91CD_u51FB_3F_3F_u201D_3A_Lens_whacking&quot; class=&quot;headerlink&quot; title=&quot;“镜头重击??”: Lens whacking&quot;&gt;&lt;/a&gt;“镜头重击??”: Lens whacking&lt;/h3&gt;&lt;p&gt;没钱买移轴怎么办？国外有机智的摄影师发明了把镜头与机身分离拍摄的玩法，又叫自由镜头摄影(Free lensing). 也就是一只手拿相机，另一只手在相机前扶稳镜头，可以倾斜，创造出移轴的效果。&lt;/p&gt;
+&lt;img src=&quot;/2015/12/17/背景虚化的原理/PhilipBloom_Whack_0009-670x502.jpg&quot; alt=&quot;PhilipBloom_Whack_0009-670x502.jpg&quot; title=&quot;&quot;&gt;
+&lt;p&gt;本来单反相机没有镜头也能正常开机按快门，只是对焦比较困难，拿镜头的同时还要转动对焦环。不知道“镜头重击”这个词是怎么发明出来的，其实没有听上去那么惊悚，最大的风险在于手没拿稳镜头就摔坏了，有可能是这个原因。&lt;/p&gt;
+&lt;p&gt;有的镜头在摘下的时候光圈是被调到最小的，在镜头卡口处，有个金属拨片或者类似的机械结构，把它拨到一边时光圈就能调到最大，可以看到镜头透光的孔径明显变大很多。因为镜头分离时也不能自动调节光圈，所以可以叠一张小纸片把调光圈的拨片卡住，让光圈保持最大，才能正常拍照。&lt;/p&gt;
+&lt;p&gt;实际操作中发现对焦是个难题，受限于我的镜头对焦距离，只有距离比较近的物体才能清晰对焦（因为镜头取下的时候，正常成像的像距比原来稍大一点），并且要顺利对焦，焦距不能太小，至少也要50mm以上，越大就越容易一些。把镜头先对准卡口，然后稍微倾斜，找到合适的角度，如果光照的角度合适，还会有迷幻的漏光效果。但是我的操作还不太熟练，并且镜头容易进灰也是个问题，只在室内拍了几张不太好看的照片，对焦也不太准，仅仅是测试。&lt;/p&gt;
+&lt;img src=&quot;/2015/12/17/背景虚化的原理/p1.jpg&quot; alt=&quot;p1.jpg&quot; title=&quot;&quot;&gt;
+&lt;img src=&quot;/2015/12/17/背景虚化的原理/p2.jpg&quot; alt=&quot;p2.jpg&quot; title=&quot;&quot;&gt; 
+&lt;img src=&quot;/2015/12/17/背景虚化的原理/p3.jpg&quot; alt=&quot;p3.jpg&quot; title=&quot;&quot;&gt;
+&lt;p&gt;底下的链接里面有的摄影师拍的特别好看，漏光和模糊能产生意想不到的视觉效果。&lt;/p&gt;
+&lt;h3 id=&quot;u6709_u5F85_u8003_u8BC1_u7684_u7269_u7406_u65B9_u6CD5&quot;&gt;&lt;a href=&quot;#u6709_u5F85_u8003_u8BC1_u7684_u7269_u7406_u65B9_u6CD5&quot; class=&quot;headerlink&quot; title=&quot;有待考证的物理方法&quot;&gt;&lt;/a&gt;有待考证的物理方法&lt;/h3&gt;&lt;p&gt;在有的论坛里有人提到过“浅景深滤镜”，但是上淘宝也好京东也好，并没有查到这种东西，也不知道英文该怎么说，国外网站上也没查到相关信息。还有人说可以在镜头上抹凡士林，但是没有人记录过这种试验。&lt;/p&gt;
+&lt;p&gt;从理论上来说这两种方法都是行得通的，因为凡士林相当于一层不均匀的介质，同样的用变折射率的介质理论上也可以做成滤镜，之所以这样能产生背景虚化，在光学教科书里面的习题就能给人启发：&lt;/p&gt;
+&lt;img src=&quot;/2015/12/17/背景虚化的原理/865124914.jpg&quot; alt=&quot;865124914.jpg&quot; title=&quot;&quot;&gt;
+&lt;p&gt;变折射率介质可以产生透镜的效果。可以用折射定律来理解，也可以用现代光学中的波前变换理解，透镜和变折射率介质一样相当于一个相位型衍射元件，能使平面波和球面波互相转化，或者改变球面波的形态，会聚或发散光线。&lt;/p&gt;
+&lt;h2 id=&quot;u53C2_u8003_u8D44_u6599&quot;&gt;&lt;a href=&quot;#u53C2_u8003_u8D44_u6599&quot; class=&quot;headerlink&quot; title=&quot;参考资料&quot;&gt;&lt;/a&gt;参考资料&lt;/h2&gt;&lt;p&gt;维基百科-Bokeh &lt;a href=&quot;https://en.wikipedia.org/wiki/Bokeh&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;https://en.wikipedia.org/wiki/Bokeh&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;维基百科-景深 &lt;a href=&quot;https://en.wikipedia.org/wiki/Depth_of_field&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;https://en.wikipedia.org/wiki/Depth_of_field&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;一个关于像差的教学课件(突然觉得光学工程还有点酷,设计镜头什么的) &lt;a href=&quot;http://wenku.baidu.com/link?url=TGdpqJoZhJt9dSzLv6aRMIwkHQ3NuoBVjNlpY4WoJkCgEBkVwdKLJeVtT-0BnRZuLxMEPt5sBql2xyBJhJyW5z1GnylX3VU0Rywi57vt3Nu&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://wenku.baidu.com/link?url=TGdpqJoZhJt9dSzLv6aRMIwkHQ3NuoBVjNlpY4WoJkCgEBkVwdKLJeVtT-0BnRZuLxMEPt5sBql2xyBJhJyW5z1GnylX3VU0Rywi57vt3Nu&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;改变光斑形状 &lt;a href=&quot;http://www.diyphotography.net/diy_create_your_own_bokeh/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://www.diyphotography.net/diy_create_your_own_bokeh/&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;这个贴子有很多漂亮的光斑照片 &lt;a href=&quot;http://www.guokr.com/article/3439/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://www.guokr.com/article/3439/&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;自由镜头摄影(这个作者把他的50mm定焦镜头拆了…)&lt;a href=&quot;http://petapixel.com/2013/04/30/a-photographers-guide-to-freelensing-the-poor-mans-tilt-shift-lens/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://petapixel.com/2013/04/30/a-photographers-guide-to-freelensing-the-poor-mans-tilt-shift-lens/&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;这里还有一段视频&lt;a href=&quot;http://www.fstopacademy.com/lens-whacking-for-beginners/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://www.fstopacademy.com/lens-whacking-for-beginners/&lt;/a&gt;&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;（这个内容原本是这学期光学课作报告的题目，选了个特别科普的话题，过程中就发现了不少有趣的的东西，于是把要交的报告作业改了改放到这里了）&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="摄影" scheme="http://yoursite.com/tags/%E6%91%84%E5%BD%B1/"/>
+    
+      <category term="物理" scheme="http://yoursite.com/tags/%E7%89%A9%E7%90%86/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>奇点</title>
+    <link href="http://yoursite.com/2015/12/10/%E5%A5%87%E7%82%B9/"/>
+    <id>http://yoursite.com/2015/12/10/奇点/</id>
+    <published>2015-12-10T03:28:03.000Z</published>
+    <updated>2016-06-08T09:52:07.802Z</updated>
+    
+    <content type="html">&lt;p&gt;“你是我的本性奇点，趋向你的时候，就趋向整个世界”&lt;/p&gt;
+&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
+&lt;p&gt;物院人写出来的三行情诗，一个有点不明觉厉的比方，在我看来，抒情对象不应该是哪个姑娘，而是书架上的一本《数学物理方法》&lt;/p&gt;
+&lt;p&gt;毕竟“函数的本性奇点附近包含了整个世界”之类的比方，原本是数理老师讲出来的。数学概念总是难以具象化，可能使用它做起计算毫无障碍，但如果问起它真实的模样，长得想什么，是个什么东西，常常就会把人引到另外的地方去&lt;/p&gt;
+&lt;p&gt;从高数中习以为常的极限说起来，“任取ε，总存在δ……”，实际上就是说无限接近一个点，接近到一根发丝，一个原子的距离，而不达到那个点，因为那个点可能是发散的，事物失去了原本的模样&lt;/p&gt;
+&lt;p&gt;最常见的，就是发散到正无穷，如果画起图来，这个函数就要穿破草稿纸的边界，穿出大气层，一直到宇宙的边界&lt;/p&gt;
+&lt;p&gt;所以在纸上写写画画，“任取ε，存在N……”，然后就可以让思想跟着这个很大很大的N飞出太阳系外，于是在数学课上做个好梦&lt;/p&gt;
+&lt;p&gt;不过在复变函数的情形，事情就更复杂了，因为复平面是个二维的平面，多了一个自由度，又多了无穷多种奇妙的可能&lt;/p&gt;
+&lt;p&gt;熟悉的复函数，往往是众多函数中性质最好的那种，解析函数，就是无限光滑的，无穷阶可导，光滑的像糯米团子，像果冻的表面，给我的感觉是柔软而流动的，还有一个形容人肌肤的形容词，软玉温香&lt;/p&gt;
+&lt;p&gt;但是在实用的情形，我们必须允许不完美的存在，函数可以在某个点不连续，趋于无穷，或者发散无法定义，和无限光滑的解析区域比起来，这一点就是无限的糟糕，最丑陋的一个点，奇点&lt;/p&gt;
+&lt;p&gt;失去定义对于这个孤单的点是多么可怕的一件事情。天崩地坼，秋水为竭，所有美好都离他远去，弃他在一片荒芜混沌中，然而一毫厘之外的世界，还是风平浪静&lt;/p&gt;
+&lt;p&gt;我想象这个点距离δ的范围内，竟发生着剧烈的洪水、海啸、地震，地面被扭曲到无穷高的地方，他的小屋被卷到了无穷远，我担心他会不会深陷绝望，像无家可归的灾民&lt;/p&gt;
+&lt;p&gt;但是，就在这个半径δ的小圆里面，积分路径转一圈，跨过所有山穷水尽，竟然能得到一个确定的值&lt;/p&gt;
+&lt;p&gt;不容易接受。平时计算围道积分，只关注光滑的围道便觉欢喜，不会在意刀山火海中的那一点，而积分的结果，仅仅全是那一点的贡献&lt;/p&gt;
+&lt;p&gt;如果在整个复平面上都没有奇点，哪里都岁月静好，那么整个图像就变得毫无意义，一个没有用处的花瓶，比花瓶更无趣，因为有个定理说这种情况函数就是常数了，走到哪里都是平坦的荒原，缺乏变化，有点像热寂的宇宙&lt;/p&gt;
+&lt;p&gt;前面说的，还只是普通奇点周围的情况，至于本性奇点是如何包含整个世界的，我也不知道如何证明&lt;/p&gt;
+&lt;p&gt;不过听说，趋近于本性奇点函数几乎可以取到所有的复数值，但也可能存在至多有限多个值取不到&lt;/p&gt;
+&lt;p&gt;也许，即使能趋近整个世界，有些人也永远接近不到吧&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;“你是我的本性奇点，趋向你的时候，就趋向整个世界”&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="数学" scheme="http://yoursite.com/tags/%E6%95%B0%E5%AD%A6/"/>
+    
+      <category term="随笔" scheme="http://yoursite.com/tags/%E9%9A%8F%E7%AC%94/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>湖北美术馆的雕塑</title>
+    <link href="http://yoursite.com/2015/08/15/%E6%B9%96%E5%8C%97%E7%BE%8E%E6%9C%AF%E9%A6%86%E7%9A%84%E9%9B%95%E5%A1%91/"/>
+    <id>http://yoursite.com/2015/08/15/湖北美术馆的雕塑/</id>
+    <published>2015-08-14T16:00:00.000Z</published>
+    <updated>2016-06-08T09:50:58.048Z</updated>
+    
+    <content type="html">&lt;p&gt;去逛了逛湖北美术馆，很有点被惊艳到！雕塑都不再是封在玻璃柜里或用围栏围起，而是摆在触手可及的展台上或安放在地上，第一次如此近距离观赏雕塑作品，能够伸长脖子凑近观察细节，看清楚不同角度光影下的表现，甚至触摸到雕塑材料的触感，由衷赞叹美术馆策展的用心&lt;/p&gt;
+&lt;img src=&quot;/2015/08/15/湖北美术馆的雕塑/DSC00900副本.jpg&quot; alt=&quot;DSC00900副本.jpg&quot; title=&quot;&quot;&gt;
+&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
+&lt;p&gt;锈迹斑斑的铁片，摸上去锈铁似乎都会掉下来&lt;/p&gt;
+&lt;img src=&quot;/2015/08/15/湖北美术馆的雕塑/DSC00873_副本.jpg&quot; alt=&quot;DSC00873_副本.jpg&quot; title=&quot;&quot;&gt;
+&lt;p&gt;人形雕塑，跟我差不多高&lt;/p&gt;
+&lt;img src=&quot;/2015/08/15/湖北美术馆的雕塑/DSC00872_副本.jpg&quot; alt=&quot;DSC00872_副本.jpg&quot; title=&quot;&quot;&gt;
+&lt;p&gt;蒸汽朋克风格的机械车，还装着机翼&lt;/p&gt;
+&lt;img src=&quot;/2015/08/15/湖北美术馆的雕塑/DSC00905副本.jpg&quot; alt=&quot;DSC00905副本.jpg&quot; title=&quot;&quot;&gt;
+&lt;!--more--&gt;
+&lt;p&gt;下面一系列拍的是一个主要用废旧金属做的城市景观，是美术馆这么多雕塑中最喜欢的一个&lt;br&gt;雕塑是放置在地面上，观众都弯着腰蹲着看着各个细节指指点点，如同跟微缩城市中的塑料小人对话，拍有些照片的时候几乎都趴在了地上&lt;/p&gt;
+&lt;p&gt;城市的一面正在被拆毁，废铁完美的表现出废墟的质感&lt;/p&gt;
+&lt;img src=&quot;/2015/08/15/湖北美术馆的雕塑/DSC00874副本.jpg&quot; alt=&quot;DSC00874副本.jpg&quot; title=&quot;&quot;&gt;
+&lt;img src=&quot;/2015/08/15/湖北美术馆的雕塑/DSC00876_副本.jpg&quot; alt=&quot;DSC00876_副本.jpg&quot; title=&quot;&quot;&gt;
+&lt;p&gt;俯视街区旧楼房。大概是下午四五点钟的斜阳&lt;/p&gt;
+&lt;img src=&quot;/2015/08/15/湖北美术馆的雕塑/DSC00879副本.jpg&quot; alt=&quot;DSC00879副本.jpg&quot; title=&quot;&quot;&gt;
+&lt;p&gt;中间白色的小玩意是用电解电容做的&lt;/p&gt;
+&lt;img src=&quot;/2015/08/15/湖北美术馆的雕塑/DSC00894副本.jpg&quot; alt=&quot;DSC00894副本.jpg&quot; title=&quot;&quot;&gt;
+&lt;p&gt;街道上形形色色的人，像极了日常生活的城市，又带着引人遐想的扭曲&lt;/p&gt;
+&lt;img src=&quot;/2015/08/15/湖北美术馆的雕塑/DSC00881_副本.jpg&quot; alt=&quot;DSC00881_副本.jpg&quot; title=&quot;&quot;&gt;
+&lt;p&gt;广告牌也是制作的十分细致，注意到路上的小车吗？是某种缠着铜线圈的电子器件&lt;/p&gt;
+&lt;img src=&quot;/2015/08/15/湖北美术馆的雕塑/DSC00885副本.jpg&quot; alt=&quot;DSC00885副本.jpg&quot; title=&quot;&quot;&gt;
+&lt;p&gt;无意间调节白平衡造成了这种紫色，原本是略带暖色的灯光反而拍出夜景和霓虹灯光的感觉，想到了晚上独自走在繁华街道上的感觉&lt;/p&gt;
+&lt;img src=&quot;/2015/08/15/湖北美术馆的雕塑/DSC00880_副本.jpg&quot; alt=&quot;DSC00880_副本.jpg&quot; title=&quot;&quot;&gt;
+&lt;img src=&quot;/2015/08/15/湖北美术馆的雕塑/DSC00890副本.jpg&quot; alt=&quot;DSC00890副本.jpg&quot; title=&quot;&quot;&gt;
+&lt;p&gt;天台上，挂满了用易拉罐铁片表现的衣服。温柔的人情和冰冷的废铁皮都市鲜明对比&lt;/p&gt;
+&lt;img src=&quot;/2015/08/15/湖北美术馆的雕塑/DSC00883副本.jpg&quot; alt=&quot;DSC00883副本.jpg&quot; title=&quot;&quot;&gt;
+&lt;p&gt;雕塑就拍的这么多了。下面两张是美术馆里商店的陈列，色彩挺鲜明的&lt;/p&gt;
+&lt;img src=&quot;/2015/08/15/湖北美术馆的雕塑/DSC00916副本.jpg&quot; alt=&quot;DSC00916副本.jpg&quot; title=&quot;&quot;&gt;
+&lt;img src=&quot;/2015/08/15/湖北美术馆的雕塑/DSC00917副本.jpg&quot; alt=&quot;DSC00917副本.jpg&quot; title=&quot;&quot;&gt;</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;去逛了逛湖北美术馆，很有点被惊艳到！雕塑都不再是封在玻璃柜里或用围栏围起，而是摆在触手可及的展台上或安放在地上，第一次如此近距离观赏雕塑作品，能够伸长脖子凑近观察细节，看清楚不同角度光影下的表现，甚至触摸到雕塑材料的触感，由衷赞叹美术馆策展的用心&lt;/p&gt;
+&lt;img src=&quot;/2015/08/15/湖北美术馆的雕塑/DSC00900副本.jpg&quot; alt=&quot;DSC00900副本.jpg&quot; title=&quot;&quot;&gt;
+    
+    </summary>
+    
+    
+      <category term="摄影" scheme="http://yoursite.com/tags/%E6%91%84%E5%BD%B1/"/>
+    
+      <category term="艺术" scheme="http://yoursite.com/tags/%E8%89%BA%E6%9C%AF/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>失去的艺术</title>
+    <link href="http://yoursite.com/2015/06/23/%E5%A4%B1%E5%8E%BB%E7%9A%84%E8%89%BA%E6%9C%AF/"/>
+    <id>http://yoursite.com/2015/06/23/失去的艺术/</id>
+    <published>2015-06-22T16:00:00.000Z</published>
+    <updated>2016-06-08T09:53:34.707Z</updated>
+    
+    <content type="html">&lt;blockquote&gt;
+&lt;p&gt;The art of losing isn’t hard to master;&lt;br&gt;so many things seem filled with the intent&lt;br&gt;to be lost that their loss is no disaster.&lt;/p&gt;
+&lt;p&gt;Lose something every day. Accept the fluster&lt;br&gt;of lost door keys, the hour badly spent.&lt;br&gt;The art of losing isn’t hard to master.&lt;/p&gt;
+&lt;p&gt;Then practice losing farther, losing faster:&lt;br&gt;places, and names, and where it was you meant&lt;br&gt;to travel. None of these will bring disaster.&lt;/p&gt;
+&lt;p&gt;I lost my mother’s watch. And look! my last, or&lt;br&gt;next-to-last, of three loved houses went.&lt;br&gt;The art of losing isn’t hard to master.&lt;/p&gt;
+&lt;p&gt;I lost two cities, lovely ones. And, vaster,&lt;br&gt;some realms I owned, two rivers, a continent.&lt;br&gt;I miss them, but it wasn’t a disaster.&lt;/p&gt;
+&lt;p&gt;—Even losing you (the joking voice, a gesture&lt;br&gt;I love) I shan’t have lied. It’s evident&lt;br&gt;the art of losing’s not too hard to master&lt;br&gt;though it may look like (Write it!) like disaster.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
+&lt;p&gt;“失去的技艺”是在Elizabeth Bishop的诗”One Art”中读到的。Elizabeth Bishop可能就是精湛于失去的技艺的诗人，拥有过最炽烈的爱情，然后又失去自己珍重的一切。也许译成“失去的艺术”会更好，将失去的悲剧化为美的艺术，失去就不再是灾祸，掌握了这样的艺术，起起伏伏的人生就充满了美感。&lt;/p&gt;
+&lt;p&gt;最近又看了讲述诗人情感经历的电影Reaching for the Moon，讲述了她与另一位女性Lota的爱情故事，又结合她诗歌的创作经历。很少看同性主题的电影，感动于同性之间如此优雅的爱情。从浪漫的诗歌和南美洲风光走过，到最后，Elizabeth失去了她的同性恋人，一场精致的悲剧。影片最后，”One Art”这首诗画上了完美的终结。&lt;/p&gt;
+&lt;p&gt;看上去是一场灾祸的悲剧，掌握好失去的艺术，就不会那么痛苦。失去是永恒的，从亚当失去伊甸园开始，我们的生命就注定不能逃离失去的宿命。但走出伊甸园的人类，因为失去了绝对幸福的庇护所，反而因各种不完美而拓展出更多的可能性。&lt;/p&gt;
+&lt;p&gt;悲剧本身就是美的，从古希腊人创作悲剧开始，悲剧就是一门反映生命终极矛盾的艺术形式。有时在想，如果欣赏悲剧多于欣赏喜剧，又凭什么希望发生在自己身上的是喜剧而不是悲剧呢？不如将悲剧的精神（古希腊所谓酒神精神）融入到自己的生命中，将自己周围的悲剧当作崇高的艺术来欣赏。&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;blockquote&gt;
+&lt;p&gt;The art of losing isn’t hard to master;&lt;br&gt;so many things seem filled with the intent&lt;br&gt;to be lost that their loss is no disaster.&lt;/p&gt;
+&lt;p&gt;Lose something every day. Accept the fluster&lt;br&gt;of lost door keys, the hour badly spent.&lt;br&gt;The art of losing isn’t hard to master.&lt;/p&gt;
+&lt;p&gt;Then practice losing farther, losing faster:&lt;br&gt;places, and names, and where it was you meant&lt;br&gt;to travel. None of these will bring disaster.&lt;/p&gt;
+&lt;p&gt;I lost my mother’s watch. And look! my last, or&lt;br&gt;next-to-last, of three loved houses went.&lt;br&gt;The art of losing isn’t hard to master.&lt;/p&gt;
+&lt;p&gt;I lost two cities, lovely ones. And, vaster,&lt;br&gt;some realms I owned, two rivers, a continent.&lt;br&gt;I miss them, but it wasn’t a disaster.&lt;/p&gt;
+&lt;p&gt;—Even losing you (the joking voice, a gesture&lt;br&gt;I love) I shan’t have lied. It’s evident&lt;br&gt;the art of losing’s not too hard to master&lt;br&gt;though it may look like (Write it!) like disaster.&lt;/p&gt;
+&lt;/blockquote&gt;
+    
+    </summary>
+    
+    
+      <category term="诗" scheme="http://yoursite.com/tags/%E8%AF%97/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>语言是有魔力的</title>
+    <link href="http://yoursite.com/2015/06/19/%E8%AF%AD%E8%A8%80%E6%98%AF%E6%9C%89%E9%AD%94%E5%8A%9B%E7%9A%84/"/>
+    <id>http://yoursite.com/2015/06/19/语言是有魔力的/</id>
+    <published>2015-06-18T16:00:00.000Z</published>
+    <updated>2016-06-08T09:55:01.805Z</updated>
+    
+    <content type="html">&lt;p&gt;偶然看到一段挺简短的文字，一种神秘感给我的冲击甚至不亚于许多篇魔幻主义的小说之和，应该不止我一人会或多或少的感受到文字中的这种神秘感吧？或者还是我感知的天线所在频率不太一样？&lt;/p&gt;
+&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
+&lt;blockquote&gt;
+&lt;p&gt;大约八九年前我发现把短波收音机天线焊在纱窗上，信号会变得很好。于是开始搜索各种奇怪的信号，并把它们记录下来，逐个考证，以此为乐。其中大多数是信标台，标准时间，海事电台之类。&lt;br&gt;有一天我收到了一个CW信号，一个台呼叫另一个，一直自动重复，但另一个不回复。呼号是四个字母和数字的组合，不是业余电台。在网上死活查不到那两个电台的任何信息，于是我在hellocq.net提问，也没有结果，之后我就出来上大学了。&lt;br&gt;大三的时候，我突然想起这事，回去论坛一看，有一个人回应的回应很有意思，这是军队的通联信号，他当兵的时候工作就是监听这个电台，一旦电文内容改变，就说明发生核战争或者重大自然灾害了。&lt;br&gt;心中的小疑惑得到了解答，故事就该结束了，我完全没想到还会有后续。&lt;br&gt;前两天写毕业论文写到烦躁，google了当年那个电台的名称，结果中出来一个pdf是国外爱好者对这几个电台研究的报告。里面赫然有我当年在论坛上提问，和那个网友的回答。根据这个线索，他们怀疑这是军方的电台，接着怀疑到二炮部队。然后，不同地区的人对这几个电台进行三角定位，确定了大致位置。他们又从新闻中分析了二炮几个导弹基地的驻地。在googleearth上一对比，电台定位的结果，和导弹基地的位置是重合的。于是得出结论这几个电台是二炮几个洲际导弹发射基地之间的联络方式。&lt;br&gt;不做无聊事，何度有涯生。老外在满足好奇心这方面真是舍得投入，youtube上也有各式各样的奇怪爱好，也许这就是社会多元化发展的结果吧。有点意思。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;来源&lt;a href=&quot;http://bdwm.net/bbs/bbstcon.php?board=ElecDIY&amp;amp;threadid=15478205&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;北大未名站&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;究这种感觉的原因，首先大概在于内容的陌生吧，许多电台的频率跟日常所用的无线电频率并不一样，因此那些隐蔽的专用频道就隐藏在世界的表象以下，不被多数人所知。要体会这种神秘感，可能还需要了解电磁波的原理，不同电台发出不同频率的电磁波混合在一起，弥散在空气中各个角落，但收音机，或我们常用的通讯工具，只能收听一个特定频段的信号，而更多的信号存在于那里却不被人感知。这就很像在表世界之下还有一个里世界，大多数人都是对里世界一无所知的，日常生活的千姿百态已经足够他们沉醉，而少数人，离广大的人群更远一些，无意间窥见了另外一个世界被隐藏的一个小小角落，欣然有所得，但看见的远不及全貌，实则是那个更大更辽阔的世界带来了神秘感&lt;/p&gt;
+&lt;p&gt;有些声音有些讯号孤独的存在着，年复一年，只是为了完成一个固定循环的使命，有点像宇宙中的一个灯塔，在漆黑的无限背景下发出微茫的光亮，可能已经亮了几十年，几百年，绝大多数人对此还是一无所知，更不会有回应。而它还要持续的亮下去，接着做孤单的守护者。这是浓雾号角这篇科幻小说所讲述的情节。&lt;/p&gt;
+&lt;p&gt;也许神秘感存在于幻想中，虽然对那个世界并不了解多少，我们却可以想象那边的所有形象。隐藏的都市传说，人与人的未知联系，生活背后的终极真相，都可以通过想象来补全人的期待。玩过一个谷歌开发的游戏ingress，游戏用增强现实的视角来发掘身边的平凡地点，当拿着手机走到熟悉的建筑物用GPS定位时，就能在手机游戏里看到在建筑物所在处建成的基地，收集散布在各地的能量，还能看到地图上巨大的场和连线，一直延伸到看不见的远处，与别人占有的基地连接起来。日常的背后，的确有看不见的连线将人与人连起来，将人与过去与未来与无穷远处连起来。&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;偶然看到一段挺简短的文字，一种神秘感给我的冲击甚至不亚于许多篇魔幻主义的小说之和，应该不止我一人会或多或少的感受到文字中的这种神秘感吧？或者还是我感知的天线所在频率不太一样？&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="语言" scheme="http://yoursite.com/tags/%E8%AF%AD%E8%A8%80/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Python爬虫入门：下载Pixiv特定关键词的高赞作品</title>
+    <link href="http://yoursite.com/2015/02/26/Python%E7%88%AC%E8%99%AB%E5%85%A5%E9%97%A8%EF%BC%9A%E4%B8%8B%E8%BD%BDPixiv%E7%89%B9%E5%AE%9A%E5%85%B3%E9%94%AE%E8%AF%8D%E7%9A%84%E9%AB%98%E8%B5%9E%E4%BD%9C%E5%93%81/"/>
+    <id>http://yoursite.com/2015/02/26/Python爬虫入门：下载Pixiv特定关键词的高赞作品/</id>
+    <published>2015-02-25T16:00:00.000Z</published>
+    <updated>2016-06-08T09:49:37.681Z</updated>
+    
+    <content type="html">&lt;p&gt;刚刚学一点python爬虫，很有趣，可以飙车了（误&lt;/p&gt;
+&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
+&lt;p&gt;原本写了个按关键词下载草榴上的图片的……那个不和谐就不在这里分享了，接下来想下载插画给手机换一换壁纸，P站又不提供按热门度排序搜索图片的功能，于是就想自己实现一个简单的爬虫，下载特定关键词赞数过百的作品（如果手动去找的话要翻几页才能找到一个）&lt;/p&gt;
+&lt;p&gt;源代码：&lt;a href=&quot;https://github.com/wjw12/python/blob/master/pixivSpider.py&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;https://github.com/wjw12/python/blob/master/pixivSpider.py&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;首先要登陆P站，我这里偷个懒，在IE登陆然后用Fiddler这个软件抓包，用chrome的F12应该也行，抓到cookie内容插入到http request的header里面去就行，免去了cookiejar之类模块的使用&lt;/p&gt;
+&lt;img src=&quot;/2015/02/26/Python爬虫入门：下载Pixiv特定关键词的高赞作品/cookie.jpg&quot; alt=&quot;cookie.jpg&quot; title=&quot;&quot;&gt;
+&lt;pre&gt;&lt;code&gt;req = urllib.request.Request(pageURL)
+req.add_header(&amp;apos;Cookie&amp;apos;,cookie)
+resp = urllib.request.urlopen(req)
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;编写整个程序的重点在于分析P站的页面逻辑，利用审查元素找到图片、文本在html代码中的位置，找到上下文的规律就可以用正则表达式抓取了，比如说获取赞的数量：&lt;/p&gt;
+&lt;img src=&quot;/2015/02/26/Python爬虫入门：下载Pixiv特定关键词的高赞作品/likes.jpg&quot; alt=&quot;likes.jpg&quot; title=&quot;&quot;&gt;
+&lt;!--more--&gt;
+&lt;p&gt;下载图片时一开始总是出现403 error，用抓包软件分析手动登陆时的request，发现爬虫的request少了一个referer，是网页用来检验访客从哪里来的信息。前面在图片页中找到了&lt;a href=&quot;http://i1.pixiv.net/img-original/img/2015/02/08/04/30/09/48620880_p0.jpg%20&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;jpg图片的URL&lt;/a&gt; ，直接在浏览器中访问或用python urllib.request.urlopen访问都会出403错误，服务器拒绝访问。只有给我们的request加上一个Referer: &lt;a href=&quot;http://www.pixiv.net/member_illust.php?mode=medium&amp;amp;illust_id=48620880&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://www.pixiv.net/member_illust.php?mode=medium&amp;amp;illust_id=48620880&lt;/a&gt;  伪装成从P站链接进去访问图片才能成功，代码中是这样：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;req = urllib.request.Request(imgURL)
+referer = imgPageURL
+req.add_header(&amp;apos;Referer&amp;apos;,referer)
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;要打开图片imgURL必须伪装成从imgPageURL进入的那样，补充阅读：&lt;a href=&quot;http://en.wikipedia.org/wiki/HTTP_referer&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;HTTP referer&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;作为初学者遇到最大的一个麻烦就是字符串编码问题，Python3比起2稍微好了一点，但一开始程序总是各种报错，总结了一些经验：&lt;/p&gt;
+&lt;p&gt;Python3 里面不加说明打引号的字符串就是unicode，str()返回值都是unicode&lt;/p&gt;
+&lt;p&gt;Python3 没有unicode()函数，对str进行decode会出错（str类型没有decode方法），对bytes进行encode会出错&lt;/p&gt;
+&lt;p&gt;unicode和bytes不要在同一语句中混用，比如下面正则表达式替换时，imgPage是从网站读取的页面html，是utf-8编码的bytes字符串，所以pattern和repl都必须encode成为bytes字符串才能用正则匹配，不然会出错&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;pattern = r&amp;apos;&amp;lt;div&amp;gt;|&amp;lt;/div&amp;gt;&amp;apos;.encode(&amp;apos;utf-8&amp;apos;)
+replaceDIV = re.compile(pattern)
+repl = &amp;apos;\n&amp;apos;.encode(&amp;apos;utf-8&amp;apos;)
+imgPage = re.sub(replaceDIV,repl,imgPage)
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;日文汉字在控制台可能无法正确输出，用gb18030 encode之后变成b’\xa3\xb2\xc2’这类形式，到最后还是没法在控制台正确显示文件名，不过下载下来之后在windows里面看到的文件名是正确的&lt;/p&gt;
+&lt;img src=&quot;/2015/02/26/Python爬虫入门：下载Pixiv特定关键词的高赞作品/filename.jpg&quot; alt=&quot;filename.jpg&quot; title=&quot;&quot;&gt;</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;刚刚学一点python爬虫，很有趣，可以飙车了（误&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="Python" scheme="http://yoursite.com/tags/Python/"/>
+    
+      <category term="爬虫" scheme="http://yoursite.com/tags/%E7%88%AC%E8%99%AB/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>看似是几何问题，实际是组合问题</title>
+    <link href="http://yoursite.com/2015/02/06/%E7%9C%8B%E4%BC%BC%E6%98%AF%E5%87%A0%E4%BD%95%E9%97%AE%E9%A2%98%EF%BC%8C%E5%AE%9E%E9%99%85%E6%98%AF%E7%BB%84%E5%90%88%E9%97%AE%E9%A2%98/"/>
+    <id>http://yoursite.com/2015/02/06/看似是几何问题，实际是组合问题/</id>
+    <published>2015-02-05T16:00:00.000Z</published>
+    <updated>2016-06-08T09:51:14.523Z</updated>
+    
+    <content type="html">&lt;p&gt;先来看一道问题：&lt;/p&gt;
+&lt;p&gt;平面上有A,B,Ti(i=1,2,3,4)六个点，求证存在i,j,使得|sin∠ATiB-sin∠ATjB|≤ 1/3&lt;/p&gt;
+&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
+&lt;p&gt;嗯，看似是一个几何问题吧，有两个角正弦值相减出现，先不妨画个图试试，正弦值用解析几何的手段表示之……先思考一下吧，最后再公布解答。&lt;/p&gt;
+&lt;p&gt;“看似是几何问题，实际是函数问题”这句话出自刚看的《嫌疑人x的献身》中数学天才石神说的话，这是他给高中生出题的惯用手段。早就读过小说，前两天又看了电影，电影是伽利略系列中制作相当精良的一部。故事中石神是杀人案的帮凶，设下一个巧妙的局使得案件搜查迟迟无法转向正确的方向，他说这句话时正在接受审问，伽利略老师也在场，也许就是这句话的暗示，让人突然醒悟到之前对案件的推断完全是错误的，而真相往往在彻底换一个角度之后才有可能找出。&lt;/p&gt;
+&lt;p&gt;石神是个生活屡屡受挫的中学数学老师，却是汤川唯一奉为知己的天才，故事中石神在学生时代思考着“四色定理现存的证法不美，我要找出一种更美的证法”，这种态度打动了汤川，两位分别在数学和物理领域的天才因此相遇相知&lt;del&gt;相爱了&lt;/del&gt;(此处一定有基情！)&lt;/p&gt;
+&lt;p&gt;但是我在想，是不是汤川想证明自己比另一个天才石神更加高明，还是仅仅出于对真相的执念，坚持自行调查案件甚至不惜破坏司法秩序，一定要揭开石神犯罪的真相。是不是说，一个天才就容不下另一个天才呢，或者是说，天才的执迷会对其他人，甚至是亲密的人，造成伤害呢。&lt;/p&gt;
+&lt;!--more--&gt;
+&lt;p&gt;最后案件的解决令所有读者拍案叫绝，看似是12月2日的案件，实际上发生着12月1日，看似是一个人的死亡，实际上还有另一个人的死亡。回头再看之前案件侦察走过的弯路（内海薰警官真可怜 看到一群男刑警开会时让她倒咖啡那一段笑了……） 又发现暗合之前石神提出的“盲点理论”，陷入看似是几何问题的障眼法中无法脱身。&lt;/p&gt;
+&lt;p&gt;但是汤川的破案断送了石神的前途，电影中的他最后在审讯室里独自面对着墙壁，痛苦的绝望的眼神令人久久不能忘记。最后剩下恼怒和遗憾，“为什么，这么优秀的头脑，却要用来做这样的事情。”&lt;/p&gt;
+&lt;p&gt;被命运祝福的天才汤川接着做物理教授，但同样是天才的却郁郁不得志的石神最后身陷牢狱之灾，同是一类不寻常的人，走向了相反的命运轨迹，电影中间石神曾问过汤川 “为什么，你就那么幸运呢？”，这个问题一直指向对人世命运的逼问。&lt;/p&gt;
+&lt;p&gt;不多说了，最后回到开头提出的数学题。昨天回高中母校偶然看到这道题，还问了数学老师他也想了好久。正是这道题的解答让我突然想到，这看似是几何问题，实际是组合问题啊！&lt;/p&gt;
+&lt;p&gt;因为sin的取值在[0,1]之中，四个正弦值落在三个“抽屉”[0,1/3) [1/3,2/3) [2/3,1]之中，必有两个在同一抽屉里，绝对值之差就小于等于1/3！如此简单！竟然与几何毫无关系！&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;先来看一道问题：&lt;/p&gt;
+&lt;p&gt;平面上有A,B,Ti(i=1,2,3,4)六个点，求证存在i,j,使得|sin∠ATiB-sin∠ATjB|≤ 1/3&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="东野圭吾" scheme="http://yoursite.com/tags/%E4%B8%9C%E9%87%8E%E5%9C%AD%E5%90%BE/"/>
+    
+      <category term="数学" scheme="http://yoursite.com/tags/%E6%95%B0%E5%AD%A6/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>初识树莓派 无显示器安装</title>
+    <link href="http://yoursite.com/2015/01/18/%E5%88%9D%E8%AF%86%E6%A0%91%E8%8E%93%E6%B4%BE-%E6%97%A0%E6%98%BE%E7%A4%BA%E5%99%A8%E5%AE%89%E8%A3%85/"/>
+    <id>http://yoursite.com/2015/01/18/初识树莓派-无显示器安装/</id>
+    <published>2015-01-17T16:00:00.000Z</published>
+    <updated>2016-06-08T09:50:04.229Z</updated>
+    
+    <content type="html">&lt;p&gt;前不久抱着折腾不休的态度买了树莓派玩，这就是个给大人的玩具，嗯，成人玩具，好想有点不对&lt;/p&gt;
+&lt;img src=&quot;/2015/01/18/初识树莓派-无显示器安装/pi.jpg&quot; alt=&quot;pi.jpg&quot; title=&quot;&quot;&gt;
+&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
+&lt;p&gt;虽然早就知道树莓派只有一片信用卡大小，不过第一次拿到手上的时候还是被惊艳到了~ 像一片塑料一样很轻很轻，精巧的电路板，元件都裸露在外面没有外壳（所以防静电很重要！特别是在北方干燥的秋冬时候），有4个USB接口（Model B+），更显眼的是一排GPIO接口为树莓派提供了更强大的扩展能力（可是我还不会ToT）。由于寝室里条件艰苦朴素，除了路由器、网线和笔记本电脑就没别的设备了，第一次安装树莓派就需要费一点工夫。&lt;/p&gt;
+&lt;p&gt;首先需要准备一张至少4G的Micro SD卡，从官网上下载系统映像文件，它为初学者推荐的是更简单的安装程序NOOBS，其中不仅包含raspbian系统，还预装了其他的比如Pidora（基于Fedora的系统）、RISC OS 、Arch（Arch Linux的树莓派版）之类的系统，但是更占空间。我就只单独下载了raspbian映像文件，然后用Win32DiskManager烧录到SD卡中，给树莓派插上卡，接上电源，能看到红灯亮绿灯偶尔闪烁，就说明系统载入成功了。&lt;/p&gt;
+&lt;p&gt;接下来该怎么连接树莓派呢？如果有一台显示器就可以用HDMI把图形界面输出到屏幕了，再连上USB鼠标键盘就大功告成了。当然寝室里只有那三样装备没有显示器没有其他外设，有一种方法是网线直连电脑，可是在树莓派装上系统之前没法完成，要给空白的树莓派装系统，还有一种办法是用SSH方式远程登陆命令台，我就用了这种办法。&lt;/p&gt;
+&lt;!--more--&gt;
+&lt;p&gt;Secure Shell（缩写为SSH），由IETF的网络工作小组（Network Working Group）所制定；SSH为一项创建在应用层和传输层基础上的安全协议，为计算机上的Shell（壳层）提供安全的传输和使用环境。&lt;/p&gt;
+&lt;p&gt;传统的网络服务程序，如rsh、FTP、POP和Telnet其本质上都是不安全的；因为它们在网络上用明文传送数据、用户帐号和用户口令，很容易受到中间人（man-in-the-middle）攻击方式的攻击。就是存在另一个人或者一台机器冒充真正的服务器接收用户传给服务器的数据，然后再冒充用户把数据传给真正的服务器。&lt;/p&gt;
+&lt;p&gt;而SSH是目前较可靠，专为远程登录会话和其他网络服务提供安全性的协议。利用SSH协议可以有效防止远程管理过程中的信息泄露问题。通过SSH可以对所有传输的数据进行加密，也能够防止DNS欺骗和IP欺骗。&lt;/p&gt;
+&lt;p&gt;SSH之另一项优点为其传输的数据可以是经过压缩的，所以可以加快传输的速度。SSH有很多功能，它既可以代替Telnet，又可以为FTP、POP、甚至为PPP提供一个安全的“通道”。&lt;/p&gt;
+&lt;p&gt;用SSH首先要知道树莓派在局域网的IP地址，连上网线插到路由器，登陆路由器的管理界面，一般都是192.168.0.1，可能会在DHCP列表中找到raspberrypi（不行的话就把所有页面找一遍），有点像这个样子：&lt;/p&gt;
+&lt;img src=&quot;/2015/01/18/初识树莓派-无显示器安装/1.png&quot; alt=&quot;1.png&quot; title=&quot;&quot;&gt;
+&lt;p&gt;为了让内网IP固定下来可以用路由器设置DHCP保留（或类似的名字），只需要填上树莓派的mac地址&lt;br&gt;和需要的内网IP 192.168.0.xxx，就不需要再登陆路由器找树莓派的IP了，否则路由器以后会自动分配其他的IP地址。&lt;/p&gt;
+&lt;p&gt;在Windows下用到的SSH工具叫PuTTY，IP地址填写刚才找到的IP，SSH的端口是22，如果一切正常的话会弹出一个对话框选择“是”，很快就会显示login as: 输入用户名“pi”，默认无密码，然后就登入了，说还要用raspi-config进行一些初始化的设定，比如扩展储存空间、语言设定等等，照着菜单中选项看就行了。&lt;/p&gt;
+&lt;img src=&quot;/2015/01/18/初识树莓派-无显示器安装/2.png&quot; alt=&quot;2.png&quot; title=&quot;&quot;&gt;
+&lt;p&gt;其实好简单的（可是我当初怎么查了好半天资料），这样以后就完全跟用命令行运行linux的操作是一样了，就是一台五脏俱全的linux电脑，下一步我的计划是拿它做服务器，运行我的网站和一些程序。&lt;/p&gt;
+&lt;p&gt;顺便一提，还可以设置路由器端口映射，就是把公网的IP映射到内网，让电脑在别的地方输入路由器获得的公网IP就可以远程登陆树莓派，这个要设置开放SSH的端口22，如果做服务器的话还要开放HTTP的80端口，FTP的21端口等等。&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;前不久抱着折腾不休的态度买了树莓派玩，这就是个给大人的玩具，嗯，成人玩具，好想有点不对&lt;/p&gt;
+&lt;img src=&quot;/2015/01/18/初识树莓派-无显示器安装/pi.jpg&quot; alt=&quot;pi.jpg&quot; title=&quot;&quot;&gt;
+    
+    </summary>
+    
+    
+      <category term="树莓派" scheme="http://yoursite.com/tags/%E6%A0%91%E8%8E%93%E6%B4%BE/"/>
+    
+      <category term="网络" scheme="http://yoursite.com/tags/%E7%BD%91%E7%BB%9C/"/>
+    
+  </entry>
+  
+</feed>
