@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2016-07-18T07:54:54.281Z</updated>
+  <updated>2016-08-24T02:08:22.321Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -14,6 +14,112 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Latex Test</title>
+    <link href="http://yoursite.com/2016/08/24/Latex-test/"/>
+    <id>http://yoursite.com/2016/08/24/Latex-test/</id>
+    <published>2016-08-24T01:54:20.000Z</published>
+    <updated>2016-08-24T02:08:22.321Z</updated>
+    
+    <content type="html">&lt;h1 id=&quot;Inline&quot;&gt;&lt;a href=&quot;#Inline&quot; class=&quot;headerlink&quot; title=&quot;Inline&quot;&gt;&lt;/a&gt;Inline&lt;/h1&gt;&lt;p&gt;Schrodinger’s equation is $i\hbar \frac{\partial \Psi}{\partial t}=-\frac{\hbar^2}{2m}\nabla^2\Psi$&lt;/p&gt;
+&lt;h1 id=&quot;Block&quot;&gt;&lt;a href=&quot;#Block&quot; class=&quot;headerlink&quot; title=&quot;Block&quot;&gt;&lt;/a&gt;Block&lt;/h1&gt;&lt;p&gt;$$\frac{\partial u}{\partial t}&lt;br&gt;= h^2 \left( \frac{\partial^2 u}{\partial x^2} +&lt;br&gt;\frac{\partial^2 u}{\partial y^2} +&lt;br&gt;\frac{\partial^2 u}{\partial z^2}\right)$$&lt;/p&gt;
+&lt;h1 id=&quot;Inline_with_Tag&quot;&gt;&lt;a href=&quot;#Inline_with_Tag&quot; class=&quot;headerlink&quot; title=&quot;Inline with Tag&quot;&gt;&lt;/a&gt;Inline with Tag&lt;/h1&gt;&lt;p&gt;This equation &lt;span&gt;$\cos 2\theta = \cos^2 \theta - \sin^2 \theta =  2 \cos^2 \theta - 1$&lt;/span&gt;&lt;!-- Has MathJax --&gt; is inline.&lt;/p&gt;
+&lt;h1 id=&quot;Multiple_Line_with_Tag&quot;&gt;&lt;a href=&quot;#Multiple_Line_with_Tag&quot; class=&quot;headerlink&quot; title=&quot;Multiple Line with Tag&quot;&gt;&lt;/a&gt;Multiple Line with Tag&lt;/h1&gt;&lt;span&gt;$$\begin{eqnarray}
+\nabla\cdot\vec{E} &amp;amp;=&amp;amp; \frac{\rho}{\epsilon_0} \\
+\nabla\cdot\vec{B} &amp;amp;=&amp;amp; 0 \\
+\nabla\times\vec{E} &amp;amp;=&amp;amp; -\frac{\partial B}{\partial t} \\
+\nabla\times\vec{B} &amp;amp;=&amp;amp; \mu_0\left(\vec{J}+\epsilon_0\frac{\partial E}{\partial t} \right)
+\end{eqnarray}$$&lt;/span&gt;&lt;!-- Has MathJax --&gt;
+&lt;p&gt;说真的，强迫症不要看，排版挺难看的……但起码可以用hexo-math渲染Latex公式了。如果显示不正常，请在评论中告知我，谢谢 :-)&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;Inline&quot;&gt;&lt;a href=&quot;#Inline&quot; class=&quot;headerlink&quot; title=&quot;Inline&quot;&gt;&lt;/a&gt;Inline&lt;/h1&gt;&lt;p&gt;Schrodinger’s equation is $i\hbar \frac{\partial \Psi}
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>吴哥札记</title>
+    <link href="http://yoursite.com/2016/08/23/%E5%90%B4%E5%93%A5%E8%A1%8C%E8%AE%B0/"/>
+    <id>http://yoursite.com/2016/08/23/吴哥行记/</id>
+    <published>2016-08-23T02:46:18.000Z</published>
+    <updated>2016-08-24T01:52:48.791Z</updated>
+    
+    <content type="html">&lt;p&gt;在柬埔寨旅游的几天里，时常体会到一种错乱感，时空的错乱，文化的错乱，交织在这个热带国度。每天坐着三轮Tuk-tuk车往返暹粒市中心与吴哥古迹，在千年古寺里看日出日落，白天瞻仰每一块巨石，晚上回到市区吃西餐，听乐队演奏Beatles的音乐。每个慕吴哥窟之名前来柬埔寨的游客大多都如此。&lt;/p&gt;
+&lt;p&gt;到这里来看古迹，很难说自己是准备好的。通读了蒋勋先生的《吴哥之美》，维基上浏览了东南亚古代和近现代史，再了解一点南传佛教和印度教的纠葛，不至于完全陌生。1世纪是扶南王国，6世纪是真腊王国，9到15世纪是创造吴哥文明的高棉帝国。现代人掌握了历史脉络有如掌握了话语权，有了研究和解读的权力。而一旦走进吴哥王城，手脚并用地攀上巨石阶梯，之前的一点点优越感瞬间打回原形，回到原始的、谦卑的状态。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://wjwtest.oss-cn-qingdao.aliyuncs.com/angkor/smile.JPG&quot;&gt;&lt;/p&gt;
+&lt;p&gt;只剩下仰望，虔诚。后人书写了历史，并不比石头上的无字书丰富多少。&lt;/p&gt;
+&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
+&lt;p&gt;饱经风霜的石头多半是在11~13世纪，采于距离吴哥王城几十千米的山上。古代人用大象和河流运输，再用原始的机械，一块一块垒成巨大的宫殿、祭坛和寺庙。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://wjwtest.oss-cn-qingdao.aliyuncs.com/angkor/pyramid.JPG&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://wjwtest.oss-cn-qingdao.aliyuncs.com/angkor/tripod.JPG&quot;&gt;&lt;/p&gt;
+&lt;p&gt;现在当地也用着相当原始的三脚架搬运岩石，可以想象出一千年前建造吴哥窟，就像古埃及和玛雅人修建金字塔一样，是极为惊人的建筑奇迹。&lt;/p&gt;
+&lt;p&gt;16世纪时，由于尚不明晰的原因，可能是瘟疫，可能是气候变化，加之外敌入侵，吴哥人放弃了世世代代修建了几百年的一切寺庙，整个民族迁至南方，并且没有留下任何可以追踪的记载。吴哥的一切建筑，在热带丛林中沉寂了几百年，草木疯长，无人问津。&lt;/p&gt;
+&lt;p&gt;现在的吴哥王城(Angkor Thom)和小吴哥城(Angkor Wat)之中的寺庙保存相对较为完好，但仍有大量石块散落，未能归位。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://wjwtest.oss-cn-qingdao.aliyuncs.com/angkor/angkorwat.JPG&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://wjwtest.oss-cn-qingdao.aliyuncs.com/angkor/temple.JPG&quot;&gt;&lt;/p&gt;
+&lt;p&gt;建筑以巨石和繁复的雕刻为主要特征，一刀一斧的筑造，是文明的印迹。&lt;/p&gt;
+&lt;p&gt;吴哥人将宗教信仰置于世俗王权之上，据说以前国王居住的宫殿，和工人居住的房屋，都是木制，只有与宗教有关的寺庙神殿祭坛，才会用石制。岁月变迁，木头终竟朽坏而石头不朽。&lt;/p&gt;
+&lt;p&gt;对肉身和物质的轻视，贯穿吴哥人的精神内核。今人难以理解，为什么16世纪的吴哥人对故土毫无留恋，毁国弃城。也许他们看来，文明存在过，繁荣过，然后走了，已足够留下不朽的印迹。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://wjwtest.oss-cn-qingdao.aliyuncs.com/angkor/transient.JPG&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://wjwtest.oss-cn-qingdao.aliyuncs.com/angkor/tree.JPG&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://wjwtest.oss-cn-qingdao.aliyuncs.com/angkor/ruins.JPG&quot;&gt;&lt;/p&gt;
+&lt;p&gt;石头也是会朽坏的啊。分散在王城之外的寺庙，完好程度更差一些。有些雕塑整块地剥落坍塌，有些墙壁被巨树侵蚀，最终形成了树木与寺院共生的状态。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://wjwtest.oss-cn-qingdao.aliyuncs.com/angkor/smile3.JPG&quot;&gt;&lt;/p&gt;
+&lt;p&gt;这是举世闻名的“高棉的微笑”，阇耶跋摩七世的面容。巴扬寺54尊四面佛像，一百多个微笑的面容凝望着苍生。12世纪的这位国王是柬埔寨历史上最伟大的英雄，平定内乱，兴建吴哥王城，吴哥古迹的很大一部分都是他在位时期的杰作。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://wjwtest.oss-cn-qingdao.aliyuncs.com/angkor/smile2.JPG&quot;&gt;&lt;/p&gt;
+&lt;p&gt;但要知道，佛像上的微笑是见过杀戮的。12世纪赶走异族的战争也好，15世纪暹罗人入侵也好，更甚者是近代的殖民与内战，无不血流成河，苍生涂炭。佛只是微笑着，远离颠倒梦想，究竟涅磐。&lt;/p&gt;
+&lt;p&gt;苦难洗礼过后的土地上，人们没有停止微笑。见到了许多美丽的笑容。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://wjwtest.oss-cn-qingdao.aliyuncs.com/angkor/girl.JPG&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://wjwtest.oss-cn-qingdao.aliyuncs.com/angkor/girl2.JPG&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://wjwtest.oss-cn-qingdao.aliyuncs.com/angkor/monk.jpg&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://wjwtest.oss-cn-qingdao.aliyuncs.com/angkor/drawing.JPG&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://wjwtest.oss-cn-qingdao.aliyuncs.com/angkor/victim.JPG&quot;&gt;&lt;/p&gt;
+&lt;p&gt;更令人难忘的，是地雷受害者的笑容。近代的战争给柬埔寨留下了1000多万颗地雷，难以清除，散布在农田、公路、铁道上，至今每天仍有人触雷致死致残。家破人亡的地雷受害者仍努力生活，组建了乐团，在每个景区为游客演奏传统古乐。见者无不悲悯，又感于生命的不屈。&lt;/p&gt;
+&lt;p&gt;只有在不幸者面前，优渥富足的人才能意识到自己的幸运。柬埔寨的游客与本地人往往形成微妙的对比。来这里旅游的，多半是白皮肤的欧洲人，有闲暇渴望开眼看世界的中产阶级。在古迹景点处依靠游客生活的，是本地的小贩、司机、乞丐，皮肤黝黑，身材瘦弱。客观上讲，大量游客极有效地促进了当地经济，为本土社会注入了新鲜活力。而看到当地小孩向游客兜售物品，或讨要食物，不知他们面对衣食无忧的富裕者会作何等感想。我心中也百感交集。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://wjwtest.oss-cn-qingdao.aliyuncs.com/angkor/contrast.JPG&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://wjwtest.oss-cn-qingdao.aliyuncs.com/angkor/contrast2.JPG&quot;&gt;&lt;/p&gt;
+&lt;p&gt;处处可见拎着篮子的孩子，装着一些小饰品、明信片、T恤衫，会用各国语言卖东西：“先生，一美金，便宜” “One dollar”。追着来往的游客，有时还一直缠住不走。&lt;/p&gt;
+&lt;p&gt;卖东西的小孩子还无法理解这种差异。从出生起，这已是他们的日常秩序的一部分，面对游客的冷眼或热情也习以为常。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://wjwtest.oss-cn-qingdao.aliyuncs.com/angkor/contrast3.jpg&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://wjwtest.oss-cn-qingdao.aliyuncs.com/angkor/contrast4.jpg&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://wjwtest.oss-cn-qingdao.aliyuncs.com/angkor/contrast5.JPG&quot;&gt;&lt;/p&gt;
+&lt;p&gt;身处这种环境，袖手旁观是不可能的，因为当时我的身边就是这样的孩子。看日出的早晨，我们坐在神殿下吃早餐，两个小男孩提着饭盒跟我们说，“需要面包给家里人吃”。他们接过食物，很快跑到下一个吃早餐的游客面前。前面有一张坐在废墟上手捧鲜花的女孩，在我照完相片后讨要一美金，开始我不想给，她跟了我们一路，不停地用中文说，“一美金，一美金” “你有钱，不给我……” 无奈给钱后，立刻露出最初那种笑容，跟我们指路、合影，好像没有发生任何不愉快。&lt;/p&gt;
+&lt;p&gt;我不知如何面对这种情况。语言和文化的障碍，让外国游客无法与本地人真正交流。也许在物质上直接满足他们，给他们吃的，给他们钱，就能帮到他们？但是精神上呢？他们是否需要教育，需要知识？&lt;/p&gt;
+&lt;p&gt;因为酒店里的“游客守则”分明写着：把钱给小孩会鼓励他们乞讨而不去上学。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://wjwtest.oss-cn-qingdao.aliyuncs.com/angkor/rule.jpg&quot;&gt;&lt;/p&gt;
+&lt;p&gt;但是当一个天真的孩子站在你面前，你会狠心拒绝他们，作出冠冕堂皇的“正确”行为呢？还是明知无意义，心软给他们东西呢？&lt;/p&gt;
+&lt;p&gt;我选择了后者，但是没有依据。&lt;/p&gt;
+&lt;p&gt;现代社会秩序是以西方价值观为主导的，我们会讲平等，讲慈善和博爱，并用现代的观念在“落后”的文化地区建立规范，就像酒店里的游客守则那样。我的疑问是，这套观念真的是普世的吗？&lt;/p&gt;
+&lt;p&gt;佛教的平等观是超越物质、超越现世的平等，尽管人世间有尊卑贵贱，贫富悬殊，但在佛性面前人人平等，业报轮回面前人人平等。在形而上的领域，我们和吴哥城的乞丐、小贩一样平等，和他们土地上世世代代的受难者一样平等。&lt;/p&gt;
+&lt;p&gt;然而，纯粹的精神化是否能达到呢，或者，仅仅是个谎言？我又很难作出是非对错的判断。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://wjwtest.oss-cn-qingdao.aliyuncs.com/angkor/peace.jpg&quot;&gt;&lt;/p&gt;
+&lt;p&gt;但是，我在离佛更近的地方，古寺里面看到了令人惊异的景象。&lt;/p&gt;
+&lt;p&gt;一位年迈的修行者，在佛像下编制花环和手环，卖给外国游客，口念听不懂的语言近乎咒语，手上也比划着某种仪式符号，饱含深情地祝福那位外国人。&lt;/p&gt;
+&lt;p&gt;可能是年老了，又在佛的眼下浸染多年，才会参透许多世俗纷争，升华为超越文化的包容。&lt;/p&gt;
+&lt;p&gt;我之前所思考的文化的冲突，价值观的碰撞，尖锐又满是书卷腐朽味的观念，忽然被化解了一点。&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;在柬埔寨旅游的几天里，时常体会到一种错乱感，时空的错乱，文化的错乱，交织在这个热带国度。每天坐着三轮Tuk-tuk车往返暹粒市中心与吴哥古迹，在千年古寺里看日出日落，白天瞻仰每一块巨石，晚上回到市区吃西餐，听乐队演奏Beatles的音乐。每个慕吴哥窟之名前来柬埔寨的游客大多都如此。&lt;/p&gt;
+&lt;p&gt;到这里来看古迹，很难说自己是准备好的。通读了蒋勋先生的《吴哥之美》，维基上浏览了东南亚古代和近现代史，再了解一点南传佛教和印度教的纠葛，不至于完全陌生。1世纪是扶南王国，6世纪是真腊王国，9到15世纪是创造吴哥文明的高棉帝国。现代人掌握了历史脉络有如掌握了话语权，有了研究和解读的权力。而一旦走进吴哥王城，手脚并用地攀上巨石阶梯，之前的一点点优越感瞬间打回原形，回到原始的、谦卑的状态。&lt;/p&gt;
+&lt;p&gt;&lt;img src=http://wjwtest.oss-cn-qingdao.aliyuncs.com/angkor/smile.JPG&gt;&lt;/p&gt;
+&lt;p&gt;只剩下仰望，虔诚。后人书写了历史，并不比石头上的无字书丰富多少。&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="摄影" scheme="http://yoursite.com/tags/%E6%91%84%E5%BD%B1/"/>
+    
+      <category term="游记" scheme="http://yoursite.com/tags/%E6%B8%B8%E8%AE%B0/"/>
+    
+  </entry>
   
   <entry>
     <title>分享几首极简主义音乐</title>
