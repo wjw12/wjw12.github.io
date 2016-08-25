@@ -4,9 +4,9 @@
   
   <link href="/atom.xml" rel="self"/>
   
-  <link href="http://yoursite.com/"/>
-  <updated>2016-08-24T02:08:22.321Z</updated>
-  <id>http://yoursite.com/</id>
+  <link href="http://nekolab.cn/"/>
+  <updated>2016-08-25T09:35:26.626Z</updated>
+  <id>http://nekolab.cn/</id>
   
   <author>
     <name>Quantumneko</name>
@@ -16,37 +16,100 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>Latex Test</title>
-    <link href="http://yoursite.com/2016/08/24/Latex-test/"/>
-    <id>http://yoursite.com/2016/08/24/Latex-test/</id>
-    <published>2016-08-24T01:54:20.000Z</published>
-    <updated>2016-08-24T02:08:22.321Z</updated>
+    <title>NekoLab是怎么搭起来的</title>
+    <link href="http://nekolab.cn/2016/08/26/NekoLab%E6%98%AF%E6%80%8E%E4%B9%88%E6%90%AD%E8%B5%B7%E6%9D%A5%E7%9A%84/"/>
+    <id>http://nekolab.cn/2016/08/26/NekoLab是怎么搭起来的/</id>
+    <published>2016-08-26T01:54:20.000Z</published>
+    <updated>2016-08-25T09:35:26.626Z</updated>
     
-    <content type="html">&lt;h1 id=&quot;Inline&quot;&gt;&lt;a href=&quot;#Inline&quot; class=&quot;headerlink&quot; title=&quot;Inline&quot;&gt;&lt;/a&gt;Inline&lt;/h1&gt;&lt;p&gt;Schrodinger’s equation is $i\hbar \frac{\partial \Psi}{\partial t}=-\frac{\hbar^2}{2m}\nabla^2\Psi$&lt;/p&gt;
-&lt;h1 id=&quot;Block&quot;&gt;&lt;a href=&quot;#Block&quot; class=&quot;headerlink&quot; title=&quot;Block&quot;&gt;&lt;/a&gt;Block&lt;/h1&gt;&lt;p&gt;$$\frac{\partial u}{\partial t}&lt;br&gt;= h^2 \left( \frac{\partial^2 u}{\partial x^2} +&lt;br&gt;\frac{\partial^2 u}{\partial y^2} +&lt;br&gt;\frac{\partial^2 u}{\partial z^2}\right)$$&lt;/p&gt;
-&lt;h1 id=&quot;Inline_with_Tag&quot;&gt;&lt;a href=&quot;#Inline_with_Tag&quot; class=&quot;headerlink&quot; title=&quot;Inline with Tag&quot;&gt;&lt;/a&gt;Inline with Tag&lt;/h1&gt;&lt;p&gt;This equation &lt;span&gt;$\cos 2\theta = \cos^2 \theta - \sin^2 \theta =  2 \cos^2 \theta - 1$&lt;/span&gt;&lt;!-- Has MathJax --&gt; is inline.&lt;/p&gt;
-&lt;h1 id=&quot;Multiple_Line_with_Tag&quot;&gt;&lt;a href=&quot;#Multiple_Line_with_Tag&quot; class=&quot;headerlink&quot; title=&quot;Multiple Line with Tag&quot;&gt;&lt;/a&gt;Multiple Line with Tag&lt;/h1&gt;&lt;span&gt;$$\begin{eqnarray}
+    <content type="html">&lt;p&gt;一些朋友问过我这个主页是怎么搭起来的。简单地说，是用Hexo生成静态页面，挂在Github上，视频和图片等多媒体文件存在阿里云的OSS云储存，通过外链使用。下面分别来说一说，也是给自己做个备忘。&lt;/p&gt;
+&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
+&lt;h1 id=&quot;Hexo&quot;&gt;&lt;a href=&quot;#Hexo&quot; class=&quot;headerlink&quot; title=&quot;Hexo&quot;&gt;&lt;/a&gt;Hexo&lt;/h1&gt;&lt;p&gt;Hexo基本的安装已经在&lt;a href=&quot;http://nekolab.cn/2016/01/21/NekoLab新的起点/&quot;&gt;NekoLab新的起点&lt;/a&gt;这里写到了，不再赘述。&lt;/p&gt;
+&lt;h2 id=&quot;u914D_u7F6E_u6587_u4EF6&quot;&gt;&lt;a href=&quot;#u914D_u7F6E_u6587_u4EF6&quot; class=&quot;headerlink&quot; title=&quot;配置文件&quot;&gt;&lt;/a&gt;配置文件&lt;/h2&gt;&lt;p&gt;配置Hexo经常要跟两个config.yml配置文件打交道，一个在根目录下，配置站点总体说明、插件等等；还有一个是主题的配置文件，位于&lt;code&gt;themes/(主题名)/&lt;/code&gt;目录下。&lt;/p&gt;
+&lt;p&gt;比如说我用的&lt;a href=&quot;https://github.com/iissnan/hexo-theme-next&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;NexT&lt;/a&gt;主题，这里主要配置了导航栏指向的页面和图标：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;# When running hexo in a subdirectory (e.g. domain.tld/blog)
+# Remove leading slashes ( &amp;quot;/archives&amp;quot; -&amp;gt; &amp;quot;archives&amp;quot; )
+menu:
+  home: /
+  #categories: /categories
+  about: /about
+  archives: /archives
+  tags: /tags
+  friends: /friends
+  video: /video
+  rss: /atom.xml
+  #commonweal: /404.html
+
+# Enable/Disable menu icons.
+# Icon Mapping:
+#   Map a menu item to a specific FontAwesome icon name.
+#   Key is the name of menu item and value is the name of FontAwsome icon.
+#   When an question mask icon presenting up means that the item has no mapping icon.
+menu_icons:
+  enable: true
+  # Icon Mapping.
+  home: home
+  about: user
+  categories: th
+  tags: tags
+  archives: archive
+  commonweal: heartbeat
+  friends: group
+  video: tv
+  rss: rss
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;还需要配置导航栏的文字，在&lt;code&gt;(主题目录)/languages/&lt;/code&gt;下有不同语言的配置，我的站点是简体中文，这里就应该编辑zh-Hans.yml：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;menu:
+  home: 首页
+  archives: 归档
+  categories: 分类
+  tags: 标签
+  about: 关于
+  search: 搜索
+  commonweal: 公益404
+  friends: 友链
+  video: 视频(测试版)
+  rss: 订阅      
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;对应着这个导航栏是这个样子的：&lt;/p&gt;
+&lt;img src=&quot;/2016/08/26/NekoLab是怎么搭起来的/bar.png&quot; alt=&quot;bar.png&quot; title=&quot;&quot;&gt;
+&lt;h2 id=&quot;u65B0_u589E_u9875_u9762&quot;&gt;&lt;a href=&quot;#u65B0_u589E_u9875_u9762&quot; class=&quot;headerlink&quot; title=&quot;新增页面&quot;&gt;&lt;/a&gt;新增页面&lt;/h2&gt;&lt;p&gt;执行命令&lt;code&gt;hexo new page&lt;/code&gt;就会在站点的source文件夹里生成一个新文件夹，内有index.md，编辑这个和编辑博文的markdown源文件方法一样。&lt;/p&gt;
+&lt;p&gt;要将这个页面增加到导航栏，需要修改上面主题的config.yml和语言相关的yml配置，在menu模块增加新页面的名字和链接。&lt;/p&gt;
+&lt;h2 id=&quot;RSS_u8BA2_u9605&quot;&gt;&lt;a href=&quot;#RSS_u8BA2_u9605&quot; class=&quot;headerlink&quot; title=&quot;RSS订阅&quot;&gt;&lt;/a&gt;RSS订阅&lt;/h2&gt;&lt;p&gt;使用了&lt;a href=&quot;https://github.com/hexojs/hexo-generator-feed&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;hexo-generator-feed&lt;/a&gt;插件，会在根目录下生成一个atom.xml文件，就可以被RSS阅读器自动识别了。&lt;/p&gt;
+&lt;h2 id=&quot;Latex_u6570_u5B66_u516C_u5F0F_u8F93_u5165&quot;&gt;&lt;a href=&quot;#Latex_u6570_u5B66_u516C_u5F0F_u8F93_u5165&quot; class=&quot;headerlink&quot; title=&quot;Latex数学公式输入&quot;&gt;&lt;/a&gt;Latex数学公式输入&lt;/h2&gt;&lt;p&gt;使用了&lt;a href=&quot;https://github.com/akfish/hexo-math&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;hexo-math&lt;/a&gt;插件，以下是测试：&lt;/p&gt;
+&lt;h3 id=&quot;Inline&quot;&gt;&lt;a href=&quot;#Inline&quot; class=&quot;headerlink&quot; title=&quot;Inline&quot;&gt;&lt;/a&gt;Inline&lt;/h3&gt;&lt;p&gt;Schrodinger’s equation is $i\hbar \frac{\partial \Psi}{\partial t}=-\frac{\hbar^2}{2m}\nabla^2\Psi + U\Psi$&lt;/p&gt;
+&lt;h3 id=&quot;Block&quot;&gt;&lt;a href=&quot;#Block&quot; class=&quot;headerlink&quot; title=&quot;Block&quot;&gt;&lt;/a&gt;Block&lt;/h3&gt;&lt;p&gt;$$\frac{\partial u}{\partial t}&lt;br&gt;= h^2 \left( \frac{\partial^2 u}{\partial x^2} +&lt;br&gt;\frac{\partial^2 u}{\partial y^2} +&lt;br&gt;\frac{\partial^2 u}{\partial z^2}\right)$$&lt;/p&gt;
+&lt;h3 id=&quot;Inline_with_Tag&quot;&gt;&lt;a href=&quot;#Inline_with_Tag&quot; class=&quot;headerlink&quot; title=&quot;Inline with Tag&quot;&gt;&lt;/a&gt;Inline with Tag&lt;/h3&gt;&lt;p&gt;This equation &lt;span&gt;$\cos 2\theta = \cos^2 \theta - \sin^2 \theta =  2 \cos^2 \theta - 1$&lt;/span&gt;&lt;!-- Has MathJax --&gt; is inline.&lt;/p&gt;
+&lt;h3 id=&quot;Multiple_Line_with_Tag&quot;&gt;&lt;a href=&quot;#Multiple_Line_with_Tag&quot; class=&quot;headerlink&quot; title=&quot;Multiple Line with Tag&quot;&gt;&lt;/a&gt;Multiple Line with Tag&lt;/h3&gt;&lt;span&gt;$$\begin{eqnarray}
 \nabla\cdot\vec{E} &amp;amp;=&amp;amp; \frac{\rho}{\epsilon_0} \\
 \nabla\cdot\vec{B} &amp;amp;=&amp;amp; 0 \\
 \nabla\times\vec{E} &amp;amp;=&amp;amp; -\frac{\partial B}{\partial t} \\
 \nabla\times\vec{B} &amp;amp;=&amp;amp; \mu_0\left(\vec{J}+\epsilon_0\frac{\partial E}{\partial t} \right)
 \end{eqnarray}$$&lt;/span&gt;&lt;!-- Has MathJax --&gt;
-&lt;p&gt;说真的，强迫症不要看，排版挺难看的……但起码可以用hexo-math渲染Latex公式了。如果显示不正常，请在评论中告知我，谢谢 :-)&lt;/p&gt;
+&lt;h1 id=&quot;u963F_u91CC_u4E91OSS&quot;&gt;&lt;a href=&quot;#u963F_u91CC_u4E91OSS&quot; class=&quot;headerlink&quot; title=&quot;阿里云OSS&quot;&gt;&lt;/a&gt;阿里云OSS&lt;/h1&gt;&lt;p&gt;图片、音频、视频等文件太大，不可能存在Github上，于是我用了阿里云的云储存服务&lt;a href=&quot;https://www.aliyun.com/product/oss&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;OSS&lt;/a&gt;，可以生成外链插入自己网页中。&lt;/p&gt;
+&lt;p&gt;计费规则主要包含空间和流量费用。空间是包月的，个人网站用最小的那种几十G，半年才10块钱。向云空间上传文件，以及每次打开网页加载图片会产生流量，按量计费，浏览量不多时也很便宜。&lt;/p&gt;
+&lt;p&gt;外链链接可以直接用HTML标签插入markdown文档，比如&lt;a href=&quot;http://nekolab.cn/2016/07/16/分享几首极简主义音乐/&quot;&gt;分享几首极简主义音乐&lt;/a&gt;里面插入的音乐：&lt;/p&gt;
+&lt;figure class=&quot;highlight html&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;title&quot;&gt;audio&lt;/span&gt; &lt;span class=&quot;attribute&quot;&gt;controls&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;title&quot;&gt;source&lt;/span&gt; &lt;span class=&quot;attribute&quot;&gt;src&lt;/span&gt;=&lt;span class=&quot;value&quot;&gt;&quot;http://wjwtest.oss-cn-qingdao.aliyuncs.com/Music/Arvo%20P%C3%A4rt%20-%20Spiegel%20im%20Spiegel.mp3&quot;&lt;/span&gt; &lt;span class=&quot;attribute&quot;&gt;type&lt;/span&gt;=&lt;span class=&quot;value&quot;&gt;&quot;audio/mpeg&quot;&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;tag&quot;&gt;&amp;lt;/&lt;span class=&quot;title&quot;&gt;audio&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;其实阿里云OSS也可以搭载静态网页，在用户文档中有详细说明，可以作为静态建站的一种方式。&lt;/p&gt;
 </content>
     
     <summary type="html">
     
-      &lt;h1 id=&quot;Inline&quot;&gt;&lt;a href=&quot;#Inline&quot; class=&quot;headerlink&quot; title=&quot;Inline&quot;&gt;&lt;/a&gt;Inline&lt;/h1&gt;&lt;p&gt;Schrodinger’s equation is $i\hbar \frac{\partial \Psi}
+      &lt;p&gt;一些朋友问过我这个主页是怎么搭起来的。简单地说，是用Hexo生成静态页面，挂在Github上，视频和图片等多媒体文件存在阿里云的OSS云储存，通过外链使用。下面分别来说一说，也是给自己做个备忘。&lt;/p&gt;
     
     </summary>
     
+    
+      <category term="Hexo" scheme="http://nekolab.cn/tags/Hexo/"/>
+    
+      <category term="NekoLab" scheme="http://nekolab.cn/tags/NekoLab/"/>
+    
+      <category term="网页" scheme="http://nekolab.cn/tags/%E7%BD%91%E9%A1%B5/"/>
     
   </entry>
   
   <entry>
     <title>吴哥札记</title>
-    <link href="http://yoursite.com/2016/08/23/%E5%90%B4%E5%93%A5%E8%A1%8C%E8%AE%B0/"/>
-    <id>http://yoursite.com/2016/08/23/吴哥行记/</id>
+    <link href="http://nekolab.cn/2016/08/23/%E5%90%B4%E5%93%A5%E8%A1%8C%E8%AE%B0/"/>
+    <id>http://nekolab.cn/2016/08/23/吴哥行记/</id>
     <published>2016-08-23T02:46:18.000Z</published>
     <updated>2016-08-24T01:52:48.791Z</updated>
     
@@ -115,16 +178,16 @@
     </summary>
     
     
-      <category term="摄影" scheme="http://yoursite.com/tags/%E6%91%84%E5%BD%B1/"/>
+      <category term="摄影" scheme="http://nekolab.cn/tags/%E6%91%84%E5%BD%B1/"/>
     
-      <category term="游记" scheme="http://yoursite.com/tags/%E6%B8%B8%E8%AE%B0/"/>
+      <category term="游记" scheme="http://nekolab.cn/tags/%E6%B8%B8%E8%AE%B0/"/>
     
   </entry>
   
   <entry>
     <title>分享几首极简主义音乐</title>
-    <link href="http://yoursite.com/2016/07/16/%E5%88%86%E4%BA%AB%E5%87%A0%E9%A6%96%E6%9E%81%E7%AE%80%E4%B8%BB%E4%B9%89%E9%9F%B3%E4%B9%90/"/>
-    <id>http://yoursite.com/2016/07/16/分享几首极简主义音乐/</id>
+    <link href="http://nekolab.cn/2016/07/16/%E5%88%86%E4%BA%AB%E5%87%A0%E9%A6%96%E6%9E%81%E7%AE%80%E4%B8%BB%E4%B9%89%E9%9F%B3%E4%B9%90/"/>
+    <id>http://nekolab.cn/2016/07/16/分享几首极简主义音乐/</id>
     <published>2016-07-16T08:17:37.000Z</published>
     <updated>2016-07-18T07:54:54.281Z</updated>
     
@@ -178,14 +241,14 @@
     </summary>
     
     
-      <category term="音乐" scheme="http://yoursite.com/tags/%E9%9F%B3%E4%B9%90/"/>
+      <category term="音乐" scheme="http://nekolab.cn/tags/%E9%9F%B3%E4%B9%90/"/>
     
   </entry>
   
   <entry>
     <title>细雨湿流光</title>
-    <link href="http://yoursite.com/2016/06/17/%E7%BB%86%E9%9B%A8%E6%B9%BF%E6%B5%81%E5%85%89/"/>
-    <id>http://yoursite.com/2016/06/17/细雨湿流光/</id>
+    <link href="http://nekolab.cn/2016/06/17/%E7%BB%86%E9%9B%A8%E6%B9%BF%E6%B5%81%E5%85%89/"/>
+    <id>http://nekolab.cn/2016/06/17/细雨湿流光/</id>
     <published>2016-06-17T08:04:21.000Z</published>
     <updated>2016-07-17T11:21:27.700Z</updated>
     
@@ -248,16 +311,16 @@ int main(int argc, char *argv[])
     </summary>
     
     
-      <category term="C++ AMP" scheme="http://yoursite.com/tags/C-AMP/"/>
+      <category term="C++ AMP" scheme="http://nekolab.cn/tags/C-AMP/"/>
     
-      <category term="GPU" scheme="http://yoursite.com/tags/GPU/"/>
+      <category term="GPU" scheme="http://nekolab.cn/tags/GPU/"/>
     
   </entry>
   
   <entry>
     <title>认真地安利一部日剧 - 家族的形式</title>
-    <link href="http://yoursite.com/2016/04/03/%E8%AE%A4%E7%9C%9F%E5%9C%B0%E5%AE%89%E5%88%A9%E4%B8%80%E9%83%A8%E6%97%A5%E5%89%A7-%E5%AE%B6%E6%97%8F%E7%9A%84%E5%BD%A2%E5%BC%8F/"/>
-    <id>http://yoursite.com/2016/04/03/认真地安利一部日剧-家族的形式/</id>
+    <link href="http://nekolab.cn/2016/04/03/%E8%AE%A4%E7%9C%9F%E5%9C%B0%E5%AE%89%E5%88%A9%E4%B8%80%E9%83%A8%E6%97%A5%E5%89%A7-%E5%AE%B6%E6%97%8F%E7%9A%84%E5%BD%A2%E5%BC%8F/"/>
+    <id>http://nekolab.cn/2016/04/03/认真地安利一部日剧-家族的形式/</id>
     <published>2016-04-03T09:47:18.000Z</published>
     <updated>2016-07-17T11:21:17.187Z</updated>
     
@@ -299,16 +362,16 @@ int main(int argc, char *argv[])
     </summary>
     
     
-      <category term="家族ノカタチ" scheme="http://yoursite.com/tags/%E5%AE%B6%E6%97%8F%E3%83%8E%E3%82%AB%E3%82%BF%E3%83%81/"/>
+      <category term="家族ノカタチ" scheme="http://nekolab.cn/tags/%E5%AE%B6%E6%97%8F%E3%83%8E%E3%82%AB%E3%82%BF%E3%83%81/"/>
     
-      <category term="日剧" scheme="http://yoursite.com/tags/%E6%97%A5%E5%89%A7/"/>
+      <category term="日剧" scheme="http://nekolab.cn/tags/%E6%97%A5%E5%89%A7/"/>
     
   </entry>
   
   <entry>
     <title>如何优雅地配置开发环境</title>
-    <link href="http://yoursite.com/2016/03/29/%E5%A6%82%E4%BD%95%E4%BC%98%E9%9B%85%E5%9C%B0%E9%85%8D%E7%BD%AE%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/"/>
-    <id>http://yoursite.com/2016/03/29/如何优雅地配置开发环境/</id>
+    <link href="http://nekolab.cn/2016/03/29/%E5%A6%82%E4%BD%95%E4%BC%98%E9%9B%85%E5%9C%B0%E9%85%8D%E7%BD%AE%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/"/>
+    <id>http://nekolab.cn/2016/03/29/如何优雅地配置开发环境/</id>
     <published>2016-03-29T15:19:39.000Z</published>
     <updated>2016-06-08T09:52:38.274Z</updated>
     
@@ -353,18 +416,18 @@ int main(int argc, char *argv[])
     </summary>
     
     
-      <category term="Fortran" scheme="http://yoursite.com/tags/Fortran/"/>
+      <category term="Fortran" scheme="http://nekolab.cn/tags/Fortran/"/>
     
-      <category term="Intel Parallel Studio" scheme="http://yoursite.com/tags/Intel-Parallel-Studio/"/>
+      <category term="Intel Parallel Studio" scheme="http://nekolab.cn/tags/Intel-Parallel-Studio/"/>
     
-      <category term="MPI" scheme="http://yoursite.com/tags/MPI/"/>
+      <category term="MPI" scheme="http://nekolab.cn/tags/MPI/"/>
     
   </entry>
   
   <entry>
     <title>译诗：六节诗 Sestina</title>
-    <link href="http://yoursite.com/2016/02/03/%E8%AF%91%E8%AF%97%EF%BC%9A%E5%85%AD%E8%8A%82%E8%AF%97-Sestina/"/>
-    <id>http://yoursite.com/2016/02/03/译诗：六节诗-Sestina/</id>
+    <link href="http://nekolab.cn/2016/02/03/%E8%AF%91%E8%AF%97%EF%BC%9A%E5%85%AD%E8%8A%82%E8%AF%97-Sestina/"/>
+    <id>http://nekolab.cn/2016/02/03/译诗：六节诗-Sestina/</id>
     <published>2016-02-03T05:10:11.000Z</published>
     <updated>2016-06-08T09:54:30.287Z</updated>
     
@@ -407,18 +470,18 @@ int main(int argc, char *argv[])
     </summary>
     
     
-      <category term="Elizabeth Bishop" scheme="http://yoursite.com/tags/Elizabeth-Bishop/"/>
+      <category term="Elizabeth Bishop" scheme="http://nekolab.cn/tags/Elizabeth-Bishop/"/>
     
-      <category term="诗" scheme="http://yoursite.com/tags/%E8%AF%97/"/>
+      <category term="诗" scheme="http://nekolab.cn/tags/%E8%AF%97/"/>
     
   </entry>
   
   <entry>
     <title>NekoLab新的起点</title>
-    <link href="http://yoursite.com/2016/01/21/Hexo-Github%E6%9E%81%E7%AE%80%E5%BB%BA%E7%AB%99/"/>
-    <id>http://yoursite.com/2016/01/21/Hexo-Github极简建站/</id>
+    <link href="http://nekolab.cn/2016/01/21/NekoLab%E6%96%B0%E7%9A%84%E8%B5%B7%E7%82%B9/"/>
+    <id>http://nekolab.cn/2016/01/21/NekoLab新的起点/</id>
     <published>2016-01-21T08:03:57.000Z</published>
-    <updated>2016-06-08T09:48:18.252Z</updated>
+    <updated>2016-08-25T08:17:58.250Z</updated>
     
     <content type="html">&lt;p&gt;用了一年的亚马逊免费云服务器刚好快要到期，正想着以后该用什么云主机搭网站呢，恰好&lt;a href=&quot;http://quincy.hk&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Quincy君&lt;/a&gt;告诉了我这个好东西：&lt;a href=&quot;https://hexo.io&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Hexo&lt;/a&gt;&lt;/p&gt;
 &lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
@@ -429,7 +492,8 @@ int main(int argc, char *argv[])
     type: git 
     repo: https://github.com/wjw12/wjw12.github.io
     branch: master
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;写文章只需要在Git Bash里面输入&lt;code&gt;hexo new post 文章名&lt;/code&gt;就可以新建一个Markdown格式的文档，关于Markdown格式参考&lt;a href=&quot;http://wowubuntu.com/Markdown&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://wowubuntu.com/Markdown&lt;/a&gt;&lt;br&gt;插入图片并不需要像编辑Markdown一般的做法那样插入图片外链，Hexo有自己的语法，把图片放在指定文件夹然后在文档中输入&lt;code&gt;&lt;/code&gt;就可以了，参见&lt;a href=&quot;https://hexo.io/docs/asset-folders.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;https://hexo.io/docs/asset-folders.html&lt;/a&gt;&lt;/p&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;写文章只需要在Git Bash里面输入&lt;code&gt;hexo new post 文章名&lt;/code&gt;就可以新建一个Markdown格式的文档，关于Markdown格式参考&lt;a href=&quot;http://wowubuntu.com/Markdown&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://wowubuntu.com/Markdown&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;插入图片并不需要像编辑Markdown一般的做法那样插入图片外链，Hexo有自己的语法，把图片放在指定文件夹然后在文档中输入&lt;code&gt;&lt;/code&gt;就可以了，参见&lt;a href=&quot;https://hexo.io/docs/asset-folders.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;https://hexo.io/docs/asset-folders.html&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;把本地写好的东西传到Github也很容易，执行&lt;code&gt;hexo generate&lt;/code&gt;就能像编译一样把文档和各种自动的主题模板变成静态网页的html和css文件，然后再&lt;code&gt;hexo deploy&lt;/code&gt;就上传好了。用Github储存页面文件不仅访问速度有保障，不用担心被攻击或者数据丢失，而且版本管理功能也能在文件更改后回退到过去版本，也可以放心大胆地尝试一些新技术了。&lt;/p&gt;
 &lt;p&gt;把以前网站上的大部分文章连带图片移植到这里很费了点精力，轻微的格式强迫症让我在不少细节上一遍遍地调整，后来意识到，有的地方怎么都不好看的原因是默认主题有点问题，下一步就是安装新的主题&lt;/p&gt;
 &lt;p&gt;好看的Hexo主题并不是很多，有详细文档支持的就更少了，就选了一个Star数最多文档也很完整的主题&lt;a href=&quot;https://github.com/iissnan/hexo-theme-next&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;NexT&lt;/a&gt;，看样子这个主题还在继续开发，简约风格，挺好看，简单地配置一样就大功告成了&lt;/p&gt;
@@ -443,18 +507,18 @@ int main(int argc, char *argv[])
     </summary>
     
     
-      <category term="Github" scheme="http://yoursite.com/tags/Github/"/>
+      <category term="Github" scheme="http://nekolab.cn/tags/Github/"/>
     
-      <category term="Hexo" scheme="http://yoursite.com/tags/Hexo/"/>
+      <category term="Hexo" scheme="http://nekolab.cn/tags/Hexo/"/>
     
-      <category term="网络" scheme="http://yoursite.com/tags/%E7%BD%91%E7%BB%9C/"/>
+      <category term="网络" scheme="http://nekolab.cn/tags/%E7%BD%91%E7%BB%9C/"/>
     
   </entry>
   
   <entry>
     <title>2016年1月1日</title>
-    <link href="http://yoursite.com/2016/01/01/2016%E5%B9%B41%E6%9C%881%E6%97%A5/"/>
-    <id>http://yoursite.com/2016/01/01/2016年1月1日/</id>
+    <link href="http://nekolab.cn/2016/01/01/2016%E5%B9%B41%E6%9C%881%E6%97%A5/"/>
+    <id>http://nekolab.cn/2016/01/01/2016年1月1日/</id>
     <published>2016-01-01T03:43:52.000Z</published>
     <updated>2016-01-21T12:44:22.139Z</updated>
     
@@ -480,16 +544,16 @@ int main(int argc, char *argv[])
     </summary>
     
     
-      <category term="2016" scheme="http://yoursite.com/tags/2016/"/>
+      <category term="2016" scheme="http://nekolab.cn/tags/2016/"/>
     
-      <category term="日记" scheme="http://yoursite.com/tags/%E6%97%A5%E8%AE%B0/"/>
+      <category term="日记" scheme="http://nekolab.cn/tags/%E6%97%A5%E8%AE%B0/"/>
     
   </entry>
   
   <entry>
     <title>2015好片推荐</title>
-    <link href="http://yoursite.com/2015/12/26/2015%E5%A5%BD%E7%89%87%E6%8E%A8%E8%8D%90/"/>
-    <id>http://yoursite.com/2015/12/26/2015好片推荐/</id>
+    <link href="http://nekolab.cn/2015/12/26/2015%E5%A5%BD%E7%89%87%E6%8E%A8%E8%8D%90/"/>
+    <id>http://nekolab.cn/2015/12/26/2015好片推荐/</id>
     <published>2015-12-26T03:38:53.000Z</published>
     <updated>2016-06-08T09:47:31.159Z</updated>
     
@@ -535,16 +599,16 @@ int main(int argc, char *argv[])
     </summary>
     
     
-      <category term="2015" scheme="http://yoursite.com/tags/2015/"/>
+      <category term="2015" scheme="http://nekolab.cn/tags/2015/"/>
     
-      <category term="电影" scheme="http://yoursite.com/tags/%E7%94%B5%E5%BD%B1/"/>
+      <category term="电影" scheme="http://nekolab.cn/tags/%E7%94%B5%E5%BD%B1/"/>
     
   </entry>
   
   <entry>
     <title>背景虚化的原理</title>
-    <link href="http://yoursite.com/2015/12/17/%E8%83%8C%E6%99%AF%E8%99%9A%E5%8C%96%E7%9A%84%E5%8E%9F%E7%90%86/"/>
-    <id>http://yoursite.com/2015/12/17/背景虚化的原理/</id>
+    <link href="http://nekolab.cn/2015/12/17/%E8%83%8C%E6%99%AF%E8%99%9A%E5%8C%96%E7%9A%84%E5%8E%9F%E7%90%86/"/>
+    <id>http://nekolab.cn/2015/12/17/背景虚化的原理/</id>
     <published>2015-12-17T03:29:57.000Z</published>
     <updated>2016-06-08T09:49:52.581Z</updated>
     
@@ -605,16 +669,16 @@ int main(int argc, char *argv[])
     </summary>
     
     
-      <category term="摄影" scheme="http://yoursite.com/tags/%E6%91%84%E5%BD%B1/"/>
+      <category term="摄影" scheme="http://nekolab.cn/tags/%E6%91%84%E5%BD%B1/"/>
     
-      <category term="物理" scheme="http://yoursite.com/tags/%E7%89%A9%E7%90%86/"/>
+      <category term="物理" scheme="http://nekolab.cn/tags/%E7%89%A9%E7%90%86/"/>
     
   </entry>
   
   <entry>
     <title>奇点</title>
-    <link href="http://yoursite.com/2015/12/10/%E5%A5%87%E7%82%B9/"/>
-    <id>http://yoursite.com/2015/12/10/奇点/</id>
+    <link href="http://nekolab.cn/2015/12/10/%E5%A5%87%E7%82%B9/"/>
+    <id>http://nekolab.cn/2015/12/10/奇点/</id>
     <published>2015-12-10T03:28:03.000Z</published>
     <updated>2016-06-08T09:52:07.802Z</updated>
     
@@ -645,16 +709,16 @@ int main(int argc, char *argv[])
     </summary>
     
     
-      <category term="数学" scheme="http://yoursite.com/tags/%E6%95%B0%E5%AD%A6/"/>
+      <category term="数学" scheme="http://nekolab.cn/tags/%E6%95%B0%E5%AD%A6/"/>
     
-      <category term="随笔" scheme="http://yoursite.com/tags/%E9%9A%8F%E7%AC%94/"/>
+      <category term="随笔" scheme="http://nekolab.cn/tags/%E9%9A%8F%E7%AC%94/"/>
     
   </entry>
   
   <entry>
     <title>湖北美术馆的雕塑</title>
-    <link href="http://yoursite.com/2015/08/15/%E6%B9%96%E5%8C%97%E7%BE%8E%E6%9C%AF%E9%A6%86%E7%9A%84%E9%9B%95%E5%A1%91/"/>
-    <id>http://yoursite.com/2015/08/15/湖北美术馆的雕塑/</id>
+    <link href="http://nekolab.cn/2015/08/15/%E6%B9%96%E5%8C%97%E7%BE%8E%E6%9C%AF%E9%A6%86%E7%9A%84%E9%9B%95%E5%A1%91/"/>
+    <id>http://nekolab.cn/2015/08/15/湖北美术馆的雕塑/</id>
     <published>2015-08-14T16:00:00.000Z</published>
     <updated>2016-06-08T09:50:58.048Z</updated>
     
@@ -697,16 +761,16 @@ int main(int argc, char *argv[])
     </summary>
     
     
-      <category term="摄影" scheme="http://yoursite.com/tags/%E6%91%84%E5%BD%B1/"/>
+      <category term="摄影" scheme="http://nekolab.cn/tags/%E6%91%84%E5%BD%B1/"/>
     
-      <category term="艺术" scheme="http://yoursite.com/tags/%E8%89%BA%E6%9C%AF/"/>
+      <category term="艺术" scheme="http://nekolab.cn/tags/%E8%89%BA%E6%9C%AF/"/>
     
   </entry>
   
   <entry>
     <title>失去的艺术</title>
-    <link href="http://yoursite.com/2015/06/23/%E5%A4%B1%E5%8E%BB%E7%9A%84%E8%89%BA%E6%9C%AF/"/>
-    <id>http://yoursite.com/2015/06/23/失去的艺术/</id>
+    <link href="http://nekolab.cn/2015/06/23/%E5%A4%B1%E5%8E%BB%E7%9A%84%E8%89%BA%E6%9C%AF/"/>
+    <id>http://nekolab.cn/2015/06/23/失去的艺术/</id>
     <published>2015-06-22T16:00:00.000Z</published>
     <updated>2016-06-08T09:53:34.707Z</updated>
     
@@ -739,14 +803,14 @@ int main(int argc, char *argv[])
     </summary>
     
     
-      <category term="诗" scheme="http://yoursite.com/tags/%E8%AF%97/"/>
+      <category term="诗" scheme="http://nekolab.cn/tags/%E8%AF%97/"/>
     
   </entry>
   
   <entry>
     <title>语言是有魔力的</title>
-    <link href="http://yoursite.com/2015/06/19/%E8%AF%AD%E8%A8%80%E6%98%AF%E6%9C%89%E9%AD%94%E5%8A%9B%E7%9A%84/"/>
-    <id>http://yoursite.com/2015/06/19/语言是有魔力的/</id>
+    <link href="http://nekolab.cn/2015/06/19/%E8%AF%AD%E8%A8%80%E6%98%AF%E6%9C%89%E9%AD%94%E5%8A%9B%E7%9A%84/"/>
+    <id>http://nekolab.cn/2015/06/19/语言是有魔力的/</id>
     <published>2015-06-18T16:00:00.000Z</published>
     <updated>2016-06-08T09:55:01.805Z</updated>
     
@@ -768,14 +832,14 @@ int main(int argc, char *argv[])
     </summary>
     
     
-      <category term="语言" scheme="http://yoursite.com/tags/%E8%AF%AD%E8%A8%80/"/>
+      <category term="语言" scheme="http://nekolab.cn/tags/%E8%AF%AD%E8%A8%80/"/>
     
   </entry>
   
   <entry>
     <title>Python爬虫入门：下载Pixiv特定关键词的高赞作品</title>
-    <link href="http://yoursite.com/2015/02/26/Python%E7%88%AC%E8%99%AB%E5%85%A5%E9%97%A8%EF%BC%9A%E4%B8%8B%E8%BD%BDPixiv%E7%89%B9%E5%AE%9A%E5%85%B3%E9%94%AE%E8%AF%8D%E7%9A%84%E9%AB%98%E8%B5%9E%E4%BD%9C%E5%93%81/"/>
-    <id>http://yoursite.com/2015/02/26/Python爬虫入门：下载Pixiv特定关键词的高赞作品/</id>
+    <link href="http://nekolab.cn/2015/02/26/Python%E7%88%AC%E8%99%AB%E5%85%A5%E9%97%A8%EF%BC%9A%E4%B8%8B%E8%BD%BDPixiv%E7%89%B9%E5%AE%9A%E5%85%B3%E9%94%AE%E8%AF%8D%E7%9A%84%E9%AB%98%E8%B5%9E%E4%BD%9C%E5%93%81/"/>
+    <id>http://nekolab.cn/2015/02/26/Python爬虫入门：下载Pixiv特定关键词的高赞作品/</id>
     <published>2015-02-25T16:00:00.000Z</published>
     <updated>2016-06-08T09:49:37.681Z</updated>
     
@@ -814,16 +878,16 @@ imgPage = re.sub(replaceDIV,repl,imgPage)
     </summary>
     
     
-      <category term="Python" scheme="http://yoursite.com/tags/Python/"/>
+      <category term="Python" scheme="http://nekolab.cn/tags/Python/"/>
     
-      <category term="爬虫" scheme="http://yoursite.com/tags/%E7%88%AC%E8%99%AB/"/>
+      <category term="爬虫" scheme="http://nekolab.cn/tags/%E7%88%AC%E8%99%AB/"/>
     
   </entry>
   
   <entry>
     <title>看似是几何问题，实际是组合问题</title>
-    <link href="http://yoursite.com/2015/02/06/%E7%9C%8B%E4%BC%BC%E6%98%AF%E5%87%A0%E4%BD%95%E9%97%AE%E9%A2%98%EF%BC%8C%E5%AE%9E%E9%99%85%E6%98%AF%E7%BB%84%E5%90%88%E9%97%AE%E9%A2%98/"/>
-    <id>http://yoursite.com/2015/02/06/看似是几何问题，实际是组合问题/</id>
+    <link href="http://nekolab.cn/2015/02/06/%E7%9C%8B%E4%BC%BC%E6%98%AF%E5%87%A0%E4%BD%95%E9%97%AE%E9%A2%98%EF%BC%8C%E5%AE%9E%E9%99%85%E6%98%AF%E7%BB%84%E5%90%88%E9%97%AE%E9%A2%98/"/>
+    <id>http://nekolab.cn/2015/02/06/看似是几何问题，实际是组合问题/</id>
     <published>2015-02-05T16:00:00.000Z</published>
     <updated>2016-06-08T09:51:14.523Z</updated>
     
@@ -850,16 +914,16 @@ imgPage = re.sub(replaceDIV,repl,imgPage)
     </summary>
     
     
-      <category term="东野圭吾" scheme="http://yoursite.com/tags/%E4%B8%9C%E9%87%8E%E5%9C%AD%E5%90%BE/"/>
+      <category term="东野圭吾" scheme="http://nekolab.cn/tags/%E4%B8%9C%E9%87%8E%E5%9C%AD%E5%90%BE/"/>
     
-      <category term="数学" scheme="http://yoursite.com/tags/%E6%95%B0%E5%AD%A6/"/>
+      <category term="数学" scheme="http://nekolab.cn/tags/%E6%95%B0%E5%AD%A6/"/>
     
   </entry>
   
   <entry>
     <title>初识树莓派 无显示器安装</title>
-    <link href="http://yoursite.com/2015/01/18/%E5%88%9D%E8%AF%86%E6%A0%91%E8%8E%93%E6%B4%BE-%E6%97%A0%E6%98%BE%E7%A4%BA%E5%99%A8%E5%AE%89%E8%A3%85/"/>
-    <id>http://yoursite.com/2015/01/18/初识树莓派-无显示器安装/</id>
+    <link href="http://nekolab.cn/2015/01/18/%E5%88%9D%E8%AF%86%E6%A0%91%E8%8E%93%E6%B4%BE-%E6%97%A0%E6%98%BE%E7%A4%BA%E5%99%A8%E5%AE%89%E8%A3%85/"/>
+    <id>http://nekolab.cn/2015/01/18/初识树莓派-无显示器安装/</id>
     <published>2015-01-17T16:00:00.000Z</published>
     <updated>2016-06-08T09:50:04.229Z</updated>
     
@@ -891,9 +955,9 @@ imgPage = re.sub(replaceDIV,repl,imgPage)
     </summary>
     
     
-      <category term="树莓派" scheme="http://yoursite.com/tags/%E6%A0%91%E8%8E%93%E6%B4%BE/"/>
+      <category term="树莓派" scheme="http://nekolab.cn/tags/%E6%A0%91%E8%8E%93%E6%B4%BE/"/>
     
-      <category term="网络" scheme="http://yoursite.com/tags/%E7%BD%91%E7%BB%9C/"/>
+      <category term="网络" scheme="http://nekolab.cn/tags/%E7%BD%91%E7%BB%9C/"/>
     
   </entry>
   
