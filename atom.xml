@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://nekolab.cn/"/>
-  <updated>2016-10-09T11:33:18.798Z</updated>
+  <updated>2016-10-15T16:06:15.386Z</updated>
   <id>http://nekolab.cn/</id>
   
   <author>
@@ -14,6 +14,136 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>如何用C++调用Fortran子程序</title>
+    <link href="http://nekolab.cn/2016/10/15/%E5%A6%82%E4%BD%95%E7%94%A8C-%E8%B0%83%E7%94%A8Fortran%E5%AD%90%E7%A8%8B%E5%BA%8F/"/>
+    <id>http://nekolab.cn/2016/10/15/如何用C-调用Fortran子程序/</id>
+    <published>2016-10-15T11:41:06.000Z</published>
+    <updated>2016-10-15T16:06:15.386Z</updated>
+    
+    <content type="html">&lt;h1 id=&quot;u5F15_u8A00&quot;&gt;&lt;a href=&quot;#u5F15_u8A00&quot; class=&quot;headerlink&quot; title=&quot;引言&quot;&gt;&lt;/a&gt;引言&lt;/h1&gt;&lt;p&gt;Fortran是现存的最古老的编程语言之一。早在1957年，这门语言就随着第一代计算机的问世而诞生了。其成熟版本Fortran 77如名字所说，在1977年发布，直到今天仍是使用最广泛的Fortran版本。在还没有PC的中古时期，计算机几乎全部用于科研，从火箭发射到核弹模拟，离不开数值计算的需求。就在这一段时间里，人类积累起了最高效的数值计算库，比如BLAS(1979)，MINPACK(1980)，QUADPACK(1981)，漫长的历史奠定了Fortran在科学计算当之无愧的霸主地位。后来其他语言的许多数值计算库也是基于以往的Fortran库编写的，如Intel MKL，Scipy。可以说，没有Fortran就没有现代的科学计算。&lt;/p&gt;
+&lt;p&gt;海量的数值程序积累是Fortran的优势之一，另一方面，Fortran又简单易学，没有复杂的语言特性，没有接受过计算机科班训练的科研人员都可以快速上手，简单粗暴地写出能运行的程序。当程序员们还争论着最好的语言是PHP还是Java，一代代科研工作者早已坚信，在要求极致数值性能的科学计算领域，Fortran一定是最合适的语言。&lt;/p&gt;
+&lt;p&gt;相比之下，C++的历史就短了许多，1983年才问世。语言设计的目的也完全不同，系统开发、桌面应用、服务器网络等等。为了适应软件工程的需求，面向对象、多态、函数式编程等等高阶功能被纳入语言特性中，C++也变得极为庞大复杂。这些特性一旦熟练掌握，开发和程序执行效率能大幅提升，但学习的门槛较高，可能让不少非专业的编程者望而生畏。&lt;/p&gt;
+&lt;p&gt;如Fortran一个功能简单的语言，就一定易用吗？C++面向对象的封装抽象，表面上增加了开发复杂性，实则让程序变得模块化，易于重用和修改，在抽象层面上设计程序往往更容易。&lt;/p&gt;
+&lt;p&gt;比如最近需要实现三维向量的运算：&lt;/p&gt;
+&lt;img src=&quot;/2016/10/15/如何用C-调用Fortran子程序/vector.png&quot; alt=&quot;vector.png&quot; title=&quot;&quot;&gt;
+&lt;p&gt;C++的思路是编写一个vector3d的类，一个object包含向量的三个分量，用操作符重载和friend函数实现向量加减乘除、点乘叉乘运算，然后只需“字面地”翻译数学公式，一个矢量等于另一个矢量叉乘，再除以一些数……就可以完成任务。&lt;/p&gt;
+&lt;p&gt;而如果用Fortran，没有抽象的方法，只能人工在草稿纸上推导向量的分量式，用行列式计算叉乘并化简，将每个分量的算式输入代码才行。换另一个公式，又要重新在草稿纸上推一遍！&lt;/p&gt;
+&lt;p&gt;一个科学计算程序，总有计算最费时的核心部分，如解线性代数方程、微分方程的数值算法，也有数据的简单处理和输入输出（如前例中的矢量计算，实则是核心任务之外的一步处理）。C++缺少许多数值计算库，或者是效率不高，用于计算密集的核心部分不够理想，但在外围部分，和程序模块的组织上，之于Fortran有太多优势。&lt;/p&gt;
+&lt;p&gt;比较两种语言的优势和劣势，会想到，如果能结合两者的优势，用Fortran处理核心的数值算法，用C++组织程序结构和外围处理，程序的开发、运行和维护的效率都能提升。&lt;/p&gt;
+&lt;img src=&quot;/2016/10/15/如何用C-调用Fortran子程序/compare.png&quot; alt=&quot;compare.png&quot; title=&quot;&quot;&gt;
+&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
+&lt;h1 id=&quot;u4E92_u64CD_u4F5C_u6027_u7684_u57FA_u7840&quot;&gt;&lt;a href=&quot;#u4E92_u64CD_u4F5C_u6027_u7684_u57FA_u7840&quot; class=&quot;headerlink&quot; title=&quot;互操作性的基础&quot;&gt;&lt;/a&gt;互操作性的基础&lt;/h1&gt;&lt;p&gt;下面我们要看到，C++和Fortran在link阶段是可以链接到一起，形成可执行文件的。&lt;/p&gt;
+&lt;p&gt;首先，我们回顾一下编译型语言的编译过程，包括C++, C, Fortran。从源代码到可执行文件，要经历经历编译-&amp;gt;连接两个过程。编译阶段，源代码由编译器(Compiler)编译成object文件，每个.cpp(或.f, .f90)源文件生成一个.o文件，包含自身的可执行部分和引用的外部符号(如其他文件中的函数和内置库函数)。再由连接器(Linker)将所有的objects连同外部的(静态)库连接，生成机器能运行的二进制代码，也就是最终的可执行文件。&lt;/p&gt;
+&lt;img src=&quot;/2016/10/15/如何用C-调用Fortran子程序/compile.png&quot; alt=&quot;compile.png&quot; title=&quot;&quot;&gt;
+&lt;img src=&quot;/2016/10/15/如何用C-调用Fortran子程序/compilelink.png&quot; alt=&quot;compilelink.png&quot; title=&quot;&quot;&gt;
+&lt;p&gt;一种语言的编译器只能识别一种语言，所以在编译阶段，两种语言是独立的，Unix下分别由g++和gfortran完成。而连接器的任务只是将编译好的可执行片段组合起来，两种语言源文件生成的object结构几乎(注意，是“几乎”)是一样。在二进制代码层面，可执行的指令只有加减乘除等等(不会超过几十个)，数据都按照同样的标准(几个字节、类型、bit顺序)来储存，抹去了源代码语言的差异性，所以就有可能将不同的object放在一起连接。&lt;/p&gt;
+&lt;p&gt;互操作性就意味着，C++的函数可以去读取、修改Fortran函数中的数据，反之亦然，只要数据的储存和传递按相同标准来执行。Fortran 2003就规定了这样的标准：在Fortran的类型定义中用常数来代表C语言的类型，在子程序定义中添加”BIND(C)”属性允许互操作，就可以在C语言中传递参数给Fortran子程序了。&lt;/p&gt;
+&lt;h3 id=&quot;u88681-__u652F_u6301_u4E92_u64CD_u4F5C_u7684_u6570_u636E_u7C7B_u578B&quot;&gt;&lt;a href=&quot;#u88681-__u652F_u6301_u4E92_u64CD_u4F5C_u7684_u6570_u636E_u7C7B_u578B&quot; class=&quot;headerlink&quot; title=&quot;表1. 支持互操作的数据类型&quot;&gt;&lt;/a&gt;表1. 支持互操作的数据类型&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;Type        Named constant        C type or types
+INTEGER     C_INT                 int, signed int
+            C_SHORT               short int, signed short int
+            C_LONG                long int, signed long int
+            C_LONG_LONG           long long int, signed long long int
+            C_SIGNED_CHAR         signed char, unsigned char
+            C_SIZE_T              size_t
+            C_INT_LEAST8_T        int_least8_t
+            C_INT_LEAST16_T       int_least16_t
+            C_INT_LEAST32_T       int_least32_t
+            C_INT_LEAST64_T       int_least64_t
+            C_INT_FAST8_T         int_fast8_t
+            C_INT_FAST16_T        int_fast16_t
+            C_INT_FAST32_T        int_fast32_t
+            C_INT_FAST64_T        int_fast64_t
+            C_INTMAX_T            c intmax_t
+REAL        C_FLOAT               float, float _Imaginary
+            C_DOUBLE              double, double _Imaginary
+COMPLEX     C_LONG_DOUBLE         long double, long double _Imaginary
+            C_COMPLEX             _Complex
+            C_DOUBLE_COMPLEX      double _Complex
+            C_LONG_DOUBLE_COMPLEX long double _Complex
+LOGICAL     C_BOOL                _Bool
+CHARACTER   C_CHAR                char  
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;但是，刚才说的是C语言的数据类型，但C++和C并不一样。互操作性意味着我们可以像调用一个C语言函数一样去调用Fortran函数，在C++中，调用C语言函数的方法是声明函数为&lt;code&gt;extern &amp;quot;C&amp;quot;&lt;/code&gt;。extern是外部函数类型，在编译阶段只在object中提示：这个函数的代码要在外部文件中去寻找，在连接阶段再找对应的(另一个语言编译器生成的)object。&lt;/p&gt;
+&lt;h1 id=&quot;u4F8B_u5B501_uFF1A_u7B80_u5355_u6570_u636E_u7684_u4E92_u64CD_u4F5C&quot;&gt;&lt;a href=&quot;#u4F8B_u5B501_uFF1A_u7B80_u5355_u6570_u636E_u7684_u4E92_u64CD_u4F5C&quot; class=&quot;headerlink&quot; title=&quot;例子1：简单数据的互操作&quot;&gt;&lt;/a&gt;例子1：简单数据的互操作&lt;/h1&gt;&lt;p&gt;以下例子中的代码都能在&lt;a href=&quot;https://github.com/wjw12/cpp_fortran中找到。&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;https://github.com/wjw12/cpp_fortran中找到。&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;C++源程序的组织很简单，定义了单精度，双精度，复数双精度变量，调用Fortran编写的“test_sub”函数对三个变量进行运算，结果储存在原来的变量中。&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;float f = 1;
+double d = 2;
+complex&amp;lt;double&amp;gt; c(1., 0.);
+test_sub(f, d, c);
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;C语言函数传递参数可以选用传值和传地址两种方式，而Fortran子程序参数只能传递引用。C++声明必须与之相符：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;extern &amp;quot;C&amp;quot; void test_sub(float&amp;amp; f, double&amp;amp; d, std::complex&amp;lt;double&amp;gt;&amp;amp; c);
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Fortran函数中，最重要的是头几行：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;subroutine test_sub(fl, db, cp) bind(C)
+    use iso_c_binding
+    implicit none
+    real (C_FLOAT) :: fl
+    real (C_DOUBLE) :: db
+    complex (C_DOUBLE_COMPLEX) :: cp
+    ...
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;实现互操作的三个前提就是：bind(C)属性， use iso_c_binding模块， 定义变量属性用C_xxx常量。并且这里用到了STL里面的complex头文件。&lt;/p&gt;
+&lt;p&gt;Makefile的编写也是直截了当的：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;exe: c_main.o fortran_sub.o
+    g++ c_main.o fortran_sub.o -o exe
+
+fortran_sub.o: fortran_sub.f90
+    gfortran -c fortran_sub.f90
+
+c_main.o: c_main.cpp c_header.h
+    g++ -c c_main.cpp
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;这里的连接器是g++(并不是编译器，虽然同名)，不同来源的.o文件用相同的方式连接。&lt;/p&gt;
+&lt;h1 id=&quot;u4F8B_u5B502_uFF1A_u6570_u7EC4_u7684_u4E92_u64CD_u4F5C&quot;&gt;&lt;a href=&quot;#u4F8B_u5B502_uFF1A_u6570_u7EC4_u7684_u4E92_u64CD_u4F5C&quot; class=&quot;headerlink&quot; title=&quot;例子2：数组的互操作&quot;&gt;&lt;/a&gt;例子2：数组的互操作&lt;/h1&gt;&lt;p&gt;这里我们用C++生成矩阵和向量，用Fortran计算它们的乘积。尽管程序简单，也能反映出实际应用的背景。计算任务交给Fortran，用C++进行外围数据处理，比如给矩阵元随机赋值是很方便的：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;void fill_vector(vector&amp;lt;double&amp;gt;&amp;amp; v) {
+    default_random_engine eng(0);
+    uniform_real_distribution&amp;lt;double&amp;gt; dist(0, 1);
+    for(auto &amp;amp;a : v)
+        a = dist(eng);
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;本例中矩阵也用一维的数据结构std::vector储存。C系列语言中矩阵在内存中是行优先储存的(row-major)，在线性的内存中，顺序是A[0,0], A[0,1], A[0,2], …, A[1,0]，先储存一行再储存下一行。Fortran中恰好相反，顺序是A(1,1), A(2,1), A(3,1), …, A(1,2)，是列优先的(colume-major)。对程序的影响体现在，C++生成矩阵时也需要按列优先的规则去填充元素，输出时print_matrix函数的编写可以看出这一点。&lt;/p&gt;
+&lt;p&gt;把数组传给Fortran子程序，关键是这一步：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;matmulvec(&amp;amp;A[0], &amp;amp;rows_A, &amp;amp;cols_A, &amp;amp;B[0], &amp;amp;C[0]);
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;一般来说，传递的可以是C风格的数组，也可以是STL的vector，同时要传递数组长度。STL的实现保证了&amp;amp;A[0]给出了vector中首个元素的地址，并且元素在内存里是线性连续储存的，我们才能在Fortran中按照通常的数组一样访问这些元素。&lt;/p&gt;
+&lt;p&gt;Fortran子程序编写就很简单了，传进来的矩阵M是内存中连续的一段元素，编译器将其解读为按列优先的二维数组。为了乘法的方便，向量M定义成一个维度只有1的二维数组。矩阵乘法由内置函数matmul完成。&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;subroutine matmulvec(A, M, N, B, C) bind(c)
+    use iso_c_binding
+    implicit none
+    integer(c_int) :: M, N
+    real(c_double) :: A(M,N), B(N,1), C(M,1)
+    C = matmul(A, B)
+end subroutine 
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Makefile编写略有不同，连接器用的是gfortran而不是g++，需要加上C++标准库的连接支持&lt;code&gt;-lstdc++&lt;/code&gt;，才能在二进制文件中执行C++标准库函数。&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;exe: c_main.o fortran_sub.o
+    gfortran c_main.o fortran_sub.o -lstdc++ -o exe
+&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;u4F8B_u5B503_uFF1A_u4E00_u4E2A_u7B80_u5316_u7684_u5B9E_u9645_u60C5_u5F62&quot;&gt;&lt;a href=&quot;#u4F8B_u5B503_uFF1A_u4E00_u4E2A_u7B80_u5316_u7684_u5B9E_u9645_u60C5_u5F62&quot; class=&quot;headerlink&quot; title=&quot;例子3：一个简化的实际情形&quot;&gt;&lt;/a&gt;例子3：一个简化的实际情形&lt;/h1&gt;&lt;p&gt;ode_compare这个项目是为了比较C++和Fortran解常微分方程的效率。实际研究中，常微分方程这种有常规数值解法的问题是不太可能手写代码实现的，只需调用成熟的库函数。在这里，为方便起见，C++用的是boost.odeint中的5阶可变步长Runge-Kutte解法器，是很常用的一个变步长方法；Fortran用的是LSODA库中的DLSODA.F子程序，是一种复杂的变步长方法。&lt;/p&gt;
+&lt;p&gt;源代码可以看Github上面的，这里只给出解n=10000个常微分方程组(2个变量)的速度比较，时间单位是纳秒&lt;/p&gt;
+&lt;img src=&quot;/2016/10/15/如何用C-调用Fortran子程序/result.png&quot; alt=&quot;result.png&quot; title=&quot;&quot;&gt;
+&lt;p&gt;差异大约有400倍之多。boost.odeint虽然是很现代的C++库，效率远远比不上经典的Fortran子程序。&lt;/p&gt;
+&lt;h1 id=&quot;u53C2_u8003&quot;&gt;&lt;a href=&quot;#u53C2_u8003&quot; class=&quot;headerlink&quot; title=&quot;参考&quot;&gt;&lt;/a&gt;参考&lt;/h1&gt;&lt;p&gt;关于Fortran的iso_c_binding &lt;a href=&quot;http://stackoverflow.com/tags/fortran-iso-c-binding/info&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://stackoverflow.com/tags/fortran-iso-c-binding/info&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;各种语言的发展及亲缘关系 &lt;a href=&quot;https://www.quora.com/Are-all-programming-languages-based-on-C&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;https://www.quora.com/Are-all-programming-languages-based-on-C&lt;/a&gt;&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;u5F15_u8A00&quot;&gt;&lt;a href=&quot;#u5F15_u8A00&quot; class=&quot;headerlink&quot; title=&quot;引言&quot;&gt;&lt;/a&gt;引言&lt;/h1&gt;&lt;p&gt;Fortran是现存的最古老的编程语言之一。早在1957年，这门语言就随着第一代计算机的问世而诞生了。其成熟版本Fortran 77如名字所说，在1977年发布，直到今天仍是使用最广泛的Fortran版本。在还没有PC的中古时期，计算机几乎全部用于科研，从火箭发射到核弹模拟，离不开数值计算的需求。就在这一段时间里，人类积累起了最高效的数值计算库，比如BLAS(1979)，MINPACK(1980)，QUADPACK(1981)，漫长的历史奠定了Fortran在科学计算当之无愧的霸主地位。后来其他语言的许多数值计算库也是基于以往的Fortran库编写的，如Intel MKL，Scipy。可以说，没有Fortran就没有现代的科学计算。&lt;/p&gt;
+&lt;p&gt;海量的数值程序积累是Fortran的优势之一，另一方面，Fortran又简单易学，没有复杂的语言特性，没有接受过计算机科班训练的科研人员都可以快速上手，简单粗暴地写出能运行的程序。当程序员们还争论着最好的语言是PHP还是Java，一代代科研工作者早已坚信，在要求极致数值性能的科学计算领域，Fortran一定是最合适的语言。&lt;/p&gt;
+&lt;p&gt;相比之下，C++的历史就短了许多，1983年才问世。语言设计的目的也完全不同，系统开发、桌面应用、服务器网络等等。为了适应软件工程的需求，面向对象、多态、函数式编程等等高阶功能被纳入语言特性中，C++也变得极为庞大复杂。这些特性一旦熟练掌握，开发和程序执行效率能大幅提升，但学习的门槛较高，可能让不少非专业的编程者望而生畏。&lt;/p&gt;
+&lt;p&gt;如Fortran一个功能简单的语言，就一定易用吗？C++面向对象的封装抽象，表面上增加了开发复杂性，实则让程序变得模块化，易于重用和修改，在抽象层面上设计程序往往更容易。&lt;/p&gt;
+&lt;p&gt;比如最近需要实现三维向量的运算：&lt;/p&gt;
+&lt;img src=&quot;/2016/10/15/如何用C-调用Fortran子程序/vector.png&quot; alt=&quot;vector.png&quot; title=&quot;&quot;&gt;
+&lt;p&gt;C++的思路是编写一个vector3d的类，一个object包含向量的三个分量，用操作符重载和friend函数实现向量加减乘除、点乘叉乘运算，然后只需“字面地”翻译数学公式，一个矢量等于另一个矢量叉乘，再除以一些数……就可以完成任务。&lt;/p&gt;
+&lt;p&gt;而如果用Fortran，没有抽象的方法，只能人工在草稿纸上推导向量的分量式，用行列式计算叉乘并化简，将每个分量的算式输入代码才行。换另一个公式，又要重新在草稿纸上推一遍！&lt;/p&gt;
+&lt;p&gt;一个科学计算程序，总有计算最费时的核心部分，如解线性代数方程、微分方程的数值算法，也有数据的简单处理和输入输出（如前例中的矢量计算，实则是核心任务之外的一步处理）。C++缺少许多数值计算库，或者是效率不高，用于计算密集的核心部分不够理想，但在外围部分，和程序模块的组织上，之于Fortran有太多优势。&lt;/p&gt;
+&lt;p&gt;比较两种语言的优势和劣势，会想到，如果能结合两者的优势，用Fortran处理核心的数值算法，用C++组织程序结构和外围处理，程序的开发、运行和维护的效率都能提升。&lt;/p&gt;
+&lt;img src=&quot;/2016/10/15/如何用C-调用Fortran子程序/compare.png&quot; alt=&quot;compare.png&quot; title=&quot;&quot;&gt;
+    
+    </summary>
+    
+    
+      <category term="C++" scheme="http://nekolab.cn/tags/C/"/>
+    
+      <category term="Fortran" scheme="http://nekolab.cn/tags/Fortran/"/>
+    
+  </entry>
   
   <entry>
     <title>我所了解的Asperger</title>
@@ -1060,54 +1190,6 @@ int main(int argc, char *argv[])
     
     
       <category term="语言" scheme="http://nekolab.cn/tags/%E8%AF%AD%E8%A8%80/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Python爬虫入门：下载Pixiv特定关键词的高赞作品</title>
-    <link href="http://nekolab.cn/2015/02/26/Python%E7%88%AC%E8%99%AB%E5%85%A5%E9%97%A8%EF%BC%9A%E4%B8%8B%E8%BD%BDPixiv%E7%89%B9%E5%AE%9A%E5%85%B3%E9%94%AE%E8%AF%8D%E7%9A%84%E9%AB%98%E8%B5%9E%E4%BD%9C%E5%93%81/"/>
-    <id>http://nekolab.cn/2015/02/26/Python爬虫入门：下载Pixiv特定关键词的高赞作品/</id>
-    <published>2015-02-25T16:00:00.000Z</published>
-    <updated>2016-06-08T09:49:37.681Z</updated>
-    
-    <content type="html">&lt;p&gt;刚刚学一点python爬虫，很有趣，可以飙车了（误&lt;/p&gt;
-&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
-&lt;p&gt;原本写了个按关键词下载草榴上的图片的……那个不和谐就不在这里分享了，接下来想下载插画给手机换一换壁纸，P站又不提供按热门度排序搜索图片的功能，于是就想自己实现一个简单的爬虫，下载特定关键词赞数过百的作品（如果手动去找的话要翻几页才能找到一个）&lt;/p&gt;
-&lt;p&gt;源代码：&lt;a href=&quot;https://github.com/wjw12/python/blob/master/pixivSpider.py&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;https://github.com/wjw12/python/blob/master/pixivSpider.py&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;首先要登陆P站，我这里偷个懒，在IE登陆然后用Fiddler这个软件抓包，用chrome的F12应该也行，抓到cookie内容插入到http request的header里面去就行，免去了cookiejar之类模块的使用&lt;/p&gt;
-&lt;img src=&quot;/2015/02/26/Python爬虫入门：下载Pixiv特定关键词的高赞作品/cookie.jpg&quot; alt=&quot;cookie.jpg&quot; title=&quot;&quot;&gt;
-&lt;pre&gt;&lt;code&gt;req = urllib.request.Request(pageURL)
-req.add_header(&amp;apos;Cookie&amp;apos;,cookie)
-resp = urllib.request.urlopen(req)
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;编写整个程序的重点在于分析P站的页面逻辑，利用审查元素找到图片、文本在html代码中的位置，找到上下文的规律就可以用正则表达式抓取了，比如说获取赞的数量：&lt;/p&gt;
-&lt;img src=&quot;/2015/02/26/Python爬虫入门：下载Pixiv特定关键词的高赞作品/likes.jpg&quot; alt=&quot;likes.jpg&quot; title=&quot;&quot;&gt;
-&lt;!--more--&gt;
-&lt;p&gt;下载图片时一开始总是出现403 error，用抓包软件分析手动登陆时的request，发现爬虫的request少了一个referer，是网页用来检验访客从哪里来的信息。前面在图片页中找到了&lt;a href=&quot;http://i1.pixiv.net/img-original/img/2015/02/08/04/30/09/48620880_p0.jpg%20&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;jpg图片的URL&lt;/a&gt; ，直接在浏览器中访问或用python urllib.request.urlopen访问都会出403错误，服务器拒绝访问。只有给我们的request加上一个Referer: &lt;a href=&quot;http://www.pixiv.net/member_illust.php?mode=medium&amp;amp;illust_id=48620880&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://www.pixiv.net/member_illust.php?mode=medium&amp;amp;illust_id=48620880&lt;/a&gt;  伪装成从P站链接进去访问图片才能成功，代码中是这样：&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;req = urllib.request.Request(imgURL)
-referer = imgPageURL
-req.add_header(&amp;apos;Referer&amp;apos;,referer)
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;要打开图片imgURL必须伪装成从imgPageURL进入的那样，补充阅读：&lt;a href=&quot;http://en.wikipedia.org/wiki/HTTP_referer&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;HTTP referer&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;作为初学者遇到最大的一个麻烦就是字符串编码问题，Python3比起2稍微好了一点，但一开始程序总是各种报错，总结了一些经验：&lt;/p&gt;
-&lt;p&gt;Python3 里面不加说明打引号的字符串就是unicode，str()返回值都是unicode&lt;/p&gt;
-&lt;p&gt;Python3 没有unicode()函数，对str进行decode会出错（str类型没有decode方法），对bytes进行encode会出错&lt;/p&gt;
-&lt;p&gt;unicode和bytes不要在同一语句中混用，比如下面正则表达式替换时，imgPage是从网站读取的页面html，是utf-8编码的bytes字符串，所以pattern和repl都必须encode成为bytes字符串才能用正则匹配，不然会出错&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;pattern = r&amp;apos;&amp;lt;div&amp;gt;|&amp;lt;/div&amp;gt;&amp;apos;.encode(&amp;apos;utf-8&amp;apos;)
-replaceDIV = re.compile(pattern)
-repl = &amp;apos;\n&amp;apos;.encode(&amp;apos;utf-8&amp;apos;)
-imgPage = re.sub(replaceDIV,repl,imgPage)
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;日文汉字在控制台可能无法正确输出，用gb18030 encode之后变成b’\xa3\xb2\xc2’这类形式，到最后还是没法在控制台正确显示文件名，不过下载下来之后在windows里面看到的文件名是正确的&lt;/p&gt;
-&lt;img src=&quot;/2015/02/26/Python爬虫入门：下载Pixiv特定关键词的高赞作品/filename.jpg&quot; alt=&quot;filename.jpg&quot; title=&quot;&quot;&gt;</content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;刚刚学一点python爬虫，很有趣，可以飙车了（误&lt;/p&gt;
-    
-    </summary>
-    
-    
-      <category term="Python" scheme="http://nekolab.cn/tags/Python/"/>
-    
-      <category term="爬虫" scheme="http://nekolab.cn/tags/%E7%88%AC%E8%99%AB/"/>
     
   </entry>
   
