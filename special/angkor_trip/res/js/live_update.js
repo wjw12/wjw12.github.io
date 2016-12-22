@@ -274,10 +274,18 @@ document.liveUpdateProperty = function( id, property, value ) {
 
 function esc( pre ) {
 	pre = pre.replace( /&/g, "&amp;" );
-	pre = pre.replace( /
+	pre = pre.replace( /</g, "&lt;" );
+	return pre;
+}
+
+//------------------------------------------------------------
+
+function escapeForHtml( value ) {
+
+	// escape < and & but preserve </html>
 	var result = "";
 	var index = 0;
-	var pat = /(.*?)(<[\ a-za-z]?[^&<="">]+>)/g;
+	var pat = /(.*?)(<[\/a-zA-Z]?[^&<>]+>)/g;
 	var chunk;
 	while( ( chunks = pat.exec( value ) ) != null ) {
 		var pre = chunks[ 1 ];
@@ -358,4 +366,4 @@ document.liveUpdateImageSize = function( imageID, width, height ) {
 	return "invalidateAllContent";
 }
 
-//------------------------------------------------------------</[\>
+//------------------------------------------------------------

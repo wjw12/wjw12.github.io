@@ -26,7 +26,7 @@ var ie = (function(){
 		div.innerHTML = '<!--[if gt IE ' + (++v) + ']><i></i><![endif]-->',
 		all[0]
 	);
-	if (v <= 4)="" {="" check="" for="" ie="">9 using user agent
+	if (v <= 4) { // Check for IE>9 using user agent
 		var match = navigator.userAgent.match(/(?:MSIE |Trident\/.*; rv:|Edge\/)(\d+)/);
 		v = match ? parseInt(match[1]) : undefined;
 	}
@@ -35,7 +35,29 @@ var ie = (function(){
 
 if (ie) {
 	$('html').addClass('ie' + ie);
-	if (ie <=8) $('html').addclass('ielte8');="" if="" (ie="" <="6)" $('html').addclass('ielte6');="" }="" detects="" support="" for="" background-size:="" cover="" var="" bscoversupport="(function(){" supported="('backgroundSize'" in="" document.documentelement.style);="" if(supported){="" temp="document.createElement('div');" temp.style.backgroundsize="cover" ;="" =="cover" };="" return="" supported;="" })();="" **="" replace="" background="" icon="" images="" with="" foreground="" png="" (needed="" when="" isn't="" supported,="" e.g.)="" *="" $.fn.addfgpngicon="function" ()="" {="" (!bscoversupport)="" $(this).css('background-image',="" 'none');="" iconname="$(this).attr("class").match(/ic-([\w\-]+)/)[1];" $(this).html("<img="" title="" src="./res/icons/png/" + iconName + ".png">");
+	if (ie <=8)
+		$('html').addClass('ieLTE8');
+    if (ie <=6)
+		$('html').addClass('ieLTE6');
+}
+
+// Detects support for background-size: cover
+var bsCoverSupport = (function(){
+    var supported = ('backgroundSize' in document.documentElement.style);
+    if(supported){
+        var temp = document.createElement('div');
+        temp.style.backgroundSize = 'cover';
+        supported = temp.style.backgroundSize == 'cover';
+    };
+    return supported;
+})();
+
+/** Replace background icon images with foreground png images (needed for when background-size: cover isn't supported, e.g.) */
+$.fn.addFgPngIcon = function () {
+	if (!bsCoverSupport) {
+		$(this).css('background-image', 'none');
+		var iconName = $(this).attr("class").match(/ic-([\w\-]+)/)[1];
+		$(this).html("<img title='' src='./res/icons/png/" + iconName + ".png' />");
 	}
 	return $(this);
 }
@@ -91,7 +113,20 @@ var touchSupported = (function() {
 $.fn.downscale = function (container, minWidth) {
 	var availWidth = $(container).innerWidth();
 	var ratio = minWidth / availWidth;
-	if (ratio<1) {="" var="" scalestr="scale(" +ratio+","+ratio+")";="" $(this).css({'min-width':="" minwidth,="" '-ms-transform':="" scalestr,="" '-webkit-transform':="" 'transform':="" '-ms-transform-origin:':'top="" left',="" '-webkit-transform-origin:':'top="" 'transform-origin':'top="" 'zoom':ratio+'\9'});="" *="" zoom="" untested="" (unsure="" of="" origin),="" used="" to="" support="" on="" ie6-8;="" '\9'="" avoid="" being="" ie9+="" }="" else="" $(this).css({'width':'100%',="" '',="" 'zoom':'1.0\9'});="" return="" $(this);="" **="" downsize="" text="" fit="" into="" container="" (max="" initial="" font="" size="54px," min="" final="" $.fn.autodownsizetext="function" (resetfirst)="" resetfirst="" clears="" the="" element's="" font-size="" property="" before="" beginning="" (assumes="" fonts="" are="" defined="" outside="" this="" tag)="" el,="" elements,="" _i;="" elements="$(this);" if="" (elements.length=""> 0) {
+	if (ratio<1) {
+		var scaleStr = "scale("+ratio+","+ratio+")";
+		$(this).css({'min-width': minWidth, '-ms-transform': scaleStr, '-webkit-transform': scaleStr, 'transform': scaleStr, '-ms-transform-origin:':'top left', '-webkit-transform-origin:':'top left', 'transform-origin':'top left', 'zoom':ratio+'\9'}); /* zoom untested (unsure of origin), used to support on IE6-8; '\9' used to avoid being used on IE9+ */
+	} else {
+		$(this).css({'width':'100%', '-ms-transform': '', '-webkit-transform': '', 'transform': '', 'zoom':'1.0\9'});
+	}
+	return $(this);
+}
+
+/** Downsize text to fit into container (max initial font size = 54px, min final font size = 4px) */
+$.fn.autoDownsizeText = function (resetFirst) { // resetFirst clears the element's font-size property before beginning (assumes fonts are defined outside this tag)
+	var el, elements, _i;
+	elements = $(this);
+	if (elements.length > 0) {
 		for (_i = 0; _i < elements.length; _i++) {
 			el = elements[_i];
 			if (resetFirst) 
@@ -224,7 +259,7 @@ if ( !jQuery.browser ) {
 	var iframeWrapper = {
 		id: "__jQuery_history",
 		init: function() {
-			var html = '<iframe id="'+ this.id +'" style="display:none" src="javascript:false;">';
+			var html = '<iframe id="'+ this.id +'" style="display:none" src="javascript:false;" />';
 			$("body").prepend(html);
 			return this;
 		},
@@ -370,4 +405,4 @@ if ( !jQuery.browser ) {
 
 	$.extend(self, implementations[self.type]);
 	$.history = self;
-})(jQuery);</iframe></1)></=8)></=>
+})(jQuery);
