@@ -1,0 +1,87 @@
+/* --- External appearance settings --- */
+
+html, body {
+	margin:0;
+	padding:0;
+}
+body{
+	text-align: center;
+	font-family: "Lucida Grande", "Lucida Sans Unicode", Verdana, Helvetica, Arial, sans-serif;
+	background-color: #eee;
+	color: #444;
+	font-size: 75%;
+}
+a{
+	/* color: #27D; */
+	text-decoration: none;
+}
+a:focus, a:hover, a:active {
+	text-decoration: underline;
+	-webkit-transition: all .4s;
+	transition: all .4s;
+}
+p {
+	line-height: 1.8em;
+	margin:0.5em 0 0.5em 0;
+}
+h1, h2 {
+	font-family: "Trebuchet MS", Verdana, sans-serif;
+	margin: 0 0 8px 0;
+	letter-spacing: -1px;
+}
+h1 {
+	padding: 0;
+	font-size: 2.5em;
+	color: #333;
+	display: inline-block;
+}
+h2 {
+	font-size:1.8em;
+}
+div#page {
+	max-width: 1660px; /* overridden in-page script based upon maximum image size from lightroom */
+	min-width: 294px;
+	background-color: #fff;
+	text-align: left;
+	border-color: #ddd;
+	border-style: solid solid solid; /* "none solid solid" if not using header */
+	border-width: 1px 1px 1px;
+	border-radius: 8px; /* round out edges */
+	overflow:hidden;
+}
+div.pagewidth {
+	width: 98%;
+	margin: 0px auto;
+}
+div#container {
+	padding: 20px;
+	position: relative;
+}
+div#footer {
+	color: #777;
+	margin: 0 auto;
+	padding: 15px 0 30px;
+	text-align: center;
+}
+.ieLTE8 a img {
+	border: none;
+	outline: none;
+}
+.right {
+	float: right;
+	clear: right;
+}
+.left {
+	float: left;
+	clear: left;
+}
+
+/* --- Gallerific internal settings --- */
+
+* {
+	box-sizing: border-box;
+}
+.unselectable { /* disallow text selection */
+	-webkit-user-select: none; 
+	-moz-user-select: none;
+	-ms-user-select: none; /* IE 10+ (
