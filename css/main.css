@@ -455,7 +455,7 @@ body {
 }
 .header-inner {
   margin: 0 auto;
-  padding: 100px 0 450px;
+  padding: 100px 0 50px;
   width: 700px;
 }
 @media (min-width: 1600px) {
@@ -1543,7 +1543,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #ff6563;
+  background: #0533eb;
 }
 .sidebar-nav {
   margin: 0 0 20px;
