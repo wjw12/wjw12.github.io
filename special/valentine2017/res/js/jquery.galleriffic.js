@@ -532,7 +532,7 @@
 				var tomod = index % this.numThumbs;
 				var doslidein = true;
 				if (this.currentImage && this.currentImage.index != index) {
-					doslidein = (tomod <= this.numthumbs)="" &&="" (tomod="">= 0);
+					doslidein = (tomod <= this.numThumbs) && (tomod >= 0);
 					doslidein = doslidein && (Math.floor(index / this.numThumbs) == Math.floor(this.currentImage.index / this.numThumbs));
 
 					if (this.onSlideChangeOut)
@@ -850,7 +850,37 @@
 				var $thumbsUl = this.find('ul.thumbs');
 				$thumbsUl.find('li').each(function(i) {
 					var $li = $(this);
-					if (i >= startIndex && i <= stopindex)="" {="" $li.show();="" }="" else="" $li.hide();="" });="" this.displayedpage="page;" remove="" the="" noscript="" class="" from="" thumbs="" container="" ul="" $thumbsul.removeclass('noscript');="" return="" this;="" },="" returns="" total="" number="" of="" pages="" required to="" display="" all="" thumbnails.="" getnumpages:="" function()="" math.ceil(this.data.length="" this.numthumbs);="" rebuilds="" pager="" control="" in="" specified="" matched="" element.="" @param="" {jquery}="" a="" jquery="" element="" set="" matching="" particular="" be="" rebuilt.="" buildpager:="" function(pager)="" var="" gallery="this;" numpages="this.getNumPages();" page="this.getCurrentPage();" startindex="page" *="" this.numthumbs;="" pagesremaining="this.maxPagesToShow" -="" 1;="" pagenum="page" math.floor((this.maxpagestoshow="" 1)="" 2)="" +="" if="" (pagenum=""> 0) {
+					if (i >= startIndex && i <= stopIndex) {
+						$li.show();
+					} else {
+						$li.hide();
+					}
+				});
+
+				this.displayedPage = page;
+
+				// Remove the noscript class from the thumbs container ul
+				$thumbsUl.removeClass('noscript');
+
+				return this;
+			},
+
+			// Returns the total number of pages required to display all the thumbnails.
+			getNumPages: function() {
+				return Math.ceil(this.data.length/this.numThumbs);
+			},
+
+			// Rebuilds the pager control in the specified matched element.
+			// @param {jQuery} pager A jQuery element set matching the particular pager to be rebuilt.
+			buildPager: function(pager) {
+				var gallery = this;
+				var numPages = this.getNumPages();
+				var page = this.getCurrentPage();
+				var startIndex = page * this.numThumbs;
+				var pagesRemaining = this.maxPagesToShow - 1;
+
+				var pageNum = page - Math.floor((this.maxPagesToShow - 1) / 2) + 1;
+				if (pageNum > 0) {
 					var remainingPageCount = numPages - pageNum;
 					if (remainingPageCount < pagesRemaining) {
 						pageNum = pageNum - (pagesRemaining - remainingPageCount);
@@ -1052,4 +1082,3 @@
 		return this;
 	};
 })(jQuery);
-</=></=>
