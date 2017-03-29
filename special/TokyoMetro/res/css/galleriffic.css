@@ -1,0 +1,754 @@
+/* --- External appearance settings --- */
+
+html, body {
+	margin:0;
+	padding:0;
+}
+body{
+	text-align: center;
+	font-family: "Lucida Grande", "Lucida Sans Unicode", Verdana, Helvetica, Arial, sans-serif;
+	background-color: #eee;
+	color: #444;
+	font-size: 75%;
+}
+a{
+	/* color: #27D; */
+	text-decoration: none;
+}
+a:focus, a:hover, a:active {
+	text-decoration: underline;
+	-webkit-transition: all .4s;
+	transition: all .4s;
+}
+p {
+	line-height: 1.8em;
+	margin:0.5em 0 0.5em 0;
+}
+h1, h2 {
+	font-family: "Trebuchet MS", Verdana, sans-serif;
+	margin: 0 0 8px 0;
+	letter-spacing: -1px;
+}
+h1 {
+	padding: 0;
+	font-size: 2.5em;
+	color: #333;
+	display: inline-block;
+}
+h2 {
+	font-size:1.8em;
+}
+div#page {
+	max-width: 1660px; /* overridden in-page script based upon maximum image size from lightroom */
+	min-width: 294px;
+	background-color: #fff;
+	text-align: left;
+	border-color: #ddd;
+	border-style: solid solid solid; /* "none solid solid" if not using header */
+	border-width: 1px 1px 1px;
+	border-radius: 8px; /* round out edges */
+	overflow:hidden;
+}
+div.pagewidth {
+	width: 98%;
+	margin: 0px auto;
+}
+div#container {
+	padding: 20px;
+	position: relative;
+}
+div#footer {
+	color: #777;
+	margin: 0 auto;
+	padding: 15px 0 30px;
+	text-align: center;
+}
+.ieLTE8 a img {
+	border: none;
+	outline: none;
+}
+.right {
+	float: right;
+	clear: right;
+}
+.left {
+	float: left;
+	clear: left;
+}
+
+/* --- Gallerific internal settings --- */
+
+* {
+	box-sizing: border-box;
+}
+.unselectable { /* disallow text selection */
+	-webkit-user-select: none; 
+	-moz-user-select: none;
+	-ms-user-select: none; /* IE 10+ (<10 needs unselectable attribute in tag */
+	user-select: none;
+}
+div.group:after {
+	content: ".";
+	display: block;
+	height: 0;
+	clear: both;
+	visibility: hidden;
+}
+.logo, .contact, #titles {
+	margin: 0px 8px;
+}
+/* grumpicon svg icons with png fallback */
+.icon {
+	display: inline-block;
+	width: 1.3em;
+	height: 1.3em;
+	text-align: center;
+	vertical-align: top;
+	background-size: cover; /* will size to space available */
+	background-repeat: no-repeat;
+	/* fix buttons height, for twitter bootstrap */
+	/* line-height: 1em; */
+}
+.ie7 .icon, .ie6 .icon, .ie5 .icon {
+	display: inline;
+	clear: both;
+}
+.icon img {
+	max-width: 100%;
+	max-height: 100%;
+}
+.icon svg {
+	max-width: 100%;
+	max-height: 100%;
+}
+.icon path {
+	fill: currentColor;
+}
+.ilg {
+	width: 1.6em;
+	height: 1.6em;
+}
+.i2x {
+	width: 2em;
+	height: 2em;
+}
+.iNav {
+	width: 16px;
+	height: 24px;
+	line-height: 24px;
+	vertical-align: middle;
+}
+.ie7 .icon img, .ie6 .icon img, .ie5 .icon img {
+	width: 1.3em;
+	height: 1.3em;
+}
+.ie7 .icon img, .ie6 .icon .ilg img, .ie5 .icon .ilg img {
+	width: 1.6em;
+	height: 1.6em;
+}
+.ie7 .icon img, .ie6 .icon .i2x img, .ie5 .icon .i2x img {
+	width: 2em;
+	height: 2em;
+}
+/* fancy tooltip support, see http://codepen.io/anon/pen/YXmoKp */
+.tt {
+	position: relative;
+	cursor: pointer;
+	outline: 0;
+}
+.tt:after {
+	content: attr(data-tt);
+	position: absolute;
+	left: 1.8em;
+	top: -2.1em;
+	white-space: nowrap;
+	color: #FFF;
+	background: rgba(0, 0, 0, 0.8);
+	padding: 3px 7px;
+	border-radius: 3px;
+	-moz-border-radius: 3px;
+	-webkit-border-radius: 3px;
+	margin-left: 7px;
+	border: 1px solid gray;
+	margin-top: -3px;
+	transition-delay: 0s;
+	visibility: hidden;
+	opacity:0.0;
+}
+.ieLTE8 .tt:after {
+	background: #FFF;
+	color: #000;
+}
+.tt:hover:after {
+	visibility: visible;
+	opacity: 1.0;
+	transition: opacity .4s ease-in .5s;
+	-webkit-transition: opacity .4s ease-in .5s;
+}
+.tt:active:after, .tt:focus:after {
+	visibility: hidden;
+}
+.tt-lr:after {
+	top: 1.8em;  
+}
+.tt-ll:after {
+	top: 2.1em;
+	left: auto;
+	right: 1.8em;
+}
+.tt-ul:after {
+	left: auto;
+	right: 1.8em;
+}
+/* popups (for facebook, downloads), see http://jsfiddle.net/zyrm2qop/6/ */
+#popupOverlay {
+	position: fixed;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	background: rgba(0, 0, 0, 0.7);
+	transition: opacity 500ms;
+	visibility: hidden;
+	opacity: 0;
+	z-index: -999;
+}
+.popup {
+	margin: 140px auto 0px;
+	padding: 18px;
+	width: 20%;
+	min-width: 290px;
+	background: #fff;
+	text-align: center;
+	border: 2px solid gray;
+	border-radius: 5px;
+	position: relative;
+}
+.popup h2 {
+	margin: 5px auto 15px;
+	color: #333;
+}
+.popup .close {
+	position: absolute;
+	top: 3px;
+	right: 3px;
+	font-size: 12px;
+	opacity: 0.75;
+	transition: all 200ms;
+}
+.popup .close:hover, .popup .close:active, .popup .close:focus{
+	opacity: 1.0;
+	outline: 0;
+}
+.popup .popupContent {
+	margin: 0px auto;
+	height: 100px;
+	width: 250px;
+	color: #555;
+}
+
+/* DL popup see http://jsfiddle.net/osjgppfw/3/ , styles from bootstrap*/
+.popup .popupContent ul {
+	list-style-type: none;
+	text-align: left;
+	padding-left: 1.5em;
+}
+.popup .button {
+	font-size: 1em;
+	padding: 10px;
+	color: #fff;
+	border: 2px solid #06D85F;
+	border-radius: 20px/50px;
+	text-decoration: none;
+	cursor: pointer;
+	transition: all 0.3s ease-out;
+	background: rgba(6, 216, 95, 0.7);
+}
+.popup .button:hover, .popup .button:active, .popup .button:focus {
+	background: rgba(6, 216, 95, 1);
+}
+.progress {
+	height: 20px;
+	margin-top: 25px;
+	margin-bottom: 20px;
+	overflow: hidden;
+	background-color: #f5f5f5;
+	border-radius: 4px;
+	-webkit-box-shadow: inset 0 1px 2px rgba(0, 0, 0, .1);
+			box-shadow: inset 0 1px 2px rgba(0, 0, 0, .1);
+}
+.progress-bar {
+	float: left;
+	width: 0;
+	height: 100%;
+	font-size: 12px;
+	line-height: 20px;
+	color: #fff;
+	text-align: center;
+	background-color: #428bca;
+	-webkit-box-shadow: inset 0 -1px 0 rgba(0, 0, 0, .15);
+			box-shadow: inset 0 -1px 0 rgba(0, 0, 0, .15);
+	-webkit-transition: width .6s ease;
+			transition: width .6s ease;
+}
+.progress-bar-success {
+	background-color: #5cb85c;
+}
+
+.popup label {
+	display: inline-block;
+	margin-bottom: 5px;
+	font-weight: 700;
+}
+.alert-success {
+	background-color: #dff0d8;
+	color: #3c763d;
+	background-image: -webkit-linear-gradient(top,#dff0d8 0,#c8e5bc 100%);
+	background-image: linear-gradient(to bottom,#dff0d8 0,#c8e5bc 100%);
+	background-repeat: repeat-x;
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffdff0d8', endColorstr='#ffc8e5bc', GradientType=0);
+	border-color: #b2dba1;
+}
+.alert-danger {
+	background-image: -webkit-linear-gradient(top, #f2dede 0%, #e7c3c3 100%);
+	background-image:         linear-gradient(to bottom, #f2dede 0%, #e7c3c3 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#fff2dede', endColorstr='#ffe7c3c3', GradientType=0);
+	background-repeat: repeat-x;
+	border-color: #dca7a7;
+	background-color: #f2dede;
+	color: #a94442;
+}
+.alert {
+	padding: .5em;
+	margin-bottom: 10px;
+	border: 1px solid transparent;
+	border-radius: 4px;
+	text-shadow: 0 1px 0 rgba(255,255,255,.2);
+	-webkit-box-shadow: inset 0 1px 0 rgba(255,255,255,.25),0 1px 2px rgba(0,0,0,.05);
+	box-shadow: inset 0 1px 0 rgba(255,255,255,.25),0 1px 2px rgba(0,0,0,.05);
+}
+.popup .popupContent .alert {
+	font-size: smaller;
+	line-height: 1.5;
+	max-height: 6em;
+	overflow: hidden;
+}
+
+div.content {
+	/* The display of content is enabled using jQuery so that the slideshow content won't display unless javascript is enabled. */
+	display: none;
+	padding-left: 20px;
+}
+.ieLTE8 div.content{
+	padding-right: 25px; /* cludge to shift caption/show/hide toggle left so it doesn't overflow page */
+}
+.ieLTE6 div.content {
+	width: 60%; /* float width:auto fails */
+	overflow: hidden;
+}
+div.content a, div.navigation a {
+	text-decoration: none;
+	color: #777;
+}
+div.controls a {
+	display: inline-block;
+	position: relative;
+	padding: 0px 2px;
+	margin: 5px;
+	opacity: 0.75;
+}
+/* to underline, including svg bg icon, use this (requires controls a: inline-block and pos'n relative):
+div.controls a:focus::after, div.controls a:hover::after, div.controls a:active::after {
+	content: '';
+	position: absolute;
+	left: 0;
+	display: inline-block;
+	height: 1em;
+	width: 100%;
+	border-bottom: 1px solid;
+	margin-top: 5px;
+} */
+div.controls a:focus, div.controls a:hover, div.controls a:active { /* for highlighting link including icon using opacity */
+	opacity: 1.0;
+	text-decoration: none;
+	-webkit-transition: all .4s;
+	transition: all .4s;
+}
+div#control_bar {
+	margin-bottom: 10px;
+	padding: 4px 0px;
+}
+.ieLTE6 div#control_bar {
+	display:inline;
+}
+div#controls { /* slideshow controls */
+	float: left;
+}
+div#nav { /* navigation controls next/prev */
+	float: right;
+	margin-right: 10px;
+}
+div.slideshow-container {
+	position: relative;
+	margin-bottom: 0.5em;
+	overflow:hidden;
+}
+div.loader {
+	top: 0;
+	left: 0;
+	width: 100%;
+	background-image: url('loader.gif');
+	background-position: center center;
+	background-repeat: no-repeat;
+	opacity: .7; /* Some subtle opacity to help blend with variable background colors */
+}
+div#image_loading {
+	position: absolute;
+	min-height: 300px; /* big enough to have loader near center of slide */
+	}
+div#page_loading {
+	position: fixed;
+	height: 100%;
+	background-color: #EEEEEE;
+	opacity: 1;
+	z-index: -1; /* changed when javascript enabled */
+}
+.noflicker { /* prevent flicker on safari/iOS */
+	-webkit-backface-visibility: hidden;
+	/* -webkit-perspective: 1000; */
+	/* -webkit-transform-style: preserve-3d; */
+	transform: translate(0,0); /* kick in hardware acceleration on non-iOS, avoiding odd first rendering */
+	-webkit-transform:translate3d(0,0,0)
+}
+div.slideshow {
+	width: auto;
+	margin: 0px auto;
+}
+div.slideshow span.image-wrapper {
+	display: block;
+	position: absolute;
+	top: 0;
+	left: 0;   
+}
+div.slideshow a.advance-link {
+	display: block;
+	width: 100%;
+	height: auto;
+	line-height: 100%;
+	text-align: center;
+}
+div.slideshow a.advance-link:hover,
+div.slideshow a.advance-link:active,
+div.slideshow a.advance-link:visited {
+	text-decoration: none;
+}
+div.slideshow a.advance-link:focus {
+	outline: none;
+}
+div.slideshow img {
+	vertical-align: middle;
+	border: 1px solid #ccc;
+	box-sizing: content-box; /* why? */
+	box-shadow: 3px 3px 9px #000000;
+	-moz-box-shadow: 3px 3px 9px #000000;
+	-webkit-box-shadow: 3px 3px 9px #000000;
+	-ms-filter: progid:DXImageTransform.Microsoft.Shadow(Strength=7, Direction=135, Color='#000000');
+	-filter: progid:DXImageTransform.Microsoft.Shadow(Strength=7, Direction=135, Color='#000000');
+}
+div.download {
+	float: right;
+	padding: 0.3em 0.4em 0.3em;
+	border: 1px solid #ccc;
+}
+a.gps {
+	float: right;
+	margin-left: 4px;
+	/* padding: 0.2em 0.4em 0.2em;
+	border: 1px solid #ccc; */
+}
+div.caption-container {
+/*	position: relative;	 -- disabled for captionOverlay option to set
+	clear: left;
+	height: 10em;
+	*/
+	margin: 0px auto;
+	max-height: 100px;
+}
+span.image-caption {
+	display: inline-block;
+	position: absolute;
+	max-height: 100px;
+/*	width: 100%; -- disabled for captionOverlay option to set
+	top: 0;
+	left: 0; */
+}
+div.caption {
+	padding: 1em;
+	overflow: auto;
+}
+#captionToggle a {
+	float: right;
+	display: none; /* enabled in custom.css when overlay captions used*/
+	margin-top: 0px;
+	padding: 5px;
+	transition: none;
+	outline: 0;
+}
+div.image-title {
+	font-weight: bold;
+	font-size: 1.4em;
+}
+div.image-desc {
+	line-height: 1.3em;
+	padding-top: 1em;
+}
+div.photo-index {
+	padding-top: 5px;
+}
+div.navigation {
+	/* Navigation styles are set with javascript so that the javascript-specific styles won't be applied unless javascript is enabled. */
+	float: left;
+}
+div.scrollWrapper {
+	width: 96%;
+	height: 91px;
+	margin-left: 2%;
+	/*margin-right: 2%;*/
+	position: relative;
+	overflow: hidden;
+	white-space: nowrap;
+}
+div.scrollableArea {
+	position: relative;
+	width: 100%;
+	height: 125%; /* show scrollbar (if applicable) outside scrollWrapper, maintaining scrollability */
+	white-space: nowrap;
+	overflow-x: scroll;
+	overflow-y: hidden;
+	-webkit-overflow-scrolling:touch;
+}
+/* Scroller buttons */
+div.navigation a.pageLink {
+	display: inline-block;
+	position: absolute;
+	top:0px;
+	margin-top: 5px;
+	margin-bottom: 5px;
+	height: 81px;
+	line-height: 81px;
+	width: 26px; /* icon is 16x24px */
+	text-align: center;
+	vertical-align: middle;
+	background-color: #444;
+	opacity:0.0;
+	z-index: 200;
+}
+div.navigation a.pageLink:focus {
+	outline: none;
+}
+div.navigation a.pageLink.prev {
+	left:0px;
+}
+div.navigation a.pageLink.next {
+	right:0px;
+}
+ul.thumbs {
+	clear: both;
+	margin: 0;
+	padding: 0;
+}
+ul.thumbs li {
+	display: inline-block;
+	padding: 0;
+	margin: 5px 10px 5px 0;
+	list-style: none;
+}
+.ieLTE8 ul.thumbs li,
+.noCenterCrop ul.thumbs li {
+	width: 81px;
+	height: 81px;
+	float: left;
+	text-align: center;
+}
+ul.thumbs li a.thumb {
+	padding: 2px;
+	display: inline-block;
+	border: 1px solid #ccc;
+	outline: 0;
+	background: #fff;
+	opacity: 0.67;
+	transition: 0.3s;
+}
+ul.thumbs li a:hover, ul.thumbs li a:active, ul.thumbs li a:focus {
+	opacity: 1;
+}
+ul.thumbs li.selected a.thumb {
+	background: #000;
+	opacity: 1;
+}
+a.thumb:focus {
+	outline: none;
+}
+ul.thumbs img {
+	border: none;
+/*	display: block; */
+}
+img.delayload { 
+	display: none; /* overriden when javascript enabled */
+	background-image: url('imgLoading.gif');
+	background-position: center center;
+	background-repeat: no-repeat;
+}
+div#thumbs .noscript li {
+	width: 31%;
+	min-width: 235px;
+	font-size: 75%;
+}
+/* center-cropped is used to create square thumbnails by cropping; lightroom doesn't support this */
+div.center-cropped {
+	position: relative;
+	width: 75px;
+	height: 75px;
+	overflow: hidden;
+}
+div.center-cropped img {
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	height: 100%;
+	width: auto;
+	-webkit-transform: translate(-50%,-50%);
+		-ms-transform: translate(-50%,-50%);
+			transform: translate(-50%,-50%);
+}
+div.center-cropped img.portrait {
+	width: 100%;
+	height: auto;
+}
+.noTransform div.thumb a , .noCenterCrop div.thumb a {
+	text-align: center;
+	margin: 0px auto;
+}
+.noTransform div.center-cropped, .noCenterCrop div.center-cropped {
+	text-align: center;
+	width: auto;
+	height: auto;
+}
+.noTransform div.center-cropped img, .noCenterCrop div.center-cropped img {
+	position: static;
+	top: 0px;
+	left: 0px;
+	-ms-interpolation-mode: bicubic;
+	/* margin-top: 12.5%; */
+	width: 75px;
+	height: auto;
+	max-width: 75px;
+	-webkit-transform: none;
+	    -ms-transform: none;
+	        transform: none;
+}
+.noTransform div.center-cropped img.portrait, .noCenterCrop div.center-cropped img.portrait {
+	max-width: none;
+	max-height: 75px;
+	height: 75px;
+	width: auto;
+}
+.noCenterCrop div#thumbs .noscript li {
+	height: auto;
+}
+div.pagination {
+	clear: both;
+}
+div.navigation div.top {
+	margin-top: 5px;
+	margin-bottom: 5px;
+	min-height: 1.5em;
+	display: inline-block;
+}
+div.navigation div.bottom {
+	float: left;
+	margin-top: 10px;
+	display: inline-block;
+}
+div.pagination a, div.pagination span.current, div.pagination span.ellipsis {
+	/* display: block; */
+	float: left;
+	margin-right: 2px;
+	padding: 4px 7px 2px 7px;
+	border: 1px solid #ccc;
+}
+div.pagination a:hover, div.pagination a:active, div.pagination a:focus {
+	background-color: #eee;
+	text-decoration: none;
+	outline: 0;
+}
+div.pagination span.current {
+	font-weight: bold;
+	background-color: #000;
+	border-color: #000;
+	color: #fff;
+}
+div.pagination span.ellipsis {
+	border: none;
+	padding: 5px 0 3px 2px;
+}
+div.pagination a.next, div.pagination a.prev {
+	padding: 3px 5px 2px 5px;
+}
+div.social {
+	float: right;
+	margin-right:5px;
+}
+div.social a {
+	margin: 0px 3px;
+	opacity:0.8;
+	text-decoration: none;
+}
+.ieLTE8 div.social a {
+	float: left;
+}
+div.social a:hover, div.social a:active, div.social a:focus {
+	opacity: 1.0;
+	-webkit-transition: all .4s;
+	transition: all .4s;
+	outline: 0;
+}
+
+
+@media (max-width: 770px) {
+	/* small screen or window; display condensed thumbnail bar at bottom */
+	div.content {
+		/* The display of content is enabled using jQuery so that the slideshow content won't display unless javascript is enabled. */
+		float: left;
+		width: 100%;
+		padding-left: 0px
+	}
+	div.navigation {
+		/* changes to thumbnail bar are handled in javascript, so it will work even without javascript */
+	}
+	div.navigation div.bottom, div.navigation div.top {
+		margin: 0px;
+		min-height: 0px;
+	}
+	div#container {
+		padding: 5px;
+	}
+	div#footer {
+		padding: 8px 0 16px;
+	}
+	p.textColor {
+		display:none;
+	}
+	ul.thumbs {
+		/*clear: none; */
+	}
+	div#thumbs .noscript li {
+		width:47%;
+	}
+	div.caption-container {
+		max-height:70px
+	}
+	span.image-caption {
+		max-height:70px;
+	}
+}

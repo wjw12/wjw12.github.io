@@ -1,0 +1,147 @@
+span.image-caption {
+  top: 0 !important;
+  left: 0 !important;
+  width: 100% !important;
+}
+
+div.download {
+  border-color: #B6B9A5 !important;
+}
+
+div.content div.caption a {
+  color: inherit !important;
+  background-color: inherit;
+}
+
+body {
+  text-align: center !important;
+  color: #B6B9A5 !important;
+  background: #353D49  !important;
+  font-family: Geneva, "Lucida Sans", "Lucida Grande", "Lucida Sans Unicode", Verdana, sans-serif !important;
+  font-size: 75% !important;
+  background-color: inherit;
+}
+
+div.loader {
+  background-image: url(loader.gif) !important;
+}
+
+div.slideshow img {
+  box-shadow: 3px 3px 9px #1F201E !important;
+  vertical-align: middle !important;
+  border-width: 3px !important;
+  border-style: solid !important;
+  margin-left: 4px !important;
+  box-sizing: content-box !important;
+  border-collapse: separate !important;
+  margin-top: 4px !important;
+  -webkit-box-shadow: 3px 3px 9px #1F201E !important;
+  -filter: progid:DXImageTransform.Microsoft.Shadow(Strength=9, Direction=135, Color='#1F201E') !important;
+  border-color: #B6B9A5 !important;
+  -ms-filter: progid:DXImageTransform.Microsoft.Shadow(Strength=9, Direction=135, Color='#1F201E') !important;
+  -moz-box-shadow: 3px 3px 9px #1F201E !important;
+}
+
+div.pagination span.current {
+  background-color: #E63D24 !important;
+  border-color: #B6B9A5 !important;
+  color: #383A36 !important;
+}
+
+.logo {
+  display: none !important;
+}
+
+div.caption {
+  color: inherit !important;
+  background-color: transparent !important;
+}
+
+.tt:after {
+  color: #FFF !important;
+  background: rgba(0,0,0,0.7) !important;
+  background-color: inherit;
+}
+
+#captionToggle a {
+  display: none !important;
+}
+
+div.pagination a:hover, div.pagination a:focus, div.pagination a:active {
+  background-color: #CCCCCC !important;
+  color: inherit;
+}
+
+ul.thumbs li a.thumb {
+  background-color: #FFFFFF !important;
+  color: inherit;
+}
+
+div.caption-container {
+  clear: left !important;
+  height: 100px !important;
+  position: relative !important;
+}
+
+img.delayload {
+}
+
+#liveUpdateCollectionDescription {
+}
+
+h2 {
+  letter-spacing: -1px !important;
+  font-size: 1.8em !important;
+}
+
+div.content a, div.navigation a {
+  color: #E63D24 !important;
+  background-color: inherit;
+}
+
+div#page {
+  background-color: #383A36 !important;
+  border-style: solid solid solid !important;
+  border-color: #000000 !important;
+  color: inherit;
+}
+
+h1 {
+  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif !important;
+  letter-spacing: -1px !important;
+  font-size: 2.5em !important;
+}
+
+ul.thumbs li.selected a.thumb {
+  background-color: #000000 !important;
+  color: inherit;
+}
+
+#liveUpdateCollectionTitle {
+}
+
+a {
+  color: #E63D24 !important;
+  background-color: inherit;
+}
+
+ul.thumbs li a.thumb {
+  border-color: #B6B9A5 !important;
+}
+
+#liveUpdateSiteTitle {
+}
+
+div.pagination a {
+  border-color: #B6B9A5 !important;
+}
+
+.titleColor {
+  color: #E63D24 !important;
+  background-color: inherit;
+}
+
+.textColor {
+  color: #B6B9A5 !important;
+  background-color: inherit;
+}
