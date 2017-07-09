@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://nekolab.cn/"/>
-  <updated>2017-07-05T13:57:42.383Z</updated>
+  <updated>2017-07-09T10:04:18.304Z</updated>
   <id>http://nekolab.cn/</id>
   
   <author>
@@ -14,6 +14,71 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Valley游戏笔记</title>
+    <link href="http://nekolab.cn/2017/07/09/Valley%E6%B8%B8%E6%88%8F%E7%AC%94%E8%AE%B0/"/>
+    <id>http://nekolab.cn/2017/07/09/Valley游戏笔记/</id>
+    <published>2017-07-09T07:33:09.000Z</published>
+    <updated>2017-07-09T10:04:18.304Z</updated>
+    
+    <content type="html">&lt;p&gt;Steam暑期特惠买了一款独立游戏Valley，在不想干活的几天时间里玩了几个小时。正好最近在思考着一个游戏有哪些构成要素，借着这款游戏说明一下想到的几点。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://wjwtest.oss-cn-qingdao.aliyuncs.com/Valley/1.jpg&quot;&gt;&lt;/p&gt;
+&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
+&lt;h2 id=&quot;u753B_u9762&quot;&gt;&lt;a href=&quot;#u753B_u9762&quot; class=&quot;headerlink&quot; title=&quot;画面&quot;&gt;&lt;/a&gt;画面&lt;/h2&gt;&lt;p&gt;这部游戏最吸引我的就是游戏中的自然风光，如名字Valley所说的，游戏背景发生在一个用做秘密试验基地的山谷，在开阔地带可以饱览整个山谷风景。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://wjwtest.oss-cn-qingdao.aliyuncs.com/Valley/2.jpg&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://wjwtest.oss-cn-qingdao.aliyuncs.com/Valley/3.jpg&quot;&gt;&lt;/p&gt;
+&lt;p&gt;许多场景都像一幅风景画，景色的设计是一大亮点，其中有几个加分项：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;天空贴图 符合自然的光照规律，有立体感&lt;/li&gt;
+&lt;li&gt;云层 会缓慢移动，有体积感，让高耸的山显得特别真实，不知道是用2D贴图还是3D粒子效果做的&lt;/li&gt;
+&lt;li&gt;丁达尔效应 日光透过树林、山峰、云层的时候都有丁达尔效应，很能烘托自然氛围 顺便找到的一篇文章&lt;a href=&quot;/实时渲染技术之体积光&quot;&gt;https://zhuanlan.zhihu.com/p/21425792&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;构图的层次 极远处的山峰（可能是贴图）增添了层次感，隐藏在云层之中若隐若现&lt;/li&gt;
+&lt;li&gt;色彩搭配 主要有两类场景：自然和人工，自然场景采用偏低饱和度的自然色彩，人工场景多用深蓝色调，体现神秘恐怖感，不同的地图色彩风格统一&lt;/li&gt;
+&lt;li&gt;粒子特效 比如下图中的小精灵和闪光的树，一方面提示是可以互动的对象，另一方面是整个游戏灵异风格的体现&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;img src=&quot;http://wjwtest.oss-cn-qingdao.aliyuncs.com/Valley/4.jpg&quot;&gt;&lt;/p&gt;
+&lt;h2 id=&quot;u64CD_u63A7&quot;&gt;&lt;a href=&quot;#u64CD_u63A7&quot; class=&quot;headerlink&quot; title=&quot;操控&quot;&gt;&lt;/a&gt;操控&lt;/h2&gt;&lt;p&gt;游戏设定中主角穿上军方开发的LEAF suit身体强化装备，随着游戏的进行可以升级多种功能，让操作方式变得多样化。&lt;/p&gt;
+&lt;p&gt;一开始唯一的功能就是吸收生物中的能量和释放能量，像下面对枯树释放能量使之复活一样（再次表扬这精彩的特效）&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://wjwtest.oss-cn-qingdao.aliyuncs.com/Valley/5.jpg&quot;&gt;&lt;/p&gt;
+&lt;p&gt;前两个地图还觉得交互方式很单调，后来改造升级出加速跑，二段跳，牵引绳索荡秋千等等功能，游戏操作就变得特别丰富。总的来说有点像一个跑酷游戏，然而地图是开放的3D地图，不是按着仅有的一条道路跑，可以偏离路线去爬个坡、捡东西、到树下打个松果之类的，自由度高一些。&lt;/p&gt;
+&lt;p&gt;有一个地图获得了轨道上加速跑的能力，然后整个管卡是沿着轨道一边获取能量一边飞速前进，本来一个冒险剧情游戏竟然玩出了赛车游戏的感觉，非常奇妙。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://wjwtest.oss-cn-qingdao.aliyuncs.com/Valley/6.jpg&quot;&gt;&lt;/p&gt;
+&lt;p&gt;还有一个功能是利用磁力吸附在墙壁的轨道上行走，这时画面会旋转90度，沿着墙壁垂直走，像下面这张图的房子都倒过来了一样。这个功能运用在室内地图的设计上，房间可通行的区域就从平面扩大到立方体的各个面，有如走立体迷宫。令人想到一个独立游戏FEZ，也是运用3D视角的切换在同一幅地图上构建出更复杂的空间。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://wjwtest.oss-cn-qingdao.aliyuncs.com/Valley/7.jpg&quot;&gt;&lt;/p&gt;
+&lt;p&gt;这个荡秋千关卡尤为困难，要在树林空中抓住一连串的机关，绝望地坠落了很多次之后，我目前是头晕眼花地卡在这里了，才准备写这篇文章的……&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://wjwtest.oss-cn-qingdao.aliyuncs.com/Valley/8.jpg&quot;&gt;&lt;/p&gt;
+&lt;p&gt;仅仅是这些跑酷式的操作还不够，游戏还添加了射击元素，需要发射子弹消灭怪物，同时躲避怪物的子弹。子弹速度比较慢，所以有时间移动或者躲到掩体背后，躲子弹的操作如果做成VR游戏会很有趣。&lt;/p&gt;
+&lt;p&gt;总的来说，看似简单的一个独立游戏，地图也不是GTA那样无限制的大地图，融合了跳跃、跑酷、探索、打怪、荡秋千这么多种交互模式，玩起来就如同沙盒游戏一般自由多变。&lt;/p&gt;
+&lt;h2 id=&quot;u5173_u5361_u8BBE_u8BA1&quot;&gt;&lt;a href=&quot;#u5173_u5361_u8BBE_u8BA1&quot; class=&quot;headerlink&quot; title=&quot;关卡设计&quot;&gt;&lt;/a&gt;关卡设计&lt;/h2&gt;&lt;h3 id=&quot;u6709_u76EE_u7684_u6027_u7684_u5F15_u5BFC&quot;&gt;&lt;a href=&quot;#u6709_u76EE_u7684_u6027_u7684_u5F15_u5BFC&quot; class=&quot;headerlink&quot; title=&quot;有目的性的引导&quot;&gt;&lt;/a&gt;有目的性的引导&lt;/h3&gt;&lt;p&gt;较复杂的场景经常会让人找不清方向，这时地图设计就需要加以引导。小地图、指南针等附加窗口虽然也能指示方向，但会损害沉浸式的体验，因此最好的方式是让场景自己提示方向。比如在这片平原上，明显的引导物是裸露在外的树根：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://wjwtest.oss-cn-qingdao.aliyuncs.com/Valley/9.jpg&quot;&gt;&lt;/p&gt;
+&lt;p&gt;山上的地形复杂，有些游戏的引导方式是改变道路地面颜色，比如行走的路是土黄色两边是绿草地，但这会牺牲画面的美感和真实性。Valley的方式是在指引的方向上布置可以拾取补充能量的光点，很自然地融入到场景之中。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://wjwtest.oss-cn-qingdao.aliyuncs.com/Valley/10.jpg&quot;&gt;&lt;/p&gt;
+&lt;p&gt;由于和怪物战斗或者进行加速跳跃、荡秋千之类的操作会耗费能量，在有些门口或通道的入口处，设置了恢复能量的装置或者可拾取的光点，跑到这里时就能提示人接下来会出现值得注意的新情况，也为接下来的战斗恢复一些能量做准备。这样的设计降低了游戏难度，让游戏流程更加流畅。&lt;/p&gt;
+&lt;h3 id=&quot;u6587_u5B57_u63D0_u793A&quot;&gt;&lt;a href=&quot;#u6587_u5B57_u63D0_u793A&quot; class=&quot;headerlink&quot; title=&quot;文字提示&quot;&gt;&lt;/a&gt;文字提示&lt;/h3&gt;&lt;p&gt;重要的剧情提示可以通过文字展现，但出现的时机和频率都要控制。关键场景切换后浮现的文字起到提示作用，也像人物内心独白一样。Valley给人的感觉就像电影一样，适时的文字嵌入有如转场动画，既提示了关键剧情和信息，也衔接了场景变化。有些时候，剧情的进展可以通过电影字幕一样的方式呈现，但叙述的方式像旁白，不影响游戏操作。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://wjwtest.oss-cn-qingdao.aliyuncs.com/Valley/11.jpg&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://wjwtest.oss-cn-qingdao.aliyuncs.com/Valley/12.jpg&quot;&gt;&lt;/p&gt;
+&lt;h3 id=&quot;u9053_u5177_u63D0_u793A&quot;&gt;&lt;a href=&quot;#u9053_u5177_u63D0_u793A&quot; class=&quot;headerlink&quot; title=&quot;道具提示&quot;&gt;&lt;/a&gt;道具提示&lt;/h3&gt;&lt;p&gt;拾取更新装备过后马上会提示使用方法，并且接下来马上会用到新装备的功能，让人快速熟悉新操作。&lt;/p&gt;
+&lt;h2 id=&quot;u5267_u60C5&quot;&gt;&lt;a href=&quot;#u5267_u60C5&quot; class=&quot;headerlink&quot; title=&quot;剧情&quot;&gt;&lt;/a&gt;剧情&lt;/h2&gt;&lt;p&gt;Valley的剧情中规中矩，以美苏冷战为时代背景，揭发了军方开发巨型武器毁坏自然环境的秘密行动，主角负责调查和阻止这场行动，一步步深入山谷中工厂设施核心。情节的推进是单线条的，电影一般的旁白起到了主要的推动作用，需要交互的地方并不多，是因为游戏重视电影一般的流畅感，听剧情的同时可以走路、看风景，不会影响到操作。与此同时，地图上可以发现大量的纸条和信件，可以停下阅读以秘密计划参与者第一人称视角记录的行动细节和心理活动，补充了剧情细节。尽管如此，剧情并没有很多亮点，这部游戏主要优势还是在画面和操作上。&lt;/p&gt;
+&lt;h2 id=&quot;u5199_u5728_u6700_u540E&quot;&gt;&lt;a href=&quot;#u5199_u5728_u6700_u540E&quot; class=&quot;headerlink&quot; title=&quot;写在最后&quot;&gt;&lt;/a&gt;写在最后&lt;/h2&gt;&lt;p&gt;不能让人玩到恐高的3D游戏一定不是好游戏（也许是因为我比较容易恐高），最后放上一些或惊悚或壮丽的游戏画面，Valley凭借精致的建模，真实的光效和富于创意的关卡设计，让人体验在风景中行走探险的感觉。&lt;/p&gt;
+&lt;p&gt;（下面的图片来源于&lt;a href=&quot;https://www.gamespot.com/reviews/valley-review/1900-6416506/）&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;https://www.gamespot.com/reviews/valley-review/1900-6416506/）&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://wjwtest.oss-cn-qingdao.aliyuncs.com/Valley/13.jpg&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://wjwtest.oss-cn-qingdao.aliyuncs.com/Valley/14.jpg&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://wjwtest.oss-cn-qingdao.aliyuncs.com/Valley/15.jpg&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://wjwtest.oss-cn-qingdao.aliyuncs.com/Valley/16.jpg&quot;&gt;&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;Steam暑期特惠买了一款独立游戏Valley，在不想干活的几天时间里玩了几个小时。正好最近在思考着一个游戏有哪些构成要素，借着这款游戏说明一下想到的几点。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://wjwtest.oss-cn-qingdao.aliyuncs.com/Valley/1.jpg&quot;&gt;&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="独立游戏" scheme="http://nekolab.cn/tags/%E7%8B%AC%E7%AB%8B%E6%B8%B8%E6%88%8F/"/>
+    
+  </entry>
   
   <entry>
     <title>日本的对比冲突</title>
@@ -1035,57 +1100,6 @@ int main(int argc, char *argv[])
       <category term="C++ AMP" scheme="http://nekolab.cn/tags/C-AMP/"/>
     
       <category term="GPU" scheme="http://nekolab.cn/tags/GPU/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>认真地安利一部日剧 - 家族的形式</title>
-    <link href="http://nekolab.cn/2016/04/03/%E8%AE%A4%E7%9C%9F%E5%9C%B0%E5%AE%89%E5%88%A9%E4%B8%80%E9%83%A8%E6%97%A5%E5%89%A7-%E5%AE%B6%E6%97%8F%E7%9A%84%E5%BD%A2%E5%BC%8F/"/>
-    <id>http://nekolab.cn/2016/04/03/认真地安利一部日剧-家族的形式/</id>
-    <published>2016-04-03T09:47:18.000Z</published>
-    <updated>2016-07-17T11:21:17.187Z</updated>
-    
-    <content type="html">&lt;p&gt;最初把我吸引到这么一部不太热门的日剧的，是这样一条微博：&lt;/p&gt;
-&lt;img src=&quot;/2016/04/03/认真地安利一部日剧-家族的形式/1.jpg&quot; alt=&quot;1.jpg&quot; title=&quot;&quot;&gt;
-&lt;img src=&quot;/2016/04/03/认真地安利一部日剧-家族的形式/6.jpg&quot; alt=&quot;6.jpg&quot; title=&quot;&quot;&gt;
-&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
-&lt;p&gt;看到这些台词心中瞬间一惊，很少见到这么尖锐的价值观碰撞，很少听见这么直白的反群居宣言，可能许多人都不会认同，认同的人也不太敢大声发表观念。但是这些话，关于一个人生活的种种好处，许多对我来说尚未成型的观念，全被男主精准的点出。&lt;/p&gt;
-&lt;p&gt;“我自己的城堡，我自己的时间，只属于我一个人的空间，自己和自己分享兴趣”&lt;/p&gt;
-&lt;p&gt;这是男主大介始终挂在嘴边，奉之为生活真谛的格言。说出这话的他，时年39岁，未婚，刚贷款买下一间精致的复式公寓，准备从此享受自己梦寐以求的独身生活。&lt;/p&gt;
-&lt;p&gt;会觉得一个人生活比两个人好的人，多半会有些孤僻，比如厌恶应酬，回避不必要的社交，与人保持距离。但现代社会完全可以为孤僻人格提供充分的自我满足的空间：大介的生活单调却并不缺少乐趣，每天下班后去健身房，周末独自骑车郊游，饮食规律健康，喜好去酒吧喝啤酒。而且，工作也不令人讨厌，大介是做设计文具的工作，也符合自己的期待，“会使用优质文具的人，生活标准一定不会差”&lt;/p&gt;
-&lt;p&gt;不结婚，没有伴侣，生活就不会幸福。这种观点可能在老一辈人身上还适用，但如今事实早已不是这样，只是很多人如此坚信也好，无形被灌输也好，不加选择了就接受了这种想法。&lt;/p&gt;
-&lt;p&gt;选择了这种生活方式，也就意味着背离社会主流价值。正常人三十多岁早就应该结婚，大介的大龄单身同事忙着相亲，也劝大介早点结婚。还有不请自来赖在家里的老父亲，更是为大介的结婚大事担忧。再婚不久的父亲才体会到家庭的甜蜜不久，理所当然地认为适龄青年都应该结婚，不可能认同“一个人生活很好”的说法，甚至老头第一次碰见公寓楼上的女青年葉菜子，就问她结婚了没有，想把儿子介绍给她。&lt;/p&gt;
-&lt;img src=&quot;/2016/04/03/认真地安利一部日剧-家族的形式/5.jpg&quot; alt=&quot;5.jpg&quot; title=&quot;&quot;&gt;
-&lt;p&gt;大介在价值观念上是个毫不退让的人，可能是习惯独自生活的缘故，说话从来以自我为中心，不顾及别人感受，更是因为父亲赖在家里不走，还点火烧烤触发了火警造成好多麻烦。大介的“专属城堡”遭人侵犯，所以一心想把父亲赶走。没想到的是后来父亲在家办联谊，和大介的同事也结为好友，都站在父亲一边，一起劝大介结婚，大介几经暴走争吵。&lt;/p&gt;
-&lt;p&gt;上野树里饰演的32岁女主葉菜子的许多情况跟大介有点像，住在楼上，也被母亲催婚，同样认同不结婚的自由生活，倒也没大介那么固执。因为楼下大介父亲烤鱼的油烟下楼找大介投诉，于是这两人巧合地认识，竟发现颇有共鸣。&lt;/p&gt;
-&lt;img src=&quot;/2016/04/03/认真地安利一部日剧-家族的形式/7.jpg&quot; alt=&quot;7.jpg&quot; title=&quot;&quot;&gt;
-&lt;img src=&quot;/2016/04/03/认真地安利一部日剧-家族的形式/9.jpg&quot; alt=&quot;9.jpg&quot; title=&quot;&quot;&gt;
-&lt;p&gt;故事开头的冲突就是这么尖锐，绝对不同于狗血的午间家庭剧，首先在于直白地揭示了一种小众价值观。日本的许多家庭观念跟中国比较相像，甚至是更保守，主流观念的影响强势，父母理所当然地干涉子女，同事之间也无所遮拦地指点别人私生活。像大介这样小众观念的持有者从来都不会轻松，也就明白了为什么他会一遍遍的重复“我自己的城堡，我一个人的空间”的重要性。&lt;/p&gt;
-&lt;p&gt;大介与父亲、与同事的冲突其实是不同价值观的必然冲突。价值观驱使人做出“对”和“错”的判断，本来观念对错与否纯属私事，只能反映对自我的价值判断，却常常让人误以为掌握了评判别人的普适标准，难免将个人想法强加于他人。逃避社交的一个原因，就是为了避开可能的冲突，大介选择单身独居，一定也明白自己的观念会给别人带来困扰，排斥家庭关系其实是避免不和与争吵。&lt;/p&gt;
-&lt;p&gt;顺便一提，尽管日本社会男权盛行，这部剧的视角其实相当的女性主义。葉菜子和剧中出现的所有女性角色一样，都是有全职工作的上班族，并没有日本典型的家庭主妇；葉菜子的母亲是厌倦了在家与丈夫的生活，“出逃”到女儿家；至于下面这段话，一方面是说葉菜子不愿结婚的心态，也是在反对女性依附男人的观念。而且，水原希子饰演走后门进入会社的大小姐形象，后来迷恋上大介，受到影响性格变得独立许多，也开始认真对待工作。&lt;/p&gt;
-&lt;img src=&quot;/2016/04/03/认真地安利一部日剧-家族的形式/4.jpg&quot; alt=&quot;4.jpg&quot; title=&quot;&quot;&gt;
-&lt;p&gt;说了这些严肃的主题，这部剧细节上也可圈可点。比如男女主都是重度文具控强迫症。男主在文具公司上班，第一集走过公司大堂的时候刻意摆正柜台上展示的笔，强迫症的举动看着特别好笑。巧合的是葉菜子是这家文具品牌的资深重度用户，新一年的手账设计发布后，因为不喜欢横线的间距和少了几毫米空间而化名hanako在网上吐槽，大介一直抱怨网上有个“投诉狂hanako”，而谈话中葉菜子无意暴露自己身份后大介更是火冒三丈，葉菜子则直接拿出新款记事本指责。看这一幕，就觉得他们应该在一起……&lt;/p&gt;
-&lt;img src=&quot;/2016/04/03/认真地安利一部日剧-家族的形式/10.jpg&quot; alt=&quot;10.jpg&quot; title=&quot;&quot;&gt;
-&lt;p&gt;上野树里在剧中的服装特别引人注意，精致的职场风和优雅的休闲服。&lt;/p&gt;
-&lt;img src=&quot;/2016/04/03/认真地安利一部日剧-家族的形式/11.jpg&quot; alt=&quot;11.jpg&quot; title=&quot;&quot;&gt;
-&lt;img src=&quot;/2016/04/03/认真地安利一部日剧-家族的形式/12.jpg&quot; alt=&quot;12.jpg&quot; title=&quot;&quot;&gt;
-&lt;p&gt;而男主服装几乎全是是黑白灰纯色基本款，尽显冷淡特质。&lt;/p&gt;
-&lt;img src=&quot;/2016/04/03/认真地安利一部日剧-家族的形式/13.jpg&quot; alt=&quot;13.jpg&quot; title=&quot;&quot;&gt;
-&lt;p&gt;&lt;div class=&quot;jiathis_style&quot;&gt;&lt;br&gt;    &lt;a class=&quot;jiathis_button_qzone&quot;&gt;&lt;a class=&quot;jiathis_button_tsina&quot;&gt;&lt;a class=&quot;jiathis_button_tqq&quot;&gt;&lt;a class=&quot;jiathis_button_weixin&quot;&gt;&lt;a class=&quot;jiathis_button_renren&quot;&gt;&lt;a href=&quot;http://www.jiathis.com/share&quot; class=&quot;jiathis jiathis_txt jtico jtico_jiathis&quot; target=&quot;_blank&quot;&gt;&lt;a class=&quot;jiathis_counter_style&quot;&gt;&lt;br&gt;&lt;/a&gt;&lt;/a&gt;&lt;/a&gt;&lt;/a&gt;&lt;/a&gt;&lt;/a&gt;&lt;/a&gt;&lt;/div&gt;&lt;/p&gt;
-&lt;script type=&quot;text/javascript&quot; src=&quot;http://v3.jiathis.com/code/jia.js&quot; charset=&quot;utf-8&quot;&gt;&lt;/script&gt;</content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;最初把我吸引到这么一部不太热门的日剧的，是这样一条微博：&lt;/p&gt;
-&lt;img src=&quot;/2016/04/03/认真地安利一部日剧-家族的形式/1.jpg&quot; alt=&quot;1.jpg&quot; title=&quot;&quot;&gt;
-&lt;img src=&quot;/2016/04/03/认真地安利一部日剧-家族的形式/6.jpg&quot; alt=&quot;6.jpg&quot; title=&quot;&quot;&gt;
-    
-    </summary>
-    
-    
-      <category term="家族ノカタチ" scheme="http://nekolab.cn/tags/%E5%AE%B6%E6%97%8F%E3%83%8E%E3%82%AB%E3%82%BF%E3%83%81/"/>
-    
-      <category term="日剧" scheme="http://nekolab.cn/tags/%E6%97%A5%E5%89%A7/"/>
     
   </entry>
   
