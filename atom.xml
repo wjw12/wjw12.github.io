@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://nekolab.cn/"/>
-  <updated>2017-09-04T02:03:32.311Z</updated>
+  <updated>2017-10-15T13:17:57.705Z</updated>
   <id>http://nekolab.cn/</id>
   
   <author>
@@ -14,6 +14,40 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>修改Wordpress主题模板的CSS</title>
+    <link href="http://nekolab.cn/2017/10/15/wp-edit-css-tutorial/"/>
+    <id>http://nekolab.cn/2017/10/15/wp-edit-css-tutorial/</id>
+    <published>2017-10-15T11:54:02.000Z</published>
+    <updated>2017-10-15T13:17:57.705Z</updated>
+    
+    <content type="html">&lt;p&gt;尽管网上公开的Wordpress主题很丰富，但模板总有些不尽如人意的地方，特别是字体大小、页边距、段间距这种参数。修改起来其实很简单，没有什么技术难度，也不需要理解CSS和HTML代码。只需要定位到CSS文件中设置相应参数的那一行就可以了。比如我们要修改主页上大标题的字体大小，下面是简单步骤。&lt;/p&gt;
+&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
+&lt;p&gt;以下教程以Chrome浏览器为例，其他浏览器也有类似功能。&lt;/p&gt;
+&lt;h2 id=&quot;1-__u5BA1_u67E5_u5143_u7D20&quot;&gt;&lt;a href=&quot;#1-__u5BA1_u67E5_u5143_u7D20&quot; class=&quot;headerlink&quot; title=&quot;1. 审查元素&quot;&gt;&lt;/a&gt;1. 审查元素&lt;/h2&gt;&lt;p&gt;&lt;img src=&quot;http://wjwtest.oss-cn-qingdao.aliyuncs.com/wp_tutorial/1.png&quot;&gt;&lt;/p&gt;
+&lt;p&gt;右键点击要修改样式的大标题上，点“检查”来查看这段文本对应的代码，会高亮显示在弹出的框中。&lt;/p&gt;
+&lt;h2 id=&quot;2-__u627E_u5230_u5BF9_u5E94_u7684HTML_u4EE3_u7801_u884C&quot;&gt;&lt;a href=&quot;#2-__u627E_u5230_u5BF9_u5E94_u7684HTML_u4EE3_u7801_u884C&quot; class=&quot;headerlink&quot; title=&quot;2. 找到对应的HTML代码行&quot;&gt;&lt;/a&gt;2. 找到对应的HTML代码行&lt;/h2&gt;&lt;p&gt;&lt;img src=&quot;http://wjwtest.oss-cn-qingdao.aliyuncs.com/wp_tutorial/2.png&quot;&gt;&lt;/p&gt;
+&lt;p&gt;HTML结构是一级套着一级的，刚才可能没有选取到文本本身，而是包含着文本的某个元素。在HTML查看器里点小箭头，展开一些层级，当鼠标停留在每一行上，网页对应的位置会被选中，直到找到需要修改的位置。在这里，我们找到了包含标题文本”TEA IN AUTUMN”的一行，点击它，右边的窗口就会改变，显示对应这个元素的CSS属性，其中就包含了字体大小、颜色、间距这样的参数。&lt;/p&gt;
+&lt;h2 id=&quot;3-__u627E_u5230CSS_u53C2_u6570_u540D&quot;&gt;&lt;a href=&quot;#3-__u627E_u5230CSS_u53C2_u6570_u540D&quot; class=&quot;headerlink&quot; title=&quot;3. 找到CSS参数名&quot;&gt;&lt;/a&gt;3. 找到CSS参数名&lt;/h2&gt;&lt;p&gt;&lt;img src=&quot;http://wjwtest.oss-cn-qingdao.aliyuncs.com/wp_tutorial/3.png&quot;&gt;&lt;/p&gt;
+&lt;p&gt;在右边CSS窗口里打开”computed”选项卡，往下面翻，font-size这个名字就告诉了参数的含义。点开小箭头，能看到这个参数被很多个地方修改过，更靠上方的修改会覆盖下面的值，所以一个个条目都会被划掉。这里第一条没被划掉的是100%，没有描述字体具体有多大，再往下才是字体真正的大小3.6em，我们需要修改的是这里。条目右边style.css链接冒号的最后就是这个参数在style.css文件中的行号1059，于是可以定位到文件对应的位置。&lt;/p&gt;
+&lt;h2 id=&quot;4-__u5728CSS_u6587_u4EF6_u4E2D_u4FEE_u6539_u76F8_u5E94_u4F4D_u7F6E&quot;&gt;&lt;a href=&quot;#4-__u5728CSS_u6587_u4EF6_u4E2D_u4FEE_u6539_u76F8_u5E94_u4F4D_u7F6E&quot; class=&quot;headerlink&quot; title=&quot;4. 在CSS文件中修改相应位置&quot;&gt;&lt;/a&gt;4. 在CSS文件中修改相应位置&lt;/h2&gt;&lt;p&gt;&lt;img src=&quot;http://wjwtest.oss-cn-qingdao.aliyuncs.com/wp_tutorial/4.png&quot;&gt;&lt;/p&gt;
+&lt;p&gt;登录Wordpress后台，在菜单Appearance-&amp;gt;Editor里面可以编辑主题的所有文件，在右边列表的最下面找到style.css文件打开它，一般都有几千行。复制到一个能显示行号的文本编辑器里面，找到这一行，果然有site-title的font-size属性，修改它然后复制到网页源文件里就好了。&lt;/p&gt;
+&lt;p&gt;有时候未必一次能找到正确的位置，或者css文件有好几个地方出现相同的参数，需要反复尝试一下。&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;尽管网上公开的Wordpress主题很丰富，但模板总有些不尽如人意的地方，特别是字体大小、页边距、段间距这种参数。修改起来其实很简单，没有什么技术难度，也不需要理解CSS和HTML代码。只需要定位到CSS文件中设置相应参数的那一行就可以了。比如我们要修改主页上大标题的字体大小，下面是简单步骤。&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="Wordpress" scheme="http://nekolab.cn/tags/Wordpress/"/>
+    
+      <category term="教程" scheme="http://nekolab.cn/tags/%E6%95%99%E7%A8%8B/"/>
+    
+  </entry>
   
   <entry>
     <title>岛屿的末端，海的起点</title>
@@ -862,136 +896,6 @@
       <category term="初音未来" scheme="http://nekolab.cn/tags/%E5%88%9D%E9%9F%B3%E6%9C%AA%E6%9D%A5/"/>
     
       <category term="宅" scheme="http://nekolab.cn/tags/%E5%AE%85/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>如何用C++调用Fortran子程序</title>
-    <link href="http://nekolab.cn/2016/10/15/%E5%A6%82%E4%BD%95%E7%94%A8C-%E8%B0%83%E7%94%A8Fortran%E5%AD%90%E7%A8%8B%E5%BA%8F/"/>
-    <id>http://nekolab.cn/2016/10/15/如何用C-调用Fortran子程序/</id>
-    <published>2016-10-15T11:41:06.000Z</published>
-    <updated>2016-10-15T16:06:15.386Z</updated>
-    
-    <content type="html">&lt;h1 id=&quot;u5F15_u8A00&quot;&gt;&lt;a href=&quot;#u5F15_u8A00&quot; class=&quot;headerlink&quot; title=&quot;引言&quot;&gt;&lt;/a&gt;引言&lt;/h1&gt;&lt;p&gt;Fortran是现存的最古老的编程语言之一。早在1957年，这门语言就随着第一代计算机的问世而诞生了。其成熟版本Fortran 77如名字所说，在1977年发布，直到今天仍是使用最广泛的Fortran版本。在还没有PC的中古时期，计算机几乎全部用于科研，从火箭发射到核弹模拟，离不开数值计算的需求。就在这一段时间里，人类积累起了最高效的数值计算库，比如BLAS(1979)，MINPACK(1980)，QUADPACK(1981)，漫长的历史奠定了Fortran在科学计算当之无愧的霸主地位。后来其他语言的许多数值计算库也是基于以往的Fortran库编写的，如Intel MKL，Scipy。可以说，没有Fortran就没有现代的科学计算。&lt;/p&gt;
-&lt;p&gt;海量的数值程序积累是Fortran的优势之一，另一方面，Fortran又简单易学，没有复杂的语言特性，没有接受过计算机科班训练的科研人员都可以快速上手，简单粗暴地写出能运行的程序。当程序员们还争论着最好的语言是PHP还是Java，一代代科研工作者早已坚信，在要求极致数值性能的科学计算领域，Fortran一定是最合适的语言。&lt;/p&gt;
-&lt;p&gt;相比之下，C++的历史就短了许多，1983年才问世。语言设计的目的也完全不同，系统开发、桌面应用、服务器网络等等。为了适应软件工程的需求，面向对象、多态、函数式编程等等高阶功能被纳入语言特性中，C++也变得极为庞大复杂。这些特性一旦熟练掌握，开发和程序执行效率能大幅提升，但学习的门槛较高，可能让不少非专业的编程者望而生畏。&lt;/p&gt;
-&lt;p&gt;如Fortran一个功能简单的语言，就一定易用吗？C++面向对象的封装抽象，表面上增加了开发复杂性，实则让程序变得模块化，易于重用和修改，在抽象层面上设计程序往往更容易。&lt;/p&gt;
-&lt;p&gt;比如最近需要实现三维向量的运算：&lt;/p&gt;
-&lt;img src=&quot;/2016/10/15/如何用C-调用Fortran子程序/vector.png&quot; alt=&quot;vector.png&quot; title=&quot;&quot;&gt;
-&lt;p&gt;C++的思路是编写一个vector3d的类，一个object包含向量的三个分量，用操作符重载和friend函数实现向量加减乘除、点乘叉乘运算，然后只需“字面地”翻译数学公式，一个矢量等于另一个矢量叉乘，再除以一些数……就可以完成任务。&lt;/p&gt;
-&lt;p&gt;而如果用Fortran，没有抽象的方法，只能人工在草稿纸上推导向量的分量式，用行列式计算叉乘并化简，将每个分量的算式输入代码才行。换另一个公式，又要重新在草稿纸上推一遍！&lt;/p&gt;
-&lt;p&gt;一个科学计算程序，总有计算最费时的核心部分，如解线性代数方程、微分方程的数值算法，也有数据的简单处理和输入输出（如前例中的矢量计算，实则是核心任务之外的一步处理）。C++缺少许多数值计算库，或者是效率不高，用于计算密集的核心部分不够理想，但在外围部分，和程序模块的组织上，之于Fortran有太多优势。&lt;/p&gt;
-&lt;p&gt;比较两种语言的优势和劣势，会想到，如果能结合两者的优势，用Fortran处理核心的数值算法，用C++组织程序结构和外围处理，程序的开发、运行和维护的效率都能提升。&lt;/p&gt;
-&lt;img src=&quot;/2016/10/15/如何用C-调用Fortran子程序/compare.png&quot; alt=&quot;compare.png&quot; title=&quot;&quot;&gt;
-&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
-&lt;h1 id=&quot;u4E92_u64CD_u4F5C_u6027_u7684_u57FA_u7840&quot;&gt;&lt;a href=&quot;#u4E92_u64CD_u4F5C_u6027_u7684_u57FA_u7840&quot; class=&quot;headerlink&quot; title=&quot;互操作性的基础&quot;&gt;&lt;/a&gt;互操作性的基础&lt;/h1&gt;&lt;p&gt;下面我们要看到，C++和Fortran在link阶段是可以链接到一起，形成可执行文件的。&lt;/p&gt;
-&lt;p&gt;首先，我们回顾一下编译型语言的编译过程，包括C++, C, Fortran。从源代码到可执行文件，要经历经历编译-&amp;gt;连接两个过程。编译阶段，源代码由编译器(Compiler)编译成object文件，每个.cpp(或.f, .f90)源文件生成一个.o文件，包含自身的可执行部分和引用的外部符号(如其他文件中的函数和内置库函数)。再由连接器(Linker)将所有的objects连同外部的(静态)库连接，生成机器能运行的二进制代码，也就是最终的可执行文件。&lt;/p&gt;
-&lt;img src=&quot;/2016/10/15/如何用C-调用Fortran子程序/compile.png&quot; alt=&quot;compile.png&quot; title=&quot;&quot;&gt;
-&lt;img src=&quot;/2016/10/15/如何用C-调用Fortran子程序/compilelink.png&quot; alt=&quot;compilelink.png&quot; title=&quot;&quot;&gt;
-&lt;p&gt;一种语言的编译器只能识别一种语言，所以在编译阶段，两种语言是独立的，Unix下分别由g++和gfortran完成。而连接器的任务只是将编译好的可执行片段组合起来，两种语言源文件生成的object结构几乎(注意，是“几乎”)是一样。在二进制代码层面，可执行的指令只有加减乘除等等(不会超过几十个)，数据都按照同样的标准(几个字节、类型、bit顺序)来储存，抹去了源代码语言的差异性，所以就有可能将不同的object放在一起连接。&lt;/p&gt;
-&lt;p&gt;互操作性就意味着，C++的函数可以去读取、修改Fortran函数中的数据，反之亦然，只要数据的储存和传递按相同标准来执行。Fortran 2003就规定了这样的标准：在Fortran的类型定义中用常数来代表C语言的类型，在子程序定义中添加”BIND(C)”属性允许互操作，就可以在C语言中传递参数给Fortran子程序了。&lt;/p&gt;
-&lt;h3 id=&quot;u88681-__u652F_u6301_u4E92_u64CD_u4F5C_u7684_u6570_u636E_u7C7B_u578B&quot;&gt;&lt;a href=&quot;#u88681-__u652F_u6301_u4E92_u64CD_u4F5C_u7684_u6570_u636E_u7C7B_u578B&quot; class=&quot;headerlink&quot; title=&quot;表1. 支持互操作的数据类型&quot;&gt;&lt;/a&gt;表1. 支持互操作的数据类型&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;Type        Named constant        C type or types
-INTEGER     C_INT                 int, signed int
-            C_SHORT               short int, signed short int
-            C_LONG                long int, signed long int
-            C_LONG_LONG           long long int, signed long long int
-            C_SIGNED_CHAR         signed char, unsigned char
-            C_SIZE_T              size_t
-            C_INT_LEAST8_T        int_least8_t
-            C_INT_LEAST16_T       int_least16_t
-            C_INT_LEAST32_T       int_least32_t
-            C_INT_LEAST64_T       int_least64_t
-            C_INT_FAST8_T         int_fast8_t
-            C_INT_FAST16_T        int_fast16_t
-            C_INT_FAST32_T        int_fast32_t
-            C_INT_FAST64_T        int_fast64_t
-            C_INTMAX_T            c intmax_t
-REAL        C_FLOAT               float, float _Imaginary
-            C_DOUBLE              double, double _Imaginary
-COMPLEX     C_LONG_DOUBLE         long double, long double _Imaginary
-            C_COMPLEX             _Complex
-            C_DOUBLE_COMPLEX      double _Complex
-            C_LONG_DOUBLE_COMPLEX long double _Complex
-LOGICAL     C_BOOL                _Bool
-CHARACTER   C_CHAR                char  
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;但是，刚才说的是C语言的数据类型，但C++和C并不一样。互操作性意味着我们可以像调用一个C语言函数一样去调用Fortran函数，在C++中，调用C语言函数的方法是声明函数为&lt;code&gt;extern &amp;quot;C&amp;quot;&lt;/code&gt;。extern是外部函数类型，在编译阶段只在object中提示：这个函数的代码要在外部文件中去寻找，在连接阶段再找对应的(另一个语言编译器生成的)object。&lt;/p&gt;
-&lt;h1 id=&quot;u4F8B_u5B501_uFF1A_u7B80_u5355_u6570_u636E_u7684_u4E92_u64CD_u4F5C&quot;&gt;&lt;a href=&quot;#u4F8B_u5B501_uFF1A_u7B80_u5355_u6570_u636E_u7684_u4E92_u64CD_u4F5C&quot; class=&quot;headerlink&quot; title=&quot;例子1：简单数据的互操作&quot;&gt;&lt;/a&gt;例子1：简单数据的互操作&lt;/h1&gt;&lt;p&gt;以下例子中的代码都能在&lt;a href=&quot;https://github.com/wjw12/cpp_fortran中找到。&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;https://github.com/wjw12/cpp_fortran中找到。&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;C++源程序的组织很简单，定义了单精度，双精度，复数双精度变量，调用Fortran编写的“test_sub”函数对三个变量进行运算，结果储存在原来的变量中。&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;float f = 1;
-double d = 2;
-complex&amp;lt;double&amp;gt; c(1., 0.);
-test_sub(f, d, c);
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;C语言函数传递参数可以选用传值和传地址两种方式，而Fortran子程序参数只能传递引用。C++声明必须与之相符：&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;extern &amp;quot;C&amp;quot; void test_sub(float&amp;amp; f, double&amp;amp; d, std::complex&amp;lt;double&amp;gt;&amp;amp; c);
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Fortran函数中，最重要的是头几行：&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;subroutine test_sub(fl, db, cp) bind(C)
-    use iso_c_binding
-    implicit none
-    real (C_FLOAT) :: fl
-    real (C_DOUBLE) :: db
-    complex (C_DOUBLE_COMPLEX) :: cp
-    ...
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;实现互操作的三个前提就是：bind(C)属性， use iso_c_binding模块， 定义变量属性用C_xxx常量。并且这里用到了STL里面的complex头文件。&lt;/p&gt;
-&lt;p&gt;Makefile的编写也是直截了当的：&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;exe: c_main.o fortran_sub.o
-    g++ c_main.o fortran_sub.o -o exe
-
-fortran_sub.o: fortran_sub.f90
-    gfortran -c fortran_sub.f90
-
-c_main.o: c_main.cpp c_header.h
-    g++ -c c_main.cpp
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;这里的连接器是g++(并不是编译器，虽然同名)，不同来源的.o文件用相同的方式连接。&lt;/p&gt;
-&lt;h1 id=&quot;u4F8B_u5B502_uFF1A_u6570_u7EC4_u7684_u4E92_u64CD_u4F5C&quot;&gt;&lt;a href=&quot;#u4F8B_u5B502_uFF1A_u6570_u7EC4_u7684_u4E92_u64CD_u4F5C&quot; class=&quot;headerlink&quot; title=&quot;例子2：数组的互操作&quot;&gt;&lt;/a&gt;例子2：数组的互操作&lt;/h1&gt;&lt;p&gt;这里我们用C++生成矩阵和向量，用Fortran计算它们的乘积。尽管程序简单，也能反映出实际应用的背景。计算任务交给Fortran，用C++进行外围数据处理，比如给矩阵元随机赋值是很方便的：&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;void fill_vector(vector&amp;lt;double&amp;gt;&amp;amp; v) {
-    default_random_engine eng(0);
-    uniform_real_distribution&amp;lt;double&amp;gt; dist(0, 1);
-    for(auto &amp;amp;a : v)
-        a = dist(eng);
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;本例中矩阵也用一维的数据结构std::vector储存。C系列语言中矩阵在内存中是行优先储存的(row-major)，在线性的内存中，顺序是A[0,0], A[0,1], A[0,2], …, A[1,0]，先储存一行再储存下一行。Fortran中恰好相反，顺序是A(1,1), A(2,1), A(3,1), …, A(1,2)，是列优先的(colume-major)。对程序的影响体现在，C++生成矩阵时也需要按列优先的规则去填充元素，输出时print_matrix函数的编写可以看出这一点。&lt;/p&gt;
-&lt;p&gt;把数组传给Fortran子程序，关键是这一步：&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;matmulvec(&amp;amp;A[0], &amp;amp;rows_A, &amp;amp;cols_A, &amp;amp;B[0], &amp;amp;C[0]);
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;一般来说，传递的可以是C风格的数组，也可以是STL的vector，同时要传递数组长度。STL的实现保证了&amp;amp;A[0]给出了vector中首个元素的地址，并且元素在内存里是线性连续储存的，我们才能在Fortran中按照通常的数组一样访问这些元素。&lt;/p&gt;
-&lt;p&gt;Fortran子程序编写就很简单了，传进来的矩阵M是内存中连续的一段元素，编译器将其解读为按列优先的二维数组。为了乘法的方便，向量M定义成一个维度只有1的二维数组。矩阵乘法由内置函数matmul完成。&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;subroutine matmulvec(A, M, N, B, C) bind(c)
-    use iso_c_binding
-    implicit none
-    integer(c_int) :: M, N
-    real(c_double) :: A(M,N), B(N,1), C(M,1)
-    C = matmul(A, B)
-end subroutine 
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Makefile编写略有不同，连接器用的是gfortran而不是g++，需要加上C++标准库的连接支持&lt;code&gt;-lstdc++&lt;/code&gt;，才能在二进制文件中执行C++标准库函数。&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;exe: c_main.o fortran_sub.o
-    gfortran c_main.o fortran_sub.o -lstdc++ -o exe
-&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;u4F8B_u5B503_uFF1A_u4E00_u4E2A_u7B80_u5316_u7684_u5B9E_u9645_u60C5_u5F62&quot;&gt;&lt;a href=&quot;#u4F8B_u5B503_uFF1A_u4E00_u4E2A_u7B80_u5316_u7684_u5B9E_u9645_u60C5_u5F62&quot; class=&quot;headerlink&quot; title=&quot;例子3：一个简化的实际情形&quot;&gt;&lt;/a&gt;例子3：一个简化的实际情形&lt;/h1&gt;&lt;p&gt;ode_compare这个项目是为了比较C++和Fortran解常微分方程的效率。实际研究中，常微分方程这种有常规数值解法的问题是不太可能手写代码实现的，只需调用成熟的库函数。在这里，为方便起见，C++用的是boost.odeint中的5阶可变步长Runge-Kutte解法器，是很常用的一个变步长方法；Fortran用的是LSODA库中的DLSODA.F子程序，是一种复杂的变步长方法。&lt;/p&gt;
-&lt;p&gt;源代码可以看Github上面的，这里只给出解n=10000个常微分方程组(2个变量)的速度比较，时间单位是纳秒&lt;/p&gt;
-&lt;img src=&quot;/2016/10/15/如何用C-调用Fortran子程序/result.png&quot; alt=&quot;result.png&quot; title=&quot;&quot;&gt;
-&lt;p&gt;差异大约有400倍之多。boost.odeint虽然是很现代的C++库，效率远远比不上经典的Fortran子程序。&lt;/p&gt;
-&lt;h1 id=&quot;u53C2_u8003&quot;&gt;&lt;a href=&quot;#u53C2_u8003&quot; class=&quot;headerlink&quot; title=&quot;参考&quot;&gt;&lt;/a&gt;参考&lt;/h1&gt;&lt;p&gt;关于Fortran的iso_c_binding &lt;a href=&quot;http://stackoverflow.com/tags/fortran-iso-c-binding/info&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://stackoverflow.com/tags/fortran-iso-c-binding/info&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;各种语言的发展及亲缘关系 &lt;a href=&quot;https://www.quora.com/Are-all-programming-languages-based-on-C&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;https://www.quora.com/Are-all-programming-languages-based-on-C&lt;/a&gt;&lt;/p&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;u5F15_u8A00&quot;&gt;&lt;a href=&quot;#u5F15_u8A00&quot; class=&quot;headerlink&quot; title=&quot;引言&quot;&gt;&lt;/a&gt;引言&lt;/h1&gt;&lt;p&gt;Fortran是现存的最古老的编程语言之一。早在1957年，这门语言就随着第一代计算机的问世而诞生了。其成熟版本Fortran 77如名字所说，在1977年发布，直到今天仍是使用最广泛的Fortran版本。在还没有PC的中古时期，计算机几乎全部用于科研，从火箭发射到核弹模拟，离不开数值计算的需求。就在这一段时间里，人类积累起了最高效的数值计算库，比如BLAS(1979)，MINPACK(1980)，QUADPACK(1981)，漫长的历史奠定了Fortran在科学计算当之无愧的霸主地位。后来其他语言的许多数值计算库也是基于以往的Fortran库编写的，如Intel MKL，Scipy。可以说，没有Fortran就没有现代的科学计算。&lt;/p&gt;
-&lt;p&gt;海量的数值程序积累是Fortran的优势之一，另一方面，Fortran又简单易学，没有复杂的语言特性，没有接受过计算机科班训练的科研人员都可以快速上手，简单粗暴地写出能运行的程序。当程序员们还争论着最好的语言是PHP还是Java，一代代科研工作者早已坚信，在要求极致数值性能的科学计算领域，Fortran一定是最合适的语言。&lt;/p&gt;
-&lt;p&gt;相比之下，C++的历史就短了许多，1983年才问世。语言设计的目的也完全不同，系统开发、桌面应用、服务器网络等等。为了适应软件工程的需求，面向对象、多态、函数式编程等等高阶功能被纳入语言特性中，C++也变得极为庞大复杂。这些特性一旦熟练掌握，开发和程序执行效率能大幅提升，但学习的门槛较高，可能让不少非专业的编程者望而生畏。&lt;/p&gt;
-&lt;p&gt;如Fortran一个功能简单的语言，就一定易用吗？C++面向对象的封装抽象，表面上增加了开发复杂性，实则让程序变得模块化，易于重用和修改，在抽象层面上设计程序往往更容易。&lt;/p&gt;
-&lt;p&gt;比如最近需要实现三维向量的运算：&lt;/p&gt;
-&lt;img src=&quot;/2016/10/15/如何用C-调用Fortran子程序/vector.png&quot; alt=&quot;vector.png&quot; title=&quot;&quot;&gt;
-&lt;p&gt;C++的思路是编写一个vector3d的类，一个object包含向量的三个分量，用操作符重载和friend函数实现向量加减乘除、点乘叉乘运算，然后只需“字面地”翻译数学公式，一个矢量等于另一个矢量叉乘，再除以一些数……就可以完成任务。&lt;/p&gt;
-&lt;p&gt;而如果用Fortran，没有抽象的方法，只能人工在草稿纸上推导向量的分量式，用行列式计算叉乘并化简，将每个分量的算式输入代码才行。换另一个公式，又要重新在草稿纸上推一遍！&lt;/p&gt;
-&lt;p&gt;一个科学计算程序，总有计算最费时的核心部分，如解线性代数方程、微分方程的数值算法，也有数据的简单处理和输入输出（如前例中的矢量计算，实则是核心任务之外的一步处理）。C++缺少许多数值计算库，或者是效率不高，用于计算密集的核心部分不够理想，但在外围部分，和程序模块的组织上，之于Fortran有太多优势。&lt;/p&gt;
-&lt;p&gt;比较两种语言的优势和劣势，会想到，如果能结合两者的优势，用Fortran处理核心的数值算法，用C++组织程序结构和外围处理，程序的开发、运行和维护的效率都能提升。&lt;/p&gt;
-&lt;img src=&quot;/2016/10/15/如何用C-调用Fortran子程序/compare.png&quot; alt=&quot;compare.png&quot; title=&quot;&quot;&gt;
-    
-    </summary>
-    
-    
-      <category term="C++" scheme="http://nekolab.cn/tags/C/"/>
-    
-      <category term="Fortran" scheme="http://nekolab.cn/tags/Fortran/"/>
     
   </entry>
   
