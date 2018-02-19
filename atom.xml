@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://nekolab.cn/"/>
-  <updated>2018-02-10T07:07:13.489Z</updated>
+  <updated>2018-02-19T16:22:43.717Z</updated>
   <id>http://nekolab.cn/</id>
   
   <author>
@@ -14,6 +14,54 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>CG练习（2） 渲染体积光</title>
+    <link href="http://nekolab.cn/2018/02/18/CGexercise02/"/>
+    <id>http://nekolab.cn/2018/02/18/CGexercise02/</id>
+    <published>2018-02-18T04:14:10.000Z</published>
+    <updated>2018-02-19T16:22:43.717Z</updated>
+    
+    <content type="html">&lt;p&gt;经常见到这样一种探照灯光的效果：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://wjwtest.oss-cn-qingdao.aliyuncs.com/cg_exercise/02/v1.png&quot;&gt;&lt;/p&gt;
+&lt;p&gt;由于物理上的丁达尔效应，光源照射的体积被照亮。在Unity里面，我们可以用Command Buffer来自定义渲染物体的方式，结合物理和经验模型来模拟这个效果。并且在实现单色体积光之后，把功能扩展到彩色的灯光，类似舞台上彩色射灯的效果，结果如下：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://wjwtest.oss-cn-qingdao.aliyuncs.com/cg_exercise/02/v2.png&quot;&gt;&lt;/p&gt;
+&lt;p&gt;实现了一个类似五毛特效的动图：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://wjwtest.oss-cn-qingdao.aliyuncs.com/cg_exercise/02/1.gif&quot;&gt;&lt;/p&gt;
+&lt;p&gt;我的&lt;a href=&quot;https://github.com/wjw12/VolumetricLights&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Github项目地址&lt;/a&gt;&lt;br&gt;改写了&lt;a href=&quot;https://github.com/SlightlyMad/VolumetricLights&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;原始项目&lt;/a&gt;，增加了彩色体积光的支持。&lt;/p&gt;
+&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
+&lt;h2 id=&quot;u7269_u7406_u539F_u7406&quot;&gt;&lt;a href=&quot;#u7269_u7406_u539F_u7406&quot; class=&quot;headerlink&quot; title=&quot;物理原理&quot;&gt;&lt;/a&gt;物理原理&lt;/h2&gt;&lt;p&gt;摘自维基百科：&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;当一束光线透过胶体，从入射光的垂直方向可以观察到胶体里出现的一条光亮的“通路”，这种现象叫丁达尔现象。光射到微粒上可以发生两种情况，一是当微粒直径大于入射光波长很多倍时，发生光的反射；二是微粒直径小于入射光的波长时，发生光的散射，散射出来的光称为乳光。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;记起光学和电动力学课上讲过散射分三种类型：瑞利散射，米氏散射，拉曼散射。蓝色的天空和日落时的红光就是瑞利散射的结果，引起丁达尔效应的主要是米氏散射(Mie scattering)。然而，当我搜索米氏散射强度公式的时候，物理学理论给出的都是用多重积分或者级数展开表示的复杂公式。在图形学中模拟这种视觉效果，用不上第一性原理的精确计算。&lt;/p&gt;
+&lt;h2 id=&quot;u56FE_u5F62_u5B66_u7B97_u6CD5&quot;&gt;&lt;a href=&quot;#u56FE_u5F62_u5B66_u7B97_u6CD5&quot; class=&quot;headerlink&quot; title=&quot;图形学算法&quot;&gt;&lt;/a&gt;图形学算法&lt;/h2&gt;&lt;p&gt;本来想作一张图说明原理的，想想太麻烦了（编辑这篇文章已经够费劲了）。所以想象一下这个情景：光源照亮的体积是一个确定的几何体：spotlight是锥体，点光源是球体，平行光是柱体。从摄像机出发放射出一条条直射光线，光线经过被光源照亮的体积内时，采样这个位置的色彩值，在光线行进(march)的过程中采样值累加起来，直到走出光体积为止，就计算出了当前像素点的体积光强度。方法的核心就是raymarching，有点类似体积渲染(direct volume rendering)。&lt;/p&gt;
+&lt;p&gt;在实现上，首先我们需要为不同类型的光源计算光线与虚拟几何体的交点，作为raymarching的起点和终点。在行进过程中，如果被阴影遮挡则不能叠加亮度，所以需要一张shadow map作为参考。&lt;/p&gt;
+&lt;p&gt;类似舞台上的彩色灯光或者电影院的投影仪，在投射出彩色图案的同时能看到彩色的光束。我们可以把投影的画面当作一个texture（只考虑spotlight的情况，如果是点光源需要cube map），需要采样这张纹理图片上对应位置的颜色，每个采样步的颜色不一定相同。&lt;/p&gt;
+&lt;p&gt;shader最关键的代码及注释如下。为了让代码更清晰，这里省略了雾特效、噪声扰动等原作者添加的很多额外效果，并且只针对spotlight处理。&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;float GetLightAttenuation(float3 wpos)&amp;#10;&amp;#123;&amp;#10;&amp;#9;float atten = 0;&amp;#10;&amp;#10;&amp;#9;// wpos is current world position of the marching ray&amp;#10;&amp;#9;float3 tolight = _LightPos.xyz - wpos;&amp;#10;&amp;#9;half3 lightDir = normalize(tolight);&amp;#10;&amp;#10;&amp;#9;float4 uvCookie = mul(_MyLightMatrix0, float4(wpos, 1));&amp;#10;&amp;#9;&amp;#10;&amp;#9;// negative bias because http://aras-p.info/blog/2010/01/07/screenspace-vs-mip-mapping/&amp;#10;&amp;#9;// get light cookie attenuation&amp;#10;&amp;#9;atten = tex2Dbias(_LightTexture0, float4(uvCookie.xy / uvCookie.w, 0, -8)).w;&amp;#10;&amp;#9;atten *= uvCookie.w &amp;#60; 0;&amp;#10;&amp;#9;float att = dot(tolight, tolight) * _LightPos.w;&amp;#10;&amp;#9;atten *= tex2D(_LightTextureB0, att.rr).UNITY_ATTEN_CHANNEL;&amp;#10;&amp;#10;&amp;#9;// if the light casts shadow, sample the shadow texture&amp;#10;#if defined(SHADOWS_DEPTH)&amp;#10;&amp;#9;float4 shadowCoord = mul(_MyWorld2Shadow, float4(wpos, 1));&amp;#10;&amp;#9;atten *= saturate(UnitySampleShadowmap(shadowCoord));&amp;#10;#endif&amp;#10;&amp;#10;&amp;#9;return atten;&amp;#10;&amp;#125;&amp;#10;float4 GetColor(float3 wpos)&amp;#10;&amp;#123;&amp;#10;&amp;#9;// convert current world position to light coordinates &amp;#10;&amp;#9;// (imagine viewing from the light origin)&amp;#10;&amp;#9;float4 posLight = mul(_MyLightMatrix0, float4(wpos, 1));&amp;#10;&amp;#9;&amp;#10;&amp;#9;// posLight.w is the depth from current position to light position&amp;#10;&amp;#9;// sample color from light projection texture&amp;#10;&amp;#9;return tex2D(_LightProjectionTexture, posLight.xy / posLight.w + float2(0.5, 0.5));&amp;#10;&amp;#125;&amp;#10;&amp;#10;[loop]&amp;#10;for (int i = 0; i &amp;#60; stepCount; ++i)&amp;#10;&amp;#123;&amp;#10;&amp;#9;// current position is the ray marching position&amp;#10;&amp;#9;float atten = GetLightAttenuation(currentPosition);&amp;#10;&amp;#9;&amp;#10;&amp;#9;// density results from fog and noise, omitted here for simplicity&amp;#10;&amp;#9;float density = GetDensity(currentPosition);&amp;#10;&amp;#10;&amp;#9;// _VolumetricLight.x is scattering coefficient&amp;#10;&amp;#9;// _VolumetricLight.y is extinction coefficient&amp;#10;&amp;#9;float scattering = _VolumetricLight.x * stepSize * density;&amp;#10;&amp;#9;extinction += _VolumetricLight.y * stepSize * density;// +scattering;&amp;#10;&amp;#10;&amp;#9;float4 currentColor = GetColor(currentPosition);&amp;#10;&amp;#10;&amp;#9;float lightInten = atten * scattering * exp(-extinction) * currentColor.w;&amp;#10;&amp;#10;&amp;#9;// accumulate the color&amp;#10;&amp;#9;vlight += currentColor * lightInten;&amp;#10;&amp;#10;&amp;#9;currentPosition += step;&amp;#9;&amp;#9;&amp;#9;&amp;#9;&amp;#10;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h2 id=&quot;u4F7F_u7528Unity_u7684Command_Buffer&quot;&gt;&lt;a href=&quot;#u4F7F_u7528Unity_u7684Command_Buffer&quot; class=&quot;headerlink&quot; title=&quot;使用Unity的Command Buffer&quot;&gt;&lt;/a&gt;使用Unity的Command Buffer&lt;/h2&gt;&lt;p&gt;Unity渲染主要有Forward和Deferred两种Pipeline，遵循一定的渲染顺序，如下图所示：&lt;br&gt;&lt;img src=&quot;http://wjwtest.oss-cn-qingdao.aliyuncs.com/cg_exercise/02/cb.png&quot;&gt;&lt;/p&gt;
+&lt;p&gt;在完成每个渲染步骤的前后，也就是图中绿点的位置，都可以插入一些自定义的渲染命令，也就是用command表示，来扩展渲染的功能。Command其实和OpenGL里面的glDraw, glClear之类的语句一样，设定参数执行一些绘图操作，一系列Command储存在摄像机的Command Buffer里面，到达规定的渲染步骤时候会执行。&lt;/p&gt;
+&lt;p&gt;在我们这里，由于算法需要获取Shadowmap，渲染体积光的Command应该在光源投射阴影之后进行，也就是LightEvent.AfterShadowMap。在摄像机方面，如果是Forward Path，执行时机是CameraEvent.AfterDepthTexture，如果是Deferred Path，是在渲染G-buffer之后计算光照之前的CameraEvent.BeforeLighting。我们加入的command只渲染体积光，所以在渲染之前要设定render target为新建的一张render texture，在体积光和场景几何体分别渲染到两个render texture以后，再用blit混合。&lt;/p&gt;
+&lt;h2 id=&quot;What_u2019s_Next&quot;&gt;&lt;a href=&quot;#What_u2019s_Next&quot; class=&quot;headerlink&quot; title=&quot;What’s Next&quot;&gt;&lt;/a&gt;What’s Next&lt;/h2&gt;&lt;p&gt;进行到这里已经可以让灯光照亮彩色的体积了，但是接触灯光的物体表面没有相应纹理，下一次我将会改进，实现出舞台灯的效果，让灯光投射出彩色图案。&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;经常见到这样一种探照灯光的效果：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://wjwtest.oss-cn-qingdao.aliyuncs.com/cg_exercise/02/v1.png&quot;&gt;&lt;/p&gt;
+&lt;p&gt;由于物理上的丁达尔效应，光源照射的体积被照亮。在Unity里面，我们可以用Command Buffer来自定义渲染物体的方式，结合物理和经验模型来模拟这个效果。并且在实现单色体积光之后，把功能扩展到彩色的灯光，类似舞台上彩色射灯的效果，结果如下：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://wjwtest.oss-cn-qingdao.aliyuncs.com/cg_exercise/02/v2.png&quot;&gt;&lt;/p&gt;
+&lt;p&gt;实现了一个类似五毛特效的动图：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://wjwtest.oss-cn-qingdao.aliyuncs.com/cg_exercise/02/1.gif&quot;&gt;&lt;/p&gt;
+&lt;p&gt;我的&lt;a href=&quot;https://github.com/wjw12/VolumetricLights&quot;&gt;Github项目地址&lt;/a&gt;&lt;br&gt;改写了&lt;a href=&quot;https://github.com/SlightlyMad/VolumetricLights&quot;&gt;原始项目&lt;/a&gt;，增加了彩色体积光的支持。&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="Graphics Pipeline" scheme="http://nekolab.cn/tags/Graphics-Pipeline/"/>
+    
+  </entry>
   
   <entry>
     <title>CG练习（1） SketchUp到Unity工作流</title>
@@ -876,37 +924,6 @@
       <category term="2016" scheme="http://nekolab.cn/tags/2016/"/>
     
       <category term="读书" scheme="http://nekolab.cn/tags/%E8%AF%BB%E4%B9%A6/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>水墨无形胜有形</title>
-    <link href="http://nekolab.cn/2016/12/23/%E6%B0%B4%E5%A2%A8%E6%97%A0%E5%BD%A2%E8%83%9C%E6%9C%89%E5%BD%A2/"/>
-    <id>http://nekolab.cn/2016/12/23/水墨无形胜有形/</id>
-    <published>2016-12-23T12:47:07.000Z</published>
-    <updated>2016-12-23T13:06:24.043Z</updated>
-    
-    <content type="html">&lt;p&gt;&lt;strong&gt;看似无章可循的传统水墨画，更容易让人进入形神统一的境界。&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;http://wjwtest.oss-cn-qingdao.aliyuncs.com/zhongguohua/1.jpg&quot;&gt;&lt;/p&gt;
-&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
-&lt;p&gt;这学期来，每周一的午后，都属于新太阳中心地下二层的一间小教室。一方白板，几排长桌，构成一间极简版的画室，虽无明窗净几，香炉石砚，然而得一闲暇暂时远离俗务，自然万虑消沉，沉浸在水墨山水的世界里。&lt;/p&gt;
-&lt;p&gt;初学者的工具很简单，只需两三枝粗细不同的毛笔，一瓶浓缩墨汁，一个调色盘，足以作为入门的基本配置。便宜的毛边纸甚至比宣纸还好用，吸水性没那么强，更容易表现皴法的纹理质感，土黄色的纸张会显得更有古风。中国画最迷人的一点，在于简单的工具材料能组合出千变万化的效果。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;http://wjwtest.oss-cn-qingdao.aliyuncs.com/zhongguohua/2.jpg&quot;&gt;&lt;/p&gt;
-&lt;p&gt;不像西洋绘画，线条就是线条，是一维的没有宽度的延展，块面就是块面，是二维的颜料或排线组成的平面。在中国画这里，线与面的界限被消解，甚至面也没有确定的边界。一笔落下去，可以是绵延的一条曲线，可以是山石带着阴影厚度的边缘，可以皴出浓密纹理，可以化开一片氤氲淡墨。线条是有生命力的，要讲究“透气”，一笔中锋到底就会“死”，失去了变化美感。初学时，观摩老师寥寥数笔，依轻重缓急与用墨浓淡不同，画出变化百端的线与面。不过是清水加墨汁，依据深浅浓淡的不同能产生“墨分五色”的层次，原是黑白的墨水竟能幻化出青赤黄白黑的五色。&lt;strong&gt;一切仿佛眼前幻象，没有人能告诉我如何调墨的比例，用何种力道角度运笔，而一切又显得无比真切自然。&lt;/strong&gt;仿佛是水墨在无意间的流动，落笔的瞬间与心神融合，透露出绘画艺术的纯粹状态。&lt;/p&gt;
-&lt;p&gt;我们似乎习惯了逻辑与技法至上的美术教育，绘画入门会选择规章严密的西方素描，从排线、构图、透视学起。而对于没有定法，难以捉摸的中国画，当作束之高阁供人瞻赏的古典艺术，却少有机会亲身学习。&lt;strong&gt;但那些看似高深莫测的运笔用墨技法，当自己实际模仿、在纸上尝试的时候，就全明白了。&lt;/strong&gt;一旦像素描一样画一条直挺挺的线，立刻会感到生硬死板，从而作出调整。运笔时是调整手腕与手臂的力度呢，还是让笔尖换一个角度，都能即刻看到纸上变化。慢慢地熟悉了线条变化，画出生动自然的山石边缘，接下来可以练习皴法与染。这时，同一枝毛笔变成画二维面的工具，干枯的笔墨在纸上轻点皴擦，就成了山石或树干凹凸不平的纹理。纸上枯墨干透，就可以用清水蘸笔稍加浸润，谓之“染”的方法。于是静止的石块像是被注入生命，构成山水画卷灵动的一元。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;http://wjwtest.oss-cn-qingdao.aliyuncs.com/zhongguohua/3.jpg&quot;&gt;&lt;/p&gt;
-&lt;p&gt;有时画山水仍惦记着学素描时强调过无数遍的“明暗关系”，试图用深浅不同的墨去表现受光与阴影面。这么尝试时，效果并不尽人意，刻意用水墨作出的“明暗交界线”反而刻板造作，才意识到，&lt;strong&gt;作画者从根本上是自由的，并不需落入任何一种外在的窠臼。&lt;/strong&gt;须知道，中国画的理念与西洋画截然不同，明暗、透视、造型都有独特的规律。虽难以系统化理论化，但真意自在人心，绘画形态之外的神韵，才是更值得重视的。&lt;/p&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;&lt;strong&gt;看似无章可循的传统水墨画，更容易让人进入形神统一的境界。&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;http://wjwtest.oss-cn-qingdao.aliyuncs.com/zhongguohua/1.jpg&quot;&gt;&lt;/p&gt;
-    
-    </summary>
-    
-    
-      <category term="中国画" scheme="http://nekolab.cn/tags/%E4%B8%AD%E5%9B%BD%E7%94%BB/"/>
     
   </entry>
   

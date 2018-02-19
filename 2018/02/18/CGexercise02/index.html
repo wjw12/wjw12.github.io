@@ -71,7 +71,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="摄影,旅行," />
+  <meta name="keywords" content="Graphics Pipeline," />
 
 
 
@@ -89,16 +89,38 @@
 
 
 
-<meta name="description" content="用Lightroom Web Gallery模板Gallerific做了个照片集，请戳这里">
+<meta name="description" content="经常见到这样一种探照灯光的效果：
+
+由于物理上的丁达尔效应，光源照射的体积被照亮。在Unity里面，我们可以用Command Buffer来自定义渲染物体的方式，结合物理和经验模型来模拟这个效果。并且在实现单色体积光之后，把功能扩展到彩色的灯光，类似舞台上彩色射灯的效果，结果如下：
+
+实现了一个类似五毛特效的动图：
+
+我的Github项目地址改写了原始项目，增加了彩色体积光的支持。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="吴哥窟照片集">
-<meta property="og:url" content="http://nekolab.cn/2016/12/22/Angkor/index.html">
+<meta property="og:title" content="CG练习（2） 渲染体积光">
+<meta property="og:url" content="http://nekolab.cn/2018/02/18/CGexercise02/index.html">
 <meta property="og:site_name" content="NekoLab">
-<meta property="og:description" content="用Lightroom Web Gallery模板Gallerific做了个照片集，请戳这里">
-<meta property="og:updated_time" content="2016-12-22T08:48:58.163Z">
+<meta property="og:description" content="经常见到这样一种探照灯光的效果：
+
+由于物理上的丁达尔效应，光源照射的体积被照亮。在Unity里面，我们可以用Command Buffer来自定义渲染物体的方式，结合物理和经验模型来模拟这个效果。并且在实现单色体积光之后，把功能扩展到彩色的灯光，类似舞台上彩色射灯的效果，结果如下：
+
+实现了一个类似五毛特效的动图：
+
+我的Github项目地址改写了原始项目，增加了彩色体积光的支持。">
+<meta property="og:image" content="http://wjwtest.oss-cn-qingdao.aliyuncs.com/cg_exercise/02/v1.png">
+<meta property="og:image" content="http://wjwtest.oss-cn-qingdao.aliyuncs.com/cg_exercise/02/v2.png">
+<meta property="og:image" content="http://wjwtest.oss-cn-qingdao.aliyuncs.com/cg_exercise/02/1.gif">
+<meta property="og:image" content="http://wjwtest.oss-cn-qingdao.aliyuncs.com/cg_exercise/02/cb.png">
+<meta property="og:updated_time" content="2018-02-19T16:22:43.717Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="吴哥窟照片集">
-<meta name="twitter:description" content="用Lightroom Web Gallery模板Gallerific做了个照片集，请戳这里">
+<meta name="twitter:title" content="CG练习（2） 渲染体积光">
+<meta name="twitter:description" content="经常见到这样一种探照灯光的效果：
+
+由于物理上的丁达尔效应，光源照射的体积被照亮。在Unity里面，我们可以用Command Buffer来自定义渲染物体的方式，结合物理和经验模型来模拟这个效果。并且在实现单色体积光之后，把功能扩展到彩色的灯光，类似舞台上彩色射灯的效果，结果如下：
+
+实现了一个类似五毛特效的动图：
+
+我的Github项目地址改写了原始项目，增加了彩色体积光的支持。">
 
 
 
@@ -126,13 +148,13 @@
 
 
 
-  <link rel="canonical" href="http://nekolab.cn/2016/12/22/Angkor/"/>
+  <link rel="canonical" href="http://nekolab.cn/2018/02/18/CGexercise02/"/>
 
 
 
 
 
-  <title> 吴哥窟照片集 | NekoLab </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <title> CG练习（2） 渲染体积光 | NekoLab </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -318,7 +340,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://nekolab.cn/2016/12/22/Angkor/">
+  <link itemprop="mainEntityOfPage" href="http://nekolab.cn/2018/02/18/CGexercise02/">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
     <meta itemprop="name" content="Quantumneko">
@@ -342,7 +364,7 @@
             
             
               
-                吴哥窟照片集
+                CG练习（2） 渲染体积光
               
             
           </h1>
@@ -357,8 +379,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-12-22T16:41:23+08:00">
-                2016-12-22
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-18T12:14:10+08:00">
+                2018-02-18
               </time>
             
 
@@ -393,7 +415,28 @@
       
 
       
-        <p>用Lightroom Web Gallery模板<a href="http://trialstravails.blogspot.com/2015/07/gallerific.html" target="_blank" rel="external">Gallerific</a>做了个照片集，请戳<a href="http://nekolab.cn/special/angkor_trip/index.html">这里</a></p>
+        <p>经常见到这样一种探照灯光的效果：</p>
+<p><img src="http://wjwtest.oss-cn-qingdao.aliyuncs.com/cg_exercise/02/v1.png"></p>
+<p>由于物理上的丁达尔效应，光源照射的体积被照亮。在Unity里面，我们可以用Command Buffer来自定义渲染物体的方式，结合物理和经验模型来模拟这个效果。并且在实现单色体积光之后，把功能扩展到彩色的灯光，类似舞台上彩色射灯的效果，结果如下：</p>
+<p><img src="http://wjwtest.oss-cn-qingdao.aliyuncs.com/cg_exercise/02/v2.png"></p>
+<p>实现了一个类似五毛特效的动图：</p>
+<p><img src="http://wjwtest.oss-cn-qingdao.aliyuncs.com/cg_exercise/02/1.gif"></p>
+<p>我的<a href="https://github.com/wjw12/VolumetricLights" target="_blank" rel="external">Github项目地址</a><br>改写了<a href="https://github.com/SlightlyMad/VolumetricLights" target="_blank" rel="external">原始项目</a>，增加了彩色体积光的支持。</p>
+<a id="more"></a>
+<h2 id="u7269_u7406_u539F_u7406"><a href="#u7269_u7406_u539F_u7406" class="headerlink" title="物理原理"></a>物理原理</h2><p>摘自维基百科：</p>
+<blockquote>
+<p>当一束光线透过胶体，从入射光的垂直方向可以观察到胶体里出现的一条光亮的“通路”，这种现象叫丁达尔现象。光射到微粒上可以发生两种情况，一是当微粒直径大于入射光波长很多倍时，发生光的反射；二是微粒直径小于入射光的波长时，发生光的散射，散射出来的光称为乳光。</p>
+</blockquote>
+<p>记起光学和电动力学课上讲过散射分三种类型：瑞利散射，米氏散射，拉曼散射。蓝色的天空和日落时的红光就是瑞利散射的结果，引起丁达尔效应的主要是米氏散射(Mie scattering)。然而，当我搜索米氏散射强度公式的时候，物理学理论给出的都是用多重积分或者级数展开表示的复杂公式。在图形学中模拟这种视觉效果，用不上第一性原理的精确计算。</p>
+<h2 id="u56FE_u5F62_u5B66_u7B97_u6CD5"><a href="#u56FE_u5F62_u5B66_u7B97_u6CD5" class="headerlink" title="图形学算法"></a>图形学算法</h2><p>本来想作一张图说明原理的，想想太麻烦了（编辑这篇文章已经够费劲了）。所以想象一下这个情景：光源照亮的体积是一个确定的几何体：spotlight是锥体，点光源是球体，平行光是柱体。从摄像机出发放射出一条条直射光线，光线经过被光源照亮的体积内时，采样这个位置的色彩值，在光线行进(march)的过程中采样值累加起来，直到走出光体积为止，就计算出了当前像素点的体积光强度。方法的核心就是raymarching，有点类似体积渲染(direct volume rendering)。</p>
+<p>在实现上，首先我们需要为不同类型的光源计算光线与虚拟几何体的交点，作为raymarching的起点和终点。在行进过程中，如果被阴影遮挡则不能叠加亮度，所以需要一张shadow map作为参考。</p>
+<p>类似舞台上的彩色灯光或者电影院的投影仪，在投射出彩色图案的同时能看到彩色的光束。我们可以把投影的画面当作一个texture（只考虑spotlight的情况，如果是点光源需要cube map），需要采样这张纹理图片上对应位置的颜色，每个采样步的颜色不一定相同。</p>
+<p>shader最关键的代码及注释如下。为了让代码更清晰，这里省略了雾特效、噪声扰动等原作者添加的很多额外效果，并且只针对spotlight处理。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">float GetLightAttenuation(float3 wpos)&#10;&#123;&#10;&#9;float atten = 0;&#10;&#10;&#9;// wpos is current world position of the marching ray&#10;&#9;float3 tolight = _LightPos.xyz - wpos;&#10;&#9;half3 lightDir = normalize(tolight);&#10;&#10;&#9;float4 uvCookie = mul(_MyLightMatrix0, float4(wpos, 1));&#10;&#9;&#10;&#9;// negative bias because http://aras-p.info/blog/2010/01/07/screenspace-vs-mip-mapping/&#10;&#9;// get light cookie attenuation&#10;&#9;atten = tex2Dbias(_LightTexture0, float4(uvCookie.xy / uvCookie.w, 0, -8)).w;&#10;&#9;atten *= uvCookie.w &#60; 0;&#10;&#9;float att = dot(tolight, tolight) * _LightPos.w;&#10;&#9;atten *= tex2D(_LightTextureB0, att.rr).UNITY_ATTEN_CHANNEL;&#10;&#10;&#9;// if the light casts shadow, sample the shadow texture&#10;#if defined(SHADOWS_DEPTH)&#10;&#9;float4 shadowCoord = mul(_MyWorld2Shadow, float4(wpos, 1));&#10;&#9;atten *= saturate(UnitySampleShadowmap(shadowCoord));&#10;#endif&#10;&#10;&#9;return atten;&#10;&#125;&#10;float4 GetColor(float3 wpos)&#10;&#123;&#10;&#9;// convert current world position to light coordinates &#10;&#9;// (imagine viewing from the light origin)&#10;&#9;float4 posLight = mul(_MyLightMatrix0, float4(wpos, 1));&#10;&#9;&#10;&#9;// posLight.w is the depth from current position to light position&#10;&#9;// sample color from light projection texture&#10;&#9;return tex2D(_LightProjectionTexture, posLight.xy / posLight.w + float2(0.5, 0.5));&#10;&#125;&#10;&#10;[loop]&#10;for (int i = 0; i &#60; stepCount; ++i)&#10;&#123;&#10;&#9;// current position is the ray marching position&#10;&#9;float atten = GetLightAttenuation(currentPosition);&#10;&#9;&#10;&#9;// density results from fog and noise, omitted here for simplicity&#10;&#9;float density = GetDensity(currentPosition);&#10;&#10;&#9;// _VolumetricLight.x is scattering coefficient&#10;&#9;// _VolumetricLight.y is extinction coefficient&#10;&#9;float scattering = _VolumetricLight.x * stepSize * density;&#10;&#9;extinction += _VolumetricLight.y * stepSize * density;// +scattering;&#10;&#10;&#9;float4 currentColor = GetColor(currentPosition);&#10;&#10;&#9;float lightInten = atten * scattering * exp(-extinction) * currentColor.w;&#10;&#10;&#9;// accumulate the color&#10;&#9;vlight += currentColor * lightInten;&#10;&#10;&#9;currentPosition += step;&#9;&#9;&#9;&#9;&#10;&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="u4F7F_u7528Unity_u7684Command_Buffer"><a href="#u4F7F_u7528Unity_u7684Command_Buffer" class="headerlink" title="使用Unity的Command Buffer"></a>使用Unity的Command Buffer</h2><p>Unity渲染主要有Forward和Deferred两种Pipeline，遵循一定的渲染顺序，如下图所示：<br><img src="http://wjwtest.oss-cn-qingdao.aliyuncs.com/cg_exercise/02/cb.png"></p>
+<p>在完成每个渲染步骤的前后，也就是图中绿点的位置，都可以插入一些自定义的渲染命令，也就是用command表示，来扩展渲染的功能。Command其实和OpenGL里面的glDraw, glClear之类的语句一样，设定参数执行一些绘图操作，一系列Command储存在摄像机的Command Buffer里面，到达规定的渲染步骤时候会执行。</p>
+<p>在我们这里，由于算法需要获取Shadowmap，渲染体积光的Command应该在光源投射阴影之后进行，也就是LightEvent.AfterShadowMap。在摄像机方面，如果是Forward Path，执行时机是CameraEvent.AfterDepthTexture，如果是Deferred Path，是在渲染G-buffer之后计算光照之前的CameraEvent.BeforeLighting。我们加入的command只渲染体积光，所以在渲染之前要设定render target为新建的一张render texture，在体积光和场景几何体分别渲染到两个render texture以后，再用blit混合。</p>
+<h2 id="What_u2019s_Next"><a href="#What_u2019s_Next" class="headerlink" title="What’s Next"></a>What’s Next</h2><p>进行到这里已经可以让灯光照亮彩色的体积了，但是接触灯光的物体表面没有相应纹理，下一次我将会改进，实现出舞台灯的效果，让灯光投射出彩色图案。</p>
 
       
     </div>
@@ -417,9 +460,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/摄影/" rel="tag"># 摄影</a>
-          
-            <a href="/tags/旅行/" rel="tag"># 旅行</a>
+            <a href="/tags/Graphics-Pipeline/" rel="tag"># Graphics Pipeline</a>
           
         </div>
       
@@ -432,8 +473,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/12/12/Nijigen/" rel="next" title="为什么二次元演唱会如此疯狂">
-                <i class="fa fa-chevron-left"></i> 为什么二次元演唱会如此疯狂
+              <a href="/2018/02/10/CGexercise01/" rel="next" title="CG练习（1） SketchUp到Unity工作流">
+                <i class="fa fa-chevron-left"></i> CG练习（1） SketchUp到Unity工作流
               </a>
             
           </div>
@@ -441,10 +482,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/12/23/水墨无形胜有形/" rel="prev" title="水墨无形胜有形">
-                水墨无形胜有形 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -493,8 +530,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/avatar.jpg"
@@ -572,6 +618,22 @@
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#u7269_u7406_u539F_u7406"><span class="nav-number">1.</span> <span class="nav-text">物理原理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#u56FE_u5F62_u5B66_u7B97_u6CD5"><span class="nav-number">2.</span> <span class="nav-text">图形学算法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#u4F7F_u7528Unity_u7684Command_Buffer"><span class="nav-number">3.</span> <span class="nav-text">使用Unity的Command Buffer</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#What_u2019s_Next"><span class="nav-number">4.</span> <span class="nav-text">What’s Next</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
     </div>
