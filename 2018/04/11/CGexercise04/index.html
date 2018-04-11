@@ -100,7 +100,7 @@
 <meta property="og:image" content="http://wjwtest.oss-cn-qingdao.aliyuncs.com/cg_exercise/04/1.png">
 <meta property="og:image" content="http://wjwtest.oss-cn-qingdao.aliyuncs.com/cg_exercise/04/2.png">
 <meta property="og:image" content="http://wjwtest.oss-cn-qingdao.aliyuncs.com/cg_exercise/04/3.png">
-<meta property="og:updated_time" content="2018-04-11T15:02:25.796Z">
+<meta property="og:updated_time" content="2018-04-11T15:04:07.696Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="CG练习（4） 次表面散射(SSS)近似方法">
 <meta name="twitter:description" content="次表面散射（SubSurface Scattering）常用来表现蜡质、玉和皮肤这种质感，与通常计算着色只考虑表面效应不同，还要考虑光透过物体表面发生散射，之后再反射或透射出来，增加了许多计算的复杂性。 这里实现了GDC2011年Approximating Translucency for a Fast, Cheap and Convincing Subsurface Scattering Loo">
@@ -402,6 +402,7 @@
         <p>次表面散射（SubSurface Scattering）常用来表现蜡质、玉和皮肤这种质感，与通常计算着色只考虑表面效应不同，还要考虑光透过物体表面发生散射，之后再反射或透射出来，增加了许多计算的复杂性。</p>
 <p>这里实现了GDC2011年<a href="https://colinbarrebrisebois.com/2011/03/07/gdc-2011-approximating-translucency-for-a-fast-cheap-and-convincing-subsurface-scattering-look/" target="_blank" rel="noopener">Approximating Translucency for a Fast, Cheap and Convincing Subsurface Scattering Look</a>展示的一种产生近似SSS效果的方法。在这个算法里面，根本就没有考虑物体的厚度和表面散射情况，只用了几次很巧妙的向量计算，模拟出以假乱真的效果。</p>
 <p><img src="http://wjwtest.oss-cn-qingdao.aliyuncs.com/cg_exercise/04/1.png"></p>
+<p>完整项目见<a href="https://github.com/wjw12/Fast-Approximate-SSS，这个掷铁饼的模型是从Asset" target="_blank" rel="noopener">https://github.com/wjw12/Fast-Approximate-SSS，这个掷铁饼的模型是从Asset</a> Store免费下载的。</p>
 <a id="more"></a>
 <p>在表面光照模型中，模型的背光面也就是法线N与光源方向L相背的情形是没有考虑受光的，而要模拟蜡质这种半透明效果，当光源从背后照射时，背光面一样会被照亮，只是更昏暗模糊一点。这就好像在原来光源L的相反方向-L位置出现了一个新的光源：</p>
 <p><img src="http://wjwtest.oss-cn-qingdao.aliyuncs.com/cg_exercise/04/2.png"></p>

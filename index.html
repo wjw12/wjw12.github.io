@@ -402,6 +402,7 @@
           <p>次表面散射（SubSurface Scattering）常用来表现蜡质、玉和皮肤这种质感，与通常计算着色只考虑表面效应不同，还要考虑光透过物体表面发生散射，之后再反射或透射出来，增加了许多计算的复杂性。</p>
 <p>这里实现了GDC2011年<a href="https://colinbarrebrisebois.com/2011/03/07/gdc-2011-approximating-translucency-for-a-fast-cheap-and-convincing-subsurface-scattering-look/" target="_blank" rel="noopener">Approximating Translucency for a Fast, Cheap and Convincing Subsurface Scattering Look</a>展示的一种产生近似SSS效果的方法。在这个算法里面，根本就没有考虑物体的厚度和表面散射情况，只用了几次很巧妙的向量计算，模拟出以假乱真的效果。</p>
 <p><img src="http://wjwtest.oss-cn-qingdao.aliyuncs.com/cg_exercise/04/1.png"></p>
+<p>完整项目见<a href="https://github.com/wjw12/Fast-Approximate-SSS，这个掷铁饼的模型是从Asset" target="_blank" rel="noopener">https://github.com/wjw12/Fast-Approximate-SSS，这个掷铁饼的模型是从Asset</a> Store免费下载的。</p>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2018/04/11/CGexercise04/#more" rel="contents">
