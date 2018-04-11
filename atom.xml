@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://nekolab.cn/"/>
-  <updated>2018-03-03T16:13:56.324Z</updated>
+  <updated>2018-04-11T15:02:25.796Z</updated>
   <id>http://nekolab.cn/</id>
   
   <author>
@@ -16,11 +16,59 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>CG练习（4） 次表面散射(SSS)近似方法</title>
+    <link href="http://nekolab.cn/2018/04/11/CGexercise04/"/>
+    <id>http://nekolab.cn/2018/04/11/CGexercise04/</id>
+    <published>2018-04-11T11:49:38.000Z</published>
+    <updated>2018-04-11T15:02:25.796Z</updated>
+    
+    <content type="html">&lt;p&gt;次表面散射（SubSurface Scattering）常用来表现蜡质、玉和皮肤这种质感，与通常计算着色只考虑表面效应不同，还要考虑光透过物体表面发生散射，之后再反射或透射出来，增加了许多计算的复杂性。&lt;/p&gt;
+&lt;p&gt;这里实现了GDC2011年&lt;a href=&quot;https://colinbarrebrisebois.com/2011/03/07/gdc-2011-approximating-translucency-for-a-fast-cheap-and-convincing-subsurface-scattering-look/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Approximating Translucency for a Fast, Cheap and Convincing Subsurface Scattering Look&lt;/a&gt;展示的一种产生近似SSS效果的方法。在这个算法里面，根本就没有考虑物体的厚度和表面散射情况，只用了几次很巧妙的向量计算，模拟出以假乱真的效果。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://wjwtest.oss-cn-qingdao.aliyuncs.com/cg_exercise/04/1.png&quot;&gt;&lt;/p&gt;
+&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
+&lt;p&gt;在表面光照模型中，模型的背光面也就是法线N与光源方向L相背的情形是没有考虑受光的，而要模拟蜡质这种半透明效果，当光源从背后照射时，背光面一样会被照亮，只是更昏暗模糊一点。这就好像在原来光源L的相反方向-L位置出现了一个新的光源：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://wjwtest.oss-cn-qingdao.aliyuncs.com/cg_exercise/04/2.png&quot;&gt;&lt;/p&gt;
+&lt;p&gt;光透过材质经过散射，出射光的方向一般会因为散射和折射发生改变，改变了多少呢？由于光路可逆原理，这也就好像在新的位置出现了一个虚拟光源一样（想想高中光学：水中的筷子经折射变断了）在极端情况下，虚拟光源的光线是掠过物体表面的，另一个极端就是光路一点都不改变，也就还是-L位置。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://wjwtest.oss-cn-qingdao.aliyuncs.com/cg_exercise/04/3.png&quot;&gt;&lt;/p&gt;
+&lt;p&gt;用一个参数$\delta$来表示光源位置的改变量。新的光源位置可以设为$-(L+N\delta)$，当$\delta=1$时就是$-(L+N)$，即L与N的平分线位置。&lt;/p&gt;
+&lt;p&gt;再联想起Phong模型，要让这个虚拟光源的光照结果与视线方向有关，只需要作点乘就可以了，再加上一个幂指数power和乘在整个式子上的强度系数scale，我们背面的光照模型就完成了：&lt;/p&gt;
+&lt;p&gt;$$I_{back}=saturate(V\cdot -(L+N\delta))^{p}\cdot s$$&lt;/p&gt;
+&lt;p&gt;是不是非常简单？&lt;/p&gt;
+&lt;p&gt;Shader的核心代码只有这么几行：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;inline fixed4 LightingSSSTranslucent(SurfaceOutputStandard s, float3 viewDir, UnityGI gi)
+{
+    // original color 
+    fixed4 c = LightingStandard(s, viewDir, gi);
+    float3 lightDir = gi.light.dir;
+    float3 normal = s.Normal;
+    float3 H = lightDir + _Distortion * normal;
+    float VdotH = pow(saturate(dot(viewDir, -H)), _Power) * _Scale;
+    c.rgb += gi.light.color * VdotH;
+    return c;
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;这里使用了Unity GI的光照信息而不是当个光源，使用时要加上#include “UnityPBSLighting.cginc”。先获取原来GI计算的颜色，叠加上我们这里计算的背面SSS亮度，就是最终颜色了。&lt;/p&gt;
+&lt;p&gt;要让效果做得更逼真，原来的方法中还增加了一个模拟物体厚度的贴图，控制各个部位不同的散射强度。总之计算量很小，对于背面受光的物体效果不错，但是正面受光的情况下是失效的，因为计算过程中saturate函数排除了对正面的影响。&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;次表面散射（SubSurface Scattering）常用来表现蜡质、玉和皮肤这种质感，与通常计算着色只考虑表面效应不同，还要考虑光透过物体表面发生散射，之后再反射或透射出来，增加了许多计算的复杂性。&lt;/p&gt;
+&lt;p&gt;这里实现了GDC2011年&lt;a href=&quot;https://colinbarrebrisebois.com/2011/03/07/gdc-2011-approximating-translucency-for-a-fast-cheap-and-convincing-subsurface-scattering-look/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Approximating Translucency for a Fast, Cheap and Convincing Subsurface Scattering Look&lt;/a&gt;展示的一种产生近似SSS效果的方法。在这个算法里面，根本就没有考虑物体的厚度和表面散射情况，只用了几次很巧妙的向量计算，模拟出以假乱真的效果。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://wjwtest.oss-cn-qingdao.aliyuncs.com/cg_exercise/04/1.png&quot;&gt;&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="Shader" scheme="http://nekolab.cn/tags/Shader/"/>
+    
+  </entry>
+  
+  <entry>
     <title>CG练习（3） 渲染贝塞尔曲线</title>
     <link href="http://nekolab.cn/2018/03/03/CGexercise03/"/>
     <id>http://nekolab.cn/2018/03/03/CGexercise03/</id>
     <published>2018-03-03T14:43:36.000Z</published>
-    <updated>2018-03-03T16:13:56.324Z</updated>
+    <updated>2018-03-03T16:13:58.000Z</updated>
     
     <content type="html">&lt;p&gt;贝塞尔曲线(Bézier curve)是通过一系列控制点决定的一种平滑的曲线，特点在于生成和计算简单，易于控制，本质上是多项式曲线，常用于矢量绘图，可以用于插画、动画、设计各个领域。Photoshop中的钢笔工具也应用了贝塞尔曲线，可能是最常接触到的应用。&lt;/p&gt;
 &lt;p&gt;我在Unity里实现了二阶贝塞尔曲线的渲染，加上简单的着色和动画效果如下：&lt;/p&gt;
@@ -55,7 +103,7 @@
     <link href="http://nekolab.cn/2018/02/18/CGexercise02/"/>
     <id>http://nekolab.cn/2018/02/18/CGexercise02/</id>
     <published>2018-02-18T04:14:10.000Z</published>
-    <updated>2018-02-19T16:22:43.717Z</updated>
+    <updated>2018-02-19T16:22:44.000Z</updated>
     
     <content type="html">&lt;p&gt;经常见到这样一种探照灯光的效果：&lt;/p&gt;
 &lt;p&gt;&lt;img src=&quot;http://wjwtest.oss-cn-qingdao.aliyuncs.com/cg_exercise/02/v1.png&quot;&gt;&lt;/p&gt;
@@ -63,7 +111,7 @@
 &lt;p&gt;&lt;img src=&quot;http://wjwtest.oss-cn-qingdao.aliyuncs.com/cg_exercise/02/v2.png&quot;&gt;&lt;/p&gt;
 &lt;p&gt;实现了一个类似五毛特效的动图：&lt;/p&gt;
 &lt;p&gt;&lt;img src=&quot;http://wjwtest.oss-cn-qingdao.aliyuncs.com/cg_exercise/02/1.gif&quot;&gt;&lt;/p&gt;
-&lt;p&gt;我的&lt;a href=&quot;https://github.com/wjw12/VolumetricLights&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Github项目地址&lt;/a&gt;&lt;br&gt;改写了&lt;a href=&quot;https://github.com/SlightlyMad/VolumetricLights&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;原始项目&lt;/a&gt;，增加了彩色体积光的支持。&lt;/p&gt;
+&lt;p&gt;我的&lt;a href=&quot;https://github.com/wjw12/VolumetricLights&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Github项目地址&lt;/a&gt;&lt;br&gt;改写了&lt;a href=&quot;https://github.com/SlightlyMad/VolumetricLights&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;原始项目&lt;/a&gt;，增加了彩色体积光的支持。&lt;/p&gt;
 &lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
 &lt;h2 id=&quot;u7269_u7406_u539F_u7406&quot;&gt;&lt;a href=&quot;#u7269_u7406_u539F_u7406&quot; class=&quot;headerlink&quot; title=&quot;物理原理&quot;&gt;&lt;/a&gt;物理原理&lt;/h2&gt;&lt;p&gt;摘自维基百科：&lt;/p&gt;
 &lt;blockquote&gt;
@@ -74,7 +122,7 @@
 &lt;p&gt;在实现上，首先我们需要为不同类型的光源计算光线与虚拟几何体的交点，作为raymarching的起点和终点。在行进过程中，如果被阴影遮挡则不能叠加亮度，所以需要一张shadow map作为参考。&lt;/p&gt;
 &lt;p&gt;类似舞台上的彩色灯光或者电影院的投影仪，在投射出彩色图案的同时能看到彩色的光束。我们可以把投影的画面当作一个texture（只考虑spotlight的情况，如果是点光源需要cube map），需要采样这张纹理图片上对应位置的颜色，每个采样步的颜色不一定相同。&lt;/p&gt;
 &lt;p&gt;shader最关键的代码及注释如下。为了让代码更清晰，这里省略了雾特效、噪声扰动等原作者添加的很多额外效果，并且只针对spotlight处理。&lt;/p&gt;
-&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;float GetLightAttenuation(float3 wpos)&amp;#10;&amp;#123;&amp;#10;&amp;#9;float atten = 0;&amp;#10;&amp;#10;&amp;#9;// wpos is current world position of the marching ray&amp;#10;&amp;#9;float3 tolight = _LightPos.xyz - wpos;&amp;#10;&amp;#9;half3 lightDir = normalize(tolight);&amp;#10;&amp;#10;&amp;#9;float4 uvCookie = mul(_MyLightMatrix0, float4(wpos, 1));&amp;#10;&amp;#9;&amp;#10;&amp;#9;// negative bias because http://aras-p.info/blog/2010/01/07/screenspace-vs-mip-mapping/&amp;#10;&amp;#9;// get light cookie attenuation&amp;#10;&amp;#9;atten = tex2Dbias(_LightTexture0, float4(uvCookie.xy / uvCookie.w, 0, -8)).w;&amp;#10;&amp;#9;atten *= uvCookie.w &amp;#60; 0;&amp;#10;&amp;#9;float att = dot(tolight, tolight) * _LightPos.w;&amp;#10;&amp;#9;atten *= tex2D(_LightTextureB0, att.rr).UNITY_ATTEN_CHANNEL;&amp;#10;&amp;#10;&amp;#9;// if the light casts shadow, sample the shadow texture&amp;#10;#if defined(SHADOWS_DEPTH)&amp;#10;&amp;#9;float4 shadowCoord = mul(_MyWorld2Shadow, float4(wpos, 1));&amp;#10;&amp;#9;atten *= saturate(UnitySampleShadowmap(shadowCoord));&amp;#10;#endif&amp;#10;&amp;#10;&amp;#9;return atten;&amp;#10;&amp;#125;&amp;#10;float4 GetColor(float3 wpos)&amp;#10;&amp;#123;&amp;#10;&amp;#9;// convert current world position to light coordinates &amp;#10;&amp;#9;// (imagine viewing from the light origin)&amp;#10;&amp;#9;float4 posLight = mul(_MyLightMatrix0, float4(wpos, 1));&amp;#10;&amp;#9;&amp;#10;&amp;#9;// posLight.w is the depth from current position to light position&amp;#10;&amp;#9;// sample color from light projection texture&amp;#10;&amp;#9;return tex2D(_LightProjectionTexture, posLight.xy / posLight.w + float2(0.5, 0.5));&amp;#10;&amp;#125;&amp;#10;&amp;#10;[loop]&amp;#10;for (int i = 0; i &amp;#60; stepCount; ++i)&amp;#10;&amp;#123;&amp;#10;&amp;#9;// current position is the ray marching position&amp;#10;&amp;#9;float atten = GetLightAttenuation(currentPosition);&amp;#10;&amp;#9;&amp;#10;&amp;#9;// density results from fog and noise, omitted here for simplicity&amp;#10;&amp;#9;float density = GetDensity(currentPosition);&amp;#10;&amp;#10;&amp;#9;// _VolumetricLight.x is scattering coefficient&amp;#10;&amp;#9;// _VolumetricLight.y is extinction coefficient&amp;#10;&amp;#9;float scattering = _VolumetricLight.x * stepSize * density;&amp;#10;&amp;#9;extinction += _VolumetricLight.y * stepSize * density;// +scattering;&amp;#10;&amp;#10;&amp;#9;float4 currentColor = GetColor(currentPosition);&amp;#10;&amp;#10;&amp;#9;float lightInten = atten * scattering * exp(-extinction) * currentColor.w;&amp;#10;&amp;#10;&amp;#9;// accumulate the color&amp;#10;&amp;#9;vlight += currentColor * lightInten;&amp;#10;&amp;#10;&amp;#9;currentPosition += step;&amp;#9;&amp;#9;&amp;#9;&amp;#9;&amp;#10;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;17&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;18&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;19&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;20&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;21&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;22&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;23&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;24&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;25&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;26&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;27&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;28&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;29&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;30&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;31&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;32&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;33&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;34&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;35&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;36&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;37&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;38&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;39&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;40&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;41&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;42&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;43&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;44&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;45&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;46&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;47&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;48&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;49&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;50&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;51&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;52&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;53&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;54&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;55&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;56&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;57&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;58&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;59&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;float GetLightAttenuation(float3 wpos)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	float atten = 0;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	// wpos is current world position of the marching ray&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	float3 tolight = _LightPos.xyz - wpos;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	half3 lightDir = normalize(tolight);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	float4 uvCookie = mul(_MyLightMatrix0, float4(wpos, 1));&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	// negative bias because http://aras-p.info/blog/2010/01/07/screenspace-vs-mip-mapping/&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	// get light cookie attenuation&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	atten = tex2Dbias(_LightTexture0, float4(uvCookie.xy / uvCookie.w, 0, -8)).w;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	atten *= uvCookie.w &amp;lt; 0;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	float att = dot(tolight, tolight) * _LightPos.w;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	atten *= tex2D(_LightTextureB0, att.rr).UNITY_ATTEN_CHANNEL;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	// if the light casts shadow, sample the shadow texture&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;#if defined(SHADOWS_DEPTH)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	float4 shadowCoord = mul(_MyWorld2Shadow, float4(wpos, 1));&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	atten *= saturate(UnitySampleShadowmap(shadowCoord));&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;#endif&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	return atten;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;float4 GetColor(float3 wpos)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	// convert current world position to light coordinates &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	// (imagine viewing from the light origin)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	float4 posLight = mul(_MyLightMatrix0, float4(wpos, 1));&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	// posLight.w is the depth from current position to light position&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	// sample color from light projection texture&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	return tex2D(_LightProjectionTexture, posLight.xy / posLight.w + float2(0.5, 0.5));&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;[loop]&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;for (int i = 0; i &amp;lt; stepCount; ++i)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	// current position is the ray marching position&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	float atten = GetLightAttenuation(currentPosition);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	// density results from fog and noise, omitted here for simplicity&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	float density = GetDensity(currentPosition);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	// _VolumetricLight.x is scattering coefficient&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	// _VolumetricLight.y is extinction coefficient&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	float scattering = _VolumetricLight.x * stepSize * density;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	extinction += _VolumetricLight.y * stepSize * density;// +scattering;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	float4 currentColor = GetColor(currentPosition);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	float lightInten = atten * scattering * exp(-extinction) * currentColor.w;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	// accumulate the color&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	vlight += currentColor * lightInten;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	currentPosition += step;				&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
 &lt;h2 id=&quot;u4F7F_u7528Unity_u7684Command_Buffer&quot;&gt;&lt;a href=&quot;#u4F7F_u7528Unity_u7684Command_Buffer&quot; class=&quot;headerlink&quot; title=&quot;使用Unity的Command Buffer&quot;&gt;&lt;/a&gt;使用Unity的Command Buffer&lt;/h2&gt;&lt;p&gt;Unity渲染主要有Forward和Deferred两种Pipeline，遵循一定的渲染顺序，如下图所示：&lt;br&gt;&lt;img src=&quot;http://wjwtest.oss-cn-qingdao.aliyuncs.com/cg_exercise/02/cb.png&quot;&gt;&lt;/p&gt;
 &lt;p&gt;在完成每个渲染步骤的前后，也就是图中绿点的位置，都可以插入一些自定义的渲染命令，也就是用command表示，来扩展渲染的功能。Command其实和OpenGL里面的glDraw, glClear之类的语句一样，设定参数执行一些绘图操作，一系列Command储存在摄像机的Command Buffer里面，到达规定的渲染步骤时候会执行。&lt;/p&gt;
 &lt;p&gt;在我们这里，由于算法需要获取Shadowmap，渲染体积光的Command应该在光源投射阴影之后进行，也就是LightEvent.AfterShadowMap。在摄像机方面，如果是Forward Path，执行时机是CameraEvent.AfterDepthTexture，如果是Deferred Path，是在渲染G-buffer之后计算光照之前的CameraEvent.BeforeLighting。我们加入的command只渲染体积光，所以在渲染之前要设定render target为新建的一张render texture，在体积光和场景几何体分别渲染到两个render texture以后，再用blit混合。&lt;/p&gt;
@@ -89,7 +137,7 @@
 &lt;p&gt;&lt;img src=&quot;http://wjwtest.oss-cn-qingdao.aliyuncs.com/cg_exercise/02/v2.png&quot;&gt;&lt;/p&gt;
 &lt;p&gt;实现了一个类似五毛特效的动图：&lt;/p&gt;
 &lt;p&gt;&lt;img src=&quot;http://wjwtest.oss-cn-qingdao.aliyuncs.com/cg_exercise/02/1.gif&quot;&gt;&lt;/p&gt;
-&lt;p&gt;我的&lt;a href=&quot;https://github.com/wjw12/VolumetricLights&quot;&gt;Github项目地址&lt;/a&gt;&lt;br&gt;改写了&lt;a href=&quot;https://github.com/SlightlyMad/VolumetricLights&quot;&gt;原始项目&lt;/a&gt;，增加了彩色体积光的支持。&lt;/p&gt;
+&lt;p&gt;我的&lt;a href=&quot;https://github.com/wjw12/VolumetricLights&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Github项目地址&lt;/a&gt;&lt;br&gt;改写了&lt;a href=&quot;https://github.com/SlightlyMad/VolumetricLights&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;原始项目&lt;/a&gt;，增加了彩色体积光的支持。&lt;/p&gt;
     
     </summary>
     
@@ -103,13 +151,13 @@
     <link href="http://nekolab.cn/2018/02/10/CGexercise01/"/>
     <id>http://nekolab.cn/2018/02/10/CGexercise01/</id>
     <published>2018-02-10T01:16:16.000Z</published>
-    <updated>2018-02-10T07:07:13.489Z</updated>
+    <updated>2018-02-10T07:07:14.000Z</updated>
     
     <content type="html">&lt;p&gt;决定开始做这样一件事情，用Unity每周完成一个CG小练习。着重于图形技术原理和编程，而非传统美术意义上的CG。一方面掌握引擎的各种功能，实验一些技术和算法，另一方面培养美术能力。在制作过程中往往会有新的灵感，从而将这一系列的选题推进下去。&lt;/p&gt;
 &lt;p&gt;今天展示一个小场景，是用SketchUp建模+贴图，然后导入到Unity实现光照和交互。&lt;/p&gt;
 &lt;p&gt;&lt;img src=&quot;http://wjwtest.oss-cn-qingdao.aliyuncs.com/cg_exercise/01/1.gif&quot;&gt;&lt;/p&gt;
 &lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
-&lt;p&gt;之前一直被SketchUp模型导出的问题困扰，导出的模型在3D软件里要不很多面显示不出，要不贴图错误，甚至让我怀疑SketchUp到底能不能建出游戏中能用的模型。直到看了&lt;a href=&quot;https://www.youtube.com/watch?v=U3bN14B7nmE&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;这个系列视频&lt;/a&gt;，跟着流程进行了一遍，再加上自己的摸索，才发现要建模时要注意的很多问题：&lt;/p&gt;
+&lt;p&gt;之前一直被SketchUp模型导出的问题困扰，导出的模型在3D软件里要不很多面显示不出，要不贴图错误，甚至让我怀疑SketchUp到底能不能建出游戏中能用的模型。直到看了&lt;a href=&quot;https://www.youtube.com/watch?v=U3bN14B7nmE&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;这个系列视频&lt;/a&gt;，跟着流程进行了一遍，再加上自己的摸索，才发现要建模时要注意的很多问题：&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;每个面都要加材质！！！&lt;/li&gt;
 &lt;li&gt;不要有孤立的面，要push出几何体&lt;/li&gt;
@@ -119,12 +167,12 @@
 &lt;/ul&gt;
 &lt;p&gt;然后在unity里面，导入设置是这样的：&lt;br&gt;&lt;img src=&quot;http://wjwtest.oss-cn-qingdao.aliyuncs.com/cg_exercise/01/unityimport.png&quot;&gt;&lt;/p&gt;
 &lt;p&gt;因为我在SU里面单位选择的是米，导入dae需要用很小的scale，这里用了0.025，否则会得到巨大无比的模型没办法计算光照贴图，并且一定要生成Lightmap UV。如果是墙壁、地板等不可穿透的物件可以开启generate collider，但也可以后面手动加。&lt;/p&gt;
-&lt;p&gt;在unity里面摆好模型和灯光，灯光在Player Setting里面检查色彩空间是不是Linear的，对于真实感渲染，线性色彩空间的效果比Gamma space更好。加一个&lt;a href=&quot;https://assetstore.unity.com/packages/essentials/beta-projects/unity-hdri-pack-72511&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;HDRI Pack&lt;/a&gt;里面的Skybox，用于给环境光照增添一点层次感。每个房间放置Reflection Probe，调整好位置点Bake。&lt;/p&gt;
+&lt;p&gt;在unity里面摆好模型和灯光，灯光在Player Setting里面检查色彩空间是不是Linear的，对于真实感渲染，线性色彩空间的效果比Gamma space更好。加一个&lt;a href=&quot;https://assetstore.unity.com/packages/essentials/beta-projects/unity-hdri-pack-72511&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;HDRI Pack&lt;/a&gt;里面的Skybox，用于给环境光照增添一点层次感。每个房间放置Reflection Probe，调整好位置点Bake。&lt;/p&gt;
 &lt;p&gt;最关键的是烘焙光照贴图，这里有很多坑，这次做出来的结果也不算很好。地面和墙上有不自然的斑点和方块，大概是因为整间屋子的所有墙壁用的是一整块模型，这样分辨率不高，最好拆成一块一块的小模型。texels per unit我用的10（默认40太慢了，一般试验光照用2~4，成品4~10的效果已经很不错了）&lt;/p&gt;
 &lt;p&gt;最后，从Standard Asset - Character里面加入一个FPS Controller，就可以用WASD和鼠标控制角色漫游场景了。导入Post Processing Stack，在角色身上绑定的相机加一个Post Processing Behaviour，用到的几个后处理效果：Anti-aliasing，Ambient Occlusion，Screen-space reflection，Color grading。后处理前后对比（右边是加了后处理的）：&lt;br&gt;&lt;img src=&quot;http://wjwtest.oss-cn-qingdao.aliyuncs.com/cg_exercise/01/compare.png&quot;&gt;&lt;/p&gt;
 &lt;p&gt;除了调色和抗锯齿效果很明显之外，Screen-space reflection可以弥补Reflection Probe的缺陷，右边灯座金属原本是没有反光的，添加效果之后才有。&lt;/p&gt;
-&lt;p&gt;还可以注意到，玻璃窗外有一束照进来的光线，是使用了这个&lt;a href=&quot;https://github.com/SlightlyMad/VolumetricLights&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;体积光插件&lt;/a&gt;。下期将会讲解体积光的实现原理，同时会扩展这个体积光的功能。&lt;/p&gt;
-&lt;p&gt;关于Lightmap baking的参考资料：&lt;br&gt;&lt;a href=&quot;https://forum.unity.com/threads/lightmap-baking-tips.460126/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;https://forum.unity.com/threads/lightmap-baking-tips.460126/&lt;/a&gt;&lt;br&gt;&lt;a href=&quot;https://unity3d.com/cn/learn/tutorials/topics/graphics/fine-tuning-lightmap-parameters&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;https://unity3d.com/cn/learn/tutorials/topics/graphics/fine-tuning-lightmap-parameters&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;还可以注意到，玻璃窗外有一束照进来的光线，是使用了这个&lt;a href=&quot;https://github.com/SlightlyMad/VolumetricLights&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;体积光插件&lt;/a&gt;。下期将会讲解体积光的实现原理，同时会扩展这个体积光的功能。&lt;/p&gt;
+&lt;p&gt;关于Lightmap baking的参考资料：&lt;br&gt;&lt;a href=&quot;https://forum.unity.com/threads/lightmap-baking-tips.460126/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;https://forum.unity.com/threads/lightmap-baking-tips.460126/&lt;/a&gt;&lt;br&gt;&lt;a href=&quot;https://unity3d.com/cn/learn/tutorials/topics/graphics/fine-tuning-lightmap-parameters&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;https://unity3d.com/cn/learn/tutorials/topics/graphics/fine-tuning-lightmap-parameters&lt;/a&gt;&lt;/p&gt;
 </content>
     
     <summary type="html">
@@ -136,9 +184,9 @@
     </summary>
     
     
-      <category term="Sketchup" scheme="http://nekolab.cn/tags/Sketchup/"/>
-    
       <category term="Unity" scheme="http://nekolab.cn/tags/Unity/"/>
+    
+      <category term="Sketchup" scheme="http://nekolab.cn/tags/Sketchup/"/>
     
   </entry>
   
@@ -147,7 +195,7 @@
     <link href="http://nekolab.cn/2018/01/28/EastLakeSnow/"/>
     <id>http://nekolab.cn/2018/01/28/EastLakeSnow/</id>
     <published>2018-01-27T17:19:28.000Z</published>
-    <updated>2018-01-28T10:46:02.374Z</updated>
+    <updated>2018-01-28T10:46:04.000Z</updated>
     
     <content type="html">&lt;p&gt;下雪了！今年冬天格外的冷，雪天去东湖拍照片，一天徒步近十公里，沿着绿道往人迹稀少的湖中心走去，景色越是干净，几近寂寥。天地苍白一片，万物静默如谜。&lt;/p&gt;
 &lt;p&gt;&lt;img src=&quot;http://wjwtest.oss-cn-qingdao.aliyuncs.com/EastLakeSnow/images/2018-01-27_10.57.46_1.jpg&quot;&gt;&lt;/p&gt;
@@ -174,7 +222,7 @@
     <link href="http://nekolab.cn/2017/10/15/wp-edit-css-tutorial/"/>
     <id>http://nekolab.cn/2017/10/15/wp-edit-css-tutorial/</id>
     <published>2017-10-15T11:54:02.000Z</published>
-    <updated>2017-10-15T13:17:57.705Z</updated>
+    <updated>2017-10-15T13:17:58.000Z</updated>
     
     <content type="html">&lt;p&gt;尽管网上公开的Wordpress主题很丰富，但模板总有些不尽如人意的地方，特别是字体大小、页边距、段间距这种参数。修改起来其实很简单，没有什么技术难度，也不需要理解CSS和HTML代码。只需要定位到CSS文件中设置相应参数的那一行就可以了。比如我们要修改主页上大标题的字体大小，下面是简单步骤。&lt;/p&gt;
 &lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
@@ -197,9 +245,9 @@
     </summary>
     
     
-      <category term="Wordpress" scheme="http://nekolab.cn/tags/Wordpress/"/>
-    
       <category term="教程" scheme="http://nekolab.cn/tags/%E6%95%99%E7%A8%8B/"/>
+    
+      <category term="Wordpress" scheme="http://nekolab.cn/tags/Wordpress/"/>
     
   </entry>
   
@@ -208,7 +256,7 @@
     <link href="http://nekolab.cn/2017/09/04/HowthSea/"/>
     <id>http://nekolab.cn/2017/09/04/HowthSea/</id>
     <published>2017-09-03T18:09:03.000Z</published>
-    <updated>2017-09-04T02:03:32.311Z</updated>
+    <updated>2017-09-04T02:03:34.000Z</updated>
     
     <content type="html">&lt;p&gt;都柏林东北边的小岛Howth三面环海，是捕鱼作业的集中地，这里没有海水腥味，只有鱼肉和葡萄酒飘香。大西洋的风万年不变吹打着海水，冲刷出地势陡峭的山崖。徒步登上山顶，有如世界尽头。不多说了，直接看照片吧。&lt;/p&gt;
 &lt;span itemprop=&quot;image&quot; itemscope=&quot;&quot; itemtype=&quot;http://schema.org/ImageObject&quot;&gt;&lt;img itemprop=&quot;url image&quot; src=&quot;http://wjwtest.oss-cn-qingdao.aliyuncs.com/HowthSea/DSC06300.jpg&quot; class=&quot;full-image&quot; alt=&quot;1600&quot;&gt;&lt;meta itemprop=&quot;width&quot; content=&quot;auto&quot;&gt;&lt;meta itemprop=&quot;height&quot; content=&quot;auto&quot;&gt;&lt;/span&gt;
@@ -235,9 +283,9 @@
     <summary type="html">
     
       &lt;p&gt;都柏林东北边的小岛Howth三面环海，是捕鱼作业的集中地，这里没有海水腥味，只有鱼肉和葡萄酒飘香。大西洋的风万年不变吹打着海水，冲刷出地势陡峭的山崖。徒步登上山顶，有如世界尽头。不多说了，直接看照片吧。&lt;/p&gt;
-&lt;span itemprop=&quot;image&quot; itemscope itemtype=&quot;http://schema.org/ImageObject&quot;&gt;&lt;img itemprop=&quot;url image&quot; src=&quot;http://wjwtest.oss-cn-qingdao.aliyuncs.com/HowthSea/DSC06300.jpg&quot; class=&quot;full-image&quot; alt=&quot;1600&quot; /&gt;&lt;meta itemprop=&quot;width&quot; content=&quot;auto&quot;&gt;&lt;meta itemprop=&quot;height&quot; content=&quot;auto&quot;&gt;&lt;/span&gt;
-&lt;span itemprop=&quot;image&quot; itemscope itemtype=&quot;http://schema.org/ImageObject&quot;&gt;&lt;img itemprop=&quot;url image&quot; src=&quot;http://wjwtest.oss-cn-qingdao.aliyuncs.com/HowthSea/DSC06314.jpg&quot; class=&quot;full-image&quot; alt=&quot;1600&quot; /&gt;&lt;meta itemprop=&quot;width&quot; content=&quot;auto&quot;&gt;&lt;meta itemprop=&quot;height&quot; content=&quot;auto&quot;&gt;&lt;/span&gt;
-&lt;span itemprop=&quot;image&quot; itemscope itemtype=&quot;http://schema.org/ImageObject&quot;&gt;&lt;img itemprop=&quot;url image&quot; src=&quot;http://wjwtest.oss-cn-qingdao.aliyuncs.com/HowthSea/DSC06327.jpg&quot; class=&quot;full-image&quot; alt=&quot;1600&quot; /&gt;&lt;meta itemprop=&quot;width&quot; content=&quot;auto&quot;&gt;&lt;meta itemprop=&quot;height&quot; content=&quot;auto&quot;&gt;&lt;/span&gt;
+&lt;span itemprop=&quot;image&quot; itemscope=&quot;&quot; itemtype=&quot;http://schema.org/ImageObject&quot;&gt;&lt;img itemprop=&quot;url image&quot; src=&quot;http://wjwtest.oss-cn-qingdao.aliyuncs.com/HowthSea/DSC06300.jpg&quot; class=&quot;full-image&quot; alt=&quot;1600&quot;&gt;&lt;meta itemprop=&quot;width&quot; content=&quot;auto&quot;&gt;&lt;meta itemprop=&quot;height&quot; content=&quot;auto&quot;&gt;&lt;/span&gt;
+&lt;span itemprop=&quot;image&quot; itemscope=&quot;&quot; itemtype=&quot;http://schema.org/ImageObject&quot;&gt;&lt;img itemprop=&quot;url image&quot; src=&quot;http://wjwtest.oss-cn-qingdao.aliyuncs.com/HowthSea/DSC06314.jpg&quot; class=&quot;full-image&quot; alt=&quot;1600&quot;&gt;&lt;meta itemprop=&quot;width&quot; content=&quot;auto&quot;&gt;&lt;meta itemprop=&quot;height&quot; content=&quot;auto&quot;&gt;&lt;/span&gt;
+&lt;span itemprop=&quot;image&quot; itemscope=&quot;&quot; itemtype=&quot;http://schema.org/ImageObject&quot;&gt;&lt;img itemprop=&quot;url image&quot; src=&quot;http://wjwtest.oss-cn-qingdao.aliyuncs.com/HowthSea/DSC06327.jpg&quot; class=&quot;full-image&quot; alt=&quot;1600&quot;&gt;&lt;meta itemprop=&quot;width&quot; content=&quot;auto&quot;&gt;&lt;meta itemprop=&quot;height&quot; content=&quot;auto&quot;&gt;&lt;/span&gt;
 &lt;p&gt;背景音乐：島唄(夏川りみ)&lt;/p&gt;
 &lt;audio controls&gt;&lt;br&gt;  &lt;source src=&quot;http://wjwtest.oss-cn-qingdao.aliyuncs.com/HowthSea/shimau.mp3&quot; type=&quot;audio/mpeg&quot;&gt;&lt;br&gt;島唄&lt;br&gt;&lt;/audio&gt;
 
@@ -246,9 +294,9 @@
     </summary>
     
     
-      <category term="海" scheme="http://nekolab.cn/tags/%E6%B5%B7/"/>
-    
       <category term="爱尔兰" scheme="http://nekolab.cn/tags/%E7%88%B1%E5%B0%94%E5%85%B0/"/>
+    
+      <category term="海" scheme="http://nekolab.cn/tags/%E6%B5%B7/"/>
     
   </entry>
   
@@ -257,7 +305,7 @@
     <link href="http://nekolab.cn/2017/08/06/IrelandStudentInternVisa/"/>
     <id>http://nekolab.cn/2017/08/06/IrelandStudentInternVisa/</id>
     <published>2017-08-06T14:38:33.000Z</published>
-    <updated>2017-08-06T22:05:29.232Z</updated>
+    <updated>2017-08-06T22:05:30.000Z</updated>
     
     <content type="html">&lt;span itemprop=&quot;image&quot; itemscope=&quot;&quot; itemtype=&quot;http://schema.org/ImageObject&quot;&gt;&lt;img itemprop=&quot;url image&quot; src=&quot;http://wjwtest.oss-cn-qingdao.aliyuncs.com/IMAG0330.jpg&quot; class=&quot;full-image&quot; alt=&quot;1600&quot; title=&quot;图为圣三一大学（Trinity College Dublin）正门口，有四百多年历史的大学，校舍保有着中世纪风格。&quot;&gt;&lt;meta itemprop=&quot;width&quot; content=&quot;auto&quot;&gt;&lt;meta itemprop=&quot;height&quot; content=&quot;auto&quot;&gt;&lt;/span&gt;
 &lt;p&gt;到爱尔兰有三个多星期了，一直想写一下关于在这边暑期实习的种种手续流程，因为当初办签证以及来了之后在很多琐事上费了不少精力，而且没有任何经验可以参考。同时也想把都柏林这座城市和我访问的Trinity介绍给大家，这个地方无论是在学术还是文化、生活上都是很棒的一个城市。&lt;/p&gt;
@@ -270,7 +318,7 @@
 &lt;span itemprop=&quot;image&quot; itemscope=&quot;&quot; itemtype=&quot;http://schema.org/ImageObject&quot;&gt;&lt;img itemprop=&quot;url image&quot; src=&quot;http://wjwtest.oss-cn-qingdao.aliyuncs.com/visatype.png&quot; class=&quot;full-image&quot; alt=&quot;1200&quot;&gt;&lt;meta itemprop=&quot;width&quot; content=&quot;auto&quot;&gt;&lt;meta itemprop=&quot;height&quot; content=&quot;auto&quot;&gt;&lt;/span&gt;
 &lt;p&gt;这是爱尔兰短期（三个月以内）签证类型，注意到有一个internship类型，但是填表填到最后发现要填工作许可（Atypical Working Scheme）之类的信息，也就是说这里所谓实习是在公司工作的实习，学生在学校/研究所进行短期访问的并不算。所以必须弄清楚办什么类型的签证，否则注册填表的步骤就过不去。&lt;/p&gt;
 &lt;p&gt;我的导师是有过带国外实习生经验的，给了我两封信件。一封是invitation letter，写明实习时长，地点和工作内容，资金来源，特别注明一句话“this internship is an integral part of your study programme at Peking University”，因为签证网站上针对学生的有一项要求是表明“how the internship relates to your course of study”所以这个很重要。另一封是visa support letter，主要内容基本相同，差别在于口吻是写给签证官的，并附上我的全名、护照号、住址这些信息。&lt;/p&gt;
-&lt;p&gt;其他材料就需要自己准备了。通常能想到的材料：学习证明，租房证明，资产证明都是需要的。其中租房应该是最花时间的，只有知道了住址以后才能完成网上表格，再预约很多天以后去签证中心递交纸质材料。为了弄清楚到底办哪个类型，发了很多邮件，打了不同部门的电话，这其中的麻烦就略去不表。最后是在这里&lt;a href=&quot;https://www.dfa.ie/zh/aierlandashiguan/zhong-guo/qian-zheng/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;https://www.dfa.ie/zh/aierlandashiguan/zhong-guo/qian-zheng/&lt;/a&gt; 打了咨询电话（只有每周二和周四下午才开通热线，当时打了一个小时才打进去！）工作人员十分肯定地说，填表的最开始签证类型选“other”，需要自己和父母的存款证明。这样以后才开始准备材料。&lt;/p&gt;
+&lt;p&gt;其他材料就需要自己准备了。通常能想到的材料：学习证明，租房证明，资产证明都是需要的。其中租房应该是最花时间的，只有知道了住址以后才能完成网上表格，再预约很多天以后去签证中心递交纸质材料。为了弄清楚到底办哪个类型，发了很多邮件，打了不同部门的电话，这其中的麻烦就略去不表。最后是在这里&lt;a href=&quot;https://www.dfa.ie/zh/aierlandashiguan/zhong-guo/qian-zheng/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;https://www.dfa.ie/zh/aierlandashiguan/zhong-guo/qian-zheng/&lt;/a&gt; 打了咨询电话（只有每周二和周四下午才开通热线，当时打了一个小时才打进去！）工作人员十分肯定地说，填表的最开始签证类型选“other”，需要自己和父母的存款证明。这样以后才开始准备材料。&lt;/p&gt;
 &lt;p&gt;other类型签证要求大意是说你应该把所有能帮助签证官作出决定的材料都准备上，综合了internship签证需要的材料，最后总结了长长一个列表：&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;Passport (original and two copies) (return required)&lt;/li&gt;
@@ -306,7 +354,7 @@
     
     <summary type="html">
     
-      &lt;span itemprop=&quot;image&quot; itemscope itemtype=&quot;http://schema.org/ImageObject&quot;&gt;&lt;img itemprop=&quot;url image&quot; src=&quot;http://wjwtest.oss-cn-qingdao.aliyuncs.com/IMAG0330.jpg&quot; class=&quot;full-image&quot; alt=&quot;1600&quot; title=&quot;图为圣三一大学（Trinity College Dublin）正门口，有四百多年历史的大学，校舍保有着中世纪风格。&quot; /&gt;&lt;meta itemprop=&quot;width&quot; content=&quot;auto&quot;&gt;&lt;meta itemprop=&quot;height&quot; content=&quot;auto&quot;&gt;&lt;/span&gt;
+      &lt;span itemprop=&quot;image&quot; itemscope=&quot;&quot; itemtype=&quot;http://schema.org/ImageObject&quot;&gt;&lt;img itemprop=&quot;url image&quot; src=&quot;http://wjwtest.oss-cn-qingdao.aliyuncs.com/IMAG0330.jpg&quot; class=&quot;full-image&quot; alt=&quot;1600&quot; title=&quot;图为圣三一大学（Trinity College Dublin）正门口，有四百多年历史的大学，校舍保有着中世纪风格。&quot;&gt;&lt;meta itemprop=&quot;width&quot; content=&quot;auto&quot;&gt;&lt;meta itemprop=&quot;height&quot; content=&quot;auto&quot;&gt;&lt;/span&gt;
 &lt;p&gt;到爱尔兰有三个多星期了，一直想写一下关于在这边暑期实习的种种手续流程，因为当初办签证以及来了之后在很多琐事上费了不少精力，而且没有任何经验可以参考。同时也想把都柏林这座城市和我访问的Trinity介绍给大家，这个地方无论是在学术还是文化、生活上都是很棒的一个城市。&lt;/p&gt;
     
     </summary>
@@ -323,7 +371,7 @@
     <link href="http://nekolab.cn/2017/07/23/BrayAirDisplay/"/>
     <id>http://nekolab.cn/2017/07/23/BrayAirDisplay/</id>
     <published>2017-07-23T13:41:53.000Z</published>
-    <updated>2017-07-23T21:12:18.722Z</updated>
+    <updated>2017-07-23T21:12:20.000Z</updated>
     
     <content type="html">&lt;p&gt;今天去了都柏林西南边的Bray小镇，这里每年都会举行欧洲最盛大的航空展，上十万人聚集在一两公里长的海滩上观看飞机表演。很久很久没有参加过这么多人（这么拥挤）的活动了，并且很久没在乌烟瘴气的露天食物摊吃东西了……记之。&lt;/p&gt;
 &lt;span itemprop=&quot;image&quot; itemscope=&quot;&quot; itemtype=&quot;http://schema.org/ImageObject&quot;&gt;&lt;img itemprop=&quot;url image&quot; src=&quot;http://wjwtest.oss-cn-qingdao.aliyuncs.com/Ireland/Bray/DSC06032.jpg&quot; class=&quot;full-image&quot; alt=&quot;1600&quot; title=&quot;海滩上看飞机&quot;&gt;&lt;meta itemprop=&quot;width&quot; content=&quot;auto&quot;&gt;&lt;meta itemprop=&quot;height&quot; content=&quot;auto&quot;&gt;&lt;/span&gt;
@@ -348,8 +396,8 @@
     <summary type="html">
     
       &lt;p&gt;今天去了都柏林西南边的Bray小镇，这里每年都会举行欧洲最盛大的航空展，上十万人聚集在一两公里长的海滩上观看飞机表演。很久很久没有参加过这么多人（这么拥挤）的活动了，并且很久没在乌烟瘴气的露天食物摊吃东西了……记之。&lt;/p&gt;
-&lt;span itemprop=&quot;image&quot; itemscope itemtype=&quot;http://schema.org/ImageObject&quot;&gt;&lt;img itemprop=&quot;url image&quot; src=&quot;http://wjwtest.oss-cn-qingdao.aliyuncs.com/Ireland/Bray/DSC06032.jpg&quot; class=&quot;full-image&quot; alt=&quot;1600&quot; title=&quot;海滩上看飞机&quot; /&gt;&lt;meta itemprop=&quot;width&quot; content=&quot;auto&quot;&gt;&lt;meta itemprop=&quot;height&quot; content=&quot;auto&quot;&gt;&lt;/span&gt;
-&lt;span itemprop=&quot;image&quot; itemscope itemtype=&quot;http://schema.org/ImageObject&quot;&gt;&lt;img itemprop=&quot;url image&quot; src=&quot;http://wjwtest.oss-cn-qingdao.aliyuncs.com/Ireland/Bray/DSC06050.jpg&quot; class=&quot;full-image&quot; alt=&quot;1600&quot; title=&quot;炭火烤香肠&quot; /&gt;&lt;meta itemprop=&quot;width&quot; content=&quot;auto&quot;&gt;&lt;meta itemprop=&quot;height&quot; content=&quot;auto&quot;&gt;&lt;/span&gt;
+&lt;span itemprop=&quot;image&quot; itemscope=&quot;&quot; itemtype=&quot;http://schema.org/ImageObject&quot;&gt;&lt;img itemprop=&quot;url image&quot; src=&quot;http://wjwtest.oss-cn-qingdao.aliyuncs.com/Ireland/Bray/DSC06032.jpg&quot; class=&quot;full-image&quot; alt=&quot;1600&quot; title=&quot;海滩上看飞机&quot;&gt;&lt;meta itemprop=&quot;width&quot; content=&quot;auto&quot;&gt;&lt;meta itemprop=&quot;height&quot; content=&quot;auto&quot;&gt;&lt;/span&gt;
+&lt;span itemprop=&quot;image&quot; itemscope=&quot;&quot; itemtype=&quot;http://schema.org/ImageObject&quot;&gt;&lt;img itemprop=&quot;url image&quot; src=&quot;http://wjwtest.oss-cn-qingdao.aliyuncs.com/Ireland/Bray/DSC06050.jpg&quot; class=&quot;full-image&quot; alt=&quot;1600&quot; title=&quot;炭火烤香肠&quot;&gt;&lt;meta itemprop=&quot;width&quot; content=&quot;auto&quot;&gt;&lt;meta itemprop=&quot;height&quot; content=&quot;auto&quot;&gt;&lt;/span&gt;
     
     </summary>
     
@@ -365,12 +413,12 @@
     <link href="http://nekolab.cn/2017/07/22/MyFirst120Film/"/>
     <id>http://nekolab.cn/2017/07/22/MyFirst120Film/</id>
     <published>2017-07-22T13:37:10.000Z</published>
-    <updated>2017-07-23T21:18:26.206Z</updated>
+    <updated>2017-07-23T21:18:28.000Z</updated>
     
     <content type="html">&lt;span itemprop=&quot;image&quot; itemscope=&quot;&quot; itemtype=&quot;http://schema.org/ImageObject&quot;&gt;&lt;img itemprop=&quot;url image&quot; src=&quot;http://wjwtest.oss-cn-qingdao.aliyuncs.com/120/000052870002.jpg&quot; class=&quot;full-image&quot; alt=&quot;1600&quot;&gt;&lt;meta itemprop=&quot;width&quot; content=&quot;auto&quot;&gt;&lt;meta itemprop=&quot;height&quot; content=&quot;auto&quot;&gt;&lt;/span&gt;
 &lt;span itemprop=&quot;image&quot; itemscope=&quot;&quot; itemtype=&quot;http://schema.org/ImageObject&quot;&gt;&lt;img itemprop=&quot;url image&quot; src=&quot;http://wjwtest.oss-cn-qingdao.aliyuncs.com/120/000006.jpg&quot; class=&quot;full-image&quot; alt=&quot;1600&quot;&gt;&lt;meta itemprop=&quot;width&quot; content=&quot;auto&quot;&gt;&lt;meta itemprop=&quot;height&quot; content=&quot;auto&quot;&gt;&lt;/span&gt;
 &lt;span itemprop=&quot;image&quot; itemscope=&quot;&quot; itemtype=&quot;http://schema.org/ImageObject&quot;&gt;&lt;img itemprop=&quot;url image&quot; src=&quot;http://wjwtest.oss-cn-qingdao.aliyuncs.com/120/000008.jpg&quot; class=&quot;full-image&quot; alt=&quot;1600&quot;&gt;&lt;meta itemprop=&quot;width&quot; content=&quot;auto&quot;&gt;&lt;meta itemprop=&quot;height&quot; content=&quot;auto&quot;&gt;&lt;/span&gt;
-&lt;p&gt;这些照片是用Holga 120 Lomo相机拍出来的，相机有简陋会漏光的塑料外壳，和骚气拉风的造型，具体可以看&lt;a href=&quot;http://mp.weixin.qq.com/s?__biz=MjM5MjY2MDAwNw==&amp;amp;mid=2650055322&amp;amp;idx=1&amp;amp;sn=d81dd7767cb9c51b8e3184091f26c282&amp;amp;scene=21#wechat_redirect&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;这篇文章&lt;/a&gt;。最重要的一点，装的是120胶片，6×6厘米大小，更大的画幅意味着更浅景深，更高宽容度和更细腻的表现力。&lt;/p&gt;
+&lt;p&gt;这些照片是用Holga 120 Lomo相机拍出来的，相机有简陋会漏光的塑料外壳，和骚气拉风的造型，具体可以看&lt;a href=&quot;http://mp.weixin.qq.com/s?__biz=MjM5MjY2MDAwNw==&amp;amp;mid=2650055322&amp;amp;idx=1&amp;amp;sn=d81dd7767cb9c51b8e3184091f26c282&amp;amp;scene=21#wechat_redirect&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;这篇文章&lt;/a&gt;。最重要的一点，装的是120胶片，6×6厘米大小，更大的画幅意味着更浅景深，更高宽容度和更细腻的表现力。&lt;/p&gt;
 &lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
 &lt;p&gt;简易的Lomo相机每拍一张就需要手动卷胶卷，装卸胶卷都还有点麻烦，这些手工操作给人更多实体感。照片是从手上这样被&lt;strong&gt;制作&lt;/strong&gt;出来的，是一个工艺品，是实际的物件而不是一些数字信号。&lt;/p&gt;
 &lt;span itemprop=&quot;image&quot; itemscope=&quot;&quot; itemtype=&quot;http://schema.org/ImageObject&quot;&gt;&lt;img itemprop=&quot;url image&quot; src=&quot;http://wjwtest.oss-cn-qingdao.aliyuncs.com/120/000052840004.jpg&quot; class=&quot;full-image&quot; alt=&quot;1600&quot; title=&quot;朝阳门SOHO&quot;&gt;&lt;meta itemprop=&quot;width&quot; content=&quot;auto&quot;&gt;&lt;meta itemprop=&quot;height&quot; content=&quot;auto&quot;&gt;&lt;/span&gt;
@@ -390,10 +438,10 @@
     
     <summary type="html">
     
-      &lt;span itemprop=&quot;image&quot; itemscope itemtype=&quot;http://schema.org/ImageObject&quot;&gt;&lt;img itemprop=&quot;url image&quot; src=&quot;http://wjwtest.oss-cn-qingdao.aliyuncs.com/120/000052870002.jpg&quot; class=&quot;full-image&quot; alt=&quot;1600&quot; /&gt;&lt;meta itemprop=&quot;width&quot; content=&quot;auto&quot;&gt;&lt;meta itemprop=&quot;height&quot; content=&quot;auto&quot;&gt;&lt;/span&gt;
-&lt;span itemprop=&quot;image&quot; itemscope itemtype=&quot;http://schema.org/ImageObject&quot;&gt;&lt;img itemprop=&quot;url image&quot; src=&quot;http://wjwtest.oss-cn-qingdao.aliyuncs.com/120/000006.jpg&quot; class=&quot;full-image&quot; alt=&quot;1600&quot; /&gt;&lt;meta itemprop=&quot;width&quot; content=&quot;auto&quot;&gt;&lt;meta itemprop=&quot;height&quot; content=&quot;auto&quot;&gt;&lt;/span&gt;
-&lt;span itemprop=&quot;image&quot; itemscope itemtype=&quot;http://schema.org/ImageObject&quot;&gt;&lt;img itemprop=&quot;url image&quot; src=&quot;http://wjwtest.oss-cn-qingdao.aliyuncs.com/120/000008.jpg&quot; class=&quot;full-image&quot; alt=&quot;1600&quot; /&gt;&lt;meta itemprop=&quot;width&quot; content=&quot;auto&quot;&gt;&lt;meta itemprop=&quot;height&quot; content=&quot;auto&quot;&gt;&lt;/span&gt;
-&lt;p&gt;这些照片是用Holga 120 Lomo相机拍出来的，相机有简陋会漏光的塑料外壳，和骚气拉风的造型，具体可以看&lt;a href=&quot;http://mp.weixin.qq.com/s?__biz=MjM5MjY2MDAwNw==&amp;amp;mid=2650055322&amp;amp;idx=1&amp;amp;sn=d81dd7767cb9c51b8e3184091f26c282&amp;amp;scene=21#wechat_redirect&quot;&gt;这篇文章&lt;/a&gt;。最重要的一点，装的是120胶片，6×6厘米大小，更大的画幅意味着更浅景深，更高宽容度和更细腻的表现力。&lt;/p&gt;
+      &lt;span itemprop=&quot;image&quot; itemscope=&quot;&quot; itemtype=&quot;http://schema.org/ImageObject&quot;&gt;&lt;img itemprop=&quot;url image&quot; src=&quot;http://wjwtest.oss-cn-qingdao.aliyuncs.com/120/000052870002.jpg&quot; class=&quot;full-image&quot; alt=&quot;1600&quot;&gt;&lt;meta itemprop=&quot;width&quot; content=&quot;auto&quot;&gt;&lt;meta itemprop=&quot;height&quot; content=&quot;auto&quot;&gt;&lt;/span&gt;
+&lt;span itemprop=&quot;image&quot; itemscope=&quot;&quot; itemtype=&quot;http://schema.org/ImageObject&quot;&gt;&lt;img itemprop=&quot;url image&quot; src=&quot;http://wjwtest.oss-cn-qingdao.aliyuncs.com/120/000006.jpg&quot; class=&quot;full-image&quot; alt=&quot;1600&quot;&gt;&lt;meta itemprop=&quot;width&quot; content=&quot;auto&quot;&gt;&lt;meta itemprop=&quot;height&quot; content=&quot;auto&quot;&gt;&lt;/span&gt;
+&lt;span itemprop=&quot;image&quot; itemscope=&quot;&quot; itemtype=&quot;http://schema.org/ImageObject&quot;&gt;&lt;img itemprop=&quot;url image&quot; src=&quot;http://wjwtest.oss-cn-qingdao.aliyuncs.com/120/000008.jpg&quot; class=&quot;full-image&quot; alt=&quot;1600&quot;&gt;&lt;meta itemprop=&quot;width&quot; content=&quot;auto&quot;&gt;&lt;meta itemprop=&quot;height&quot; content=&quot;auto&quot;&gt;&lt;/span&gt;
+&lt;p&gt;这些照片是用Holga 120 Lomo相机拍出来的，相机有简陋会漏光的塑料外壳，和骚气拉风的造型，具体可以看&lt;a href=&quot;http://mp.weixin.qq.com/s?__biz=MjM5MjY2MDAwNw==&amp;amp;mid=2650055322&amp;amp;idx=1&amp;amp;sn=d81dd7767cb9c51b8e3184091f26c282&amp;amp;scene=21#wechat_redirect&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;这篇文章&lt;/a&gt;。最重要的一点，装的是120胶片，6×6厘米大小，更大的画幅意味着更浅景深，更高宽容度和更细腻的表现力。&lt;/p&gt;
     
     </summary>
     
@@ -409,7 +457,7 @@
     <link href="http://nekolab.cn/2017/07/16/GalwayByTheSea/"/>
     <id>http://nekolab.cn/2017/07/16/GalwayByTheSea/</id>
     <published>2017-07-16T14:30:28.000Z</published>
-    <updated>2017-08-07T09:01:54.552Z</updated>
+    <updated>2017-08-07T09:01:56.000Z</updated>
     
     <content type="html">&lt;p&gt;爱尔兰西部的港口城市Galway是我来这个国家的第二站（之前只匆匆在都柏林放了行李，还等一件延误在北京机场的行李，未果，决定按计划先前往Galway）。一直想着看大海，看大西洋，愿望实现了。不仅是一次休闲之旅，更是一次逃避之旅：我都来到了岛屿的尽头，还有什么压力放不下呢？&lt;/p&gt;
 &lt;p&gt;由于相机在那个延误的行李里，手机画质有限，试着用新的方式记录这段旅程。随手拍了不少小视频，用FilmoraGo这个App剪辑了一下，当作旅途中记忆片段的整合。&lt;/p&gt;
@@ -433,7 +481,7 @@
 &lt;p&gt;由于相机在那个延误的行李里，手机画质有限，试着用新的方式记录这段旅程。随手拍了不少小视频，用FilmoraGo这个App剪辑了一下，当作旅途中记忆片段的整合。&lt;/p&gt;
 &lt;video width=&quot;960&quot; height=&quot;540&quot; preload=&quot;none&quot; controls&gt;&lt;br&gt;  &lt;source src=&quot;http://wjwtest.oss-cn-qingdao.aliyuncs.com/Ireland/Galway/project2_2017_07_16_1.mp4&quot; type=&quot;video/mp4&quot;&gt;&lt;br&gt;Galway Clips&lt;br&gt;&lt;/video&gt;
 
-&lt;span itemprop=&quot;image&quot; itemscope itemtype=&quot;http://schema.org/ImageObject&quot;&gt;&lt;img itemprop=&quot;url image&quot; src=&quot;http://wjwtest.oss-cn-qingdao.aliyuncs.com/Ireland/Galway/IMAG0340.jpg&quot; class=&quot;full-image&quot; alt=&quot;1600&quot; /&gt;&lt;meta itemprop=&quot;width&quot; content=&quot;auto&quot;&gt;&lt;meta itemprop=&quot;height&quot; content=&quot;auto&quot;&gt;&lt;/span&gt;
+&lt;span itemprop=&quot;image&quot; itemscope=&quot;&quot; itemtype=&quot;http://schema.org/ImageObject&quot;&gt;&lt;img itemprop=&quot;url image&quot; src=&quot;http://wjwtest.oss-cn-qingdao.aliyuncs.com/Ireland/Galway/IMAG0340.jpg&quot; class=&quot;full-image&quot; alt=&quot;1600&quot;&gt;&lt;meta itemprop=&quot;width&quot; content=&quot;auto&quot;&gt;&lt;meta itemprop=&quot;height&quot; content=&quot;auto&quot;&gt;&lt;/span&gt;
     
     </summary>
     
@@ -449,7 +497,7 @@
     <link href="http://nekolab.cn/2017/07/09/ValleyGameNotes/"/>
     <id>http://nekolab.cn/2017/07/09/ValleyGameNotes/</id>
     <published>2017-07-09T07:33:09.000Z</published>
-    <updated>2017-07-09T10:04:18.304Z</updated>
+    <updated>2017-07-09T10:04:20.000Z</updated>
     
     <content type="html">&lt;p&gt;Steam暑期特惠买了一款独立游戏Valley，在不想干活的几天时间里玩了几个小时。正好最近在思考着一个游戏有哪些构成要素，借着这款游戏说明一下想到的几点。&lt;/p&gt;
 &lt;p&gt;&lt;img src=&quot;http://wjwtest.oss-cn-qingdao.aliyuncs.com/Valley/1.jpg&quot;&gt;&lt;/p&gt;
@@ -490,7 +538,7 @@
 &lt;h3 id=&quot;u9053_u5177_u63D0_u793A&quot;&gt;&lt;a href=&quot;#u9053_u5177_u63D0_u793A&quot; class=&quot;headerlink&quot; title=&quot;道具提示&quot;&gt;&lt;/a&gt;道具提示&lt;/h3&gt;&lt;p&gt;拾取更新装备过后马上会提示使用方法，并且接下来马上会用到新装备的功能，让人快速熟悉新操作。&lt;/p&gt;
 &lt;h2 id=&quot;u5267_u60C5&quot;&gt;&lt;a href=&quot;#u5267_u60C5&quot; class=&quot;headerlink&quot; title=&quot;剧情&quot;&gt;&lt;/a&gt;剧情&lt;/h2&gt;&lt;p&gt;Valley的剧情中规中矩，以美苏冷战为时代背景，揭发了军方开发巨型武器毁坏自然环境的秘密行动，主角负责调查和阻止这场行动，一步步深入山谷中工厂设施核心。情节的推进是单线条的，电影一般的旁白起到了主要的推动作用，需要交互的地方并不多，是因为游戏重视电影一般的流畅感，听剧情的同时可以走路、看风景，不会影响到操作。与此同时，地图上可以发现大量的纸条和信件，可以停下阅读以秘密计划参与者第一人称视角记录的行动细节和心理活动，补充了剧情细节。尽管如此，剧情并没有很多亮点，这部游戏主要优势还是在画面和操作上。&lt;/p&gt;
 &lt;h2 id=&quot;u5199_u5728_u6700_u540E&quot;&gt;&lt;a href=&quot;#u5199_u5728_u6700_u540E&quot; class=&quot;headerlink&quot; title=&quot;写在最后&quot;&gt;&lt;/a&gt;写在最后&lt;/h2&gt;&lt;p&gt;不能让人玩到恐高的3D游戏一定不是好游戏（也许是因为我比较容易恐高），最后放上一些或惊悚或壮丽的游戏画面，Valley凭借精致的建模，真实的光效和富于创意的关卡设计，让人体验在风景中行走探险的感觉。&lt;/p&gt;
-&lt;p&gt;（下面的图片来源于&lt;a href=&quot;https://www.gamespot.com/reviews/valley-review/1900-6416506/）&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;https://www.gamespot.com/reviews/valley-review/1900-6416506/）&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;（下面的图片来源于&lt;a href=&quot;https://www.gamespot.com/reviews/valley-review/1900-6416506/）&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;https://www.gamespot.com/reviews/valley-review/1900-6416506/）&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;&lt;img src=&quot;http://wjwtest.oss-cn-qingdao.aliyuncs.com/Valley/13.jpg&quot;&gt;&lt;/p&gt;
 &lt;p&gt;&lt;img src=&quot;http://wjwtest.oss-cn-qingdao.aliyuncs.com/Valley/14.jpg&quot;&gt;&lt;/p&gt;
 &lt;p&gt;&lt;img src=&quot;http://wjwtest.oss-cn-qingdao.aliyuncs.com/Valley/15.jpg&quot;&gt;&lt;/p&gt;
@@ -514,7 +562,7 @@
     <link href="http://nekolab.cn/2017/07/05/JapanContrast/"/>
     <id>http://nekolab.cn/2017/07/05/JapanContrast/</id>
     <published>2017-07-05T13:33:00.000Z</published>
-    <updated>2017-07-05T13:57:42.383Z</updated>
+    <updated>2017-07-05T13:57:44.000Z</updated>
     
     <content type="html">&lt;p&gt;继续整理在日本的照片，一千多张之中的一小部分。&lt;/p&gt;
 &lt;p&gt;&lt;img src=&quot;http://wjwtest.oss-cn-qingdao.aliyuncs.com/nihon/%E4%B8%9C%E4%BA%AC%20%E7%A7%8B%E5%8F%B6%E5%8E%9F.jpg&quot; alt=&quot;东京 秋叶原&quot;&gt;&lt;br&gt;这里有物质与欲望的膨胀&lt;/p&gt;
@@ -556,7 +604,7 @@
     <link href="http://nekolab.cn/2017/05/17/TsukijiDawn/"/>
     <id>http://nekolab.cn/2017/05/17/TsukijiDawn/</id>
     <published>2017-05-16T16:13:00.000Z</published>
-    <updated>2017-05-17T02:58:53.257Z</updated>
+    <updated>2017-05-17T02:58:54.000Z</updated>
     
     <content type="html">&lt;p&gt;筑地市场是全世界最大的鱼市场，每天有5万人在这里进行交易，供应东京2200万人鱼虾生鲜的巨量需求。市场的繁忙早上4点之前已经开始，拍卖会从早上5点开始。金枪鱼拍卖是对外人开放的，这只是20多场生鱼拍卖会的其中一场。早早赶到筑地市场，有幸目睹市场普通一天的工作状态。&lt;/p&gt;
 &lt;span itemprop=&quot;image&quot; itemscope=&quot;&quot; itemtype=&quot;http://schema.org/ImageObject&quot;&gt;&lt;img itemprop=&quot;url image&quot; src=&quot;http://wjwtest.oss-cn-qingdao.aliyuncs.com/Tsukiji/DSC_7220.jpg&quot; class=&quot;full-image&quot; alt=&quot;1600&quot; title=&quot;3:12AM 货物已经堆在店铺门口&quot;&gt;&lt;meta itemprop=&quot;width&quot; content=&quot;auto&quot;&gt;&lt;meta itemprop=&quot;height&quot; content=&quot;auto&quot;&gt;&lt;/span&gt;
@@ -578,8 +626,8 @@
     <summary type="html">
     
       &lt;p&gt;筑地市场是全世界最大的鱼市场，每天有5万人在这里进行交易，供应东京2200万人鱼虾生鲜的巨量需求。市场的繁忙早上4点之前已经开始，拍卖会从早上5点开始。金枪鱼拍卖是对外人开放的，这只是20多场生鱼拍卖会的其中一场。早早赶到筑地市场，有幸目睹市场普通一天的工作状态。&lt;/p&gt;
-&lt;span itemprop=&quot;image&quot; itemscope itemtype=&quot;http://schema.org/ImageObject&quot;&gt;&lt;img itemprop=&quot;url image&quot; src=&quot;http://wjwtest.oss-cn-qingdao.aliyuncs.com/Tsukiji/DSC_7220.jpg&quot; class=&quot;full-image&quot; alt=&quot;1600&quot; title=&quot;3:12AM 货物已经堆在店铺门口&quot; /&gt;&lt;meta itemprop=&quot;width&quot; content=&quot;auto&quot;&gt;&lt;meta itemprop=&quot;height&quot; content=&quot;auto&quot;&gt;&lt;/span&gt;
-&lt;span itemprop=&quot;image&quot; itemscope itemtype=&quot;http://schema.org/ImageObject&quot;&gt;&lt;img itemprop=&quot;url image&quot; src=&quot;http://wjwtest.oss-cn-qingdao.aliyuncs.com/Tsukiji/DSC_7222.jpg&quot; class=&quot;full-image&quot; alt=&quot;1600&quot; title=&quot;3:13AM 准备中的店员&quot; /&gt;&lt;meta itemprop=&quot;width&quot; content=&quot;auto&quot;&gt;&lt;meta itemprop=&quot;height&quot; content=&quot;auto&quot;&gt;&lt;/span&gt;
+&lt;span itemprop=&quot;image&quot; itemscope=&quot;&quot; itemtype=&quot;http://schema.org/ImageObject&quot;&gt;&lt;img itemprop=&quot;url image&quot; src=&quot;http://wjwtest.oss-cn-qingdao.aliyuncs.com/Tsukiji/DSC_7220.jpg&quot; class=&quot;full-image&quot; alt=&quot;1600&quot; title=&quot;3:12AM 货物已经堆在店铺门口&quot;&gt;&lt;meta itemprop=&quot;width&quot; content=&quot;auto&quot;&gt;&lt;meta itemprop=&quot;height&quot; content=&quot;auto&quot;&gt;&lt;/span&gt;
+&lt;span itemprop=&quot;image&quot; itemscope=&quot;&quot; itemtype=&quot;http://schema.org/ImageObject&quot;&gt;&lt;img itemprop=&quot;url image&quot; src=&quot;http://wjwtest.oss-cn-qingdao.aliyuncs.com/Tsukiji/DSC_7222.jpg&quot; class=&quot;full-image&quot; alt=&quot;1600&quot; title=&quot;3:13AM 准备中的店员&quot;&gt;&lt;meta itemprop=&quot;width&quot; content=&quot;auto&quot;&gt;&lt;meta itemprop=&quot;height&quot; content=&quot;auto&quot;&gt;&lt;/span&gt;
     
     </summary>
     
@@ -597,7 +645,7 @@
     <link href="http://nekolab.cn/2017/03/21/Kanbun/"/>
     <id>http://nekolab.cn/2017/03/21/Kanbun/</id>
     <published>2017-03-21T13:43:53.000Z</published>
-    <updated>2017-03-21T13:58:03.230Z</updated>
+    <updated>2017-03-21T13:58:04.000Z</updated>
     
     <content type="html">&lt;p&gt;&lt;span style=&quot;font-size: 14px;&quot;&gt;看松尾芭蕉的俳句集《奥州小路》，常有古汉语文本的引用、化用，比如：&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;font-size: 14px;&quot;&gt;&lt;br&gt;&lt;/span&gt;&lt;/p&gt;&lt;blockquote&gt;&lt;p&gt;&lt;span style=&quot;font-size: 14px;&quot;&gt;一辨を加るものは、無用の指を立るがごとし。&lt;/span&gt;&lt;/p&gt;&lt;/blockquote&gt;&lt;p&gt;&lt;span style=&quot;font-size: 14px;&quot;&gt;（假如增添一语，就如同树立一根无用之指。“&lt;span style=&quot;font-size: 14px;&quot;&gt;无用之指&lt;/span&gt;”出于《庄子·骈拇》“枝于手者，树无用之指也”）&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;font-size: 14px;&quot;&gt;&lt;br&gt;&lt;/span&gt;&lt;/p&gt;&lt;blockquote&gt;&lt;p&gt;&lt;span style=&quot;font-size: 14px;&quot;&gt;人跡稀に雉兎蒭蕘の往かふ道、そこともわかず。&lt;/span&gt;&lt;/p&gt;&lt;/blockquote&gt;&lt;p&gt;&lt;span style=&quot;font-size: 14px;&quot;&gt;（在刍荛和雉兔行走的人迹罕至的道路上，不知道往哪里去。借用《孟子·梁惠王上》“文王之囿，方七十里，刍荛者往焉，雉兔者往焉”。）&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;font-size: 14px;&quot;&gt;&lt;br&gt;&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;font-size: 14px;&quot;&gt;这些生僻的典故与意象，在芭蕉的散文集中随处可见。他必定是熟知古汉语作品，才会在文章中化用得天衣无缝。这些古文中国人都不太熟悉，但下面这句肯定似曾相识：&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;font-size: 14px;&quot;&gt;&lt;br&gt;&lt;/span&gt;&lt;/p&gt;&lt;blockquote&gt;&lt;p&gt;&lt;span style=&quot;font-size: 14px;&quot;&gt;国破れて山河在り、城春にして草木深し。&lt;/span&gt;&lt;/p&gt;&lt;/blockquote&gt;&lt;p&gt;&lt;span style=&quot;font-size: 14px;&quot;&gt;&lt;br&gt;&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;font-size: 14px;&quot;&gt;这不就是杜甫的《春望》吗！&lt;strong&gt;国破山河在，城春草木深。&lt;/strong&gt;不懂日语的人去掉那几个假名也能读出来。&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;font-size: 14px;&quot;&gt;其实古汉语不仅是日本文学家的专长，普通的中学生在学校里也要学“汉文”作为必修科目，也就是中国的古汉语。具备基本汉文能力的日本人，会熟读李白杜甫的名篇诗作，熟知中国历朝代历史变迁，也会了解古代中国的文化、政治、地理概况。通过汉文学习，&lt;strong&gt;一个合格的日本中学生对古代中国的了解程度，恐怕不会输于一个经过九年义务教育和高中教育、而后遗忘干净的普通中国人。&lt;/strong&gt;&lt;/span&gt;&lt;/p&gt;
 
@@ -607,7 +655,7 @@
     
     <summary type="html">
     
-      &lt;p&gt;&lt;span style=&quot;font-size: 14px;&quot;&gt;看松尾芭蕉的俳句集《奥州小路》，常有古汉语文本的引用、化用，比如：&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;font-size: 14px;&quot;&gt;&lt;br  /&gt;&lt;/span&gt;&lt;/p&gt;&lt;blockquote&gt;&lt;p&gt;&lt;span style=&quot;font-size: 14px;&quot;&gt;一辨を加るものは、無用の指を立るがごとし。&lt;/span&gt;&lt;/p&gt;&lt;/blockquote&gt;&lt;p&gt;&lt;span style=&quot;font-size: 14px;&quot;&gt;（假如增添一语，就如同树立一根无用之指。“&lt;span style=&quot;font-size: 14px;&quot;&gt;无用之指&lt;/span&gt;”出于《庄子·骈拇》“枝于手者，树无用之指也”）&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;font-size: 14px;&quot;&gt;&lt;br  /&gt;&lt;/span&gt;&lt;/p&gt;&lt;blockquote&gt;&lt;p&gt;&lt;span style=&quot;font-size: 14px;&quot;&gt;人跡稀に雉兎蒭蕘の往かふ道、そこともわかず。&lt;/span&gt;&lt;/p&gt;&lt;/blockquote&gt;&lt;p&gt;&lt;span style=&quot;font-size: 14px;&quot;&gt;（在刍荛和雉兔行走的人迹罕至的道路上，不知道往哪里去。借用《孟子·梁惠王上》“文王之囿，方七十里，刍荛者往焉，雉兔者往焉”。）&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;font-size: 14px;&quot;&gt;&lt;br  /&gt;&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;font-size: 14px;&quot;&gt;这些生僻的典故与意象，在芭蕉的散文集中随处可见。他必定是熟知古汉语作品，才会在文章中化用得天衣无缝。这些古文中国人都不太熟悉，但下面这句肯定似曾相识：&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;font-size: 14px;&quot;&gt;&lt;br  /&gt;&lt;/span&gt;&lt;/p&gt;&lt;blockquote&gt;&lt;p&gt;&lt;span style=&quot;font-size: 14px;&quot;&gt;国破れて山河在り、城春にして草木深し。&lt;/span&gt;&lt;/p&gt;&lt;/blockquote&gt;&lt;p&gt;&lt;span style=&quot;font-size: 14px;&quot;&gt;&lt;br  /&gt;&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;font-size: 14px;&quot;&gt;这不就是杜甫的《春望》吗！&lt;strong&gt;国破山河在，城春草木深。&lt;/strong&gt;不懂日语的人去掉那几个假名也能读出来。&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;br  /&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;font-size: 14px;&quot;&gt;其实古汉语不仅是日本文学家的专长，普通的中学生在学校里也要学“汉文”作为必修科目，也就是中国的古汉语。具备基本汉文能力的日本人，会熟读李白杜甫的名篇诗作，熟知中国历朝代历史变迁，也会了解古代中国的文化、政治、地理概况。通过汉文学习，&lt;strong&gt;一个合格的日本中学生对古代中国的了解程度，恐怕不会输于一个经过九年义务教育和高中教育、而后遗忘干净的普通中国人。&lt;/strong&gt;&lt;/span&gt;&lt;/p&gt;
+      &lt;p&gt;&lt;span style=&quot;font-size: 14px;&quot;&gt;看松尾芭蕉的俳句集《奥州小路》，常有古汉语文本的引用、化用，比如：&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;font-size: 14px;&quot;&gt;&lt;br&gt;&lt;/span&gt;&lt;/p&gt;&lt;blockquote&gt;&lt;p&gt;&lt;span style=&quot;font-size: 14px;&quot;&gt;一辨を加るものは、無用の指を立るがごとし。&lt;/span&gt;&lt;/p&gt;&lt;/blockquote&gt;&lt;p&gt;&lt;span style=&quot;font-size: 14px;&quot;&gt;（假如增添一语，就如同树立一根无用之指。“&lt;span style=&quot;font-size: 14px;&quot;&gt;无用之指&lt;/span&gt;”出于《庄子·骈拇》“枝于手者，树无用之指也”）&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;font-size: 14px;&quot;&gt;&lt;br&gt;&lt;/span&gt;&lt;/p&gt;&lt;blockquote&gt;&lt;p&gt;&lt;span style=&quot;font-size: 14px;&quot;&gt;人跡稀に雉兎蒭蕘の往かふ道、そこともわかず。&lt;/span&gt;&lt;/p&gt;&lt;/blockquote&gt;&lt;p&gt;&lt;span style=&quot;font-size: 14px;&quot;&gt;（在刍荛和雉兔行走的人迹罕至的道路上，不知道往哪里去。借用《孟子·梁惠王上》“文王之囿，方七十里，刍荛者往焉，雉兔者往焉”。）&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;font-size: 14px;&quot;&gt;&lt;br&gt;&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;font-size: 14px;&quot;&gt;这些生僻的典故与意象，在芭蕉的散文集中随处可见。他必定是熟知古汉语作品，才会在文章中化用得天衣无缝。这些古文中国人都不太熟悉，但下面这句肯定似曾相识：&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;font-size: 14px;&quot;&gt;&lt;br&gt;&lt;/span&gt;&lt;/p&gt;&lt;blockquote&gt;&lt;p&gt;&lt;span style=&quot;font-size: 14px;&quot;&gt;国破れて山河在り、城春にして草木深し。&lt;/span&gt;&lt;/p&gt;&lt;/blockquote&gt;&lt;p&gt;&lt;span style=&quot;font-size: 14px;&quot;&gt;&lt;br&gt;&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;font-size: 14px;&quot;&gt;这不就是杜甫的《春望》吗！&lt;strong&gt;国破山河在，城春草木深。&lt;/strong&gt;不懂日语的人去掉那几个假名也能读出来。&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;font-size: 14px;&quot;&gt;其实古汉语不仅是日本文学家的专长，普通的中学生在学校里也要学“汉文”作为必修科目，也就是中国的古汉语。具备基本汉文能力的日本人，会熟读李白杜甫的名篇诗作，熟知中国历朝代历史变迁，也会了解古代中国的文化、政治、地理概况。通过汉文学习，&lt;strong&gt;一个合格的日本中学生对古代中国的了解程度，恐怕不会输于一个经过九年义务教育和高中教育、而后遗忘干净的普通中国人。&lt;/strong&gt;&lt;/span&gt;&lt;/p&gt;
     
     </summary>
     
@@ -623,7 +671,7 @@
     <link href="http://nekolab.cn/2017/02/22/Kyotonoyuki/"/>
     <id>http://nekolab.cn/2017/02/22/Kyotonoyuki/</id>
     <published>2017-02-22T12:16:16.000Z</published>
-    <updated>2017-02-22T12:28:02.949Z</updated>
+    <updated>2017-02-22T12:28:04.000Z</updated>
     
     <content type="html">&lt;p&gt;京都的雪景照片集。&lt;a href=&quot;http://nekolab.cn/special/KyotoYuki/index.html&quot;&gt;戳这里&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;&lt;img src=&quot;http://wjwtest.oss-cn-qingdao.aliyuncs.com/KyotoYuki/lg/DSC_7587.jpg&quot;&gt;&lt;/p&gt;
@@ -638,9 +686,9 @@
     </summary>
     
     
-      <category term="京都" scheme="http://nekolab.cn/tags/%E4%BA%AC%E9%83%BD/"/>
-    
       <category term="摄影" scheme="http://nekolab.cn/tags/%E6%91%84%E5%BD%B1/"/>
+    
+      <category term="京都" scheme="http://nekolab.cn/tags/%E4%BA%AC%E9%83%BD/"/>
     
   </entry>
   
@@ -649,7 +697,7 @@
     <link href="http://nekolab.cn/2017/02/12/Izakaya/"/>
     <id>http://nekolab.cn/2017/02/12/Izakaya/</id>
     <published>2017-02-12T12:14:39.000Z</published>
-    <updated>2017-02-22T12:21:46.522Z</updated>
+    <updated>2017-02-22T12:21:48.000Z</updated>
     
     <content type="html">&lt;p&gt;第一次去吃住处旁边的居酒屋。&lt;/p&gt;
 &lt;p&gt;&lt;img src=&quot;http://wjwtest.oss-cn-qingdao.aliyuncs.com/izakeya/01.jpg&quot;&gt;&lt;/p&gt;
@@ -709,7 +757,7 @@
     <link href="http://nekolab.cn/2017/02/01/Arrival/"/>
     <id>http://nekolab.cn/2017/02/01/Arrival/</id>
     <published>2017-02-01T12:32:50.000Z</published>
-    <updated>2017-02-01T12:47:23.608Z</updated>
+    <updated>2017-02-01T12:47:24.000Z</updated>
     
     <content type="html">&lt;p&gt;&lt;img src=&quot;http://wjwtest.oss-cn-qingdao.aliyuncs.com/Arrival/1p.png&quot;&gt;&lt;/p&gt;
 &lt;p&gt;电影《降临》Arrival改编于Ted Chiang的短篇小说《你一生的故事》Story of Your Life。看过了小说过后，期盼了很久的改编电影终于在国内上映，不负一部年度科幻大作的期待。影片保持了原作的核心理念，演绎了原文未能形象化的视觉效果，又移植入好莱坞式的桥段，是一次传统硬科幻与商业电影的完美结合。&lt;/p&gt;
@@ -754,9 +802,9 @@
     </summary>
     
     
-      <category term="Ted Chiang" scheme="http://nekolab.cn/tags/Ted-Chiang/"/>
-    
       <category term="科幻" scheme="http://nekolab.cn/tags/%E7%A7%91%E5%B9%BB/"/>
+    
+      <category term="Ted Chiang" scheme="http://nekolab.cn/tags/Ted-Chiang/"/>
     
   </entry>
   
@@ -765,7 +813,7 @@
     <link href="http://nekolab.cn/2017/01/11/%E4%B8%80%E5%88%87%E4%BA%8E%E4%B8%80%E7%82%B9/"/>
     <id>http://nekolab.cn/2017/01/11/一切于一点/</id>
     <published>2017-01-11T05:51:38.000Z</published>
-    <updated>2017-01-11T05:58:47.717Z</updated>
+    <updated>2017-01-11T05:58:48.000Z</updated>
     
     <content type="html">&lt;blockquote&gt;
 &lt;p&gt;原文 Italo Calvino&lt;br&gt;译自 Cosmicomics, William Weaver, 1968&lt;/p&gt;
@@ -799,11 +847,11 @@
     </summary>
     
     
+      <category term="译文" scheme="http://nekolab.cn/tags/%E8%AF%91%E6%96%87/"/>
+    
       <category term="卡尔维诺" scheme="http://nekolab.cn/tags/%E5%8D%A1%E5%B0%94%E7%BB%B4%E8%AF%BA/"/>
     
       <category term="文学" scheme="http://nekolab.cn/tags/%E6%96%87%E5%AD%A6/"/>
-    
-      <category term="译文" scheme="http://nekolab.cn/tags/%E8%AF%91%E6%96%87/"/>
     
   </entry>
   
@@ -812,7 +860,7 @@
     <link href="http://nekolab.cn/2017/01/11/%E7%A9%BA%E9%97%B4%E7%9A%84%E4%B8%80%E4%B8%AA%E6%A0%87%E8%AE%B0/"/>
     <id>http://nekolab.cn/2017/01/11/空间的一个标记/</id>
     <published>2017-01-11T05:40:29.000Z</published>
-    <updated>2017-01-11T05:56:44.431Z</updated>
+    <updated>2017-01-11T05:56:46.000Z</updated>
     
     <content type="html">&lt;blockquote&gt;
 &lt;p&gt;以前读译林出版社的《宇宙奇趣全集》，故事极富想象力，译文却生涩难读，甚至有许多语句不通之处。我便找来英文版由William Weaver译自意大利语的Cosmicomics,读来觉得顺畅许多。于是在许多个失眠的晚上，试着将英文版翻译成中文，尽力保持原有的风格。《宇宙奇趣》的逻辑与语言极为精密，不同于传统的科幻小说，更像是利用科学性的语言进行文学创作与哲学探索的一种尝试，也许更适合理科思维的读者。一旦扫除了语言的迷障，读来顿觉趣味横生，沉浸在诡谲的宇宙想象中。&lt;/p&gt;
@@ -852,62 +900,11 @@
     </summary>
     
     
+      <category term="译文" scheme="http://nekolab.cn/tags/%E8%AF%91%E6%96%87/"/>
+    
       <category term="卡尔维诺" scheme="http://nekolab.cn/tags/%E5%8D%A1%E5%B0%94%E7%BB%B4%E8%AF%BA/"/>
     
       <category term="文学" scheme="http://nekolab.cn/tags/%E6%96%87%E5%AD%A6/"/>
-    
-      <category term="译文" scheme="http://nekolab.cn/tags/%E8%AF%91%E6%96%87/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>It was a god who wrote these lines</title>
-    <link href="http://nekolab.cn/2017/01/10/maxwell/"/>
-    <id>http://nekolab.cn/2017/01/10/maxwell/</id>
-    <published>2017-01-10T06:18:28.000Z</published>
-    <updated>2017-01-11T06:58:49.382Z</updated>
-    
-    <content type="html">&lt;blockquote&gt;
-&lt;p&gt;&lt;strong&gt;1861年，麦克斯韦总结了统领电磁现象的方程组&lt;/strong&gt;&lt;br&gt;1899年，洛伦兹推导出了洛伦兹变换&lt;br&gt;1905年，爱因斯坦发表狭义相对论&lt;br&gt;1907年，闵可夫斯基用四维时空的语言重新叙述了电动力学，经典电动力学至此完全确立&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;麦克斯韦也没有做很多工作。在他以前，电磁学规律已经以高斯定理、安培环路定理、毕奥萨伐尔定律的形式散布在物理学的各个角落。&lt;strong&gt;他做的事情，只不过是把这些公式联合起来，只加上了一项：位移电流。&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;惊为天人的一个创举，将电学与磁学统一，可以描述一切宏观的电磁现象。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;http://wjwtest.oss-cn-qingdao.aliyuncs.com/ced/IMAG5157_1.jpg&quot;&gt;&lt;/p&gt;
-&lt;p&gt;电动力学课上讲到位移电流时，黑板上引用歌德的一句诗 “Was it a god who wrote these lines?”&lt;/p&gt;
-&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
-&lt;p&gt;一个方程组，让麦克斯韦可与神相比拟。他的贡献远不是统一电磁现象那么简单。四十多年后，爱因斯坦用狭义相对论颠覆了自伽利略、牛顿时代延续几百年的时空观，让物理学走向了20世纪的新发展。爱因斯坦思考时空观时面临的难题，在于经典力学的伽利略相对性原理与麦克斯韦的电动力学理论不兼容，如果要使麦克斯韦方程组满足协变性，也就是在某个时空变换下形式不变的性质，那么伽利略相对性原理势必不能满足；或者如果要认为伽利略相对性原理是对的，就需要改写麦克斯韦的理论。最后爱因斯坦选择了前一条道路，&lt;strong&gt;抛弃伽利略相对性原理，保持麦克斯韦方程组不变&lt;/strong&gt;。由于麦克斯韦方程组满足洛伦兹变换下的协变性，于是以洛伦兹变换为基础，建立起狭义相对论的时空观。&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;麦克斯韦推导方程时没有考虑过时空本质，没有辩解虚无的“以太”是否存在，得到的方程组却为后人的时空理论指引了方向。&lt;/strong&gt;伟大的物理理论就是如此，从经验、直觉归纳出的数学形式，能经受时间的检验而历久弥新。麦克斯韦的理论在创立的四十多年后在新的框架中被认可，能揭示更深刻的现象，涉及时空几何结构等等，用闵科夫斯基的语言重新被表述。四维形式的电动力学中，麦克斯韦四个方程被改写成两个，引入张量、度规种种工具之后，才有可能通向更深刻的理论：经典场论。&lt;/p&gt;
-&lt;p&gt;这又是另一个话题了。&lt;/p&gt;
-&lt;p&gt;随后的事情是伴随着20世纪上半叶的场论发展。广义坐标变成了场量——坐标的函数，单粒子的Lagrangian变成场的Lagrangian密度，分析力学的方程再次派上用场，推导出规范场论下的Lagrangian密度。这里说的可以是电磁场，也可以是别的什么场，电磁场已经被容纳到一套更广泛的体系中了。&lt;/p&gt;
-&lt;p&gt;经典电动力学是什么？这套理论已经在上百年的发展中，被修改的面目全非。不懂数学的法拉第的电磁感应定律(1831)可能是一个先驱，麦克斯韦1861年写了十多个方程，后来用矢量形式才简化成四个。至于说现代意义上的场论，到Yang-Mills理论这里才划上句号，范畴已经远远超出了经典电动力学。最后电动力学成为了更普遍理论的一个组成部分，曾经被认为是本体的电磁场后来不过是规范场论下的一种客体、现象。观察电动力学的发展史，可以看出这个理论是从经验规律而来，经历一层层的数学抽象，重新表述，引入狭义相对论协变性的观念，引入分析力学的原理，引入场论的概念，达到了更广泛的新理论。&lt;/p&gt;
-&lt;p&gt;我们希望的是，这种发展逻辑最终会通向本源，至少能越来越接近本源：&lt;strong&gt;旧有理论能在更统一的理论下表现为一个侧面&lt;/strong&gt;。也许就能走向“大统一理论”。&lt;/p&gt;
-&lt;p&gt;其实是明天要考电动力学了，公式没背完，课后习题也没看完，摸个鱼，马上再去学习。 &lt;/p&gt;
-&lt;p&gt;必修的物理理论课程，力热光电，数理方法，四大力学，固体物理，这学期就全部修完了。很激动人心，还有一点舍不得。&lt;/p&gt;
-&lt;p&gt;想到三年前的这个时间，还没有进物理学院，高三的空闲时间翻看图书馆里一本大学《电磁学》教材，内容无非是静电、静磁、电磁感应，比高中学的多了一点，令人无比神往。微分和矢量运算当时都不太熟悉，只能看懂公式大意，满足于收获新知识的愉悦。&lt;/p&gt;
-&lt;p&gt;还有更多令人兴奋的理论。比如经典力学会从牛顿走向拉格朗日、哈密顿力学。当时也完全不明白量子力学，只知道薛定谔方程是个偏微分方程，怎么解，怎么应用，一无所知。对了，还知道薛定谔的猫。&lt;/p&gt;
-&lt;p&gt;为了彻底弄懂这些公式，需要用一年多的时间，学两学期的高等数学，一学期的线性代数，两学期的数学物理方法。同时修普通物理中的力热光电，物理内容只比高中多了一点，不能称之为一门完整的理论课。&lt;/p&gt;
-&lt;p&gt;终于有了足够积累，才能到四大力学这里，真正学到一门物理理论，与普物的逻辑完全不同。修完一门课，会了解一个理论的来龙去脉，当时是怎么建立的，由哪些公理和经验规律出发，提炼出某种抽象的形式，并且有很多应用。&lt;strong&gt;更多时候，是在推公式，计算，解方程，积分，算完一本草稿纸，就可以入门了&lt;/strong&gt;。学完一门课它会告诉你：这个理论会通向更深刻的理论（场论，量子统计，QED……)，&lt;strong&gt;请再接再厉&lt;/strong&gt;。&lt;/p&gt;
-&lt;p&gt;目前就满足于这一步了。学完这些理论课只用了两年半的时间，满足了我太多太多的好奇心。然而更多内容是点到为止，想了解得更多，请付出更多草稿纸。&lt;/p&gt;
-&lt;p&gt;纪念一下。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;http://wjwtest.oss-cn-qingdao.aliyuncs.com/ced/618441159.jpg&quot;&gt;&lt;/p&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;blockquote&gt;
-&lt;p&gt;&lt;strong&gt;1861年，麦克斯韦总结了统领电磁现象的方程组&lt;/strong&gt;&lt;br&gt;1899年，洛伦兹推导出了洛伦兹变换&lt;br&gt;1905年，爱因斯坦发表狭义相对论&lt;br&gt;1907年，闵可夫斯基用四维时空的语言重新叙述了电动力学，经典电动力学至此完全确立&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;麦克斯韦也没有做很多工作。在他以前，电磁学规律已经以高斯定理、安培环路定理、毕奥萨伐尔定律的形式散布在物理学的各个角落。&lt;strong&gt;他做的事情，只不过是把这些公式联合起来，只加上了一项：位移电流。&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;惊为天人的一个创举，将电学与磁学统一，可以描述一切宏观的电磁现象。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;http://wjwtest.oss-cn-qingdao.aliyuncs.com/ced/IMAG5157_1.jpg&quot;&gt;&lt;/p&gt;
-&lt;p&gt;电动力学课上讲到位移电流时，黑板上引用歌德的一句诗 “Was it a god who wrote these lines?”&lt;/p&gt;
-    
-    </summary>
-    
-    
-      <category term="物理" scheme="http://nekolab.cn/tags/%E7%89%A9%E7%90%86/"/>
-    
-      <category term="电动力学" scheme="http://nekolab.cn/tags/%E7%94%B5%E5%8A%A8%E5%8A%9B%E5%AD%A6/"/>
     
   </entry>
   

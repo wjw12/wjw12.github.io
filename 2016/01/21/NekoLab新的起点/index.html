@@ -71,7 +71,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Github,Hexo,网络," />
+  <meta name="keywords" content="网络,Hexo,Github," />
 
 
 
@@ -90,12 +90,14 @@
 
 
 <meta name="description" content="用了一年的亚马逊免费云服务器刚好快要到期，正想着以后该用什么云主机搭网站呢，恰好Quincy君告诉了我这个好东西：Hexo">
+<meta name="keywords" content="网络,Hexo,Github">
 <meta property="og:type" content="article">
 <meta property="og:title" content="NekoLab新的起点">
 <meta property="og:url" content="http://nekolab.cn/2016/01/21/NekoLab新的起点/index.html">
 <meta property="og:site_name" content="NekoLab">
 <meta property="og:description" content="用了一年的亚马逊免费云服务器刚好快要到期，正想着以后该用什么云主机搭网站呢，恰好Quincy君告诉了我这个好东西：Hexo">
-<meta property="og:updated_time" content="2016-08-25T08:17:58.250Z">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2016-08-25T08:18:00.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="NekoLab新的起点">
 <meta name="twitter:description" content="用了一年的亚马逊免费云服务器刚好快要到期，正想着以后该用什么云主机搭网站呢，恰好Quincy君告诉了我这个好东西：Hexo">
@@ -393,20 +395,20 @@
       
 
       
-        <p>用了一年的亚马逊免费云服务器刚好快要到期，正想着以后该用什么云主机搭网站呢，恰好<a href="http://quincy.hk" target="_blank" rel="external">Quincy君</a>告诉了我这个好东西：<a href="https://hexo.io" target="_blank" rel="external">Hexo</a></p>
+        <p>用了一年的亚马逊免费云服务器刚好快要到期，正想着以后该用什么云主机搭网站呢，恰好<a href="http://quincy.hk" target="_blank" rel="noopener">Quincy君</a>告诉了我这个好东西：<a href="https://hexo.io" target="_blank" rel="noopener">Hexo</a></p>
 <a id="more"></a>
 <p>这才发现现在的黑科技竟然能让个人网站变得这么简单，都不用租服务器了，省去好多麻烦，可以直接用Markdown语言写文章然后自动上传到Github就行，虽然原理不是很清楚，但效果是绝对惊艳的</p>
-<p>一开始就照着这个教程<a href="http://www.jianshu.com/p/465830080ea9/comments/899439" target="_blank" rel="external">http://www.jianshu.com/p/465830080ea9/comments/899439</a> ，在本地安装Node.js和Hexo，部署Github，竟然半个多小时就完成了，真的十分简单。然后直接戳<a href="https://wjw12.github.io" target="_blank" rel="external">https://wjw12.github.io</a>就能看到一个完整的主页了（而且有点像Github送了一个域名呢hhhh）</p>
+<p>一开始就照着这个教程<a href="http://www.jianshu.com/p/465830080ea9/comments/899439" target="_blank" rel="noopener">http://www.jianshu.com/p/465830080ea9/comments/899439</a> ，在本地安装Node.js和Hexo，部署Github，竟然半个多小时就完成了，真的十分简单。然后直接戳<a href="https://wjw12.github.io" target="_blank" rel="noopener">https://wjw12.github.io</a>就能看到一个完整的主页了（而且有点像Github送了一个域名呢hhhh）</p>
 <p>遇到的唯一小问题就是在配置<code>_config.yml</code>的时候版本不同会有区别，按照官网当前的文档我是像下面这样写的，并且要注意冒号后面必须要加一个空格，是yml格式的规定</p>
 <pre><code>deploy:
     type: git 
     repo: https://github.com/wjw12/wjw12.github.io
     branch: master
-</code></pre><p>写文章只需要在Git Bash里面输入<code>hexo new post 文章名</code>就可以新建一个Markdown格式的文档，关于Markdown格式参考<a href="http://wowubuntu.com/Markdown" target="_blank" rel="external">http://wowubuntu.com/Markdown</a></p>
-<p>插入图片并不需要像编辑Markdown一般的做法那样插入图片外链，Hexo有自己的语法，把图片放在指定文件夹然后在文档中输入<code></code>就可以了，参见<a href="https://hexo.io/docs/asset-folders.html" target="_blank" rel="external">https://hexo.io/docs/asset-folders.html</a></p>
+</code></pre><p>写文章只需要在Git Bash里面输入<code>hexo new post 文章名</code>就可以新建一个Markdown格式的文档，关于Markdown格式参考<a href="http://wowubuntu.com/Markdown" target="_blank" rel="noopener">http://wowubuntu.com/Markdown</a></p>
+<p>插入图片并不需要像编辑Markdown一般的做法那样插入图片外链，Hexo有自己的语法，把图片放在指定文件夹然后在文档中输入<code></code>就可以了，参见<a href="https://hexo.io/docs/asset-folders.html" target="_blank" rel="noopener">https://hexo.io/docs/asset-folders.html</a></p>
 <p>把本地写好的东西传到Github也很容易，执行<code>hexo generate</code>就能像编译一样把文档和各种自动的主题模板变成静态网页的html和css文件，然后再<code>hexo deploy</code>就上传好了。用Github储存页面文件不仅访问速度有保障，不用担心被攻击或者数据丢失，而且版本管理功能也能在文件更改后回退到过去版本，也可以放心大胆地尝试一些新技术了。</p>
 <p>把以前网站上的大部分文章连带图片移植到这里很费了点精力，轻微的格式强迫症让我在不少细节上一遍遍地调整，后来意识到，有的地方怎么都不好看的原因是默认主题有点问题，下一步就是安装新的主题</p>
-<p>好看的Hexo主题并不是很多，有详细文档支持的就更少了，就选了一个Star数最多文档也很完整的主题<a href="https://github.com/iissnan/hexo-theme-next" target="_blank" rel="external">NexT</a>，看样子这个主题还在继续开发，简约风格，挺好看，简单地配置一样就大功告成了</p>
+<p>好看的Hexo主题并不是很多，有详细文档支持的就更少了，就选了一个Star数最多文档也很完整的主题<a href="https://github.com/iissnan/hexo-theme-next" target="_blank" rel="noopener">NexT</a>，看样子这个主题还在继续开发，简约风格，挺好看，简单地配置一样就大功告成了</p>
 <p>事情就是这么简单，新的域名<code>nekolab.cn</code>很快就会启用。在这个寒潮来临的2016年初，NekoLab重新与大家见面，请多多指教！</p>
 
       
@@ -431,11 +433,11 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Github/" rel="tag"># Github</a>
+            <a href="/tags/网络/" rel="tag"># 网络</a>
           
             <a href="/tags/Hexo/" rel="tag"># Hexo</a>
           
-            <a href="/tags/网络/" rel="tag"># 网络</a>
+            <a href="/tags/Github/" rel="tag"># Github</a>
           
         </div>
       
@@ -525,7 +527,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">43</span>
+                <span class="site-state-item-count">44</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -536,7 +538,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">60</span>
+                <span class="site-state-item-count">61</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

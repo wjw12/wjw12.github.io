@@ -89,38 +89,23 @@
 
 
 
-<meta name="description" content="经常见到这样一种探照灯光的效果：
-
-由于物理上的丁达尔效应，光源照射的体积被照亮。在Unity里面，我们可以用Command Buffer来自定义渲染物体的方式，结合物理和经验模型来模拟这个效果。并且在实现单色体积光之后，把功能扩展到彩色的灯光，类似舞台上彩色射灯的效果，结果如下：
-
-实现了一个类似五毛特效的动图：
-
-我的Github项目地址改写了原始项目，增加了彩色体积光的支持。">
+<meta name="description" content="经常见到这样一种探照灯光的效果：  由于物理上的丁达尔效应，光源照射的体积被照亮。在Unity里面，我们可以用Command Buffer来自定义渲染物体的方式，结合物理和经验模型来模拟这个效果。并且在实现单色体积光之后，把功能扩展到彩色的灯光，类似舞台上彩色射灯的效果，结果如下：  实现了一个类似五毛特效的动图：  我的Github项目地址改写了原始项目，增加了彩色体积光的支持。">
+<meta name="keywords" content="Graphics Pipeline">
 <meta property="og:type" content="article">
 <meta property="og:title" content="CG练习（2） 渲染体积光">
 <meta property="og:url" content="http://nekolab.cn/2018/02/18/CGexercise02/index.html">
 <meta property="og:site_name" content="NekoLab">
-<meta property="og:description" content="经常见到这样一种探照灯光的效果：
-
-由于物理上的丁达尔效应，光源照射的体积被照亮。在Unity里面，我们可以用Command Buffer来自定义渲染物体的方式，结合物理和经验模型来模拟这个效果。并且在实现单色体积光之后，把功能扩展到彩色的灯光，类似舞台上彩色射灯的效果，结果如下：
-
-实现了一个类似五毛特效的动图：
-
-我的Github项目地址改写了原始项目，增加了彩色体积光的支持。">
+<meta property="og:description" content="经常见到这样一种探照灯光的效果：  由于物理上的丁达尔效应，光源照射的体积被照亮。在Unity里面，我们可以用Command Buffer来自定义渲染物体的方式，结合物理和经验模型来模拟这个效果。并且在实现单色体积光之后，把功能扩展到彩色的灯光，类似舞台上彩色射灯的效果，结果如下：  实现了一个类似五毛特效的动图：  我的Github项目地址改写了原始项目，增加了彩色体积光的支持。">
+<meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://wjwtest.oss-cn-qingdao.aliyuncs.com/cg_exercise/02/v1.png">
 <meta property="og:image" content="http://wjwtest.oss-cn-qingdao.aliyuncs.com/cg_exercise/02/v2.png">
 <meta property="og:image" content="http://wjwtest.oss-cn-qingdao.aliyuncs.com/cg_exercise/02/1.gif">
 <meta property="og:image" content="http://wjwtest.oss-cn-qingdao.aliyuncs.com/cg_exercise/02/cb.png">
-<meta property="og:updated_time" content="2018-02-19T16:22:43.717Z">
+<meta property="og:updated_time" content="2018-02-19T16:22:44.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="CG练习（2） 渲染体积光">
-<meta name="twitter:description" content="经常见到这样一种探照灯光的效果：
-
-由于物理上的丁达尔效应，光源照射的体积被照亮。在Unity里面，我们可以用Command Buffer来自定义渲染物体的方式，结合物理和经验模型来模拟这个效果。并且在实现单色体积光之后，把功能扩展到彩色的灯光，类似舞台上彩色射灯的效果，结果如下：
-
-实现了一个类似五毛特效的动图：
-
-我的Github项目地址改写了原始项目，增加了彩色体积光的支持。">
+<meta name="twitter:description" content="经常见到这样一种探照灯光的效果：  由于物理上的丁达尔效应，光源照射的体积被照亮。在Unity里面，我们可以用Command Buffer来自定义渲染物体的方式，结合物理和经验模型来模拟这个效果。并且在实现单色体积光之后，把功能扩展到彩色的灯光，类似舞台上彩色射灯的效果，结果如下：  实现了一个类似五毛特效的动图：  我的Github项目地址改写了原始项目，增加了彩色体积光的支持。">
+<meta name="twitter:image" content="http://wjwtest.oss-cn-qingdao.aliyuncs.com/cg_exercise/02/v1.png">
 
 
 
@@ -421,7 +406,7 @@
 <p><img src="http://wjwtest.oss-cn-qingdao.aliyuncs.com/cg_exercise/02/v2.png"></p>
 <p>实现了一个类似五毛特效的动图：</p>
 <p><img src="http://wjwtest.oss-cn-qingdao.aliyuncs.com/cg_exercise/02/1.gif"></p>
-<p>我的<a href="https://github.com/wjw12/VolumetricLights" target="_blank" rel="external">Github项目地址</a><br>改写了<a href="https://github.com/SlightlyMad/VolumetricLights" target="_blank" rel="external">原始项目</a>，增加了彩色体积光的支持。</p>
+<p>我的<a href="https://github.com/wjw12/VolumetricLights" target="_blank" rel="noopener">Github项目地址</a><br>改写了<a href="https://github.com/SlightlyMad/VolumetricLights" target="_blank" rel="noopener">原始项目</a>，增加了彩色体积光的支持。</p>
 <a id="more"></a>
 <h2 id="u7269_u7406_u539F_u7406"><a href="#u7269_u7406_u539F_u7406" class="headerlink" title="物理原理"></a>物理原理</h2><p>摘自维基百科：</p>
 <blockquote>
@@ -432,7 +417,7 @@
 <p>在实现上，首先我们需要为不同类型的光源计算光线与虚拟几何体的交点，作为raymarching的起点和终点。在行进过程中，如果被阴影遮挡则不能叠加亮度，所以需要一张shadow map作为参考。</p>
 <p>类似舞台上的彩色灯光或者电影院的投影仪，在投射出彩色图案的同时能看到彩色的光束。我们可以把投影的画面当作一个texture（只考虑spotlight的情况，如果是点光源需要cube map），需要采样这张纹理图片上对应位置的颜色，每个采样步的颜色不一定相同。</p>
 <p>shader最关键的代码及注释如下。为了让代码更清晰，这里省略了雾特效、噪声扰动等原作者添加的很多额外效果，并且只针对spotlight处理。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">float GetLightAttenuation(float3 wpos)&#10;&#123;&#10;&#9;float atten = 0;&#10;&#10;&#9;// wpos is current world position of the marching ray&#10;&#9;float3 tolight = _LightPos.xyz - wpos;&#10;&#9;half3 lightDir = normalize(tolight);&#10;&#10;&#9;float4 uvCookie = mul(_MyLightMatrix0, float4(wpos, 1));&#10;&#9;&#10;&#9;// negative bias because http://aras-p.info/blog/2010/01/07/screenspace-vs-mip-mapping/&#10;&#9;// get light cookie attenuation&#10;&#9;atten = tex2Dbias(_LightTexture0, float4(uvCookie.xy / uvCookie.w, 0, -8)).w;&#10;&#9;atten *= uvCookie.w &#60; 0;&#10;&#9;float att = dot(tolight, tolight) * _LightPos.w;&#10;&#9;atten *= tex2D(_LightTextureB0, att.rr).UNITY_ATTEN_CHANNEL;&#10;&#10;&#9;// if the light casts shadow, sample the shadow texture&#10;#if defined(SHADOWS_DEPTH)&#10;&#9;float4 shadowCoord = mul(_MyWorld2Shadow, float4(wpos, 1));&#10;&#9;atten *= saturate(UnitySampleShadowmap(shadowCoord));&#10;#endif&#10;&#10;&#9;return atten;&#10;&#125;&#10;float4 GetColor(float3 wpos)&#10;&#123;&#10;&#9;// convert current world position to light coordinates &#10;&#9;// (imagine viewing from the light origin)&#10;&#9;float4 posLight = mul(_MyLightMatrix0, float4(wpos, 1));&#10;&#9;&#10;&#9;// posLight.w is the depth from current position to light position&#10;&#9;// sample color from light projection texture&#10;&#9;return tex2D(_LightProjectionTexture, posLight.xy / posLight.w + float2(0.5, 0.5));&#10;&#125;&#10;&#10;[loop]&#10;for (int i = 0; i &#60; stepCount; ++i)&#10;&#123;&#10;&#9;// current position is the ray marching position&#10;&#9;float atten = GetLightAttenuation(currentPosition);&#10;&#9;&#10;&#9;// density results from fog and noise, omitted here for simplicity&#10;&#9;float density = GetDensity(currentPosition);&#10;&#10;&#9;// _VolumetricLight.x is scattering coefficient&#10;&#9;// _VolumetricLight.y is extinction coefficient&#10;&#9;float scattering = _VolumetricLight.x * stepSize * density;&#10;&#9;extinction += _VolumetricLight.y * stepSize * density;// +scattering;&#10;&#10;&#9;float4 currentColor = GetColor(currentPosition);&#10;&#10;&#9;float lightInten = atten * scattering * exp(-extinction) * currentColor.w;&#10;&#10;&#9;// accumulate the color&#10;&#9;vlight += currentColor * lightInten;&#10;&#10;&#9;currentPosition += step;&#9;&#9;&#9;&#9;&#10;&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><span class="line">float GetLightAttenuation(float3 wpos)</span><br><span class="line">&#123;</span><br><span class="line">	float atten = 0;</span><br><span class="line"></span><br><span class="line">	// wpos is current world position of the marching ray</span><br><span class="line">	float3 tolight = _LightPos.xyz - wpos;</span><br><span class="line">	half3 lightDir = normalize(tolight);</span><br><span class="line"></span><br><span class="line">	float4 uvCookie = mul(_MyLightMatrix0, float4(wpos, 1));</span><br><span class="line">	</span><br><span class="line">	// negative bias because http://aras-p.info/blog/2010/01/07/screenspace-vs-mip-mapping/</span><br><span class="line">	// get light cookie attenuation</span><br><span class="line">	atten = tex2Dbias(_LightTexture0, float4(uvCookie.xy / uvCookie.w, 0, -8)).w;</span><br><span class="line">	atten *= uvCookie.w &lt; 0;</span><br><span class="line">	float att = dot(tolight, tolight) * _LightPos.w;</span><br><span class="line">	atten *= tex2D(_LightTextureB0, att.rr).UNITY_ATTEN_CHANNEL;</span><br><span class="line"></span><br><span class="line">	// if the light casts shadow, sample the shadow texture</span><br><span class="line">#if defined(SHADOWS_DEPTH)</span><br><span class="line">	float4 shadowCoord = mul(_MyWorld2Shadow, float4(wpos, 1));</span><br><span class="line">	atten *= saturate(UnitySampleShadowmap(shadowCoord));</span><br><span class="line">#endif</span><br><span class="line"></span><br><span class="line">	return atten;</span><br><span class="line">&#125;</span><br><span class="line">float4 GetColor(float3 wpos)</span><br><span class="line">&#123;</span><br><span class="line">	// convert current world position to light coordinates </span><br><span class="line">	// (imagine viewing from the light origin)</span><br><span class="line">	float4 posLight = mul(_MyLightMatrix0, float4(wpos, 1));</span><br><span class="line">	</span><br><span class="line">	// posLight.w is the depth from current position to light position</span><br><span class="line">	// sample color from light projection texture</span><br><span class="line">	return tex2D(_LightProjectionTexture, posLight.xy / posLight.w + float2(0.5, 0.5));</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">[loop]</span><br><span class="line">for (int i = 0; i &lt; stepCount; ++i)</span><br><span class="line">&#123;</span><br><span class="line">	// current position is the ray marching position</span><br><span class="line">	float atten = GetLightAttenuation(currentPosition);</span><br><span class="line">	</span><br><span class="line">	// density results from fog and noise, omitted here for simplicity</span><br><span class="line">	float density = GetDensity(currentPosition);</span><br><span class="line"></span><br><span class="line">	// _VolumetricLight.x is scattering coefficient</span><br><span class="line">	// _VolumetricLight.y is extinction coefficient</span><br><span class="line">	float scattering = _VolumetricLight.x * stepSize * density;</span><br><span class="line">	extinction += _VolumetricLight.y * stepSize * density;// +scattering;</span><br><span class="line"></span><br><span class="line">	float4 currentColor = GetColor(currentPosition);</span><br><span class="line"></span><br><span class="line">	float lightInten = atten * scattering * exp(-extinction) * currentColor.w;</span><br><span class="line"></span><br><span class="line">	// accumulate the color</span><br><span class="line">	vlight += currentColor * lightInten;</span><br><span class="line"></span><br><span class="line">	currentPosition += step;				</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h2 id="u4F7F_u7528Unity_u7684Command_Buffer"><a href="#u4F7F_u7528Unity_u7684Command_Buffer" class="headerlink" title="使用Unity的Command Buffer"></a>使用Unity的Command Buffer</h2><p>Unity渲染主要有Forward和Deferred两种Pipeline，遵循一定的渲染顺序，如下图所示：<br><img src="http://wjwtest.oss-cn-qingdao.aliyuncs.com/cg_exercise/02/cb.png"></p>
 <p>在完成每个渲染步骤的前后，也就是图中绿点的位置，都可以插入一些自定义的渲染命令，也就是用command表示，来扩展渲染的功能。Command其实和OpenGL里面的glDraw, glClear之类的语句一样，设定参数执行一些绘图操作，一系列Command储存在摄像机的Command Buffer里面，到达规定的渲染步骤时候会执行。</p>
 <p>在我们这里，由于算法需要获取Shadowmap，渲染体积光的Command应该在光源投射阴影之后进行，也就是LightEvent.AfterShadowMap。在摄像机方面，如果是Forward Path，执行时机是CameraEvent.AfterDepthTexture，如果是Deferred Path，是在渲染G-buffer之后计算光照之前的CameraEvent.BeforeLighting。我们加入的command只渲染体积光，所以在渲染之前要设定render target为新建的一张render texture，在体积光和场景几何体分别渲染到两个render texture以后，再用blit混合。</p>
@@ -559,7 +544,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">43</span>
+                <span class="site-state-item-count">44</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -570,7 +555,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">60</span>
+                <span class="site-state-item-count">61</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

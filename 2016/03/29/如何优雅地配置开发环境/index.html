@@ -71,7 +71,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Fortran,Intel Parallel Studio,MPI," />
+  <meta name="keywords" content="Intel Parallel Studio,Fortran,MPI," />
 
 
 
@@ -89,22 +89,22 @@
 
 
 
-<meta name="description" content="配置Fortran，需要用MPI并行计算。从一次浪费几小时的经验中总结出的一个血泪教训：
-使用默认安装选项！">
+<meta name="description" content="配置Fortran，需要用MPI并行计算。从一次浪费几小时的经验中总结出的一个血泪教训： 使用默认安装选项！">
+<meta name="keywords" content="Intel Parallel Studio,Fortran,MPI">
 <meta property="og:type" content="article">
 <meta property="og:title" content="如何优雅地配置开发环境">
 <meta property="og:url" content="http://nekolab.cn/2016/03/29/如何优雅地配置开发环境/index.html">
 <meta property="og:site_name" content="NekoLab">
-<meta property="og:description" content="配置Fortran，需要用MPI并行计算。从一次浪费几小时的经验中总结出的一个血泪教训：
-使用默认安装选项！">
+<meta property="og:description" content="配置Fortran，需要用MPI并行计算。从一次浪费几小时的经验中总结出的一个血泪教训： 使用默认安装选项！">
+<meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://nekolab.cn/2016/03/29/如何优雅地配置开发环境/1.png">
 <meta property="og:image" content="http://nekolab.cn/2016/03/29/如何优雅地配置开发环境/2.jpg">
 <meta property="og:image" content="http://nekolab.cn/2016/03/29/如何优雅地配置开发环境/mpiexec.png">
-<meta property="og:updated_time" content="2016-06-08T09:52:38.274Z">
+<meta property="og:updated_time" content="2016-06-08T09:52:40.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="如何优雅地配置开发环境">
-<meta name="twitter:description" content="配置Fortran，需要用MPI并行计算。从一次浪费几小时的经验中总结出的一个血泪教训：
-使用默认安装选项！">
+<meta name="twitter:description" content="配置Fortran，需要用MPI并行计算。从一次浪费几小时的经验中总结出的一个血泪教训： 使用默认安装选项！">
+<meta name="twitter:image" content="http://nekolab.cn/2016/03/29/如何优雅地配置开发环境/1.png">
 
 
 
@@ -405,9 +405,9 @@
 <p>事情就发生在我安装Intel Parallel Studio的时候。特地说一下，Parallel Studio版本是2016，电脑上Visual Studio版本是Community 2013，不同版本的安装可能会有差别，记下来以鉴后车之师</p>
 <p>因为这不是安装盗版软件，不是一不小心就附赠百度大礼包，这是Intel, Microsoft这种大公司靠谱的工程师，让你一路点着”next”就能顺利装完，而如果不信任他们的工作，恐怕就要受到惩罚了</p>
 <p>我后来看到Visual Studio里面复杂的选项：</p>
-<img src="/2016/03/29/如何优雅地配置开发环境/1.png" alt="1.png" title="">
+<img src="/2016/03/29/如何优雅地配置开发环境/1.png">
 <p>此时我的感觉是这样的：</p>
-<img src="/2016/03/29/如何优雅地配置开发环境/2.jpg" alt="2.jpg" title="">
+<img src="/2016/03/29/如何优雅地配置开发环境/2.jpg">
 <p>怎么说呢，一开始装Intel Parallel Studio的时候，为了节省下载时间，我就没有选64位版本，只装32位，还自作主张取消了几个不明觉厉的插件功能。很快装完了，第一次运行mpi的一个测试程序，也就相当于多进程版的hello world，编译器瞬间给我了十几个error</p>
 <p>于是找哪个路径没有include，哪个lib没有添加，开了无数个浏览器标签页查教程查资料……于是从天还亮着的时间工作到天黑，终于过了Compiler一关</p>
 <p><strong>但是还有Linker</strong> 死活通不过，每次报一排”Unresolved external symbol”</p>
@@ -427,7 +427,7 @@
 <p>(之前好像还要注册电脑的用户账号和密码，才能让系统给程序分配多个核。我已经忘了这一步怎么做，出问题查文档吧)</p>
 <p><strong> 以上desu！</strong></p>
 <h3 id="2016-4-2_u66F4_u65B0__u66F4_u7B80_u5355_u7684mpi_u8FD0_u884C_u65B9_u5F0F"><a href="#2016-4-2_u66F4_u65B0__u66F4_u7B80_u5355_u7684mpi_u8FD0_u884C_u65B9_u5F0F" class="headerlink" title="2016.4.2更新 更简单的mpi运行方式"></a>2016.4.2更新 更简单的mpi运行方式</h3><p>不一定必须用命令行mpiexec，可以在<strong> PROJECT -&gt; Properties -&gt; Debugging </strong>里面设置运行程序时执行的命令</p>
-<img src="/2016/03/29/如何优雅地配置开发环境/mpiexec.png" alt="mpiexec.png" title="">
+<img src="/2016/03/29/如何优雅地配置开发环境/mpiexec.png">
 <p>Command写mpiexec.exe安装的位置</p>
 <p>Arguments写<code>&quot;$(TargetPath)&quot;</code>也就是编译生成的exe文件，再加上其他参数，比如几个进程就用<code>-n</code></p>
 
@@ -453,9 +453,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Fortran/" rel="tag"># Fortran</a>
-          
             <a href="/tags/Intel-Parallel-Studio/" rel="tag"># Intel Parallel Studio</a>
+          
+            <a href="/tags/Fortran/" rel="tag"># Fortran</a>
           
             <a href="/tags/MPI/" rel="tag"># MPI</a>
           
@@ -556,7 +556,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">43</span>
+                <span class="site-state-item-count">44</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -567,7 +567,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">60</span>
+                <span class="site-state-item-count">61</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

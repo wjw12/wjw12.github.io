@@ -71,7 +71,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="C++,Fortran," />
+  <meta name="keywords" content="Fortran,C++," />
 
 
 
@@ -90,20 +90,23 @@
 
 
 <meta name="description" content="引言Fortran是现存的最古老的编程语言之一。早在1957年，这门语言就随着第一代计算机的问世而诞生了。其成熟版本Fortran 77如名字所说，在1977年发布，直到今天仍是使用最广泛的Fortran版本。在还没有PC的中古时期，计算机几乎全部用于科研，从火箭发射到核弹模拟，离不开数值计算的需求。就在这一段时间里，人类积累起了最高效的数值计算库，比如BLAS(1979)，MINPACK(198">
+<meta name="keywords" content="Fortran,C++">
 <meta property="og:type" content="article">
 <meta property="og:title" content="如何用C++调用Fortran子程序">
 <meta property="og:url" content="http://nekolab.cn/2016/10/15/如何用C-调用Fortran子程序/index.html">
 <meta property="og:site_name" content="NekoLab">
 <meta property="og:description" content="引言Fortran是现存的最古老的编程语言之一。早在1957年，这门语言就随着第一代计算机的问世而诞生了。其成熟版本Fortran 77如名字所说，在1977年发布，直到今天仍是使用最广泛的Fortran版本。在还没有PC的中古时期，计算机几乎全部用于科研，从火箭发射到核弹模拟，离不开数值计算的需求。就在这一段时间里，人类积累起了最高效的数值计算库，比如BLAS(1979)，MINPACK(198">
+<meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://nekolab.cn/2016/10/15/如何用C-调用Fortran子程序/vector.png">
 <meta property="og:image" content="http://nekolab.cn/2016/10/15/如何用C-调用Fortran子程序/compare.png">
 <meta property="og:image" content="http://nekolab.cn/2016/10/15/如何用C-调用Fortran子程序/compile.png">
 <meta property="og:image" content="http://nekolab.cn/2016/10/15/如何用C-调用Fortran子程序/compilelink.png">
 <meta property="og:image" content="http://nekolab.cn/2016/10/15/如何用C-调用Fortran子程序/result.png">
-<meta property="og:updated_time" content="2016-10-15T16:06:15.386Z">
+<meta property="og:updated_time" content="2016-10-15T16:06:16.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="如何用C++调用Fortran子程序">
 <meta name="twitter:description" content="引言Fortran是现存的最古老的编程语言之一。早在1957年，这门语言就随着第一代计算机的问世而诞生了。其成熟版本Fortran 77如名字所说，在1977年发布，直到今天仍是使用最广泛的Fortran版本。在还没有PC的中古时期，计算机几乎全部用于科研，从火箭发射到核弹模拟，离不开数值计算的需求。就在这一段时间里，人类积累起了最高效的数值计算库，比如BLAS(1979)，MINPACK(198">
+<meta name="twitter:image" content="http://nekolab.cn/2016/10/15/如何用C-调用Fortran子程序/vector.png">
 
 
 
@@ -403,17 +406,17 @@
 <p>相比之下，C++的历史就短了许多，1983年才问世。语言设计的目的也完全不同，系统开发、桌面应用、服务器网络等等。为了适应软件工程的需求，面向对象、多态、函数式编程等等高阶功能被纳入语言特性中，C++也变得极为庞大复杂。这些特性一旦熟练掌握，开发和程序执行效率能大幅提升，但学习的门槛较高，可能让不少非专业的编程者望而生畏。</p>
 <p>如Fortran一个功能简单的语言，就一定易用吗？C++面向对象的封装抽象，表面上增加了开发复杂性，实则让程序变得模块化，易于重用和修改，在抽象层面上设计程序往往更容易。</p>
 <p>比如最近需要实现三维向量的运算：</p>
-<img src="/2016/10/15/如何用C-调用Fortran子程序/vector.png" alt="vector.png" title="">
+<img src="/2016/10/15/如何用C-调用Fortran子程序/vector.png">
 <p>C++的思路是编写一个vector3d的类，一个object包含向量的三个分量，用操作符重载和friend函数实现向量加减乘除、点乘叉乘运算，然后只需“字面地”翻译数学公式，一个矢量等于另一个矢量叉乘，再除以一些数……就可以完成任务。</p>
 <p>而如果用Fortran，没有抽象的方法，只能人工在草稿纸上推导向量的分量式，用行列式计算叉乘并化简，将每个分量的算式输入代码才行。换另一个公式，又要重新在草稿纸上推一遍！</p>
 <p>一个科学计算程序，总有计算最费时的核心部分，如解线性代数方程、微分方程的数值算法，也有数据的简单处理和输入输出（如前例中的矢量计算，实则是核心任务之外的一步处理）。C++缺少许多数值计算库，或者是效率不高，用于计算密集的核心部分不够理想，但在外围部分，和程序模块的组织上，之于Fortran有太多优势。</p>
 <p>比较两种语言的优势和劣势，会想到，如果能结合两者的优势，用Fortran处理核心的数值算法，用C++组织程序结构和外围处理，程序的开发、运行和维护的效率都能提升。</p>
-<img src="/2016/10/15/如何用C-调用Fortran子程序/compare.png" alt="compare.png" title="">
+<img src="/2016/10/15/如何用C-调用Fortran子程序/compare.png">
 <a id="more"></a>
 <h1 id="u4E92_u64CD_u4F5C_u6027_u7684_u57FA_u7840"><a href="#u4E92_u64CD_u4F5C_u6027_u7684_u57FA_u7840" class="headerlink" title="互操作性的基础"></a>互操作性的基础</h1><p>下面我们要看到，C++和Fortran在link阶段是可以链接到一起，形成可执行文件的。</p>
 <p>首先，我们回顾一下编译型语言的编译过程，包括C++, C, Fortran。从源代码到可执行文件，要经历经历编译-&gt;连接两个过程。编译阶段，源代码由编译器(Compiler)编译成object文件，每个.cpp(或.f, .f90)源文件生成一个.o文件，包含自身的可执行部分和引用的外部符号(如其他文件中的函数和内置库函数)。再由连接器(Linker)将所有的objects连同外部的(静态)库连接，生成机器能运行的二进制代码，也就是最终的可执行文件。</p>
-<img src="/2016/10/15/如何用C-调用Fortran子程序/compile.png" alt="compile.png" title="">
-<img src="/2016/10/15/如何用C-调用Fortran子程序/compilelink.png" alt="compilelink.png" title="">
+<img src="/2016/10/15/如何用C-调用Fortran子程序/compile.png">
+<img src="/2016/10/15/如何用C-调用Fortran子程序/compilelink.png">
 <p>一种语言的编译器只能识别一种语言，所以在编译阶段，两种语言是独立的，Unix下分别由g++和gfortran完成。而连接器的任务只是将编译好的可执行片段组合起来，两种语言源文件生成的object结构几乎(注意，是“几乎”)是一样。在二进制代码层面，可执行的指令只有加减乘除等等(不会超过几十个)，数据都按照同样的标准(几个字节、类型、bit顺序)来储存，抹去了源代码语言的差异性，所以就有可能将不同的object放在一起连接。</p>
 <p>互操作性就意味着，C++的函数可以去读取、修改Fortran函数中的数据，反之亦然，只要数据的储存和传递按相同标准来执行。Fortran 2003就规定了这样的标准：在Fortran的类型定义中用常数来代表C语言的类型，在子程序定义中添加”BIND(C)”属性允许互操作，就可以在C语言中传递参数给Fortran子程序了。</p>
 <h3 id="u88681-__u652F_u6301_u4E92_u64CD_u4F5C_u7684_u6570_u636E_u7C7B_u578B"><a href="#u88681-__u652F_u6301_u4E92_u64CD_u4F5C_u7684_u6570_u636E_u7C7B_u578B" class="headerlink" title="表1. 支持互操作的数据类型"></a>表1. 支持互操作的数据类型</h3><pre><code>Type        Named constant        C type or types
@@ -441,7 +444,7 @@ COMPLEX     C_LONG_DOUBLE         long double, long double _Imaginary
 LOGICAL     C_BOOL                _Bool
 CHARACTER   C_CHAR                char  
 </code></pre><p>但是，刚才说的是C语言的数据类型，但C++和C并不一样。互操作性意味着我们可以像调用一个C语言函数一样去调用Fortran函数，在C++中，调用C语言函数的方法是声明函数为<code>extern &quot;C&quot;</code>。extern是外部函数类型，在编译阶段只在object中提示：这个函数的代码要在外部文件中去寻找，在连接阶段再找对应的(另一个语言编译器生成的)object。</p>
-<h1 id="u4F8B_u5B501_uFF1A_u7B80_u5355_u6570_u636E_u7684_u4E92_u64CD_u4F5C"><a href="#u4F8B_u5B501_uFF1A_u7B80_u5355_u6570_u636E_u7684_u4E92_u64CD_u4F5C" class="headerlink" title="例子1：简单数据的互操作"></a>例子1：简单数据的互操作</h1><p>以下例子中的代码都能在<a href="https://github.com/wjw12/cpp_fortran中找到。" target="_blank" rel="external">https://github.com/wjw12/cpp_fortran中找到。</a></p>
+<h1 id="u4F8B_u5B501_uFF1A_u7B80_u5355_u6570_u636E_u7684_u4E92_u64CD_u4F5C"><a href="#u4F8B_u5B501_uFF1A_u7B80_u5355_u6570_u636E_u7684_u4E92_u64CD_u4F5C" class="headerlink" title="例子1：简单数据的互操作"></a>例子1：简单数据的互操作</h1><p>以下例子中的代码都能在<a href="https://github.com/wjw12/cpp_fortran中找到。" target="_blank" rel="noopener">https://github.com/wjw12/cpp_fortran中找到。</a></p>
 <p>C++源程序的组织很简单，定义了单精度，双精度，复数双精度变量，调用Fortran编写的“test_sub”函数对三个变量进行运算，结果储存在原来的变量中。</p>
 <pre><code>float f = 1;
 double d = 2;
@@ -492,10 +495,10 @@ end subroutine
     gfortran c_main.o fortran_sub.o -lstdc++ -o exe
 </code></pre><h1 id="u4F8B_u5B503_uFF1A_u4E00_u4E2A_u7B80_u5316_u7684_u5B9E_u9645_u60C5_u5F62"><a href="#u4F8B_u5B503_uFF1A_u4E00_u4E2A_u7B80_u5316_u7684_u5B9E_u9645_u60C5_u5F62" class="headerlink" title="例子3：一个简化的实际情形"></a>例子3：一个简化的实际情形</h1><p>ode_compare这个项目是为了比较C++和Fortran解常微分方程的效率。实际研究中，常微分方程这种有常规数值解法的问题是不太可能手写代码实现的，只需调用成熟的库函数。在这里，为方便起见，C++用的是boost.odeint中的5阶可变步长Runge-Kutte解法器，是很常用的一个变步长方法；Fortran用的是LSODA库中的DLSODA.F子程序，是一种复杂的变步长方法。</p>
 <p>源代码可以看Github上面的，这里只给出解n=10000个常微分方程组(2个变量)的速度比较，时间单位是纳秒</p>
-<img src="/2016/10/15/如何用C-调用Fortran子程序/result.png" alt="result.png" title="">
+<img src="/2016/10/15/如何用C-调用Fortran子程序/result.png">
 <p>差异大约有400倍之多。boost.odeint虽然是很现代的C++库，效率远远比不上经典的Fortran子程序。</p>
-<h1 id="u53C2_u8003"><a href="#u53C2_u8003" class="headerlink" title="参考"></a>参考</h1><p>关于Fortran的iso_c_binding <a href="http://stackoverflow.com/tags/fortran-iso-c-binding/info" target="_blank" rel="external">http://stackoverflow.com/tags/fortran-iso-c-binding/info</a></p>
-<p>各种语言的发展及亲缘关系 <a href="https://www.quora.com/Are-all-programming-languages-based-on-C" target="_blank" rel="external">https://www.quora.com/Are-all-programming-languages-based-on-C</a></p>
+<h1 id="u53C2_u8003"><a href="#u53C2_u8003" class="headerlink" title="参考"></a>参考</h1><p>关于Fortran的iso_c_binding <a href="http://stackoverflow.com/tags/fortran-iso-c-binding/info" target="_blank" rel="noopener">http://stackoverflow.com/tags/fortran-iso-c-binding/info</a></p>
+<p>各种语言的发展及亲缘关系 <a href="https://www.quora.com/Are-all-programming-languages-based-on-C" target="_blank" rel="noopener">https://www.quora.com/Are-all-programming-languages-based-on-C</a></p>
 
       
     </div>
@@ -519,9 +522,9 @@ end subroutine
       
         <div class="post-tags">
           
-            <a href="/tags/C/" rel="tag"># C++</a>
-          
             <a href="/tags/Fortran/" rel="tag"># Fortran</a>
+          
+            <a href="/tags/C/" rel="tag"># C++</a>
           
         </div>
       
@@ -620,7 +623,7 @@ end subroutine
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">43</span>
+                <span class="site-state-item-count">44</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -631,7 +634,7 @@ end subroutine
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">60</span>
+                <span class="site-state-item-count">61</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

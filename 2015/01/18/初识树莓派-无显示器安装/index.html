@@ -71,7 +71,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="树莓派,网络," />
+  <meta name="keywords" content="网络,树莓派," />
 
 
 
@@ -90,18 +90,21 @@
 
 
 <meta name="description" content="前不久抱着折腾不休的态度买了树莓派玩，这就是个给大人的玩具，嗯，成人玩具，好想有点不对">
+<meta name="keywords" content="网络,树莓派">
 <meta property="og:type" content="article">
 <meta property="og:title" content="初识树莓派 无显示器安装">
 <meta property="og:url" content="http://nekolab.cn/2015/01/18/初识树莓派-无显示器安装/index.html">
 <meta property="og:site_name" content="NekoLab">
 <meta property="og:description" content="前不久抱着折腾不休的态度买了树莓派玩，这就是个给大人的玩具，嗯，成人玩具，好想有点不对">
+<meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://nekolab.cn/2015/01/18/初识树莓派-无显示器安装/pi.jpg">
 <meta property="og:image" content="http://nekolab.cn/2015/01/18/初识树莓派-无显示器安装/1.png">
 <meta property="og:image" content="http://nekolab.cn/2015/01/18/初识树莓派-无显示器安装/2.png">
-<meta property="og:updated_time" content="2016-06-08T09:50:04.229Z">
+<meta property="og:updated_time" content="2016-06-08T09:50:06.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="初识树莓派 无显示器安装">
 <meta name="twitter:description" content="前不久抱着折腾不休的态度买了树莓派玩，这就是个给大人的玩具，嗯，成人玩具，好想有点不对">
+<meta name="twitter:image" content="http://nekolab.cn/2015/01/18/初识树莓派-无显示器安装/pi.jpg">
 
 
 
@@ -397,7 +400,7 @@
 
       
         <p>前不久抱着折腾不休的态度买了树莓派玩，这就是个给大人的玩具，嗯，成人玩具，好想有点不对</p>
-<img src="/2015/01/18/初识树莓派-无显示器安装/pi.jpg" alt="pi.jpg" title="">
+<img src="/2015/01/18/初识树莓派-无显示器安装/pi.jpg">
 <a id="more"></a>
 <p>虽然早就知道树莓派只有一片信用卡大小，不过第一次拿到手上的时候还是被惊艳到了~ 像一片塑料一样很轻很轻，精巧的电路板，元件都裸露在外面没有外壳（所以防静电很重要！特别是在北方干燥的秋冬时候），有4个USB接口（Model B+），更显眼的是一排GPIO接口为树莓派提供了更强大的扩展能力（可是我还不会ToT）。由于寝室里条件艰苦朴素，除了路由器、网线和笔记本电脑就没别的设备了，第一次安装树莓派就需要费一点工夫。</p>
 <p>首先需要准备一张至少4G的Micro SD卡，从官网上下载系统映像文件，它为初学者推荐的是更简单的安装程序NOOBS，其中不仅包含raspbian系统，还预装了其他的比如Pidora（基于Fedora的系统）、RISC OS 、Arch（Arch Linux的树莓派版）之类的系统，但是更占空间。我就只单独下载了raspbian映像文件，然后用Win32DiskManager烧录到SD卡中，给树莓派插上卡，接上电源，能看到红灯亮绿灯偶尔闪烁，就说明系统载入成功了。</p>
@@ -408,10 +411,10 @@
 <p>而SSH是目前较可靠，专为远程登录会话和其他网络服务提供安全性的协议。利用SSH协议可以有效防止远程管理过程中的信息泄露问题。通过SSH可以对所有传输的数据进行加密，也能够防止DNS欺骗和IP欺骗。</p>
 <p>SSH之另一项优点为其传输的数据可以是经过压缩的，所以可以加快传输的速度。SSH有很多功能，它既可以代替Telnet，又可以为FTP、POP、甚至为PPP提供一个安全的“通道”。</p>
 <p>用SSH首先要知道树莓派在局域网的IP地址，连上网线插到路由器，登陆路由器的管理界面，一般都是192.168.0.1，可能会在DHCP列表中找到raspberrypi（不行的话就把所有页面找一遍），有点像这个样子：</p>
-<img src="/2015/01/18/初识树莓派-无显示器安装/1.png" alt="1.png" title="">
+<img src="/2015/01/18/初识树莓派-无显示器安装/1.png">
 <p>为了让内网IP固定下来可以用路由器设置DHCP保留（或类似的名字），只需要填上树莓派的mac地址<br>和需要的内网IP 192.168.0.xxx，就不需要再登陆路由器找树莓派的IP了，否则路由器以后会自动分配其他的IP地址。</p>
 <p>在Windows下用到的SSH工具叫PuTTY，IP地址填写刚才找到的IP，SSH的端口是22，如果一切正常的话会弹出一个对话框选择“是”，很快就会显示login as: 输入用户名“pi”，默认无密码，然后就登入了，说还要用raspi-config进行一些初始化的设定，比如扩展储存空间、语言设定等等，照着菜单中选项看就行了。</p>
-<img src="/2015/01/18/初识树莓派-无显示器安装/2.png" alt="2.png" title="">
+<img src="/2015/01/18/初识树莓派-无显示器安装/2.png">
 <p>其实好简单的（可是我当初怎么查了好半天资料），这样以后就完全跟用命令行运行linux的操作是一样了，就是一台五脏俱全的linux电脑，下一步我的计划是拿它做服务器，运行我的网站和一些程序。</p>
 <p>顺便一提，还可以设置路由器端口映射，就是把公网的IP映射到内网，让电脑在别的地方输入路由器获得的公网IP就可以远程登陆树莓派，这个要设置开放SSH的端口22，如果做服务器的话还要开放HTTP的80端口，FTP的21端口等等。</p>
 
@@ -437,9 +440,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/树莓派/" rel="tag"># 树莓派</a>
-          
             <a href="/tags/网络/" rel="tag"># 网络</a>
+          
+            <a href="/tags/树莓派/" rel="tag"># 树莓派</a>
           
         </div>
       
@@ -525,7 +528,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">43</span>
+                <span class="site-state-item-count">44</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -536,7 +539,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">60</span>
+                <span class="site-state-item-count">61</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

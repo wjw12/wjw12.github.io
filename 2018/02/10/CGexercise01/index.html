@@ -71,7 +71,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Sketchup,Unity," />
+  <meta name="keywords" content="Unity,Sketchup," />
 
 
 
@@ -89,23 +89,23 @@
 
 
 
-<meta name="description" content="决定开始做这样一件事情，用Unity每周完成一个CG小练习。着重于图形技术原理和编程，而非传统美术意义上的CG。一方面掌握引擎的各种功能，实验一些技术和算法，另一方面培养美术能力。在制作过程中往往会有新的灵感，从而将这一系列的选题推进下去。
-今天展示一个小场景，是用SketchUp建模+贴图，然后导入到Unity实现光照和交互。">
+<meta name="description" content="决定开始做这样一件事情，用Unity每周完成一个CG小练习。着重于图形技术原理和编程，而非传统美术意义上的CG。一方面掌握引擎的各种功能，实验一些技术和算法，另一方面培养美术能力。在制作过程中往往会有新的灵感，从而将这一系列的选题推进下去。 今天展示一个小场景，是用SketchUp建模+贴图，然后导入到Unity实现光照和交互。">
+<meta name="keywords" content="Unity,Sketchup">
 <meta property="og:type" content="article">
 <meta property="og:title" content="CG练习（1） SketchUp到Unity工作流">
 <meta property="og:url" content="http://nekolab.cn/2018/02/10/CGexercise01/index.html">
 <meta property="og:site_name" content="NekoLab">
-<meta property="og:description" content="决定开始做这样一件事情，用Unity每周完成一个CG小练习。着重于图形技术原理和编程，而非传统美术意义上的CG。一方面掌握引擎的各种功能，实验一些技术和算法，另一方面培养美术能力。在制作过程中往往会有新的灵感，从而将这一系列的选题推进下去。
-今天展示一个小场景，是用SketchUp建模+贴图，然后导入到Unity实现光照和交互。">
+<meta property="og:description" content="决定开始做这样一件事情，用Unity每周完成一个CG小练习。着重于图形技术原理和编程，而非传统美术意义上的CG。一方面掌握引擎的各种功能，实验一些技术和算法，另一方面培养美术能力。在制作过程中往往会有新的灵感，从而将这一系列的选题推进下去。 今天展示一个小场景，是用SketchUp建模+贴图，然后导入到Unity实现光照和交互。">
+<meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://wjwtest.oss-cn-qingdao.aliyuncs.com/cg_exercise/01/1.gif">
 <meta property="og:image" content="http://wjwtest.oss-cn-qingdao.aliyuncs.com/cg_exercise/01/daeexport.png">
 <meta property="og:image" content="http://wjwtest.oss-cn-qingdao.aliyuncs.com/cg_exercise/01/unityimport.png">
 <meta property="og:image" content="http://wjwtest.oss-cn-qingdao.aliyuncs.com/cg_exercise/01/compare.png">
-<meta property="og:updated_time" content="2018-02-10T07:07:13.489Z">
+<meta property="og:updated_time" content="2018-02-10T07:07:14.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="CG练习（1） SketchUp到Unity工作流">
-<meta name="twitter:description" content="决定开始做这样一件事情，用Unity每周完成一个CG小练习。着重于图形技术原理和编程，而非传统美术意义上的CG。一方面掌握引擎的各种功能，实验一些技术和算法，另一方面培养美术能力。在制作过程中往往会有新的灵感，从而将这一系列的选题推进下去。
-今天展示一个小场景，是用SketchUp建模+贴图，然后导入到Unity实现光照和交互。">
+<meta name="twitter:description" content="决定开始做这样一件事情，用Unity每周完成一个CG小练习。着重于图形技术原理和编程，而非传统美术意义上的CG。一方面掌握引擎的各种功能，实验一些技术和算法，另一方面培养美术能力。在制作过程中往往会有新的灵感，从而将这一系列的选题推进下去。 今天展示一个小场景，是用SketchUp建模+贴图，然后导入到Unity实现光照和交互。">
+<meta name="twitter:image" content="http://wjwtest.oss-cn-qingdao.aliyuncs.com/cg_exercise/01/1.gif">
 
 
 
@@ -404,7 +404,7 @@
 <p>今天展示一个小场景，是用SketchUp建模+贴图，然后导入到Unity实现光照和交互。</p>
 <p><img src="http://wjwtest.oss-cn-qingdao.aliyuncs.com/cg_exercise/01/1.gif"></p>
 <a id="more"></a>
-<p>之前一直被SketchUp模型导出的问题困扰，导出的模型在3D软件里要不很多面显示不出，要不贴图错误，甚至让我怀疑SketchUp到底能不能建出游戏中能用的模型。直到看了<a href="https://www.youtube.com/watch?v=U3bN14B7nmE" target="_blank" rel="external">这个系列视频</a>，跟着流程进行了一遍，再加上自己的摸索，才发现要建模时要注意的很多问题：</p>
+<p>之前一直被SketchUp模型导出的问题困扰，导出的模型在3D软件里要不很多面显示不出，要不贴图错误，甚至让我怀疑SketchUp到底能不能建出游戏中能用的模型。直到看了<a href="https://www.youtube.com/watch?v=U3bN14B7nmE" target="_blank" rel="noopener">这个系列视频</a>，跟着流程进行了一遍，再加上自己的摸索，才发现要建模时要注意的很多问题：</p>
 <ul>
 <li>每个面都要加材质！！！</li>
 <li>不要有孤立的面，要push出几何体</li>
@@ -414,12 +414,12 @@
 </ul>
 <p>然后在unity里面，导入设置是这样的：<br><img src="http://wjwtest.oss-cn-qingdao.aliyuncs.com/cg_exercise/01/unityimport.png"></p>
 <p>因为我在SU里面单位选择的是米，导入dae需要用很小的scale，这里用了0.025，否则会得到巨大无比的模型没办法计算光照贴图，并且一定要生成Lightmap UV。如果是墙壁、地板等不可穿透的物件可以开启generate collider，但也可以后面手动加。</p>
-<p>在unity里面摆好模型和灯光，灯光在Player Setting里面检查色彩空间是不是Linear的，对于真实感渲染，线性色彩空间的效果比Gamma space更好。加一个<a href="https://assetstore.unity.com/packages/essentials/beta-projects/unity-hdri-pack-72511" target="_blank" rel="external">HDRI Pack</a>里面的Skybox，用于给环境光照增添一点层次感。每个房间放置Reflection Probe，调整好位置点Bake。</p>
+<p>在unity里面摆好模型和灯光，灯光在Player Setting里面检查色彩空间是不是Linear的，对于真实感渲染，线性色彩空间的效果比Gamma space更好。加一个<a href="https://assetstore.unity.com/packages/essentials/beta-projects/unity-hdri-pack-72511" target="_blank" rel="noopener">HDRI Pack</a>里面的Skybox，用于给环境光照增添一点层次感。每个房间放置Reflection Probe，调整好位置点Bake。</p>
 <p>最关键的是烘焙光照贴图，这里有很多坑，这次做出来的结果也不算很好。地面和墙上有不自然的斑点和方块，大概是因为整间屋子的所有墙壁用的是一整块模型，这样分辨率不高，最好拆成一块一块的小模型。texels per unit我用的10（默认40太慢了，一般试验光照用2~4，成品4~10的效果已经很不错了）</p>
 <p>最后，从Standard Asset - Character里面加入一个FPS Controller，就可以用WASD和鼠标控制角色漫游场景了。导入Post Processing Stack，在角色身上绑定的相机加一个Post Processing Behaviour，用到的几个后处理效果：Anti-aliasing，Ambient Occlusion，Screen-space reflection，Color grading。后处理前后对比（右边是加了后处理的）：<br><img src="http://wjwtest.oss-cn-qingdao.aliyuncs.com/cg_exercise/01/compare.png"></p>
 <p>除了调色和抗锯齿效果很明显之外，Screen-space reflection可以弥补Reflection Probe的缺陷，右边灯座金属原本是没有反光的，添加效果之后才有。</p>
-<p>还可以注意到，玻璃窗外有一束照进来的光线，是使用了这个<a href="https://github.com/SlightlyMad/VolumetricLights" target="_blank" rel="external">体积光插件</a>。下期将会讲解体积光的实现原理，同时会扩展这个体积光的功能。</p>
-<p>关于Lightmap baking的参考资料：<br><a href="https://forum.unity.com/threads/lightmap-baking-tips.460126/" target="_blank" rel="external">https://forum.unity.com/threads/lightmap-baking-tips.460126/</a><br><a href="https://unity3d.com/cn/learn/tutorials/topics/graphics/fine-tuning-lightmap-parameters" target="_blank" rel="external">https://unity3d.com/cn/learn/tutorials/topics/graphics/fine-tuning-lightmap-parameters</a></p>
+<p>还可以注意到，玻璃窗外有一束照进来的光线，是使用了这个<a href="https://github.com/SlightlyMad/VolumetricLights" target="_blank" rel="noopener">体积光插件</a>。下期将会讲解体积光的实现原理，同时会扩展这个体积光的功能。</p>
+<p>关于Lightmap baking的参考资料：<br><a href="https://forum.unity.com/threads/lightmap-baking-tips.460126/" target="_blank" rel="noopener">https://forum.unity.com/threads/lightmap-baking-tips.460126/</a><br><a href="https://unity3d.com/cn/learn/tutorials/topics/graphics/fine-tuning-lightmap-parameters" target="_blank" rel="noopener">https://unity3d.com/cn/learn/tutorials/topics/graphics/fine-tuning-lightmap-parameters</a></p>
 
       
     </div>
@@ -443,9 +443,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Sketchup/" rel="tag"># Sketchup</a>
-          
             <a href="/tags/Unity/" rel="tag"># Unity</a>
+          
+            <a href="/tags/Sketchup/" rel="tag"># Sketchup</a>
           
         </div>
       
@@ -535,7 +535,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">43</span>
+                <span class="site-state-item-count">44</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -546,7 +546,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">60</span>
+                <span class="site-state-item-count">61</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

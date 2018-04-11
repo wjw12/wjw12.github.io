@@ -71,7 +71,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo,NekoLab,网页," />
+  <meta name="keywords" content="Hexo,网页,NekoLab," />
 
 
 
@@ -90,16 +90,19 @@
 
 
 <meta name="description" content="一些朋友问过我这个主页是怎么搭起来的。简单地说，是用Hexo生成静态页面，挂在Github上，视频和图片等多媒体文件存在阿里云的OSS云储存，通过外链使用。下面分别来说一说，也是给自己做个备忘。">
+<meta name="keywords" content="Hexo,网页,NekoLab">
 <meta property="og:type" content="article">
 <meta property="og:title" content="NekoLab是怎么搭起来的">
 <meta property="og:url" content="http://nekolab.cn/2016/08/26/NekoLab是怎么搭起来的/index.html">
 <meta property="og:site_name" content="NekoLab">
 <meta property="og:description" content="一些朋友问过我这个主页是怎么搭起来的。简单地说，是用Hexo生成静态页面，挂在Github上，视频和图片等多媒体文件存在阿里云的OSS云储存，通过外链使用。下面分别来说一说，也是给自己做个备忘。">
+<meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://nekolab.cn/2016/08/26/NekoLab是怎么搭起来的/bar.png">
-<meta property="og:updated_time" content="2016-08-25T09:35:26.626Z">
+<meta property="og:updated_time" content="2016-08-25T09:35:28.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="NekoLab是怎么搭起来的">
 <meta name="twitter:description" content="一些朋友问过我这个主页是怎么搭起来的。简单地说，是用Hexo生成静态页面，挂在Github上，视频和图片等多媒体文件存在阿里云的OSS云储存，通过外链使用。下面分别来说一说，也是给自己做个备忘。">
+<meta name="twitter:image" content="http://nekolab.cn/2016/08/26/NekoLab是怎么搭起来的/bar.png">
 
 
 
@@ -398,7 +401,7 @@
 <a id="more"></a>
 <h1 id="Hexo"><a href="#Hexo" class="headerlink" title="Hexo"></a>Hexo</h1><p>Hexo基本的安装已经在<a href="http://nekolab.cn/2016/01/21/NekoLab新的起点/">NekoLab新的起点</a>这里写到了，不再赘述。</p>
 <h2 id="u914D_u7F6E_u6587_u4EF6"><a href="#u914D_u7F6E_u6587_u4EF6" class="headerlink" title="配置文件"></a>配置文件</h2><p>配置Hexo经常要跟两个config.yml配置文件打交道，一个在根目录下，配置站点总体说明、插件等等；还有一个是主题的配置文件，位于<code>themes/(主题名)/</code>目录下。</p>
-<p>比如说我用的<a href="https://github.com/iissnan/hexo-theme-next" target="_blank" rel="external">NexT</a>主题，这里主要配置了导航栏指向的页面和图标：</p>
+<p>比如说我用的<a href="https://github.com/iissnan/hexo-theme-next" target="_blank" rel="noopener">NexT</a>主题，这里主要配置了导航栏指向的页面和图标：</p>
 <pre><code># When running hexo in a subdirectory (e.g. domain.tld/blog)
 # Remove leading slashes ( &quot;/archives&quot; -&gt; &quot;archives&quot; )
 menu:
@@ -442,11 +445,11 @@ menu_icons:
   video: 视频(测试版)
   rss: 订阅      
 </code></pre><p>对应着这个导航栏是这个样子的：</p>
-<img src="/2016/08/26/NekoLab是怎么搭起来的/bar.png" alt="bar.png" title="">
+<img src="/2016/08/26/NekoLab是怎么搭起来的/bar.png">
 <h2 id="u65B0_u589E_u9875_u9762"><a href="#u65B0_u589E_u9875_u9762" class="headerlink" title="新增页面"></a>新增页面</h2><p>执行命令<code>hexo new page</code>就会在站点的source文件夹里生成一个新文件夹，内有index.md，编辑这个和编辑博文的markdown源文件方法一样。</p>
 <p>要将这个页面增加到导航栏，需要修改上面主题的config.yml和语言相关的yml配置，在menu模块增加新页面的名字和链接。</p>
-<h2 id="RSS_u8BA2_u9605"><a href="#RSS_u8BA2_u9605" class="headerlink" title="RSS订阅"></a>RSS订阅</h2><p>使用了<a href="https://github.com/hexojs/hexo-generator-feed" target="_blank" rel="external">hexo-generator-feed</a>插件，会在根目录下生成一个atom.xml文件，就可以被RSS阅读器自动识别了。</p>
-<h2 id="Latex_u6570_u5B66_u516C_u5F0F_u8F93_u5165"><a href="#Latex_u6570_u5B66_u516C_u5F0F_u8F93_u5165" class="headerlink" title="Latex数学公式输入"></a>Latex数学公式输入</h2><p>使用了<a href="https://github.com/akfish/hexo-math" target="_blank" rel="external">hexo-math</a>插件，以下是测试：</p>
+<h2 id="RSS_u8BA2_u9605"><a href="#RSS_u8BA2_u9605" class="headerlink" title="RSS订阅"></a>RSS订阅</h2><p>使用了<a href="https://github.com/hexojs/hexo-generator-feed" target="_blank" rel="noopener">hexo-generator-feed</a>插件，会在根目录下生成一个atom.xml文件，就可以被RSS阅读器自动识别了。</p>
+<h2 id="Latex_u6570_u5B66_u516C_u5F0F_u8F93_u5165"><a href="#Latex_u6570_u5B66_u516C_u5F0F_u8F93_u5165" class="headerlink" title="Latex数学公式输入"></a>Latex数学公式输入</h2><p>使用了<a href="https://github.com/akfish/hexo-math" target="_blank" rel="noopener">hexo-math</a>插件，以下是测试：</p>
 <h3 id="Inline"><a href="#Inline" class="headerlink" title="Inline"></a>Inline</h3><p>Schrodinger’s equation is $i\hbar \frac{\partial \Psi}{\partial t}=-\frac{\hbar^2}{2m}\nabla^2\Psi + U\Psi$</p>
 <h3 id="Block"><a href="#Block" class="headerlink" title="Block"></a>Block</h3><p>$$\frac{\partial u}{\partial t}<br>= h^2 \left( \frac{\partial^2 u}{\partial x^2} +<br>\frac{\partial^2 u}{\partial y^2} +<br>\frac{\partial^2 u}{\partial z^2}\right)$$</p>
 <h3 id="Inline_with_Tag"><a href="#Inline_with_Tag" class="headerlink" title="Inline with Tag"></a>Inline with Tag</h3><p>This equation <span>$\cos 2\theta = \cos^2 \theta - \sin^2 \theta =  2 \cos^2 \theta - 1$</span><!-- Has MathJax --> is inline.</p>
@@ -456,10 +459,10 @@ menu_icons:
 \nabla\times\vec{E} &amp;=&amp; -\frac{\partial B}{\partial t} \\
 \nabla\times\vec{B} &amp;=&amp; \mu_0\left(\vec{J}+\epsilon_0\frac{\partial E}{\partial t} \right)
 \end{eqnarray}$$</span><!-- Has MathJax -->
-<h1 id="u963F_u91CC_u4E91OSS"><a href="#u963F_u91CC_u4E91OSS" class="headerlink" title="阿里云OSS"></a>阿里云OSS</h1><p>图片、音频、视频等文件太大，不可能存在Github上，于是我用了阿里云的云储存服务<a href="https://www.aliyun.com/product/oss" target="_blank" rel="external">OSS</a>，可以生成外链插入自己网页中。</p>
+<h1 id="u963F_u91CC_u4E91OSS"><a href="#u963F_u91CC_u4E91OSS" class="headerlink" title="阿里云OSS"></a>阿里云OSS</h1><p>图片、音频、视频等文件太大，不可能存在Github上，于是我用了阿里云的云储存服务<a href="https://www.aliyun.com/product/oss" target="_blank" rel="noopener">OSS</a>，可以生成外链插入自己网页中。</p>
 <p>计费规则主要包含空间和流量费用。空间是包月的，个人网站用最小的那种几十G，半年才10块钱。向云空间上传文件，以及每次打开网页加载图片会产生流量，按量计费，浏览量不多时也很便宜。</p>
 <p>外链链接可以直接用HTML标签插入markdown文档，比如<a href="http://nekolab.cn/2016/07/16/分享几首极简主义音乐/">分享几首极简主义音乐</a>里面插入的音乐：</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">audio</span> <span class="attribute">controls</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="title">source</span> <span class="attribute">src</span>=<span class="value">"http://wjwtest.oss-cn-qingdao.aliyuncs.com/Music/Arvo%20P%C3%A4rt%20-%20Spiegel%20im%20Spiegel.mp3"</span> <span class="attribute">type</span>=<span class="value">"audio/mpeg"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">audio</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">audio</span> <span class="attr">controls</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">source</span> <span class="attr">src</span>=<span class="string">"http://wjwtest.oss-cn-qingdao.aliyuncs.com/Music/Arvo%20P%C3%A4rt%20-%20Spiegel%20im%20Spiegel.mp3"</span> <span class="attr">type</span>=<span class="string">"audio/mpeg"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">audio</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <p>其实阿里云OSS也可以搭载静态网页，在用户文档中有详细说明，可以作为静态建站的一种方式。</p>
 
       
@@ -486,9 +489,9 @@ menu_icons:
           
             <a href="/tags/Hexo/" rel="tag"># Hexo</a>
           
-            <a href="/tags/NekoLab/" rel="tag"># NekoLab</a>
-          
             <a href="/tags/网页/" rel="tag"># 网页</a>
+          
+            <a href="/tags/NekoLab/" rel="tag"># NekoLab</a>
           
         </div>
       
@@ -587,7 +590,7 @@ menu_icons:
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">43</span>
+                <span class="site-state-item-count">44</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -598,7 +601,7 @@ menu_icons:
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">60</span>
+                <span class="site-state-item-count">61</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

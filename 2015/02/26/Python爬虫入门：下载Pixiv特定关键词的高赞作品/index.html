@@ -90,18 +90,21 @@
 
 
 <meta name="description" content="刚刚学一点python爬虫，很有趣，可以飙车了（误">
+<meta name="keywords" content="Python,爬虫">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Python爬虫入门：下载Pixiv特定关键词的高赞作品">
 <meta property="og:url" content="http://nekolab.cn/2015/02/26/Python爬虫入门：下载Pixiv特定关键词的高赞作品/index.html">
 <meta property="og:site_name" content="NekoLab">
 <meta property="og:description" content="刚刚学一点python爬虫，很有趣，可以飙车了（误">
+<meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://nekolab.cn/2015/02/26/Python爬虫入门：下载Pixiv特定关键词的高赞作品/cookie.jpg">
 <meta property="og:image" content="http://nekolab.cn/2015/02/26/Python爬虫入门：下载Pixiv特定关键词的高赞作品/likes.jpg">
 <meta property="og:image" content="http://nekolab.cn/2015/02/26/Python爬虫入门：下载Pixiv特定关键词的高赞作品/filename.jpg">
-<meta property="og:updated_time" content="2016-06-08T09:49:37.681Z">
+<meta property="og:updated_time" content="2016-06-08T09:49:38.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Python爬虫入门：下载Pixiv特定关键词的高赞作品">
 <meta name="twitter:description" content="刚刚学一点python爬虫，很有趣，可以飙车了（误">
+<meta name="twitter:image" content="http://nekolab.cn/2015/02/26/Python爬虫入门：下载Pixiv特定关键词的高赞作品/cookie.jpg">
 
 
 
@@ -399,20 +402,20 @@
         <p>刚刚学一点python爬虫，很有趣，可以飙车了（误</p>
 <a id="more"></a>
 <p>原本写了个按关键词下载草榴上的图片的……那个不和谐就不在这里分享了，接下来想下载插画给手机换一换壁纸，P站又不提供按热门度排序搜索图片的功能，于是就想自己实现一个简单的爬虫，下载特定关键词赞数过百的作品（如果手动去找的话要翻几页才能找到一个）</p>
-<p>源代码：<a href="https://github.com/wjw12/python/blob/master/pixivSpider.py" target="_blank" rel="external">https://github.com/wjw12/python/blob/master/pixivSpider.py</a></p>
+<p>源代码：<a href="https://github.com/wjw12/python/blob/master/pixivSpider.py" target="_blank" rel="noopener">https://github.com/wjw12/python/blob/master/pixivSpider.py</a></p>
 <p>首先要登陆P站，我这里偷个懒，在IE登陆然后用Fiddler这个软件抓包，用chrome的F12应该也行，抓到cookie内容插入到http request的header里面去就行，免去了cookiejar之类模块的使用</p>
-<img src="/2015/02/26/Python爬虫入门：下载Pixiv特定关键词的高赞作品/cookie.jpg" alt="cookie.jpg" title="">
+<img src="/2015/02/26/Python爬虫入门：下载Pixiv特定关键词的高赞作品/cookie.jpg">
 <pre><code>req = urllib.request.Request(pageURL)
 req.add_header(&apos;Cookie&apos;,cookie)
 resp = urllib.request.urlopen(req)
 </code></pre><p>编写整个程序的重点在于分析P站的页面逻辑，利用审查元素找到图片、文本在html代码中的位置，找到上下文的规律就可以用正则表达式抓取了，比如说获取赞的数量：</p>
-<img src="/2015/02/26/Python爬虫入门：下载Pixiv特定关键词的高赞作品/likes.jpg" alt="likes.jpg" title="">
+<img src="/2015/02/26/Python爬虫入门：下载Pixiv特定关键词的高赞作品/likes.jpg">
 <!--more-->
-<p>下载图片时一开始总是出现403 error，用抓包软件分析手动登陆时的request，发现爬虫的request少了一个referer，是网页用来检验访客从哪里来的信息。前面在图片页中找到了<a href="http://i1.pixiv.net/img-original/img/2015/02/08/04/30/09/48620880_p0.jpg%20" target="_blank" rel="external">jpg图片的URL</a> ，直接在浏览器中访问或用python urllib.request.urlopen访问都会出403错误，服务器拒绝访问。只有给我们的request加上一个Referer: <a href="http://www.pixiv.net/member_illust.php?mode=medium&amp;illust_id=48620880" target="_blank" rel="external">http://www.pixiv.net/member_illust.php?mode=medium&amp;illust_id=48620880</a>  伪装成从P站链接进去访问图片才能成功，代码中是这样：</p>
+<p>下载图片时一开始总是出现403 error，用抓包软件分析手动登陆时的request，发现爬虫的request少了一个referer，是网页用来检验访客从哪里来的信息。前面在图片页中找到了<a href="http://i1.pixiv.net/img-original/img/2015/02/08/04/30/09/48620880_p0.jpg%20" target="_blank" rel="noopener">jpg图片的URL</a> ，直接在浏览器中访问或用python urllib.request.urlopen访问都会出403错误，服务器拒绝访问。只有给我们的request加上一个Referer: <a href="http://www.pixiv.net/member_illust.php?mode=medium&amp;illust_id=48620880" target="_blank" rel="noopener">http://www.pixiv.net/member_illust.php?mode=medium&amp;illust_id=48620880</a>  伪装成从P站链接进去访问图片才能成功，代码中是这样：</p>
 <pre><code>req = urllib.request.Request(imgURL)
 referer = imgPageURL
 req.add_header(&apos;Referer&apos;,referer)
-</code></pre><p>要打开图片imgURL必须伪装成从imgPageURL进入的那样，补充阅读：<a href="http://en.wikipedia.org/wiki/HTTP_referer" target="_blank" rel="external">HTTP referer</a></p>
+</code></pre><p>要打开图片imgURL必须伪装成从imgPageURL进入的那样，补充阅读：<a href="http://en.wikipedia.org/wiki/HTTP_referer" target="_blank" rel="noopener">HTTP referer</a></p>
 <p>作为初学者遇到最大的一个麻烦就是字符串编码问题，Python3比起2稍微好了一点，但一开始程序总是各种报错，总结了一些经验：</p>
 <p>Python3 里面不加说明打引号的字符串就是unicode，str()返回值都是unicode</p>
 <p>Python3 没有unicode()函数，对str进行decode会出错（str类型没有decode方法），对bytes进行encode会出错</p>
@@ -422,7 +425,7 @@ replaceDIV = re.compile(pattern)
 repl = &apos;\n&apos;.encode(&apos;utf-8&apos;)
 imgPage = re.sub(replaceDIV,repl,imgPage)
 </code></pre><p>日文汉字在控制台可能无法正确输出，用gb18030 encode之后变成b’\xa3\xb2\xc2’这类形式，到最后还是没法在控制台正确显示文件名，不过下载下来之后在windows里面看到的文件名是正确的</p>
-<img src="/2015/02/26/Python爬虫入门：下载Pixiv特定关键词的高赞作品/filename.jpg" alt="filename.jpg" title="">
+<img src="/2015/02/26/Python爬虫入门：下载Pixiv特定关键词的高赞作品/filename.jpg">
       
     </div>
 
@@ -537,7 +540,7 @@ imgPage = re.sub(replaceDIV,repl,imgPage)
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">43</span>
+                <span class="site-state-item-count">44</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -548,7 +551,7 @@ imgPage = re.sub(replaceDIV,repl,imgPage)
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">60</span>
+                <span class="site-state-item-count">61</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
