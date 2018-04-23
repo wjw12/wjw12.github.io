@@ -4,6 +4,23 @@
 
     
   <url>
+    <loc>http://nekolab.cn/2018/04/22/indie-game-movie-china/</loc>
+    <lastmod>2018-04-23T11:50:54.488Z</lastmod>
+    <data>
+        <display>
+        <title>关于独立游戏的一点想法</title>
+        <pubTime>2018-04-22T14:59:23.000Z</pubTime>
+        
+        <tag>独立游戏</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://nekolab.cn/2018/04/11/CGexercise04/</loc>
     <lastmod>2018-04-11T15:04:07.696Z</lastmod>
     <data>
@@ -196,9 +213,9 @@
         <title>Bray航空展和爱尔兰小火车</title>
         <pubTime>2017-07-23T13:41:53.000Z</pubTime>
         
-        <tag>日记</tag>
-         
         <tag>爱尔兰</tag>
+         
+        <tag>日记</tag>
          
          
            
@@ -525,9 +542,9 @@
         <title>NekoLab是怎么搭起来的</title>
         <pubTime>2016-08-26T01:54:20.000Z</pubTime>
         
-        <tag>Hexo</tag>
-         
         <tag>网页</tag>
+         
+        <tag>Hexo</tag>
          
         <tag>NekoLab</tag>
          
@@ -546,9 +563,9 @@
         <title>NekoLab新的起点</title>
         <pubTime>2016-01-21T08:03:57.000Z</pubTime>
         
-        <tag>网络</tag>
-         
         <tag>Hexo</tag>
+         
+        <tag>网络</tag>
          
         <tag>Github</tag>
          
