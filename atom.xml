@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://nekolab.cn/"/>
-  <updated>2018-04-24T03:19:52.693Z</updated>
+  <updated>2018-04-24T03:24:59.193Z</updated>
   <id>http://nekolab.cn/</id>
   
   <author>
@@ -20,10 +20,10 @@
     <link href="http://nekolab.cn/2018/04/23/particle-stream-simulation/"/>
     <id>http://nekolab.cn/2018/04/23/particle-stream-simulation/</id>
     <published>2018-04-23T14:58:01.000Z</published>
-    <updated>2018-04-24T03:19:52.693Z</updated>
+    <updated>2018-04-24T03:24:59.193Z</updated>
     
-    <content type="html">&lt;p&gt;代码&lt;a href=&quot;https://github.com/wjw12/wjw12.github.io/tree/master/special/2D_Particle_Stream_Prototype&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;见这里哦&lt;/a&gt;，可以用键盘上下左右交互的网页(在这里)[&lt;a href=&quot;http://nekolab.cn/special/2D_Particle_Stream_Prototype/index.html]。&quot;&gt;http://nekolab.cn/special/2D_Particle_Stream_Prototype/index.html]。&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;这里想模拟的一个效果是一串粒子，只由一个“头部”的牵引发生运动，需要有自然流畅的动态和一定随机性。最终想在三维中做成类似陈星汉Flower中玩家操控的一串花瓣一样的运动，参考(这个视频)[&lt;a href=&quot;https://www.bilibili.com/video/av5372164]。细想之，并非一个简单的动画效果可以达到，所以想到先做一个二维的原型来试验，之后再用Unity做三维的就容易得多了。&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;https://www.bilibili.com/video/av5372164]。细想之，并非一个简单的动画效果可以达到，所以想到先做一个二维的原型来试验，之后再用Unity做三维的就容易得多了。&lt;/a&gt;&lt;/p&gt;
+    <content type="html">&lt;p&gt;代码&lt;a href=&quot;https://github.com/wjw12/wjw12.github.io/tree/master/special/2D_Particle_Stream_Prototype&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;见这里哦&lt;/a&gt;，可以用键盘上下左右交互的网页&lt;a href=&quot;http://nekolab.cn/special/2D_Particle_Stream_Prototype/index.html&quot;&gt;在这里&lt;/a&gt;。&lt;/p&gt;
+&lt;p&gt;这里想模拟的一个效果是一串粒子，只由一个“头部”的牵引发生运动，需要有自然流畅的动态和一定随机性。最终想在三维中做成类似陈星汉Flower中玩家操控的一串花瓣一样的运动，参考&lt;a href=&quot;https://www.bilibili.com/video/av5372164&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;这个视频&lt;/a&gt;。细想之，并非一个简单的动画效果可以达到，所以想到先做一个二维的原型来试验，之后再用Unity做三维的就容易得多了。&lt;/p&gt;
 &lt;p&gt;目前只是设计好了基础算法和架构，许多形态和动力学的参数都需要细致调节达到最好的效果，画面暂时是这样的：&lt;/p&gt;
 &lt;p&gt;&lt;img src=&quot;https://wjwtest.oss-cn-qingdao.aliyuncs.com/flocksimulation/1.png&quot;&gt;&lt;/p&gt;
 &lt;p&gt;其实说真的，现在的效果更像是一团蠕虫……但我觉得在这个框架之下有很多可以调节的空间。那么接下来就介绍一下我的方法吧。&lt;/p&gt;
@@ -33,7 +33,7 @@
 &lt;p&gt;绘图的核心就是两个函数setup()和draw()，setup只在程序加载之初执行一次，做一些初始化的工作，draw会在每一帧都调用一次，用来更新画布内容和接收用户输入。每一帧时间并不是固定的，而我们后面的动力学模拟需要用到每帧的时间差，所以设置个全局变量计算时间。&lt;br&gt;    var time = 0;&lt;br&gt;    var deltaTime = 0;&lt;br&gt;    function getTime() {&lt;br&gt;    return millis() / 1000;&lt;br&gt;    }&lt;br&gt;    function draw() {&lt;br&gt;    deltaTime = getTime() - time;&lt;br&gt;    time += deltaTime;&lt;br&gt;    // take input,&lt;br&gt;    // and update everything else&lt;br&gt;    }&lt;/p&gt;
 &lt;p&gt;写习惯了C#, C++这种强类型的面向对象语言，再去写脚本语言真的很不习惯。首先，一切变量的类型都是不确定的，函数参数没有类型检查（不是很熟悉这个，但就算有，也要多些一些代码，还是省省吧），所以类型是一切随缘，出错后果自负。&lt;/p&gt;
 &lt;p&gt;js的类型系统设计的很奇葩，它有一个运算符===，三个等号代表严格相等，那要问如果不严格相等是什么情况呢？比如一个布尔型false可以等于一个空数组，也等于整数0，还等于只有一个元素0的数组[0]。有下面一张类型比较表，是不是很令人崩溃？&lt;/p&gt;
-&lt;span itemprop=&quot;image&quot; itemscope=&quot;&quot; itemtype=&quot;http://schema.org/ImageObject&quot;&gt;&lt;img itemprop=&quot;url image&quot; src=&quot;https://wjwtest.oss-cn-qingdao.aliyuncs.com/flocksimulation/js.jpg&quot; class=&quot;full-image&quot; alt=&quot;600&quot;&gt;&lt;meta itemprop=&quot;width&quot; content=&quot;auto&quot;&gt;&lt;meta itemprop=&quot;height&quot; content=&quot;auto&quot;&gt;&lt;/span&gt;
+&lt;p&gt;&lt;img src=&quot;https://wjwtest.oss-cn-qingdao.aliyuncs.com/flocksimulation/js.jpg&quot; width=&quot;600&quot;&gt;&lt;/p&gt;
 &lt;p&gt;红色：=== 橙色：== 黄色：&amp;lt;= 和 &amp;gt;= 同时成立，== 不成立 蓝色：只有 &amp;gt;= 绿色：只有 &amp;lt;=&lt;/p&gt;
 &lt;p&gt;语言这么设计貌似是因为早期互联网要防止丢包数据出错的考虑，但我们现在做数值模拟，不需要那么多数据类型，慎重起见所有的等号都用===来判断严格相等吧。&lt;/p&gt;
 &lt;p&gt;js可以写面向对象的程序，但其中的对象机制其实是个假的面向对象，就使得面向对象的代码写出来特别奇怪，比如我们的ParticleStream类包含数据nodes和成员函数render，就要这么写：&lt;br&gt;function ParticleStream() {&lt;br&gt;    this.nodes = [];&lt;br&gt;    // and so on&lt;br&gt;}&lt;br&gt;ParticleStream.prototype.render = function() {// balabala}&lt;/p&gt;
@@ -83,8 +83,8 @@
     
     <summary type="html">
     
-      &lt;p&gt;代码&lt;a href=&quot;https://github.com/wjw12/wjw12.github.io/tree/master/special/2D_Particle_Stream_Prototype&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;见这里哦&lt;/a&gt;，可以用键盘上下左右交互的网页(在这里)[&lt;a href=&quot;http://nekolab.cn/special/2D_Particle_Stream_Prototype/index.html]。&quot;&gt;http://nekolab.cn/special/2D_Particle_Stream_Prototype/index.html]。&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;这里想模拟的一个效果是一串粒子，只由一个“头部”的牵引发生运动，需要有自然流畅的动态和一定随机性。最终想在三维中做成类似陈星汉Flower中玩家操控的一串花瓣一样的运动，参考(这个视频)[&lt;a href=&quot;https://www.bilibili.com/video/av5372164]。细想之，并非一个简单的动画效果可以达到，所以想到先做一个二维的原型来试验，之后再用Unity做三维的就容易得多了。&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;https://www.bilibili.com/video/av5372164]。细想之，并非一个简单的动画效果可以达到，所以想到先做一个二维的原型来试验，之后再用Unity做三维的就容易得多了。&lt;/a&gt;&lt;/p&gt;
+      &lt;p&gt;代码&lt;a href=&quot;https://github.com/wjw12/wjw12.github.io/tree/master/special/2D_Particle_Stream_Prototype&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;见这里哦&lt;/a&gt;，可以用键盘上下左右交互的网页&lt;a href=&quot;http://nekolab.cn/special/2D_Particle_Stream_Prototype/index.html&quot;&gt;在这里&lt;/a&gt;。&lt;/p&gt;
+&lt;p&gt;这里想模拟的一个效果是一串粒子，只由一个“头部”的牵引发生运动，需要有自然流畅的动态和一定随机性。最终想在三维中做成类似陈星汉Flower中玩家操控的一串花瓣一样的运动，参考&lt;a href=&quot;https://www.bilibili.com/video/av5372164&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;这个视频&lt;/a&gt;。细想之，并非一个简单的动画效果可以达到，所以想到先做一个二维的原型来试验，之后再用Unity做三维的就容易得多了。&lt;/p&gt;
 &lt;p&gt;目前只是设计好了基础算法和架构，许多形态和动力学的参数都需要细致调节达到最好的效果，画面暂时是这样的：&lt;/p&gt;
 &lt;p&gt;&lt;img src=&quot;https://wjwtest.oss-cn-qingdao.aliyuncs.com/flocksimulation/1.png&quot;&gt;&lt;/p&gt;
 &lt;p&gt;其实说真的，现在的效果更像是一团蠕虫……但我觉得在这个框架之下有很多可以调节的空间。那么接下来就介绍一下我的方法吧。&lt;/p&gt;
@@ -103,13 +103,13 @@
     <link href="http://nekolab.cn/2018/04/22/indie-game-movie-china/"/>
     <id>http://nekolab.cn/2018/04/22/indie-game-movie-china/</id>
     <published>2018-04-22T14:59:23.000Z</published>
-    <updated>2018-04-24T03:17:40.590Z</updated>
+    <updated>2018-04-24T03:23:23.298Z</updated>
     
     <content type="html">&lt;p&gt;看了中国独立游戏大电影在央美的点映式，深受感动。看完之后发微博说，这电影中的中国独立游戏现状，比五六年前Indie Game: The Movie里面的美国开发者看起来还要好。可能美国那部独立游戏大电影刻意拍了游戏开发艰苦的一面，过得都太惨了，记得有一个制作人还说游戏发布一再延期的时候都想到了不成功就自杀，后来卖出了几十几百万份还是过得不开心。相比之下，三郎拍的这部中国版积极正面很多。也是因为全球的独立游戏市场环境都在变好，有太多机会让还没发布的游戏得到曝光，游戏展、主播、众筹、Early Access，不少游戏都是靠着demo版囊括一堆奖项的，之后的路就好走很多了。&lt;/p&gt;
 &lt;span itemprop=&quot;image&quot; itemscope=&quot;&quot; itemtype=&quot;http://schema.org/ImageObject&quot;&gt;&lt;img itemprop=&quot;url image&quot; src=&quot;https://wjwtest.oss-cn-qingdao.aliyuncs.com/indiegamemovie/1.jpg&quot; class=&quot;full-image&quot; alt=&quot;1200&quot;&gt;&lt;meta itemprop=&quot;width&quot; content=&quot;auto&quot;&gt;&lt;meta itemprop=&quot;height&quot; content=&quot;auto&quot;&gt;&lt;/span&gt;
 &lt;p&gt;并且游戏电影在央美放映，本身就是对独立游戏的极大肯定。这时还正值央美百年校庆，美术馆一进门看到的就是大红主题“设计学科展”展板，有设计国徽党徽、设计政府楼和军车的，相映成趣。央美“未来媒体工作室”的年轻老师作了致辞，说虽然教育部不让开游戏专业，但在央美可以讲游戏课程，总体的风向都是在变好的。&lt;/p&gt;
-&lt;span itemprop=&quot;image&quot; itemscope=&quot;&quot; itemtype=&quot;http://schema.org/ImageObject&quot;&gt;&lt;img itemprop=&quot;url image&quot; src=&quot;https://wjwtest.oss-cn-qingdao.aliyuncs.com/indiegamemovie/2.jpg&quot; class=&quot;full-image&quot; alt=&quot;1000&quot;&gt;&lt;meta itemprop=&quot;width&quot; content=&quot;auto&quot;&gt;&lt;meta itemprop=&quot;height&quot; content=&quot;auto&quot;&gt;&lt;/span&gt;
-&lt;span itemprop=&quot;image&quot; itemscope=&quot;&quot; itemtype=&quot;http://schema.org/ImageObject&quot;&gt;&lt;img itemprop=&quot;url image&quot; src=&quot;https://wjwtest.oss-cn-qingdao.aliyuncs.com/indiegamemovie/3.jpg&quot; class=&quot;full-image&quot; alt=&quot;1000&quot;&gt;&lt;meta itemprop=&quot;width&quot; content=&quot;auto&quot;&gt;&lt;meta itemprop=&quot;height&quot; content=&quot;auto&quot;&gt;&lt;/span&gt;
+&lt;p&gt;&lt;img src=&quot;https://wjwtest.oss-cn-qingdao.aliyuncs.com/indiegamemovie/2.jpg&quot; width=&quot;600&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://wjwtest.oss-cn-qingdao.aliyuncs.com/indiegamemovie/3.jpg&quot; width=&quot;600&quot;&gt;&lt;/p&gt;
 &lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
 &lt;p&gt;国内的市场环境也是很特殊，投资热催红了一批手游页游，但游戏快节奏的迭代和不断提升的玩家品味在促使着资本渗透到之前被忽视的单机游戏上，大红大紫的吸金手游都面临着过两年热度下降的风险，腾讯网易这种大厂也在紧盯着国内主流之外的长尾小众玩家。所以能看到WeGame扶持开发者，蜡烛人也是腾讯主推。玩过一会手机版的蜡烛人，觉得在情节和地图设计上有很多不自然的地方，作为小品游戏尚可，但离国际一流水平还有不小的差距。&lt;/p&gt;
 &lt;p&gt;首映上见到了蜡烛人的制作人高鸣，印象最深的是台下有人问他大公司与独立团队做游戏有什么不同，他说毕业后完全拒绝大公司的工作机会，即使去工作一两年再独立创业也不如立刻就开始做独立游戏。高鸣本科清华计算机、研究生清华美院毕业，进BAT工作是保底（这一点跟我现在一样）。他创业也是走了一条相对稳妥的路线，用了13年就制作出来并且在game jam上得分最高的蜡烛人原型，同时公司刚开始为了存活下去还做一些游戏化项目，比如给别的企业用kinect做游戏化广告。他的家庭生活也是非常之稳，提早下班接完孩子再去公司加班，虽然加班到很晚是必须的，但大概很少有独立游戏人能做到他一样的balance，这真的非常难得。&lt;/p&gt;
@@ -129,8 +129,8 @@
       &lt;p&gt;看了中国独立游戏大电影在央美的点映式，深受感动。看完之后发微博说，这电影中的中国独立游戏现状，比五六年前Indie Game: The Movie里面的美国开发者看起来还要好。可能美国那部独立游戏大电影刻意拍了游戏开发艰苦的一面，过得都太惨了，记得有一个制作人还说游戏发布一再延期的时候都想到了不成功就自杀，后来卖出了几十几百万份还是过得不开心。相比之下，三郎拍的这部中国版积极正面很多。也是因为全球的独立游戏市场环境都在变好，有太多机会让还没发布的游戏得到曝光，游戏展、主播、众筹、Early Access，不少游戏都是靠着demo版囊括一堆奖项的，之后的路就好走很多了。&lt;/p&gt;
 &lt;span itemprop=&quot;image&quot; itemscope=&quot;&quot; itemtype=&quot;http://schema.org/ImageObject&quot;&gt;&lt;img itemprop=&quot;url image&quot; src=&quot;https://wjwtest.oss-cn-qingdao.aliyuncs.com/indiegamemovie/1.jpg&quot; class=&quot;full-image&quot; alt=&quot;1200&quot;&gt;&lt;meta itemprop=&quot;width&quot; content=&quot;auto&quot;&gt;&lt;meta itemprop=&quot;height&quot; content=&quot;auto&quot;&gt;&lt;/span&gt;
 &lt;p&gt;并且游戏电影在央美放映，本身就是对独立游戏的极大肯定。这时还正值央美百年校庆，美术馆一进门看到的就是大红主题“设计学科展”展板，有设计国徽党徽、设计政府楼和军车的，相映成趣。央美“未来媒体工作室”的年轻老师作了致辞，说虽然教育部不让开游戏专业，但在央美可以讲游戏课程，总体的风向都是在变好的。&lt;/p&gt;
-&lt;span itemprop=&quot;image&quot; itemscope=&quot;&quot; itemtype=&quot;http://schema.org/ImageObject&quot;&gt;&lt;img itemprop=&quot;url image&quot; src=&quot;https://wjwtest.oss-cn-qingdao.aliyuncs.com/indiegamemovie/2.jpg&quot; class=&quot;full-image&quot; alt=&quot;1000&quot;&gt;&lt;meta itemprop=&quot;width&quot; content=&quot;auto&quot;&gt;&lt;meta itemprop=&quot;height&quot; content=&quot;auto&quot;&gt;&lt;/span&gt;
-&lt;span itemprop=&quot;image&quot; itemscope=&quot;&quot; itemtype=&quot;http://schema.org/ImageObject&quot;&gt;&lt;img itemprop=&quot;url image&quot; src=&quot;https://wjwtest.oss-cn-qingdao.aliyuncs.com/indiegamemovie/3.jpg&quot; class=&quot;full-image&quot; alt=&quot;1000&quot;&gt;&lt;meta itemprop=&quot;width&quot; content=&quot;auto&quot;&gt;&lt;meta itemprop=&quot;height&quot; content=&quot;auto&quot;&gt;&lt;/span&gt;
+&lt;p&gt;&lt;img src=&quot;https://wjwtest.oss-cn-qingdao.aliyuncs.com/indiegamemovie/2.jpg&quot; width=&quot;600&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://wjwtest.oss-cn-qingdao.aliyuncs.com/indiegamemovie/3.jpg&quot; width=&quot;600&quot;&gt;&lt;/p&gt;
     
     </summary>
     
