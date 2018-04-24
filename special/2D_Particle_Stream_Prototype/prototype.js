@@ -11,7 +11,7 @@ var drawSpeedLine = true;
 var drawNode = true;
 var drawSpring = true;
 var drawSeaLevelLine = false;
-var drawParticles = false;
+var drawParticles = true;
 
 function getTime() {
   return millis() / 1000;
