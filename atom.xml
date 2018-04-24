@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://nekolab.cn/"/>
-  <updated>2018-04-24T03:24:59.193Z</updated>
+  <updated>2018-04-24T03:32:31.587Z</updated>
   <id>http://nekolab.cn/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="http://nekolab.cn/2018/04/23/particle-stream-simulation/"/>
     <id>http://nekolab.cn/2018/04/23/particle-stream-simulation/</id>
     <published>2018-04-23T14:58:01.000Z</published>
-    <updated>2018-04-24T03:24:59.193Z</updated>
+    <updated>2018-04-24T03:32:31.587Z</updated>
     
     <content type="html">&lt;p&gt;代码&lt;a href=&quot;https://github.com/wjw12/wjw12.github.io/tree/master/special/2D_Particle_Stream_Prototype&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;见这里哦&lt;/a&gt;，可以用键盘上下左右交互的网页&lt;a href=&quot;http://nekolab.cn/special/2D_Particle_Stream_Prototype/index.html&quot;&gt;在这里&lt;/a&gt;。&lt;/p&gt;
 &lt;p&gt;这里想模拟的一个效果是一串粒子，只由一个“头部”的牵引发生运动，需要有自然流畅的动态和一定随机性。最终想在三维中做成类似陈星汉Flower中玩家操控的一串花瓣一样的运动，参考&lt;a href=&quot;https://www.bilibili.com/video/av5372164&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;这个视频&lt;/a&gt;。细想之，并非一个简单的动画效果可以达到，所以想到先做一个二维的原型来试验，之后再用Unity做三维的就容易得多了。&lt;/p&gt;
@@ -28,8 +28,8 @@
 &lt;p&gt;&lt;img src=&quot;https://wjwtest.oss-cn-qingdao.aliyuncs.com/flocksimulation/1.png&quot;&gt;&lt;/p&gt;
 &lt;p&gt;其实说真的，现在的效果更像是一团蠕虫……但我觉得在这个框架之下有很多可以调节的空间。那么接下来就介绍一下我的方法吧。&lt;/p&gt;
 &lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
-&lt;h1 id=&quot;1-_p5-js_u7B80_u4ECB_u4E0E_u7F16_u7A0B_u8E29_u8FC7_u7684_u5751&quot;&gt;&lt;a href=&quot;#1-_p5-js_u7B80_u4ECB_u4E0E_u7F16_u7A0B_u8E29_u8FC7_u7684_u5751&quot; class=&quot;headerlink&quot; title=&quot;1. p5.js简介与编程踩过的坑&quot;&gt;&lt;/a&gt;1. p5.js简介与编程踩过的坑&lt;/h1&gt;&lt;p&gt;p5.js是Processing语言移植到js语言的一个库，Processing是专门为艺术与交互设计创造出的语言，不需太多技术性的设置，编代码只需要专注于绘图和交互，大大降低了交互图形绘制的门槛。之前看Youtube上的(Coding Challenge)[&lt;a href=&quot;https://www.youtube.com/playlist?list=PLRqwX-V7Uu6ZiZxtDDRCi6uhfTH4FilpH]就用p5.js编写很多图形和可视化算法，给人不少图形学方面的灵感。&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;https://www.youtube.com/playlist?list=PLRqwX-V7Uu6ZiZxtDDRCi6uhfTH4FilpH]就用p5.js编写很多图形和可视化算法，给人不少图形学方面的灵感。&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;做这个不太复杂的原型用Unity C#觉得太重量级了一点，于是借此机会学个新技能，下载(p5.min.js)[&lt;a href=&quot;https://p5js.org/get-started/]只有300多k的源文件，打开文本编辑器就能开始写了。&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;https://p5js.org/get-started/]只有300多k的源文件，打开文本编辑器就能开始写了。&lt;/a&gt;&lt;/p&gt;
+&lt;h1 id=&quot;1-_p5-js_u7B80_u4ECB_u4E0E_u7F16_u7A0B_u8E29_u8FC7_u7684_u5751&quot;&gt;&lt;a href=&quot;#1-_p5-js_u7B80_u4ECB_u4E0E_u7F16_u7A0B_u8E29_u8FC7_u7684_u5751&quot; class=&quot;headerlink&quot; title=&quot;1. p5.js简介与编程踩过的坑&quot;&gt;&lt;/a&gt;1. p5.js简介与编程踩过的坑&lt;/h1&gt;&lt;p&gt;p5.js是Processing语言移植到js语言的一个库，Processing是专门为艺术与交互设计创造出的语言，不需太多技术性的设置，编代码只需要专注于绘图和交互，大大降低了交互图形绘制的门槛。之前看Youtube上的&lt;a href=&quot;https://www.youtube.com/playlist?list=PLRqwX-V7Uu6ZiZxtDDRCi6uhfTH4FilpH&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Coding Challenge&lt;/a&gt;就用p5.js编写很多图形和可视化算法，给人不少图形学方面的灵感。&lt;/p&gt;
+&lt;p&gt;做这个不太复杂的原型用Unity C#觉得太重量级了一点，于是借此机会学个新技能，下载&lt;a href=&quot;https://p5js.org/get-started/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;p5.min.js&lt;/a&gt;只有300多k的源文件，打开文本编辑器就能开始写了。&lt;/p&gt;
 &lt;p&gt;绘图的核心就是两个函数setup()和draw()，setup只在程序加载之初执行一次，做一些初始化的工作，draw会在每一帧都调用一次，用来更新画布内容和接收用户输入。每一帧时间并不是固定的，而我们后面的动力学模拟需要用到每帧的时间差，所以设置个全局变量计算时间。&lt;br&gt;    var time = 0;&lt;br&gt;    var deltaTime = 0;&lt;br&gt;    function getTime() {&lt;br&gt;    return millis() / 1000;&lt;br&gt;    }&lt;br&gt;    function draw() {&lt;br&gt;    deltaTime = getTime() - time;&lt;br&gt;    time += deltaTime;&lt;br&gt;    // take input,&lt;br&gt;    // and update everything else&lt;br&gt;    }&lt;/p&gt;
 &lt;p&gt;写习惯了C#, C++这种强类型的面向对象语言，再去写脚本语言真的很不习惯。首先，一切变量的类型都是不确定的，函数参数没有类型检查（不是很熟悉这个，但就算有，也要多些一些代码，还是省省吧），所以类型是一切随缘，出错后果自负。&lt;/p&gt;
 &lt;p&gt;js的类型系统设计的很奇葩，它有一个运算符===，三个等号代表严格相等，那要问如果不严格相等是什么情况呢？比如一个布尔型false可以等于一个空数组，也等于整数0，还等于只有一个元素0的数组[0]。有下面一张类型比较表，是不是很令人崩溃？&lt;/p&gt;

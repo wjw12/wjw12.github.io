@@ -102,7 +102,7 @@
 <meta property="og:image" content="https://wjwtest.oss-cn-qingdao.aliyuncs.com/flocksimulation/2Dprototype1.png">
 <meta property="og:image" content="https://wjwtest.oss-cn-qingdao.aliyuncs.com/flocksimulation/3.png">
 <meta property="og:image" content="https://wjwtest.oss-cn-qingdao.aliyuncs.com/flocksimulation/2.png">
-<meta property="og:updated_time" content="2018-04-24T03:24:59.193Z">
+<meta property="og:updated_time" content="2018-04-24T03:32:31.587Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="（未完成）用p5.js模拟一串粒子的二维运动">
 <meta name="twitter:description" content="代码见这里哦，可以用键盘上下左右交互的网页在这里。 这里想模拟的一个效果是一串粒子，只由一个“头部”的牵引发生运动，需要有自然流畅的动态和一定随机性。最终想在三维中做成类似陈星汉Flower中玩家操控的一串花瓣一样的运动，参考这个视频。细想之，并非一个简单的动画效果可以达到，所以想到先做一个二维的原型来试验，之后再用Unity做三维的就容易得多了。 目前只是设计好了基础算法和架构，许多形态和动力学">
@@ -407,8 +407,8 @@
 <p><img src="https://wjwtest.oss-cn-qingdao.aliyuncs.com/flocksimulation/1.png"></p>
 <p>其实说真的，现在的效果更像是一团蠕虫……但我觉得在这个框架之下有很多可以调节的空间。那么接下来就介绍一下我的方法吧。</p>
 <a id="more"></a>
-<h1 id="1-_p5-js_u7B80_u4ECB_u4E0E_u7F16_u7A0B_u8E29_u8FC7_u7684_u5751"><a href="#1-_p5-js_u7B80_u4ECB_u4E0E_u7F16_u7A0B_u8E29_u8FC7_u7684_u5751" class="headerlink" title="1. p5.js简介与编程踩过的坑"></a>1. p5.js简介与编程踩过的坑</h1><p>p5.js是Processing语言移植到js语言的一个库，Processing是专门为艺术与交互设计创造出的语言，不需太多技术性的设置，编代码只需要专注于绘图和交互，大大降低了交互图形绘制的门槛。之前看Youtube上的(Coding Challenge)[<a href="https://www.youtube.com/playlist?list=PLRqwX-V7Uu6ZiZxtDDRCi6uhfTH4FilpH]就用p5.js编写很多图形和可视化算法，给人不少图形学方面的灵感。" target="_blank" rel="noopener">https://www.youtube.com/playlist?list=PLRqwX-V7Uu6ZiZxtDDRCi6uhfTH4FilpH]就用p5.js编写很多图形和可视化算法，给人不少图形学方面的灵感。</a></p>
-<p>做这个不太复杂的原型用Unity C#觉得太重量级了一点，于是借此机会学个新技能，下载(p5.min.js)[<a href="https://p5js.org/get-started/]只有300多k的源文件，打开文本编辑器就能开始写了。" target="_blank" rel="noopener">https://p5js.org/get-started/]只有300多k的源文件，打开文本编辑器就能开始写了。</a></p>
+<h1 id="1-_p5-js_u7B80_u4ECB_u4E0E_u7F16_u7A0B_u8E29_u8FC7_u7684_u5751"><a href="#1-_p5-js_u7B80_u4ECB_u4E0E_u7F16_u7A0B_u8E29_u8FC7_u7684_u5751" class="headerlink" title="1. p5.js简介与编程踩过的坑"></a>1. p5.js简介与编程踩过的坑</h1><p>p5.js是Processing语言移植到js语言的一个库，Processing是专门为艺术与交互设计创造出的语言，不需太多技术性的设置，编代码只需要专注于绘图和交互，大大降低了交互图形绘制的门槛。之前看Youtube上的<a href="https://www.youtube.com/playlist?list=PLRqwX-V7Uu6ZiZxtDDRCi6uhfTH4FilpH" target="_blank" rel="noopener">Coding Challenge</a>就用p5.js编写很多图形和可视化算法，给人不少图形学方面的灵感。</p>
+<p>做这个不太复杂的原型用Unity C#觉得太重量级了一点，于是借此机会学个新技能，下载<a href="https://p5js.org/get-started/" target="_blank" rel="noopener">p5.min.js</a>只有300多k的源文件，打开文本编辑器就能开始写了。</p>
 <p>绘图的核心就是两个函数setup()和draw()，setup只在程序加载之初执行一次，做一些初始化的工作，draw会在每一帧都调用一次，用来更新画布内容和接收用户输入。每一帧时间并不是固定的，而我们后面的动力学模拟需要用到每帧的时间差，所以设置个全局变量计算时间。<br>    var time = 0;<br>    var deltaTime = 0;<br>    function getTime() {<br>    return millis() / 1000;<br>    }<br>    function draw() {<br>    deltaTime = getTime() - time;<br>    time += deltaTime;<br>    // take input,<br>    // and update everything else<br>    }</p>
 <p>写习惯了C#, C++这种强类型的面向对象语言，再去写脚本语言真的很不习惯。首先，一切变量的类型都是不确定的，函数参数没有类型检查（不是很熟悉这个，但就算有，也要多些一些代码，还是省省吧），所以类型是一切随缘，出错后果自负。</p>
 <p>js的类型系统设计的很奇葩，它有一个运算符===，三个等号代表严格相等，那要问如果不严格相等是什么情况呢？比如一个布尔型false可以等于一个空数组，也等于整数0，还等于只有一个元素0的数组[0]。有下面一张类型比较表，是不是很令人崩溃？</p>
