@@ -79,18 +79,20 @@ function Boid(x,y,guideNode) {
   
   Boid.prototype.render = function() {
     // Draw a triangle rotated in the direction of velocity
-    var theta = this.velocity.heading() + radians(90);
-    fill(127);
-    stroke(200);
-    push();
-    translate(this.position.x,this.position.y);
-    rotate(theta);
-    beginShape();
-    vertex(0, -this.r*2);
-    vertex(-this.r, this.r*2);
-    vertex(this.r, this.r*2);
-    endShape(CLOSE);
-    pop();
+    if (drawParticles) {
+      var theta = this.velocity.heading() + radians(90);
+      fill(127);
+      stroke(200);
+      push();
+      translate(this.position.x,this.position.y);
+      rotate(theta);
+      beginShape();
+      vertex(0, -this.r*2);
+      vertex(-this.r, this.r*2);
+      vertex(this.r, this.r*2);
+      endShape(CLOSE);
+      pop();
+    }
   }
   
   // ----------------- Separation

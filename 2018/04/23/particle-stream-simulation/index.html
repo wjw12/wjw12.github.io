@@ -1,0 +1,840 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="物理模拟,游戏原型," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="NekoLab" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="代码见这里哦，可以用键盘上下左右交互的网页(在这里)[http://nekolab.cn/special/2D_Particle_Stream_Prototype/index.html]。 这里想模拟的一个效果是一串粒子，只由一个“头部”的牵引发生运动，需要有自然流畅的动态和一定随机性。最终想在三维中做成类似陈星汉Flower中玩家操控的一串花瓣一样的运动，参考(这个视频)[https://www">
+<meta name="keywords" content="物理模拟,游戏原型">
+<meta property="og:type" content="article">
+<meta property="og:title" content="（未完成）用p5.js模拟一串粒子的二维运动">
+<meta property="og:url" content="http://nekolab.cn/2018/04/23/particle-stream-simulation/index.html">
+<meta property="og:site_name" content="NekoLab">
+<meta property="og:description" content="代码见这里哦，可以用键盘上下左右交互的网页(在这里)[http://nekolab.cn/special/2D_Particle_Stream_Prototype/index.html]。 这里想模拟的一个效果是一串粒子，只由一个“头部”的牵引发生运动，需要有自然流畅的动态和一定随机性。最终想在三维中做成类似陈星汉Flower中玩家操控的一串花瓣一样的运动，参考(这个视频)[https://www">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://wjwtest.oss-cn-qingdao.aliyuncs.com/flocksimulation/1.png">
+<meta property="og:image" content="https://wjwtest.oss-cn-qingdao.aliyuncs.com/flocksimulation/js.jpg">
+<meta property="og:image" content="https://wjwtest.oss-cn-qingdao.aliyuncs.com/flocksimulation/2Dprototype1.png">
+<meta property="og:image" content="https://wjwtest.oss-cn-qingdao.aliyuncs.com/flocksimulation/3.png">
+<meta property="og:image" content="https://wjwtest.oss-cn-qingdao.aliyuncs.com/flocksimulation/2.png">
+<meta property="og:updated_time" content="2018-04-24T03:19:52.693Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="（未完成）用p5.js模拟一串粒子的二维运动">
+<meta name="twitter:description" content="代码见这里哦，可以用键盘上下左右交互的网页(在这里)[http://nekolab.cn/special/2D_Particle_Stream_Prototype/index.html]。 这里想模拟的一个效果是一串粒子，只由一个“头部”的牵引发生运动，需要有自然流畅的动态和一定随机性。最终想在三维中做成类似陈星汉Flower中玩家操控的一串花瓣一样的运动，参考(这个视频)[https://www">
+<meta name="twitter:image" content="https://wjwtest.oss-cn-qingdao.aliyuncs.com/flocksimulation/1.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 'undefined',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://nekolab.cn/2018/04/23/particle-stream-simulation/"/>
+
+
+
+
+
+  <title> （未完成）用p5.js模拟一串粒子的二维运动 | NekoLab </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+<!-- hexo-inject:begin --><!-- hexo-inject:end --><script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-107842616-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?59f23b0b1a75620a1b31a8b086da8bae";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">NekoLab</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+    
+      <p class="site-subtitle"></p>
+    
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-friends">
+          <a href="/friends" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-group"></i> <br />
+            
+            友链
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-video">
+          <a href="/video" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tv"></i> <br />
+            
+            放映
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-photo">
+          <a href="https://www.flickr.com/photos/143290473@N08/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-camera-retro"></i> <br />
+            
+            影像
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-rss">
+          <a href="/atom.xml" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-rss"></i> <br />
+            
+            订阅
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://nekolab.cn/2018/04/23/particle-stream-simulation/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="Quantumneko">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/avatar.jpg">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="NekoLab">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="NekoLab" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                （未完成）用p5.js模拟一串粒子的二维运动
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-23T22:58:01+08:00">
+                2018-04-23
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>代码<a href="https://github.com/wjw12/wjw12.github.io/tree/master/special/2D_Particle_Stream_Prototype" target="_blank" rel="noopener">见这里哦</a>，可以用键盘上下左右交互的网页(在这里)[<a href="http://nekolab.cn/special/2D_Particle_Stream_Prototype/index.html]。">http://nekolab.cn/special/2D_Particle_Stream_Prototype/index.html]。</a></p>
+<p>这里想模拟的一个效果是一串粒子，只由一个“头部”的牵引发生运动，需要有自然流畅的动态和一定随机性。最终想在三维中做成类似陈星汉Flower中玩家操控的一串花瓣一样的运动，参考(这个视频)[<a href="https://www.bilibili.com/video/av5372164]。细想之，并非一个简单的动画效果可以达到，所以想到先做一个二维的原型来试验，之后再用Unity做三维的就容易得多了。" target="_blank" rel="noopener">https://www.bilibili.com/video/av5372164]。细想之，并非一个简单的动画效果可以达到，所以想到先做一个二维的原型来试验，之后再用Unity做三维的就容易得多了。</a></p>
+<p>目前只是设计好了基础算法和架构，许多形态和动力学的参数都需要细致调节达到最好的效果，画面暂时是这样的：</p>
+<p><img src="https://wjwtest.oss-cn-qingdao.aliyuncs.com/flocksimulation/1.png"></p>
+<p>其实说真的，现在的效果更像是一团蠕虫……但我觉得在这个框架之下有很多可以调节的空间。那么接下来就介绍一下我的方法吧。</p>
+<a id="more"></a>
+<h1 id="1-_p5-js_u7B80_u4ECB_u4E0E_u7F16_u7A0B_u8E29_u8FC7_u7684_u5751"><a href="#1-_p5-js_u7B80_u4ECB_u4E0E_u7F16_u7A0B_u8E29_u8FC7_u7684_u5751" class="headerlink" title="1. p5.js简介与编程踩过的坑"></a>1. p5.js简介与编程踩过的坑</h1><p>p5.js是Processing语言移植到js语言的一个库，Processing是专门为艺术与交互设计创造出的语言，不需太多技术性的设置，编代码只需要专注于绘图和交互，大大降低了交互图形绘制的门槛。之前看Youtube上的(Coding Challenge)[<a href="https://www.youtube.com/playlist?list=PLRqwX-V7Uu6ZiZxtDDRCi6uhfTH4FilpH]就用p5.js编写很多图形和可视化算法，给人不少图形学方面的灵感。" target="_blank" rel="noopener">https://www.youtube.com/playlist?list=PLRqwX-V7Uu6ZiZxtDDRCi6uhfTH4FilpH]就用p5.js编写很多图形和可视化算法，给人不少图形学方面的灵感。</a></p>
+<p>做这个不太复杂的原型用Unity C#觉得太重量级了一点，于是借此机会学个新技能，下载(p5.min.js)[<a href="https://p5js.org/get-started/]只有300多k的源文件，打开文本编辑器就能开始写了。" target="_blank" rel="noopener">https://p5js.org/get-started/]只有300多k的源文件，打开文本编辑器就能开始写了。</a></p>
+<p>绘图的核心就是两个函数setup()和draw()，setup只在程序加载之初执行一次，做一些初始化的工作，draw会在每一帧都调用一次，用来更新画布内容和接收用户输入。每一帧时间并不是固定的，而我们后面的动力学模拟需要用到每帧的时间差，所以设置个全局变量计算时间。<br>    var time = 0;<br>    var deltaTime = 0;<br>    function getTime() {<br>    return millis() / 1000;<br>    }<br>    function draw() {<br>    deltaTime = getTime() - time;<br>    time += deltaTime;<br>    // take input,<br>    // and update everything else<br>    }</p>
+<p>写习惯了C#, C++这种强类型的面向对象语言，再去写脚本语言真的很不习惯。首先，一切变量的类型都是不确定的，函数参数没有类型检查（不是很熟悉这个，但就算有，也要多些一些代码，还是省省吧），所以类型是一切随缘，出错后果自负。</p>
+<p>js的类型系统设计的很奇葩，它有一个运算符===，三个等号代表严格相等，那要问如果不严格相等是什么情况呢？比如一个布尔型false可以等于一个空数组，也等于整数0，还等于只有一个元素0的数组[0]。有下面一张类型比较表，是不是很令人崩溃？</p>
+<span itemprop="image" itemscope="" itemtype="http://schema.org/ImageObject"><img itemprop="url image" src="https://wjwtest.oss-cn-qingdao.aliyuncs.com/flocksimulation/js.jpg" class="full-image" alt="600"><meta itemprop="width" content="auto"><meta itemprop="height" content="auto"></span>
+<p>红色：=== 橙色：== 黄色：&lt;= 和 &gt;= 同时成立，== 不成立 蓝色：只有 &gt;= 绿色：只有 &lt;=</p>
+<p>语言这么设计貌似是因为早期互联网要防止丢包数据出错的考虑，但我们现在做数值模拟，不需要那么多数据类型，慎重起见所有的等号都用===来判断严格相等吧。</p>
+<p>js可以写面向对象的程序，但其中的对象机制其实是个假的面向对象，就使得面向对象的代码写出来特别奇怪，比如我们的ParticleStream类包含数据nodes和成员函数render，就要这么写：<br>function ParticleStream() {<br>    this.nodes = [];<br>    // and so on<br>}<br>ParticleStream.prototype.render = function() {// balabala}</p>
+<p>prototype是个内置关键字，理解成定义成员函数的方法就好了，不深究。</p>
+<p>接下来就是恶心的部分了。js没有类型重载（归根结底还是因为它不是真正面向对象的），在我们的模拟里面要计算几何位置，会大量用到p5.Vector这个二维矢量类，但是！你想写矢量相加c=a+b是不行的，会报错，应该写成c=p5.Vector.add(a, b)，减同理。但是！还有一种常用的操作是a+=b，js就要写成a.add(b)，执行这个语句自动会改变a的值，这两个add方法刚开始一不小心就会弄混。</p>
+<p>如果不记得不能类型重载这回事的话，有些时候出问题是不会报错的，而是悄悄跳过了执行的语句，或者将变量变成0！比如a和b都是向量，想计算a=b*3，不好意思，这一步过后a就可能变成0了，因为乘法根本不能执行。正确的写法是a = p5.Vector.mult(b, 3)</p>
+<p>函数传参默认是传引用，比如a是一个对象作为函数参数，函数里定义新变量var b=a，然后修改b的某个成员，函数返回之后发现原来那个a也变化了！这是因为a和b其实引用的是同一个内存数据，并没有想象中的用复制构造函数建立一个新对象……正确的方法要么是自己定义一个复制构造函数（有点麻烦），要么手动把一个个成员变量赋值过去。既然我们要快速编程算结果，不是为了解决计算机语言问题的，还是选择好理解的后者方案吧。</p>
+<p>还有要注意的，类的成员变量要记得加this访问，比如this.velocity就是这个对象的速度，如果没有加this，并且函数范围内恰好有个叫velocity的变量的话……等着算出奇怪的结果然后一行行的debug吧。第一次遇到这种bug极难发现问题，因为C++的思维定势会让人觉得写的velocity就是对象成员变量的那个，根本想不到别的可能性。</p>
+<p>说了这么多，都是因为第一次用js被坑得惨，写这个程序有一半时间都在找这些原因导致的诡异bug……</p>
+<h1 id="2-__u9AA8_u67B6_uFF1A_u5F39_u7C27_u8D28_u70B9_u7CFB_u7EDF"><a href="#2-__u9AA8_u67B6_uFF1A_u5F39_u7C27_u8D28_u70B9_u7CFB_u7EDF" class="headerlink" title="2. 骨架：弹簧质点系统"></a>2. 骨架：弹簧质点系统</h1><p>回到我们的问题上吧。</p>
+<p><img src="https://wjwtest.oss-cn-qingdao.aliyuncs.com/flocksimulation/2Dprototype1.png"></p>
+<p>首先，这一串粒子的运动不能像贪吃蛇一样呆板，必须在运动的时候曲线自然伸展，而停下来的时候能柔和缓慢的收缩，所以就想着用弹簧连接一串质点来模拟骨架的运动。</p>
+<p>运动模拟其实就是，在每一帧绘图的时候，知道上一帧时刻的位置与速度，知道这一帧物体受力引起的加速度，来求解当前更新过的位置与速度。在我们程序里面，每一帧draw()调用的时候就调用所有对象的update函数（自己定义的），在update函数里首先把所有力作用在受力物体上，让受力物体积累加速度（牛顿定律：a=F/m），再用数值积分的算法计算新的速度和位置。</p>
+<p>积分算法的选取直接影响到显示的结果，一开始用欧拉法发现运动很生硬粗糙，总觉得像卡顿不流畅一样，但帧率是完全没有问题的。换用(蛙跳法)[<a href="https://en.wikipedia.org/wiki/Leapfrog_integration]，结果算出来的运动就如丝流畅。蛙跳法计算量只比欧拉法大一点，精度和稳定性能提高很多，推荐这个方法。" target="_blank" rel="noopener">https://en.wikipedia.org/wiki/Leapfrog_integration]，结果算出来的运动就如丝流畅。蛙跳法计算量只比欧拉法大一点，精度和稳定性能提高很多，推荐这个方法。</a></p>
+<p>开始采用的弹簧是能伸能缩，伸缩时都会产生按胡克定律F=-kx产生弹力，但这样一串弹簧质点会产生混沌的运动，质点疯狂抖动像一群磕大了的虫子。这应该是一个物理常识，大一时候学过双摆听说那种两根棍子两个枢轴的“简单”系统都会产生混沌运动，更何况一串弹簧，差点忘记了。最后改成了弹簧被拉伸时产生吸引力，被挤压（长度短于原始值）时就没有弹力的作用。</p>
+<p>弹簧的另一种力会导致耗散效应，来源于弹簧自身各个部分的摩擦损耗，让弹性力导致的振动不能永久持续下去，而是幅度越来越小最终停止。这里假设耗散力与两端点的相对速度成正比，弹簧伸缩的速度越快，耗散就越多。</p>
+<p>我们这个系统唯一的用户输入是头节点的位置，后面所有节点都随之而运动。这一考虑只是因为想要限制用户只通过上下左右操作。头节点是接受输入的节点，设定它运动不受任何力的影响，只跟随输入的坐标值发生平移。</p>
+<p>加上这些效应之后，发现前进和停止都没问题，但是转弯的时候很生硬。一个纯物理的模型是有局限的，我们需要加上一些非物理的假想的作用。希望看到的结果是，头部往一个方向转弯时，曲线的身体就能自然往反方向摆动，所以想到可以加上一个与头部运动方向相反的“风力”。</p>
+<p>风力应该有多大？在靠近链的中间位置比较大，靠近端点比较小，才能让这条“虫子”的“身体”圆润地转过弯。</p>
+<p>风力持续多长时间？我的设定是，在刚开始转弯（也就是头部接收到输入坐标改变时）计时一两秒钟，期间风力大小随时间递减到零。也是为了让运动平滑，不发生速度的突变。</p>
+<p>给每个模拟的对象写一个render函数，指定显示在屏幕上的形状。这里让节点、弹簧和节点的速度都绘制出来：</p>
+<p><img src="https://wjwtest.oss-cn-qingdao.aliyuncs.com/flocksimulation/3.png"></p>
+<h1 id="3-__u7C92_u5B50_u8FD0_u52A8_uFF1A_u96C6_u7FA4_u6A21_u62DF_28Flock_Simulation_29"><a href="#3-__u7C92_u5B50_u8FD0_u52A8_uFF1A_u96C6_u7FA4_u6A21_u62DF_28Flock_Simulation_29" class="headerlink" title="3. 粒子运动：集群模拟(Flock Simulation)"></a>3. 粒子运动：集群模拟(Flock Simulation)</h1><p>集群模拟是复杂性系统的一个经典问题，常用来解释自然界中鸟群、鱼群这种大规模具有自组织特征的运动。群落中的每个个体依照简单的规则运动，可以用来研究整体大尺度的运动特征。</p>
+<p>p5.js(官方示例)[<a href="https://p5js.org/examples/simulate-flocking.html]就有对这个问题的模拟，代码直接参考了[Nature" target="_blank" rel="noopener">https://p5js.org/examples/simulate-flocking.html]就有对这个问题的模拟，代码直接参考了[Nature</a> of Code](<a href="http://natureofcode.com/)，是一本讲用代码模拟自然现象的书，可以免费看在线版也可以捐献任意金额获得pdf,epub,mobi的电子书。我捐了一美金下载了，还没来得及看。" target="_blank" rel="noopener">http://natureofcode.com/)，是一本讲用代码模拟自然现象的书，可以免费看在线版也可以捐献任意金额获得pdf,epub,mobi的电子书。我捐了一美金下载了，还没来得及看。</a></p>
+<p>集群中的每个个体称为一个Boid，会受到三种基本力的作用:</p>
+<ul>
+<li>seperation: 靠的太近的时候会分开</li>
+<li>alignment: 向近邻Boids的运动方向前进</li>
+<li>cohesion: 向近邻Boids的平均位置（质心）靠近</li>
+</ul>
+<p>如何让Boid靠近一个位置？定义了一个seek方法，函数输入值是想要靠近的目标位置，输出会给粒子一个作用力，这个力会把粒子往目标方向推动。</p>
+<p>在我们这个问题里，为了让一群粒子跟随定位好的节点，将粒子分组，每个组的粒子跟随一个弹簧链上的节点。</p>
+<p>Nature of Code的原始版本中，一个粒子会受到一定空间范围所有粒子的sep, ali, coh力的作用，只要在这个范围内，所有粒子的贡献都是均等的。但我们并不希望这么做，而是希望确定粒子在骨架链上的相对位置，只与在链上相对位置接近的粒子作用，而不是全局空间范围内的粒子，运动起来才会按照链的形态排成一列而不是在空间聚成一团。我目前用的方法是，让粒子只能和同组与前后邻近组的粒子相互作用，相互作用的规则还依照Nature of Code里面的基本算法。</p>
+<p>但是写这篇文章的时候想到了另一个方案，可以给每个粒子规定代表在链上整体位置的变量，如同做一个空间坐标变换，比如这样做：设每组a个粒子，第x组的第y个粒子序号就是n=ax+y，具有不同n值的粒子相互作用强度随|n1-n2|差值递减，比如按反比规律。</p>
+<p>我完全改变了Cohesion方法的实现，不让Boid靠近近邻的质心，而是让它的速度向同组节点（称之为guide吧）速度靠近。因为是靠近速度而不是靠近位置，加了一个seekVelocity方法，输入想要接近的目标速度，输出会施加一个力，使得粒子速度更接近目标速度。同时还给粒子加了一个空间约束，移动范围不能离guide太远，超出范围就施加一个指向guide位置的力。</p>
+<p><img src="https://wjwtest.oss-cn-qingdao.aliyuncs.com/flocksimulation/2.png"></p>
+<h1 id="4-__u53EF_u6539_u8FDB_u7684_u5730_u65B9"><a href="#4-__u53EF_u6539_u8FDB_u7684_u5730_u65B9" class="headerlink" title="4. 可改进的地方"></a>4. 可改进的地方</h1><p>有太多可以修改和调节的地方了。上面说的肯定不是唯一解决方案，也不会是最好的一种，在算法框架和细节上都可以做很多调整。</p>
+<ul>
+<li><p>想让粒子流呈现前密后疏的形态，越靠近尾部粒子之间距离越大。想到的方法有：1. 弹簧固有长度前短后长； 2. 弹簧的胡克系数前大后小（越小的系数弹力越小）； 3. Flock的Cohesion方法中约束范围越靠后越大，或者约束力越往后越小</p>
+</li>
+<li><p>想让粒子整体停止时看起来不要都集中在节点附近像蹦迪一样，这其实是因为粒子受到sep和ali的力四处运动，又受到节点的空间约束力反弹回来。我觉得可以：1. 头节点静止时就减小粒子的受力，让他们蹦跶得不那么快 2. 改变约束力的表达，让粒子不局限在单个节点为圆心的圈内（但是同时要约束在骨架链附近），比如约束在离弹簧线段一定距离内 3. 改变约束力的大小</p>
+</li>
+<li><p>运动的时候不要看起来一节一节的，要连续。可能需要：1.上面说的，调整相互作用的强度算法 2.调节sep, ali, coh三种力的大小 3.弹簧的长度、弹性系数与Cohesion方法里的约束范围、约束力相适应</p>
+</li>
+</ul>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/物理模拟/" rel="tag"># 物理模拟</a>
+          
+            <a href="/tags/游戏原型/" rel="tag"># 游戏原型</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/04/22/indie-game-movie-china/" rel="next" title="关于独立游戏的一点想法">
+                <i class="fa fa-chevron-left"></i> 关于独立游戏的一点想法
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+          
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="uyan_frame"></div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.jpg"
+               alt="Quantumneko" />
+          <p class="site-author-name" itemprop="name">Quantumneko</p>
+           
+              <p class="site-description motion-element" itemprop="description">No one is an island.</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+        
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">46</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">63</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/MasterArtoria" target="_blank" title="weibo">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  weibo
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/wjw12" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-_p5-js_u7B80_u4ECB_u4E0E_u7F16_u7A0B_u8E29_u8FC7_u7684_u5751"><span class="nav-number">1.</span> <span class="nav-text">1. p5.js简介与编程踩过的坑</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-__u9AA8_u67B6_uFF1A_u5F39_u7C27_u8D28_u70B9_u7CFB_u7EDF"><span class="nav-number">2.</span> <span class="nav-text">2. 骨架：弹簧质点系统</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-__u7C92_u5B50_u8FD0_u52A8_uFF1A_u96C6_u7FA4_u6A21_u62DF_28Flock_Simulation_29"><span class="nav-number">3.</span> <span class="nav-text">3. 粒子运动：集群模拟(Flock Simulation)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#4-__u53EF_u6539_u8FDB_u7684_u5730_u65B9"><span class="nav-number">4.</span> <span class="nav-text">4. 可改进的地方</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2015 - 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Quantumneko</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+  
+
+
+
+
+
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+    
+
+    
+      <!-- UY BEGIN -->
+      <script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=2139600"></script>
+      <!-- UY END --><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+    
+  
+
+
+
+
+
+  
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+
+</body>
+</html>

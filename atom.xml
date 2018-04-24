@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://nekolab.cn/"/>
-  <updated>2018-04-23T11:50:54.488Z</updated>
+  <updated>2018-04-24T03:19:52.693Z</updated>
   <id>http://nekolab.cn/</id>
   
   <author>
@@ -16,17 +16,100 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>（未完成）用p5.js模拟一串粒子的二维运动</title>
+    <link href="http://nekolab.cn/2018/04/23/particle-stream-simulation/"/>
+    <id>http://nekolab.cn/2018/04/23/particle-stream-simulation/</id>
+    <published>2018-04-23T14:58:01.000Z</published>
+    <updated>2018-04-24T03:19:52.693Z</updated>
+    
+    <content type="html">&lt;p&gt;代码&lt;a href=&quot;https://github.com/wjw12/wjw12.github.io/tree/master/special/2D_Particle_Stream_Prototype&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;见这里哦&lt;/a&gt;，可以用键盘上下左右交互的网页(在这里)[&lt;a href=&quot;http://nekolab.cn/special/2D_Particle_Stream_Prototype/index.html]。&quot;&gt;http://nekolab.cn/special/2D_Particle_Stream_Prototype/index.html]。&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;这里想模拟的一个效果是一串粒子，只由一个“头部”的牵引发生运动，需要有自然流畅的动态和一定随机性。最终想在三维中做成类似陈星汉Flower中玩家操控的一串花瓣一样的运动，参考(这个视频)[&lt;a href=&quot;https://www.bilibili.com/video/av5372164]。细想之，并非一个简单的动画效果可以达到，所以想到先做一个二维的原型来试验，之后再用Unity做三维的就容易得多了。&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;https://www.bilibili.com/video/av5372164]。细想之，并非一个简单的动画效果可以达到，所以想到先做一个二维的原型来试验，之后再用Unity做三维的就容易得多了。&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;目前只是设计好了基础算法和架构，许多形态和动力学的参数都需要细致调节达到最好的效果，画面暂时是这样的：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://wjwtest.oss-cn-qingdao.aliyuncs.com/flocksimulation/1.png&quot;&gt;&lt;/p&gt;
+&lt;p&gt;其实说真的，现在的效果更像是一团蠕虫……但我觉得在这个框架之下有很多可以调节的空间。那么接下来就介绍一下我的方法吧。&lt;/p&gt;
+&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
+&lt;h1 id=&quot;1-_p5-js_u7B80_u4ECB_u4E0E_u7F16_u7A0B_u8E29_u8FC7_u7684_u5751&quot;&gt;&lt;a href=&quot;#1-_p5-js_u7B80_u4ECB_u4E0E_u7F16_u7A0B_u8E29_u8FC7_u7684_u5751&quot; class=&quot;headerlink&quot; title=&quot;1. p5.js简介与编程踩过的坑&quot;&gt;&lt;/a&gt;1. p5.js简介与编程踩过的坑&lt;/h1&gt;&lt;p&gt;p5.js是Processing语言移植到js语言的一个库，Processing是专门为艺术与交互设计创造出的语言，不需太多技术性的设置，编代码只需要专注于绘图和交互，大大降低了交互图形绘制的门槛。之前看Youtube上的(Coding Challenge)[&lt;a href=&quot;https://www.youtube.com/playlist?list=PLRqwX-V7Uu6ZiZxtDDRCi6uhfTH4FilpH]就用p5.js编写很多图形和可视化算法，给人不少图形学方面的灵感。&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;https://www.youtube.com/playlist?list=PLRqwX-V7Uu6ZiZxtDDRCi6uhfTH4FilpH]就用p5.js编写很多图形和可视化算法，给人不少图形学方面的灵感。&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;做这个不太复杂的原型用Unity C#觉得太重量级了一点，于是借此机会学个新技能，下载(p5.min.js)[&lt;a href=&quot;https://p5js.org/get-started/]只有300多k的源文件，打开文本编辑器就能开始写了。&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;https://p5js.org/get-started/]只有300多k的源文件，打开文本编辑器就能开始写了。&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;绘图的核心就是两个函数setup()和draw()，setup只在程序加载之初执行一次，做一些初始化的工作，draw会在每一帧都调用一次，用来更新画布内容和接收用户输入。每一帧时间并不是固定的，而我们后面的动力学模拟需要用到每帧的时间差，所以设置个全局变量计算时间。&lt;br&gt;    var time = 0;&lt;br&gt;    var deltaTime = 0;&lt;br&gt;    function getTime() {&lt;br&gt;    return millis() / 1000;&lt;br&gt;    }&lt;br&gt;    function draw() {&lt;br&gt;    deltaTime = getTime() - time;&lt;br&gt;    time += deltaTime;&lt;br&gt;    // take input,&lt;br&gt;    // and update everything else&lt;br&gt;    }&lt;/p&gt;
+&lt;p&gt;写习惯了C#, C++这种强类型的面向对象语言，再去写脚本语言真的很不习惯。首先，一切变量的类型都是不确定的，函数参数没有类型检查（不是很熟悉这个，但就算有，也要多些一些代码，还是省省吧），所以类型是一切随缘，出错后果自负。&lt;/p&gt;
+&lt;p&gt;js的类型系统设计的很奇葩，它有一个运算符===，三个等号代表严格相等，那要问如果不严格相等是什么情况呢？比如一个布尔型false可以等于一个空数组，也等于整数0，还等于只有一个元素0的数组[0]。有下面一张类型比较表，是不是很令人崩溃？&lt;/p&gt;
+&lt;span itemprop=&quot;image&quot; itemscope=&quot;&quot; itemtype=&quot;http://schema.org/ImageObject&quot;&gt;&lt;img itemprop=&quot;url image&quot; src=&quot;https://wjwtest.oss-cn-qingdao.aliyuncs.com/flocksimulation/js.jpg&quot; class=&quot;full-image&quot; alt=&quot;600&quot;&gt;&lt;meta itemprop=&quot;width&quot; content=&quot;auto&quot;&gt;&lt;meta itemprop=&quot;height&quot; content=&quot;auto&quot;&gt;&lt;/span&gt;
+&lt;p&gt;红色：=== 橙色：== 黄色：&amp;lt;= 和 &amp;gt;= 同时成立，== 不成立 蓝色：只有 &amp;gt;= 绿色：只有 &amp;lt;=&lt;/p&gt;
+&lt;p&gt;语言这么设计貌似是因为早期互联网要防止丢包数据出错的考虑，但我们现在做数值模拟，不需要那么多数据类型，慎重起见所有的等号都用===来判断严格相等吧。&lt;/p&gt;
+&lt;p&gt;js可以写面向对象的程序，但其中的对象机制其实是个假的面向对象，就使得面向对象的代码写出来特别奇怪，比如我们的ParticleStream类包含数据nodes和成员函数render，就要这么写：&lt;br&gt;function ParticleStream() {&lt;br&gt;    this.nodes = [];&lt;br&gt;    // and so on&lt;br&gt;}&lt;br&gt;ParticleStream.prototype.render = function() {// balabala}&lt;/p&gt;
+&lt;p&gt;prototype是个内置关键字，理解成定义成员函数的方法就好了，不深究。&lt;/p&gt;
+&lt;p&gt;接下来就是恶心的部分了。js没有类型重载（归根结底还是因为它不是真正面向对象的），在我们的模拟里面要计算几何位置，会大量用到p5.Vector这个二维矢量类，但是！你想写矢量相加c=a+b是不行的，会报错，应该写成c=p5.Vector.add(a, b)，减同理。但是！还有一种常用的操作是a+=b，js就要写成a.add(b)，执行这个语句自动会改变a的值，这两个add方法刚开始一不小心就会弄混。&lt;/p&gt;
+&lt;p&gt;如果不记得不能类型重载这回事的话，有些时候出问题是不会报错的，而是悄悄跳过了执行的语句，或者将变量变成0！比如a和b都是向量，想计算a=b*3，不好意思，这一步过后a就可能变成0了，因为乘法根本不能执行。正确的写法是a = p5.Vector.mult(b, 3)&lt;/p&gt;
+&lt;p&gt;函数传参默认是传引用，比如a是一个对象作为函数参数，函数里定义新变量var b=a，然后修改b的某个成员，函数返回之后发现原来那个a也变化了！这是因为a和b其实引用的是同一个内存数据，并没有想象中的用复制构造函数建立一个新对象……正确的方法要么是自己定义一个复制构造函数（有点麻烦），要么手动把一个个成员变量赋值过去。既然我们要快速编程算结果，不是为了解决计算机语言问题的，还是选择好理解的后者方案吧。&lt;/p&gt;
+&lt;p&gt;还有要注意的，类的成员变量要记得加this访问，比如this.velocity就是这个对象的速度，如果没有加this，并且函数范围内恰好有个叫velocity的变量的话……等着算出奇怪的结果然后一行行的debug吧。第一次遇到这种bug极难发现问题，因为C++的思维定势会让人觉得写的velocity就是对象成员变量的那个，根本想不到别的可能性。&lt;/p&gt;
+&lt;p&gt;说了这么多，都是因为第一次用js被坑得惨，写这个程序有一半时间都在找这些原因导致的诡异bug……&lt;/p&gt;
+&lt;h1 id=&quot;2-__u9AA8_u67B6_uFF1A_u5F39_u7C27_u8D28_u70B9_u7CFB_u7EDF&quot;&gt;&lt;a href=&quot;#2-__u9AA8_u67B6_uFF1A_u5F39_u7C27_u8D28_u70B9_u7CFB_u7EDF&quot; class=&quot;headerlink&quot; title=&quot;2. 骨架：弹簧质点系统&quot;&gt;&lt;/a&gt;2. 骨架：弹簧质点系统&lt;/h1&gt;&lt;p&gt;回到我们的问题上吧。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://wjwtest.oss-cn-qingdao.aliyuncs.com/flocksimulation/2Dprototype1.png&quot;&gt;&lt;/p&gt;
+&lt;p&gt;首先，这一串粒子的运动不能像贪吃蛇一样呆板，必须在运动的时候曲线自然伸展，而停下来的时候能柔和缓慢的收缩，所以就想着用弹簧连接一串质点来模拟骨架的运动。&lt;/p&gt;
+&lt;p&gt;运动模拟其实就是，在每一帧绘图的时候，知道上一帧时刻的位置与速度，知道这一帧物体受力引起的加速度，来求解当前更新过的位置与速度。在我们程序里面，每一帧draw()调用的时候就调用所有对象的update函数（自己定义的），在update函数里首先把所有力作用在受力物体上，让受力物体积累加速度（牛顿定律：a=F/m），再用数值积分的算法计算新的速度和位置。&lt;/p&gt;
+&lt;p&gt;积分算法的选取直接影响到显示的结果，一开始用欧拉法发现运动很生硬粗糙，总觉得像卡顿不流畅一样，但帧率是完全没有问题的。换用(蛙跳法)[&lt;a href=&quot;https://en.wikipedia.org/wiki/Leapfrog_integration]，结果算出来的运动就如丝流畅。蛙跳法计算量只比欧拉法大一点，精度和稳定性能提高很多，推荐这个方法。&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;https://en.wikipedia.org/wiki/Leapfrog_integration]，结果算出来的运动就如丝流畅。蛙跳法计算量只比欧拉法大一点，精度和稳定性能提高很多，推荐这个方法。&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;开始采用的弹簧是能伸能缩，伸缩时都会产生按胡克定律F=-kx产生弹力，但这样一串弹簧质点会产生混沌的运动，质点疯狂抖动像一群磕大了的虫子。这应该是一个物理常识，大一时候学过双摆听说那种两根棍子两个枢轴的“简单”系统都会产生混沌运动，更何况一串弹簧，差点忘记了。最后改成了弹簧被拉伸时产生吸引力，被挤压（长度短于原始值）时就没有弹力的作用。&lt;/p&gt;
+&lt;p&gt;弹簧的另一种力会导致耗散效应，来源于弹簧自身各个部分的摩擦损耗，让弹性力导致的振动不能永久持续下去，而是幅度越来越小最终停止。这里假设耗散力与两端点的相对速度成正比，弹簧伸缩的速度越快，耗散就越多。&lt;/p&gt;
+&lt;p&gt;我们这个系统唯一的用户输入是头节点的位置，后面所有节点都随之而运动。这一考虑只是因为想要限制用户只通过上下左右操作。头节点是接受输入的节点，设定它运动不受任何力的影响，只跟随输入的坐标值发生平移。&lt;/p&gt;
+&lt;p&gt;加上这些效应之后，发现前进和停止都没问题，但是转弯的时候很生硬。一个纯物理的模型是有局限的，我们需要加上一些非物理的假想的作用。希望看到的结果是，头部往一个方向转弯时，曲线的身体就能自然往反方向摆动，所以想到可以加上一个与头部运动方向相反的“风力”。&lt;/p&gt;
+&lt;p&gt;风力应该有多大？在靠近链的中间位置比较大，靠近端点比较小，才能让这条“虫子”的“身体”圆润地转过弯。&lt;/p&gt;
+&lt;p&gt;风力持续多长时间？我的设定是，在刚开始转弯（也就是头部接收到输入坐标改变时）计时一两秒钟，期间风力大小随时间递减到零。也是为了让运动平滑，不发生速度的突变。&lt;/p&gt;
+&lt;p&gt;给每个模拟的对象写一个render函数，指定显示在屏幕上的形状。这里让节点、弹簧和节点的速度都绘制出来：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://wjwtest.oss-cn-qingdao.aliyuncs.com/flocksimulation/3.png&quot;&gt;&lt;/p&gt;
+&lt;h1 id=&quot;3-__u7C92_u5B50_u8FD0_u52A8_uFF1A_u96C6_u7FA4_u6A21_u62DF_28Flock_Simulation_29&quot;&gt;&lt;a href=&quot;#3-__u7C92_u5B50_u8FD0_u52A8_uFF1A_u96C6_u7FA4_u6A21_u62DF_28Flock_Simulation_29&quot; class=&quot;headerlink&quot; title=&quot;3. 粒子运动：集群模拟(Flock Simulation)&quot;&gt;&lt;/a&gt;3. 粒子运动：集群模拟(Flock Simulation)&lt;/h1&gt;&lt;p&gt;集群模拟是复杂性系统的一个经典问题，常用来解释自然界中鸟群、鱼群这种大规模具有自组织特征的运动。群落中的每个个体依照简单的规则运动，可以用来研究整体大尺度的运动特征。&lt;/p&gt;
+&lt;p&gt;p5.js(官方示例)[&lt;a href=&quot;https://p5js.org/examples/simulate-flocking.html]就有对这个问题的模拟，代码直接参考了[Nature&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;https://p5js.org/examples/simulate-flocking.html]就有对这个问题的模拟，代码直接参考了[Nature&lt;/a&gt; of Code](&lt;a href=&quot;http://natureofcode.com/)，是一本讲用代码模拟自然现象的书，可以免费看在线版也可以捐献任意金额获得pdf,epub,mobi的电子书。我捐了一美金下载了，还没来得及看。&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;http://natureofcode.com/)，是一本讲用代码模拟自然现象的书，可以免费看在线版也可以捐献任意金额获得pdf,epub,mobi的电子书。我捐了一美金下载了，还没来得及看。&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;集群中的每个个体称为一个Boid，会受到三种基本力的作用:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;seperation: 靠的太近的时候会分开&lt;/li&gt;
+&lt;li&gt;alignment: 向近邻Boids的运动方向前进&lt;/li&gt;
+&lt;li&gt;cohesion: 向近邻Boids的平均位置（质心）靠近&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;如何让Boid靠近一个位置？定义了一个seek方法，函数输入值是想要靠近的目标位置，输出会给粒子一个作用力，这个力会把粒子往目标方向推动。&lt;/p&gt;
+&lt;p&gt;在我们这个问题里，为了让一群粒子跟随定位好的节点，将粒子分组，每个组的粒子跟随一个弹簧链上的节点。&lt;/p&gt;
+&lt;p&gt;Nature of Code的原始版本中，一个粒子会受到一定空间范围所有粒子的sep, ali, coh力的作用，只要在这个范围内，所有粒子的贡献都是均等的。但我们并不希望这么做，而是希望确定粒子在骨架链上的相对位置，只与在链上相对位置接近的粒子作用，而不是全局空间范围内的粒子，运动起来才会按照链的形态排成一列而不是在空间聚成一团。我目前用的方法是，让粒子只能和同组与前后邻近组的粒子相互作用，相互作用的规则还依照Nature of Code里面的基本算法。&lt;/p&gt;
+&lt;p&gt;但是写这篇文章的时候想到了另一个方案，可以给每个粒子规定代表在链上整体位置的变量，如同做一个空间坐标变换，比如这样做：设每组a个粒子，第x组的第y个粒子序号就是n=ax+y，具有不同n值的粒子相互作用强度随|n1-n2|差值递减，比如按反比规律。&lt;/p&gt;
+&lt;p&gt;我完全改变了Cohesion方法的实现，不让Boid靠近近邻的质心，而是让它的速度向同组节点（称之为guide吧）速度靠近。因为是靠近速度而不是靠近位置，加了一个seekVelocity方法，输入想要接近的目标速度，输出会施加一个力，使得粒子速度更接近目标速度。同时还给粒子加了一个空间约束，移动范围不能离guide太远，超出范围就施加一个指向guide位置的力。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://wjwtest.oss-cn-qingdao.aliyuncs.com/flocksimulation/2.png&quot;&gt;&lt;/p&gt;
+&lt;h1 id=&quot;4-__u53EF_u6539_u8FDB_u7684_u5730_u65B9&quot;&gt;&lt;a href=&quot;#4-__u53EF_u6539_u8FDB_u7684_u5730_u65B9&quot; class=&quot;headerlink&quot; title=&quot;4. 可改进的地方&quot;&gt;&lt;/a&gt;4. 可改进的地方&lt;/h1&gt;&lt;p&gt;有太多可以修改和调节的地方了。上面说的肯定不是唯一解决方案，也不会是最好的一种，在算法框架和细节上都可以做很多调整。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;想让粒子流呈现前密后疏的形态，越靠近尾部粒子之间距离越大。想到的方法有：1. 弹簧固有长度前短后长； 2. 弹簧的胡克系数前大后小（越小的系数弹力越小）； 3. Flock的Cohesion方法中约束范围越靠后越大，或者约束力越往后越小&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;想让粒子整体停止时看起来不要都集中在节点附近像蹦迪一样，这其实是因为粒子受到sep和ali的力四处运动，又受到节点的空间约束力反弹回来。我觉得可以：1. 头节点静止时就减小粒子的受力，让他们蹦跶得不那么快 2. 改变约束力的表达，让粒子不局限在单个节点为圆心的圈内（但是同时要约束在骨架链附近），比如约束在离弹簧线段一定距离内 3. 改变约束力的大小&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;运动的时候不要看起来一节一节的，要连续。可能需要：1.上面说的，调整相互作用的强度算法 2.调节sep, ali, coh三种力的大小 3.弹簧的长度、弹性系数与Cohesion方法里的约束范围、约束力相适应&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;代码&lt;a href=&quot;https://github.com/wjw12/wjw12.github.io/tree/master/special/2D_Particle_Stream_Prototype&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;见这里哦&lt;/a&gt;，可以用键盘上下左右交互的网页(在这里)[&lt;a href=&quot;http://nekolab.cn/special/2D_Particle_Stream_Prototype/index.html]。&quot;&gt;http://nekolab.cn/special/2D_Particle_Stream_Prototype/index.html]。&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;这里想模拟的一个效果是一串粒子，只由一个“头部”的牵引发生运动，需要有自然流畅的动态和一定随机性。最终想在三维中做成类似陈星汉Flower中玩家操控的一串花瓣一样的运动，参考(这个视频)[&lt;a href=&quot;https://www.bilibili.com/video/av5372164]。细想之，并非一个简单的动画效果可以达到，所以想到先做一个二维的原型来试验，之后再用Unity做三维的就容易得多了。&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;https://www.bilibili.com/video/av5372164]。细想之，并非一个简单的动画效果可以达到，所以想到先做一个二维的原型来试验，之后再用Unity做三维的就容易得多了。&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;目前只是设计好了基础算法和架构，许多形态和动力学的参数都需要细致调节达到最好的效果，画面暂时是这样的：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://wjwtest.oss-cn-qingdao.aliyuncs.com/flocksimulation/1.png&quot;&gt;&lt;/p&gt;
+&lt;p&gt;其实说真的，现在的效果更像是一团蠕虫……但我觉得在这个框架之下有很多可以调节的空间。那么接下来就介绍一下我的方法吧。&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="物理模拟" scheme="http://nekolab.cn/tags/%E7%89%A9%E7%90%86%E6%A8%A1%E6%8B%9F/"/>
+    
+      <category term="游戏原型" scheme="http://nekolab.cn/tags/%E6%B8%B8%E6%88%8F%E5%8E%9F%E5%9E%8B/"/>
+    
+  </entry>
+  
+  <entry>
     <title>关于独立游戏的一点想法</title>
     <link href="http://nekolab.cn/2018/04/22/indie-game-movie-china/"/>
     <id>http://nekolab.cn/2018/04/22/indie-game-movie-china/</id>
     <published>2018-04-22T14:59:23.000Z</published>
-    <updated>2018-04-23T11:50:54.488Z</updated>
+    <updated>2018-04-24T03:17:40.590Z</updated>
     
     <content type="html">&lt;p&gt;看了中国独立游戏大电影在央美的点映式，深受感动。看完之后发微博说，这电影中的中国独立游戏现状，比五六年前Indie Game: The Movie里面的美国开发者看起来还要好。可能美国那部独立游戏大电影刻意拍了游戏开发艰苦的一面，过得都太惨了，记得有一个制作人还说游戏发布一再延期的时候都想到了不成功就自杀，后来卖出了几十几百万份还是过得不开心。相比之下，三郎拍的这部中国版积极正面很多。也是因为全球的独立游戏市场环境都在变好，有太多机会让还没发布的游戏得到曝光，游戏展、主播、众筹、Early Access，不少游戏都是靠着demo版囊括一堆奖项的，之后的路就好走很多了。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;https://wjwtest.oss-cn-qingdao.aliyuncs.com/indiegamemovie/1.jpg&quot;&gt;&lt;/p&gt;
+&lt;span itemprop=&quot;image&quot; itemscope=&quot;&quot; itemtype=&quot;http://schema.org/ImageObject&quot;&gt;&lt;img itemprop=&quot;url image&quot; src=&quot;https://wjwtest.oss-cn-qingdao.aliyuncs.com/indiegamemovie/1.jpg&quot; class=&quot;full-image&quot; alt=&quot;1200&quot;&gt;&lt;meta itemprop=&quot;width&quot; content=&quot;auto&quot;&gt;&lt;meta itemprop=&quot;height&quot; content=&quot;auto&quot;&gt;&lt;/span&gt;
 &lt;p&gt;并且游戏电影在央美放映，本身就是对独立游戏的极大肯定。这时还正值央美百年校庆，美术馆一进门看到的就是大红主题“设计学科展”展板，有设计国徽党徽、设计政府楼和军车的，相映成趣。央美“未来媒体工作室”的年轻老师作了致辞，说虽然教育部不让开游戏专业，但在央美可以讲游戏课程，总体的风向都是在变好的。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;https://wjwtest.oss-cn-qingdao.aliyuncs.com/indiegamemovie/2.jpg&quot;&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;https://wjwtest.oss-cn-qingdao.aliyuncs.com/indiegamemovie/3.jpg&quot;&gt;&lt;/p&gt;
+&lt;span itemprop=&quot;image&quot; itemscope=&quot;&quot; itemtype=&quot;http://schema.org/ImageObject&quot;&gt;&lt;img itemprop=&quot;url image&quot; src=&quot;https://wjwtest.oss-cn-qingdao.aliyuncs.com/indiegamemovie/2.jpg&quot; class=&quot;full-image&quot; alt=&quot;1000&quot;&gt;&lt;meta itemprop=&quot;width&quot; content=&quot;auto&quot;&gt;&lt;meta itemprop=&quot;height&quot; content=&quot;auto&quot;&gt;&lt;/span&gt;
+&lt;span itemprop=&quot;image&quot; itemscope=&quot;&quot; itemtype=&quot;http://schema.org/ImageObject&quot;&gt;&lt;img itemprop=&quot;url image&quot; src=&quot;https://wjwtest.oss-cn-qingdao.aliyuncs.com/indiegamemovie/3.jpg&quot; class=&quot;full-image&quot; alt=&quot;1000&quot;&gt;&lt;meta itemprop=&quot;width&quot; content=&quot;auto&quot;&gt;&lt;meta itemprop=&quot;height&quot; content=&quot;auto&quot;&gt;&lt;/span&gt;
 &lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
 &lt;p&gt;国内的市场环境也是很特殊，投资热催红了一批手游页游，但游戏快节奏的迭代和不断提升的玩家品味在促使着资本渗透到之前被忽视的单机游戏上，大红大紫的吸金手游都面临着过两年热度下降的风险，腾讯网易这种大厂也在紧盯着国内主流之外的长尾小众玩家。所以能看到WeGame扶持开发者，蜡烛人也是腾讯主推。玩过一会手机版的蜡烛人，觉得在情节和地图设计上有很多不自然的地方，作为小品游戏尚可，但离国际一流水平还有不小的差距。&lt;/p&gt;
 &lt;p&gt;首映上见到了蜡烛人的制作人高鸣，印象最深的是台下有人问他大公司与独立团队做游戏有什么不同，他说毕业后完全拒绝大公司的工作机会，即使去工作一两年再独立创业也不如立刻就开始做独立游戏。高鸣本科清华计算机、研究生清华美院毕业，进BAT工作是保底（这一点跟我现在一样）。他创业也是走了一条相对稳妥的路线，用了13年就制作出来并且在game jam上得分最高的蜡烛人原型，同时公司刚开始为了存活下去还做一些游戏化项目，比如给别的企业用kinect做游戏化广告。他的家庭生活也是非常之稳，提早下班接完孩子再去公司加班，虽然加班到很晚是必须的，但大概很少有独立游戏人能做到他一样的balance，这真的非常难得。&lt;/p&gt;
@@ -44,10 +127,10 @@
     <summary type="html">
     
       &lt;p&gt;看了中国独立游戏大电影在央美的点映式，深受感动。看完之后发微博说，这电影中的中国独立游戏现状，比五六年前Indie Game: The Movie里面的美国开发者看起来还要好。可能美国那部独立游戏大电影刻意拍了游戏开发艰苦的一面，过得都太惨了，记得有一个制作人还说游戏发布一再延期的时候都想到了不成功就自杀，后来卖出了几十几百万份还是过得不开心。相比之下，三郎拍的这部中国版积极正面很多。也是因为全球的独立游戏市场环境都在变好，有太多机会让还没发布的游戏得到曝光，游戏展、主播、众筹、Early Access，不少游戏都是靠着demo版囊括一堆奖项的，之后的路就好走很多了。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;https://wjwtest.oss-cn-qingdao.aliyuncs.com/indiegamemovie/1.jpg&quot;&gt;&lt;/p&gt;
+&lt;span itemprop=&quot;image&quot; itemscope=&quot;&quot; itemtype=&quot;http://schema.org/ImageObject&quot;&gt;&lt;img itemprop=&quot;url image&quot; src=&quot;https://wjwtest.oss-cn-qingdao.aliyuncs.com/indiegamemovie/1.jpg&quot; class=&quot;full-image&quot; alt=&quot;1200&quot;&gt;&lt;meta itemprop=&quot;width&quot; content=&quot;auto&quot;&gt;&lt;meta itemprop=&quot;height&quot; content=&quot;auto&quot;&gt;&lt;/span&gt;
 &lt;p&gt;并且游戏电影在央美放映，本身就是对独立游戏的极大肯定。这时还正值央美百年校庆，美术馆一进门看到的就是大红主题“设计学科展”展板，有设计国徽党徽、设计政府楼和军车的，相映成趣。央美“未来媒体工作室”的年轻老师作了致辞，说虽然教育部不让开游戏专业，但在央美可以讲游戏课程，总体的风向都是在变好的。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;https://wjwtest.oss-cn-qingdao.aliyuncs.com/indiegamemovie/2.jpg&quot;&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;https://wjwtest.oss-cn-qingdao.aliyuncs.com/indiegamemovie/3.jpg&quot;&gt;&lt;/p&gt;
+&lt;span itemprop=&quot;image&quot; itemscope=&quot;&quot; itemtype=&quot;http://schema.org/ImageObject&quot;&gt;&lt;img itemprop=&quot;url image&quot; src=&quot;https://wjwtest.oss-cn-qingdao.aliyuncs.com/indiegamemovie/2.jpg&quot; class=&quot;full-image&quot; alt=&quot;1000&quot;&gt;&lt;meta itemprop=&quot;width&quot; content=&quot;auto&quot;&gt;&lt;meta itemprop=&quot;height&quot; content=&quot;auto&quot;&gt;&lt;/span&gt;
+&lt;span itemprop=&quot;image&quot; itemscope=&quot;&quot; itemtype=&quot;http://schema.org/ImageObject&quot;&gt;&lt;img itemprop=&quot;url image&quot; src=&quot;https://wjwtest.oss-cn-qingdao.aliyuncs.com/indiegamemovie/3.jpg&quot; class=&quot;full-image&quot; alt=&quot;1000&quot;&gt;&lt;meta itemprop=&quot;width&quot; content=&quot;auto&quot;&gt;&lt;meta itemprop=&quot;height&quot; content=&quot;auto&quot;&gt;&lt;/span&gt;
     
     </summary>
     
@@ -445,9 +528,9 @@
     </summary>
     
     
-      <category term="爱尔兰" scheme="http://nekolab.cn/tags/%E7%88%B1%E5%B0%94%E5%85%B0/"/>
-    
       <category term="日记" scheme="http://nekolab.cn/tags/%E6%97%A5%E8%AE%B0/"/>
+    
+      <category term="爱尔兰" scheme="http://nekolab.cn/tags/%E7%88%B1%E5%B0%94%E5%85%B0/"/>
     
   </entry>
   
@@ -848,53 +931,6 @@
       <category term="科幻" scheme="http://nekolab.cn/tags/%E7%A7%91%E5%B9%BB/"/>
     
       <category term="Ted Chiang" scheme="http://nekolab.cn/tags/Ted-Chiang/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>宇宙奇趣 | 一切于一点 (译)</title>
-    <link href="http://nekolab.cn/2017/01/11/%E4%B8%80%E5%88%87%E4%BA%8E%E4%B8%80%E7%82%B9/"/>
-    <id>http://nekolab.cn/2017/01/11/一切于一点/</id>
-    <published>2017-01-11T05:51:38.000Z</published>
-    <updated>2017-01-11T05:58:48.000Z</updated>
-    
-    <content type="html">&lt;blockquote&gt;
-&lt;p&gt;原文 Italo Calvino&lt;br&gt;译自 Cosmicomics, William Weaver, 1968&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;&lt;strong&gt;根据爱德温·哈勃对宇宙退行速度的计算，我们可以推断出宇宙膨胀之前，所有物质都集中在一个点的时刻。&lt;/strong&gt;&lt;/p&gt;
-&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
-&lt;p&gt;当然，我们都呆在过那里，老Qfwfq说，不然还能在哪里呢？当时没人知道后来会有空间和时间。时间又有什么用呢？对挤得像沙丁鱼一样的我们来说。&lt;/p&gt;
-&lt;p&gt;我说“挤得像沙丁鱼一样”是用了一种文学比喻，事实上连挤下我们的空间都没有。每人身上的每个点都与其他人身上的每个点在同一个点重合，我们都在那个地方。其实人与人之间的区别都不太重要，除了个性上的差异，既然空间都不存在，有个像Pbert Pberd先生一样总碍事的人就是最烦心的事情。&lt;/p&gt;
-&lt;p&gt;当时那里有多少人？噢，我从不曾得知，连估算也不行。要想数出人数，首先就要把人分开一点点距离，然而我们全都在同一点。可能和你想的不同，那种情况下社交并不盛行，我知道，比如说，有时近邻会彼此串门，但在那里我们全都是近邻，于是连早安晚安都不会有人说了。&lt;/p&gt;
-&lt;p&gt;结果我们每个人只认识非常有限的几个人。我印象最深刻的是Ph(i)Nk0太太、她的朋友 De XuaeauX、移居来的叫做Z’zu的一家人、还有我刚提到的Pbert Pberd先生。另外还有一位清洁工女士，称作“维护人员”，全宇宙只有她一人，空间太小了。说实话，她每天都无事可做，扫除也不必做，既然没有一粒尘埃能进入那一个点，所以她每时每刻都在闲谈抱怨。&lt;/p&gt;
-&lt;p&gt;仅仅是我提到的这些人已经使空间足够拥挤了，还要加上堆在那儿的很多东西，后世用来形成宇宙的材料都散落着并浓缩在一起，辨别不出哪一片要形成天体（像仙女座星云），哪一片要组成地质（像孚日山脉），或者哪一片要变成化学物质（像铍的某种同位素）。此外，我们还总是撞上Z’zu家中的日常用品：野营床、褥子、篮子等等，只要你不小心，Z’zu家里这些人，就会拿他们是一大家人为借口，以全宇宙的唯一家庭自居，甚至想横跨我们的那一点牵上晾衣绳。&lt;/p&gt;
-&lt;p&gt;但是其他人于Z’zu家人也有失礼，以自己来得早，他们来得晚为由，管他们家人叫做“移来的”。在我看来这种偏见显然没有根据，因为谁早谁晚的时间概念并不存在，也没有别的地方可以移居过来，但仍有人坚称“移居”这个概念可以抽象地理解，处于时空之外。&lt;/p&gt;
-&lt;p&gt;你们所说的心胸狭隘就是如此，我们当时的观念看来是非常小气，都要怪培养我们的那个环境。这种观念在我们每个人心中都存在，告诉你吧：只要我们中间有人相遇，总要冒出这种想法，不管是在公交车站，在电影院，还是在国际牙医会议上，人们开始回忆过去的时候。我们彼此问候，有时是别人认识我，有时是我认识别人，紧接着就开始问这问那（即使每个人都只记得别人记得的一两件事），又重提往日的争端、腹诽和侮辱，直到有人提及Ph(i)Nk0太太为止。每次对话一提到她，顿时所有争论都被抛在一边，我们在喜悦和慷慨情绪中释怀了。Ph(i)Nk0太太，唯一一个让所有人铭记和惋惜的人，她最后到哪儿了呢？我很久没有再寻找过她。Ph(i)Nk0太太，她的胸，她的腿，她的橘红色长袍……不管是在这个星系还是别的，我们永远没有再见过她。&lt;/p&gt;
-&lt;p&gt;让我说清楚一件事：有理论说宇宙在变得极端稀薄过后又会重新凝聚，但我从不相信，而我们之中不少人还仰仗着这个理论，一直为我们重聚在那一点的时候制定计划。上个月，我到一家酒吧去，你们猜我在角落里碰见了谁？Pbert Pberd先生！“最近怎样啊？怎么会在这里？”我得知他在帕维亚的一家塑料厂做代理人。“等我们回到那里的时候”，他低声对我说，“一定要保证一件事，这次，有些人不能来……你知道是谁，就是Z’zu一家……”&lt;/p&gt;
-&lt;p&gt;我真想告诉他说我已经听过好些人说同样的话了，像这样“你知道是谁……Pbert Pberd先生……”&lt;/p&gt;
-&lt;p&gt;为了回避话题，我赶紧说：“Ph(i)Nk0太太怎样呢？你觉得我们还能在那儿见到她吗？”&lt;/p&gt;
-&lt;p&gt;“啊，是啊……她，一定会……”他说着脸色就红了。&lt;/p&gt;
-&lt;p&gt;对我们所有人而言，重归那一点的希望主要是想和Ph(i)Nk0太太团聚。（我也这么想，虽然并不信）在酒吧里，一如既往地，我们又提起她来，心情很是感动，Pbert Pberd先生的不快也在回忆中消散了。&lt;/p&gt;
-&lt;p&gt;Ph(i)Nk0太太的秘诀在于她从来没引起我们的嫉妒，或者闲话。她和她的朋友De XuaeauX上床的事是众人皆知的。但是于一点，如果说有一张床就会占据整个点，因此也就谈不上什么上床，仅仅是在床上，而同一点上的任何人也在那张床上，结果就是，她无可避免地与我们所有人在同一张床上。如果把她换做别人，指不定会有多少人说三道四的。从来都是清洁工女人先开始造谣诽谤的，其他人只是跟着她。至于说Z’zu一家，关于他们家的父亲、女儿、兄弟、姐妹、姨娘们的坏话，大家都毫不迟疑地听信任何一丁点含沙射影。可是对她就不一样了，我从她那里感到的是幸福，是隐于她身中一个点的幸福，也是把她缩成一个点守护的幸福，同时又有邪念（既然那个点中聚集了我们所有人），也有纯洁的思念（她缩成的点是不可穿透的）。总之，我还能对她别有所求吗？&lt;/p&gt;
-&lt;p&gt;不仅是我这样想，其他人也一样。而她呢，给予我们的快乐和我们给她的一样多，平等地接纳我们，爱着我们。&lt;/p&gt;
-&lt;p&gt;我们相处得那么好，好到有什么非比寻常的事定要发生，使得她有一次对我们说，“只要有一点地方，我真想给你们做面条吃啊！”那时我们都想象，她丰满的双臂占据那样一个空间，拿着擀面杖前后滚动面团，胸前的砧板摆着一大堆面粉和鸡蛋，双手不停地揉动，肘上沾满油光闪亮的白面，我们想到面粉占据的空间，还有做面粉的麦子，种麦子的农田，提供水流灌溉农田的山，畜养牧群产肉做酱汁的牧场，还有太阳发光所需要的空间，麦子才能成熟，还有太阳从星云中凝聚开始燃烧的空间，托着每个星系、每片星云、每颗恒星、每个行星在空中飞行的大量星球和星系。正当我们这样想着，空间势不可挡地诞生了，Ph(i)Nk0太太正要说，“孩子们，多好的面条！”包着她和我们的那一点在光晕里膨胀，距离从几个光年，到几百光年，成千上万个光年，我们都被扔到了宇宙四方角落里（Pbert Pberd先生一直到了帕维亚），而她融解成了什么光能热能我不知道，她，Ph(i)Nk0太太，在我们狭隘封闭的世界里展现过慷慨的一瞬，“孩子们，我要给你们做面条吃！”发自真心的爱的呼唤。在空间和时间、万有引力和宇宙开始形成的瞬间，亿万恒星行星得以诞生，而麦田和Ph(i)Nk0太太散落在每个星球每个大洲，她还在揉动面团，胳膊闪着油光，善良的她。她在那一刻消失，我们久久怀念。&lt;/p&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;blockquote&gt;
-&lt;p&gt;原文 Italo Calvino&lt;br&gt;译自 Cosmicomics, William Weaver, 1968&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;&lt;strong&gt;根据爱德温·哈勃对宇宙退行速度的计算，我们可以推断出宇宙膨胀之前，所有物质都集中在一个点的时刻。&lt;/strong&gt;&lt;/p&gt;
-    
-    </summary>
-    
-    
-      <category term="译文" scheme="http://nekolab.cn/tags/%E8%AF%91%E6%96%87/"/>
-    
-      <category term="卡尔维诺" scheme="http://nekolab.cn/tags/%E5%8D%A1%E5%B0%94%E7%BB%B4%E8%AF%BA/"/>
-    
-      <category term="文学" scheme="http://nekolab.cn/tags/%E6%96%87%E5%AD%A6/"/>
     
   </entry>
   
