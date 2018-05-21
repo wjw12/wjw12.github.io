@@ -180,46 +180,11 @@ function Boid(x,y,guideNode) {
     var sum = createVector(0,0);   // Start with empty vector to accumulate all locations
     var count = 0;
   
-    /*
-    var calcSum = function(b, boids) {
-      for (var i = 0; i < boids.length; i++) {
-        var d = p5.Vector.dist(b.position, boids[i].position);
-        if (d > 0) {
-          sum.add(boids[i].position); // Add location
-          count++;
-        }
-      }
-    }
-  
-    calcSum(this, this.group1);
-    calcSum(this, this.group2);
-    if (this.nGroups === 3) calcSum(this, this.group3);
-    */
-
-    /*
-    
-    if (count > 0) {
-      sum.div(count);
-      sum.mult(1 - guideWeight);
-      sum.add(p5.Vector.mult(this.guide.position, guideWeight));
-      return this.seek(sum);  // Steer towards the location
-    } else {
-      return this.seek(this.guide.position);
-    }
-    */
-   /*
-    if (count > 0) {
-      steer.mult(guideWeight);
-      sum.div(count);
-      steer.add(this.seek(sum).mult(1 - guideWeight));
-    }
-  
-    return steer;
-    */
     var steer = this.seekVelocity(this.guide.velocity);
-    var constraintDist = 10;
-    if (p5.Vector.dist(this.position, this.guide.position) > constraintDist) {
-      steer.add(this.seek(this.guide.position));
+    var cd = this.guide.constraintDist;
+    var d = p5.Vector.dist(this.position, this.guide.position);
+    if (d > cd) {
+      steer.add(this.seek(this.guide.position).mult(1 - cd / d));
       return steer;
     }
     else return createVector(0,0);
@@ -232,7 +197,7 @@ function Boid(x,y,guideNode) {
     var ali = this.align();      // Alignment
     var coh = this.cohesion();   // Cohesion
     // Arbitrarily weight these forces
-    sep.mult(15);
+    sep.mult(7);
     ali.mult(10);
     coh.mult(15);
     // Add the force vectors to acceleration

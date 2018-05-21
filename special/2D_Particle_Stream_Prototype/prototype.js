@@ -7,9 +7,9 @@ var deltaTime = 0;
 
 // render configure
 var drawCenterMass = false;
-var drawSpeedLine = true;
+var drawSpeedLine = false;
 var drawNode = true;
-var drawSpring = true;
+var drawSpring = false;
 var drawSeaLevelLine = false;
 var drawParticles = true;
 

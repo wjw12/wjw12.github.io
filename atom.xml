@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://nekolab.cn/"/>
-  <updated>2018-04-24T03:32:31.587Z</updated>
+  <updated>2018-05-21T17:01:26.242Z</updated>
   <id>http://nekolab.cn/</id>
   
   <author>
@@ -16,17 +16,15 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>（未完成）用p5.js模拟一串粒子的二维运动</title>
+    <title>用p5.js模拟一串粒子的二维运动</title>
     <link href="http://nekolab.cn/2018/04/23/particle-stream-simulation/"/>
     <id>http://nekolab.cn/2018/04/23/particle-stream-simulation/</id>
     <published>2018-04-23T14:58:01.000Z</published>
-    <updated>2018-04-24T03:32:31.587Z</updated>
+    <updated>2018-05-21T17:01:26.242Z</updated>
     
     <content type="html">&lt;p&gt;代码&lt;a href=&quot;https://github.com/wjw12/wjw12.github.io/tree/master/special/2D_Particle_Stream_Prototype&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;见这里哦&lt;/a&gt;，可以用键盘上下左右交互的网页&lt;a href=&quot;http://nekolab.cn/special/2D_Particle_Stream_Prototype/index.html&quot;&gt;在这里&lt;/a&gt;。&lt;/p&gt;
 &lt;p&gt;这里想模拟的一个效果是一串粒子，只由一个“头部”的牵引发生运动，需要有自然流畅的动态和一定随机性。最终想在三维中做成类似陈星汉Flower中玩家操控的一串花瓣一样的运动，参考&lt;a href=&quot;https://www.bilibili.com/video/av5372164&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;这个视频&lt;/a&gt;。细想之，并非一个简单的动画效果可以达到，所以想到先做一个二维的原型来试验，之后再用Unity做三维的就容易得多了。&lt;/p&gt;
-&lt;p&gt;目前只是设计好了基础算法和架构，许多形态和动力学的参数都需要细致调节达到最好的效果，画面暂时是这样的：&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;https://wjwtest.oss-cn-qingdao.aliyuncs.com/flocksimulation/1.png&quot;&gt;&lt;/p&gt;
-&lt;p&gt;其实说真的，现在的效果更像是一团蠕虫……但我觉得在这个框架之下有很多可以调节的空间。那么接下来就介绍一下我的方法吧。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://wjwtest.oss-cn-qingdao.aliyuncs.com/flocksimulation/demo movement.gif&quot;&gt;&lt;/p&gt;
 &lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
 &lt;h1 id=&quot;1-_p5-js_u7B80_u4ECB_u4E0E_u7F16_u7A0B_u8E29_u8FC7_u7684_u5751&quot;&gt;&lt;a href=&quot;#1-_p5-js_u7B80_u4ECB_u4E0E_u7F16_u7A0B_u8E29_u8FC7_u7684_u5751&quot; class=&quot;headerlink&quot; title=&quot;1. p5.js简介与编程踩过的坑&quot;&gt;&lt;/a&gt;1. p5.js简介与编程踩过的坑&lt;/h1&gt;&lt;p&gt;p5.js是Processing语言移植到js语言的一个库，Processing是专门为艺术与交互设计创造出的语言，不需太多技术性的设置，编代码只需要专注于绘图和交互，大大降低了交互图形绘制的门槛。之前看Youtube上的&lt;a href=&quot;https://www.youtube.com/playlist?list=PLRqwX-V7Uu6ZiZxtDDRCi6uhfTH4FilpH&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Coding Challenge&lt;/a&gt;就用p5.js编写很多图形和可视化算法，给人不少图形学方面的灵感。&lt;/p&gt;
 &lt;p&gt;做这个不太复杂的原型用Unity C#觉得太重量级了一点，于是借此机会学个新技能，下载&lt;a href=&quot;https://p5js.org/get-started/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;p5.min.js&lt;/a&gt;只有300多k的源文件，打开文本编辑器就能开始写了。&lt;/p&gt;
@@ -70,13 +68,15 @@
 &lt;p&gt;但是写这篇文章的时候想到了另一个方案，可以给每个粒子规定代表在链上整体位置的变量，如同做一个空间坐标变换，比如这样做：设每组a个粒子，第x组的第y个粒子序号就是n=ax+y，具有不同n值的粒子相互作用强度随|n1-n2|差值递减，比如按反比规律。&lt;/p&gt;
 &lt;p&gt;我完全改变了Cohesion方法的实现，不让Boid靠近近邻的质心，而是让它的速度向同组节点（称之为guide吧）速度靠近。因为是靠近速度而不是靠近位置，加了一个seekVelocity方法，输入想要接近的目标速度，输出会施加一个力，使得粒子速度更接近目标速度。同时还给粒子加了一个空间约束，移动范围不能离guide太远，超出范围就施加一个指向guide位置的力。&lt;/p&gt;
 &lt;p&gt;&lt;img src=&quot;https://wjwtest.oss-cn-qingdao.aliyuncs.com/flocksimulation/2.png&quot;&gt;&lt;/p&gt;
-&lt;h1 id=&quot;4-__u53EF_u6539_u8FDB_u7684_u5730_u65B9&quot;&gt;&lt;a href=&quot;#4-__u53EF_u6539_u8FDB_u7684_u5730_u65B9&quot; class=&quot;headerlink&quot; title=&quot;4. 可改进的地方&quot;&gt;&lt;/a&gt;4. 可改进的地方&lt;/h1&gt;&lt;p&gt;有太多可以修改和调节的地方了。上面说的肯定不是唯一解决方案，也不会是最好的一种，在算法框架和细节上都可以做很多调整。&lt;/p&gt;
+&lt;h1 id=&quot;4-__u6539_u8FDB&quot;&gt;&lt;a href=&quot;#4-__u6539_u8FDB&quot; class=&quot;headerlink&quot; title=&quot;4. 改进&quot;&gt;&lt;/a&gt;4. 改进&lt;/h1&gt;&lt;p&gt;前面写的这些基本就可以运行了，但是看起来很死板，粒子会集中在每一组的节点附近，运动起来是一节一节的。做了几个简单改进：&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;p&gt;想让粒子流呈现前密后疏的形态，越靠近尾部粒子之间距离越大。想到的方法有：1. 弹簧固有长度前短后长； 2. 弹簧的胡克系数前大后小（越小的系数弹力越小）； 3. Flock的Cohesion方法中约束范围越靠后越大，或者约束力越往后越小&lt;/p&gt;
+&lt;li&gt;&lt;p&gt;想让粒子流呈现前密后疏的形态，越靠近尾部粒子之间距离越大。使用的方法有：1. 弹簧固有长度前短后长； 2. 弹簧的胡克系数前大后小（越小的系数则弹力越小）； 3. Flock的Cohesion方法中约束范围越靠后越大&lt;/p&gt;
 &lt;/li&gt;
-&lt;li&gt;&lt;p&gt;想让粒子整体停止时看起来不要都集中在节点附近像蹦迪一样，这其实是因为粒子受到sep和ali的力四处运动，又受到节点的空间约束力反弹回来。我觉得可以：1. 头节点静止时就减小粒子的受力，让他们蹦跶得不那么快 2. 改变约束力的表达，让粒子不局限在单个节点为圆心的圈内（但是同时要约束在骨架链附近），比如约束在离弹簧线段一定距离内 3. 改变约束力的大小&lt;/p&gt;
+&lt;li&gt;&lt;p&gt;Cohesion方法使用“软约束”，粒子在约束范围距离d以内不受约束力，距离大于d的时候约束力从0开始增长到一个有限值，比如用一个反比例函数来实现。&lt;/p&gt;
 &lt;/li&gt;
-&lt;li&gt;&lt;p&gt;运动的时候不要看起来一节一节的，要连续。可能需要：1.上面说的，调整相互作用的强度算法 2.调节sep, ali, coh三种力的大小 3.弹簧的长度、弹性系数与Cohesion方法里的约束范围、约束力相适应&lt;/p&gt;
+&lt;li&gt;&lt;p&gt;弹簧的长度、弹性系数与Cohesion方法里的约束范围、约束力相适应，这个多要调试&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;调节了sep, ali, coh三种力的大小，这里发现相对大小变化一点，最后的运动模式会相差很大，过程中看到了不少有意思的运动状态。&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
 </content>
@@ -85,9 +85,7 @@
     
       &lt;p&gt;代码&lt;a href=&quot;https://github.com/wjw12/wjw12.github.io/tree/master/special/2D_Particle_Stream_Prototype&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;见这里哦&lt;/a&gt;，可以用键盘上下左右交互的网页&lt;a href=&quot;http://nekolab.cn/special/2D_Particle_Stream_Prototype/index.html&quot;&gt;在这里&lt;/a&gt;。&lt;/p&gt;
 &lt;p&gt;这里想模拟的一个效果是一串粒子，只由一个“头部”的牵引发生运动，需要有自然流畅的动态和一定随机性。最终想在三维中做成类似陈星汉Flower中玩家操控的一串花瓣一样的运动，参考&lt;a href=&quot;https://www.bilibili.com/video/av5372164&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;这个视频&lt;/a&gt;。细想之，并非一个简单的动画效果可以达到，所以想到先做一个二维的原型来试验，之后再用Unity做三维的就容易得多了。&lt;/p&gt;
-&lt;p&gt;目前只是设计好了基础算法和架构，许多形态和动力学的参数都需要细致调节达到最好的效果，画面暂时是这样的：&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;https://wjwtest.oss-cn-qingdao.aliyuncs.com/flocksimulation/1.png&quot;&gt;&lt;/p&gt;
-&lt;p&gt;其实说真的，现在的效果更像是一团蠕虫……但我觉得在这个框架之下有很多可以调节的空间。那么接下来就介绍一下我的方法吧。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://wjwtest.oss-cn-qingdao.aliyuncs.com/flocksimulation/demo movement.gif&quot;&gt;&lt;/p&gt;
     
     </summary>
     

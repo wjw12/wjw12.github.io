@@ -1,4 +1,4 @@
-function SpringNode(x, y) {
+function SpringNode(x, y, d) {
     this.acceleration_last = createVector(0,0);
     this.acceleration_curr = createVector(0,0);
     this.position = createVector(x, y);
@@ -9,6 +9,7 @@ function SpringNode(x, y) {
     this.isHead = false;
     this.r = 5;  // render size
     this.time = 0;
+    this.constraintDist = d;
   
     this.boids = [];
   }

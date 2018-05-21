@@ -8,20 +8,20 @@ function ParticleStream() {
     this.isMoving = false;
   
     this.windCountDown = 0;
-    this.windDuration = 1;
+    this.windDuration = 1.5;
     this.windDir = new p5.Vector(0, 0);
-    this.windIntensity = 200;
+    this.windIntensity = 300;
   
     // initialize nodes
     for (var i = 0; i < this.maxNodes; i++) {
-      this.addNode(new SpringNode((i+1)*screenWidth / 10, seaLevel));
+      this.addNode(new SpringNode((i+1)*screenWidth / 10, seaLevel, (i+2)*(i+2)));
     }
     this.head = this.nodes[0]; // we can only control the head movement
     this.nodes[0].setHead(true);
   
     // initialize springs
     for (var i = 0; i < this.maxNodes - 1; i++) {
-      var sp = new Spring((i+2)*10, (this.maxNodes-i)*30, 10, this.nodes[i], this.nodes[i+1]);
+      var sp = new Spring((i+2)*10, (this.maxNodes-i)*40, 10, this.nodes[i], this.nodes[i+1]);
       this.springs.push(sp);
     }
   
