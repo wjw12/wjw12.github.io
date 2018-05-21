@@ -102,7 +102,7 @@
 <meta property="og:image" content="https://wjwtest.oss-cn-qingdao.aliyuncs.com/flocksimulation/2Dprototype1.png">
 <meta property="og:image" content="https://wjwtest.oss-cn-qingdao.aliyuncs.com/flocksimulation/3.png">
 <meta property="og:image" content="https://wjwtest.oss-cn-qingdao.aliyuncs.com/flocksimulation/2.png">
-<meta property="og:updated_time" content="2018-05-21T17:01:26.242Z">
+<meta property="og:updated_time" content="2018-05-21T17:05:51.232Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="用p5.js模拟一串粒子的二维运动">
 <meta name="twitter:description" content="代码见这里哦，可以用键盘上下左右交互的网页在这里。 这里想模拟的一个效果是一串粒子，只由一个“头部”的牵引发生运动，需要有自然流畅的动态和一定随机性。最终想在三维中做成类似陈星汉Flower中玩家操控的一串花瓣一样的运动，参考这个视频。细想之，并非一个简单的动画效果可以达到，所以想到先做一个二维的原型来试验，之后再用Unity做三维的就容易得多了。">
@@ -424,7 +424,7 @@
 <p><img src="https://wjwtest.oss-cn-qingdao.aliyuncs.com/flocksimulation/2Dprototype1.png"></p>
 <p>首先，这一串粒子的运动不能像贪吃蛇一样呆板，必须在运动的时候曲线自然伸展，而停下来的时候能柔和缓慢的收缩，所以就想着用弹簧连接一串质点来模拟骨架的运动。</p>
 <p>运动模拟其实就是，在每一帧绘图的时候，知道上一帧时刻的位置与速度，知道这一帧物体受力引起的加速度，来求解当前更新过的位置与速度。在我们程序里面，每一帧draw()调用的时候就调用所有对象的update函数（自己定义的），在update函数里首先把所有力作用在受力物体上，让受力物体积累加速度（牛顿定律：a=F/m），再用数值积分的算法计算新的速度和位置。</p>
-<p>积分算法的选取直接影响到显示的结果，一开始用欧拉法发现运动很生硬粗糙，总觉得像卡顿不流畅一样，但帧率是完全没有问题的。换用(蛙跳法)[<a href="https://en.wikipedia.org/wiki/Leapfrog_integration]，结果算出来的运动就如丝流畅。蛙跳法计算量只比欧拉法大一点，精度和稳定性能提高很多，推荐这个方法。" target="_blank" rel="noopener">https://en.wikipedia.org/wiki/Leapfrog_integration]，结果算出来的运动就如丝流畅。蛙跳法计算量只比欧拉法大一点，精度和稳定性能提高很多，推荐这个方法。</a></p>
+<p>积分算法的选取直接影响到显示的结果，一开始用欧拉法发现运动很生硬粗糙，总觉得像卡顿不流畅一样，但帧率是完全没有问题的。换用<a href="https://en.wikipedia.org/wiki/Leapfrog_integration" target="_blank" rel="noopener">蛙跳法</a>，结果算出来的运动就如丝流畅。蛙跳法计算量只比欧拉法大一点，精度和稳定性能提高很多，推荐这个方法。</p>
 <p>开始采用的弹簧是能伸能缩，伸缩时都会产生按胡克定律F=-kx产生弹力，但这样一串弹簧质点会产生混沌的运动，质点疯狂抖动像一群磕大了的虫子。这应该是一个物理常识，大一时候学过双摆听说那种两根棍子两个枢轴的“简单”系统都会产生混沌运动，更何况一串弹簧，差点忘记了。最后改成了弹簧被拉伸时产生吸引力，被挤压（长度短于原始值）时就没有弹力的作用。</p>
 <p>弹簧的另一种力会导致耗散效应，来源于弹簧自身各个部分的摩擦损耗，让弹性力导致的振动不能永久持续下去，而是幅度越来越小最终停止。这里假设耗散力与两端点的相对速度成正比，弹簧伸缩的速度越快，耗散就越多。</p>
 <p>我们这个系统唯一的用户输入是头节点的位置，后面所有节点都随之而运动。这一考虑只是因为想要限制用户只通过上下左右操作。头节点是接受输入的节点，设定它运动不受任何力的影响，只跟随输入的坐标值发生平移。</p>
