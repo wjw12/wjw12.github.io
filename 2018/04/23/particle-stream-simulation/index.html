@@ -102,7 +102,7 @@
 <meta property="og:image" content="https://wjwtest.oss-cn-qingdao.aliyuncs.com/flocksimulation/2Dprototype1.png">
 <meta property="og:image" content="https://wjwtest.oss-cn-qingdao.aliyuncs.com/flocksimulation/3.png">
 <meta property="og:image" content="https://wjwtest.oss-cn-qingdao.aliyuncs.com/flocksimulation/2.png">
-<meta property="og:updated_time" content="2018-05-21T17:05:51.232Z">
+<meta property="og:updated_time" content="2018-05-21T17:06:52.504Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="用p5.js模拟一串粒子的二维运动">
 <meta name="twitter:description" content="代码见这里哦，可以用键盘上下左右交互的网页在这里。 这里想模拟的一个效果是一串粒子，只由一个“头部”的牵引发生运动，需要有自然流畅的动态和一定随机性。最终想在三维中做成类似陈星汉Flower中玩家操控的一串花瓣一样的运动，参考这个视频。细想之，并非一个简单的动画效果可以达到，所以想到先做一个二维的原型来试验，之后再用Unity做三维的就容易得多了。">
@@ -434,7 +434,7 @@
 <p>给每个模拟的对象写一个render函数，指定显示在屏幕上的形状。这里让节点、弹簧和节点的速度都绘制出来：</p>
 <p><img src="https://wjwtest.oss-cn-qingdao.aliyuncs.com/flocksimulation/3.png"></p>
 <h1 id="3-__u7C92_u5B50_u8FD0_u52A8_uFF1A_u96C6_u7FA4_u6A21_u62DF_28Flock_Simulation_29"><a href="#3-__u7C92_u5B50_u8FD0_u52A8_uFF1A_u96C6_u7FA4_u6A21_u62DF_28Flock_Simulation_29" class="headerlink" title="3. 粒子运动：集群模拟(Flock Simulation)"></a>3. 粒子运动：集群模拟(Flock Simulation)</h1><p>集群模拟是复杂性系统的一个经典问题，常用来解释自然界中鸟群、鱼群这种大规模具有自组织特征的运动。群落中的每个个体依照简单的规则运动，可以用来研究整体大尺度的运动特征。</p>
-<p>p5.js(官方示例)[<a href="https://p5js.org/examples/simulate-flocking.html]就有对这个问题的模拟，代码直接参考了[Nature" target="_blank" rel="noopener">https://p5js.org/examples/simulate-flocking.html]就有对这个问题的模拟，代码直接参考了[Nature</a> of Code](<a href="http://natureofcode.com/)，是一本讲用代码模拟自然现象的书，可以免费看在线版也可以捐献任意金额获得pdf,epub,mobi的电子书。我捐了一美金下载了，还没来得及看。" target="_blank" rel="noopener">http://natureofcode.com/)，是一本讲用代码模拟自然现象的书，可以免费看在线版也可以捐献任意金额获得pdf,epub,mobi的电子书。我捐了一美金下载了，还没来得及看。</a></p>
+<p>p5.js<a href="https://p5js.org/examples/simulate-flocking.html" target="_blank" rel="noopener">官方示例</a>就有对这个问题的模拟，代码直接参考了<a href="http://natureofcode.com/" target="_blank" rel="noopener">Nature of Code</a>，是一本讲用代码模拟自然现象的书，可以免费看在线版也可以捐献任意金额获得pdf,epub,mobi的电子书。我捐了一美金下载了，还没来得及看。</p>
 <p>集群中的每个个体称为一个Boid，会受到三种基本力的作用:</p>
 <ul>
 <li>seperation: 靠的太近的时候会分开</li>
