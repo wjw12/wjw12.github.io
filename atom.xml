@@ -19,7 +19,7 @@
     <title>三和是所有游子的耶路撒冷</title>
     <link href="http://nekolab.cn/2018/09/23/sanhe/"/>
     <id>http://nekolab.cn/2018/09/23/sanhe/</id>
-    <published>2018-09-23T15:39:46.000Z</published>
+    <published>2018-09-24T06:39:46.000Z</published>
     <updated>2018-11-03T16:58:14.890Z</updated>
     
     <content type="html">&lt;p&gt;专程去深圳看了三和大神的起源地，不了解的可以去看看&lt;a href=&quot;http://3hedashen.net&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;http://3hedashen.net&lt;/a&gt; ，每周都会更新三和照片。&lt;/p&gt;
@@ -87,7 +87,7 @@
     <title>哥本哈根的皇宫，城堡和花园</title>
     <link href="http://nekolab.cn/2018/05/25/CopenhagenCastles/"/>
     <id>http://nekolab.cn/2018/05/25/CopenhagenCastles/</id>
-    <published>2018-05-25T14:35:52.000Z</published>
+    <published>2018-05-26T05:35:52.000Z</published>
     <updated>2018-10-25T15:39:38.382Z</updated>
     
     <content type="html">&lt;p&gt;哥本哈根最出名的景点莫过于大大小小的皇宫和城堡。第一天先去了市中心的Christiansborg，丹麦首相的办公室、最高法院、议会都在这里，属于皇室所有的皇家接待室开放参观。第二天坐小火车去城郊的Frederiksborg，城堡坐落在水边上，有宽阔的喷泉广场，非常美丽。第三天在市区逛逛，花园像绿翡翠一样清新，去看著名的小美人鱼雕塑，比想象中的小巧很多。然后去Nyhavn新港吹吹海风，房子和船都是五彩斑斓的，市区还有个Amalienborg也值得一看。&lt;/p&gt;
@@ -121,7 +121,7 @@
     <title>用p5.js模拟一串粒子的二维运动</title>
     <link href="http://nekolab.cn/2018/04/23/particle-stream-simulation/"/>
     <id>http://nekolab.cn/2018/04/23/particle-stream-simulation/</id>
-    <published>2018-04-23T14:58:01.000Z</published>
+    <published>2018-04-24T05:58:01.000Z</published>
     <updated>2018-09-07T04:23:34.209Z</updated>
     
     <content type="html">&lt;p&gt;代码&lt;a href=&quot;https://github.com/wjw12/wjw12.github.io/tree/master/special/2D_Particle_Stream_Prototype&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;见这里哦&lt;/a&gt;，可以用键盘上下左右交互的网页&lt;a href=&quot;http://nekolab.cn/special/2D_Particle_Stream_Prototype/index.html&quot;&gt;在这里&lt;/a&gt;。&lt;/p&gt;
@@ -202,7 +202,7 @@
     <title>关于独立游戏的一点想法</title>
     <link href="http://nekolab.cn/2018/04/22/indie-game-movie-china/"/>
     <id>http://nekolab.cn/2018/04/22/indie-game-movie-china/</id>
-    <published>2018-04-22T14:59:23.000Z</published>
+    <published>2018-04-23T05:59:23.000Z</published>
     <updated>2018-04-24T03:23:23.298Z</updated>
     
     <content type="html">&lt;p&gt;看了中国独立游戏大电影在央美的点映式，深受感动。看完之后发微博说，这电影中的中国独立游戏现状，比五六年前Indie Game: The Movie里面的美国开发者看起来还要好。可能美国那部独立游戏大电影刻意拍了游戏开发艰苦的一面，过得都太惨了，记得有一个制作人还说游戏发布一再延期的时候都想到了不成功就自杀，后来卖出了几十几百万份还是过得不开心。相比之下，三郎拍的这部中国版积极正面很多。也是因为全球的独立游戏市场环境都在变好，有太多机会让还没发布的游戏得到曝光，游戏展、主播、众筹、Early Access，不少游戏都是靠着demo版囊括一堆奖项的，之后的路就好走很多了。&lt;/p&gt;
@@ -243,7 +243,7 @@
     <title>CG练习（4） 次表面散射(SSS)近似方法</title>
     <link href="http://nekolab.cn/2018/04/11/CGexercise04/"/>
     <id>http://nekolab.cn/2018/04/11/CGexercise04/</id>
-    <published>2018-04-11T11:49:38.000Z</published>
+    <published>2018-04-12T02:49:38.000Z</published>
     <updated>2018-04-11T15:04:07.696Z</updated>
     
     <content type="html">&lt;p&gt;次表面散射（SubSurface Scattering）常用来表现蜡质、玉和皮肤这种质感，与通常计算着色只考虑表面效应不同，还要考虑光透过物体表面发生散射，之后再反射或透射出来，增加了许多计算的复杂性。&lt;/p&gt;
@@ -293,7 +293,7 @@
     <title>CG练习（3） 渲染贝塞尔曲线</title>
     <link href="http://nekolab.cn/2018/03/03/CGexercise03/"/>
     <id>http://nekolab.cn/2018/03/03/CGexercise03/</id>
-    <published>2018-03-03T14:43:36.000Z</published>
+    <published>2018-03-04T06:43:36.000Z</published>
     <updated>2018-03-03T16:13:58.000Z</updated>
     
     <content type="html">&lt;p&gt;贝塞尔曲线(Bézier curve)是通过一系列控制点决定的一种平滑的曲线，特点在于生成和计算简单，易于控制，本质上是多项式曲线，常用于矢量绘图，可以用于插画、动画、设计各个领域。Photoshop中的钢笔工具也应用了贝塞尔曲线，可能是最常接触到的应用。&lt;/p&gt;
@@ -328,7 +328,7 @@
     <title>CG练习（2） 渲染体积光</title>
     <link href="http://nekolab.cn/2018/02/18/CGexercise02/"/>
     <id>http://nekolab.cn/2018/02/18/CGexercise02/</id>
-    <published>2018-02-18T04:14:10.000Z</published>
+    <published>2018-02-18T20:14:10.000Z</published>
     <updated>2018-02-19T16:22:44.000Z</updated>
     
     <content type="html">&lt;p&gt;经常见到这样一种探照灯光的效果：&lt;/p&gt;
@@ -376,7 +376,7 @@
     <title>CG练习（1） SketchUp到Unity工作流</title>
     <link href="http://nekolab.cn/2018/02/10/CGexercise01/"/>
     <id>http://nekolab.cn/2018/02/10/CGexercise01/</id>
-    <published>2018-02-10T01:16:16.000Z</published>
+    <published>2018-02-10T17:16:16.000Z</published>
     <updated>2018-02-10T07:07:14.000Z</updated>
     
     <content type="html">&lt;p&gt;决定开始做这样一件事情，用Unity每周完成一个CG小练习。着重于图形技术原理和编程，而非传统美术意义上的CG。一方面掌握引擎的各种功能，实验一些技术和算法，另一方面培养美术能力。在制作过程中往往会有新的灵感，从而将这一系列的选题推进下去。&lt;/p&gt;
@@ -420,7 +420,7 @@
     <title>东湖的雪</title>
     <link href="http://nekolab.cn/2018/01/28/EastLakeSnow/"/>
     <id>http://nekolab.cn/2018/01/28/EastLakeSnow/</id>
-    <published>2018-01-27T17:19:28.000Z</published>
+    <published>2018-01-28T09:19:28.000Z</published>
     <updated>2018-01-28T10:46:04.000Z</updated>
     
     <content type="html">&lt;p&gt;下雪了！今年冬天格外的冷，雪天去东湖拍照片，一天徒步近十公里，沿着绿道往人迹稀少的湖中心走去，景色越是干净，几近寂寥。天地苍白一片，万物静默如谜。&lt;/p&gt;
@@ -447,7 +447,7 @@
     <title>修改Wordpress主题模板的CSS</title>
     <link href="http://nekolab.cn/2017/10/15/wp-edit-css-tutorial/"/>
     <id>http://nekolab.cn/2017/10/15/wp-edit-css-tutorial/</id>
-    <published>2017-10-15T11:54:02.000Z</published>
+    <published>2017-10-16T02:54:02.000Z</published>
     <updated>2017-10-15T13:17:58.000Z</updated>
     
     <content type="html">&lt;p&gt;尽管网上公开的Wordpress主题很丰富，但模板总有些不尽如人意的地方，特别是字体大小、页边距、段间距这种参数。修改起来其实很简单，没有什么技术难度，也不需要理解CSS和HTML代码。只需要定位到CSS文件中设置相应参数的那一行就可以了。比如我们要修改主页上大标题的字体大小，下面是简单步骤。&lt;/p&gt;
@@ -481,7 +481,7 @@
     <title>岛屿的末端，海的起点</title>
     <link href="http://nekolab.cn/2017/09/04/HowthSea/"/>
     <id>http://nekolab.cn/2017/09/04/HowthSea/</id>
-    <published>2017-09-03T18:09:03.000Z</published>
+    <published>2017-09-04T09:09:03.000Z</published>
     <updated>2017-09-04T02:03:34.000Z</updated>
     
     <content type="html">&lt;p&gt;都柏林东北边的小岛Howth三面环海，是捕鱼作业的集中地，这里没有海水腥味，只有鱼肉和葡萄酒飘香。大西洋的风万年不变吹打着海水，冲刷出地势陡峭的山崖。徒步登上山顶，有如世界尽头。不多说了，直接看照片吧。&lt;/p&gt;
@@ -530,7 +530,7 @@
     <title>爱尔兰暑期科研实习签证详细指南</title>
     <link href="http://nekolab.cn/2017/08/06/IrelandStudentInternVisa/"/>
     <id>http://nekolab.cn/2017/08/06/IrelandStudentInternVisa/</id>
-    <published>2017-08-06T14:38:33.000Z</published>
+    <published>2017-08-07T05:38:33.000Z</published>
     <updated>2017-08-06T22:05:30.000Z</updated>
     
     <content type="html">&lt;span itemprop=&quot;image&quot; itemscope=&quot;&quot; itemtype=&quot;http://schema.org/ImageObject&quot;&gt;&lt;img itemprop=&quot;url image&quot; src=&quot;http://wjwtest.oss-cn-qingdao.aliyuncs.com/IMAG0330.jpg&quot; class=&quot;full-image&quot; alt=&quot;1600&quot; title=&quot;图为圣三一大学（Trinity College Dublin）正门口，有四百多年历史的大学，校舍保有着中世纪风格。&quot;&gt;&lt;meta itemprop=&quot;width&quot; content=&quot;auto&quot;&gt;&lt;meta itemprop=&quot;height&quot; content=&quot;auto&quot;&gt;&lt;/span&gt;
@@ -596,7 +596,7 @@
     <title>Bray航空展和爱尔兰小火车</title>
     <link href="http://nekolab.cn/2017/07/23/BrayAirDisplay/"/>
     <id>http://nekolab.cn/2017/07/23/BrayAirDisplay/</id>
-    <published>2017-07-23T13:41:53.000Z</published>
+    <published>2017-07-24T04:41:53.000Z</published>
     <updated>2017-07-23T21:12:20.000Z</updated>
     
     <content type="html">&lt;p&gt;今天去了都柏林西南边的Bray小镇，这里每年都会举行欧洲最盛大的航空展，上十万人聚集在一两公里长的海滩上观看飞机表演。很久很久没有参加过这么多人（这么拥挤）的活动了，并且很久没在乌烟瘴气的露天食物摊吃东西了……记之。&lt;/p&gt;
@@ -638,7 +638,7 @@
     <title>第一卷120胶片</title>
     <link href="http://nekolab.cn/2017/07/22/MyFirst120Film/"/>
     <id>http://nekolab.cn/2017/07/22/MyFirst120Film/</id>
-    <published>2017-07-22T13:37:10.000Z</published>
+    <published>2017-07-23T04:37:10.000Z</published>
     <updated>2017-07-23T21:18:28.000Z</updated>
     
     <content type="html">&lt;span itemprop=&quot;image&quot; itemscope=&quot;&quot; itemtype=&quot;http://schema.org/ImageObject&quot;&gt;&lt;img itemprop=&quot;url image&quot; src=&quot;http://wjwtest.oss-cn-qingdao.aliyuncs.com/120/000052870002.jpg&quot; class=&quot;full-image&quot; alt=&quot;1600&quot;&gt;&lt;meta itemprop=&quot;width&quot; content=&quot;auto&quot;&gt;&lt;meta itemprop=&quot;height&quot; content=&quot;auto&quot;&gt;&lt;/span&gt;
@@ -682,7 +682,7 @@
     <title>Galway By The Sea</title>
     <link href="http://nekolab.cn/2017/07/16/GalwayByTheSea/"/>
     <id>http://nekolab.cn/2017/07/16/GalwayByTheSea/</id>
-    <published>2017-07-16T14:30:28.000Z</published>
+    <published>2017-07-17T05:30:28.000Z</published>
     <updated>2017-08-07T09:01:56.000Z</updated>
     
     <content type="html">&lt;p&gt;爱尔兰西部的港口城市Galway是我来这个国家的第二站（之前只匆匆在都柏林放了行李，还等一件延误在北京机场的行李，未果，决定按计划先前往Galway）。一直想着看大海，看大西洋，愿望实现了。不仅是一次休闲之旅，更是一次逃避之旅：我都来到了岛屿的尽头，还有什么压力放不下呢？&lt;/p&gt;
@@ -722,7 +722,7 @@
     <title>Valley游戏笔记</title>
     <link href="http://nekolab.cn/2017/07/09/ValleyGameNotes/"/>
     <id>http://nekolab.cn/2017/07/09/ValleyGameNotes/</id>
-    <published>2017-07-09T07:33:09.000Z</published>
+    <published>2017-07-09T22:33:09.000Z</published>
     <updated>2017-07-09T10:04:20.000Z</updated>
     
     <content type="html">&lt;p&gt;Steam暑期特惠买了一款独立游戏Valley，在不想干活的几天时间里玩了几个小时。正好最近在思考着一个游戏有哪些构成要素，借着这款游戏说明一下想到的几点。&lt;/p&gt;
@@ -787,7 +787,7 @@
     <title>日本的对比冲突</title>
     <link href="http://nekolab.cn/2017/07/05/JapanContrast/"/>
     <id>http://nekolab.cn/2017/07/05/JapanContrast/</id>
-    <published>2017-07-05T13:33:00.000Z</published>
+    <published>2017-07-06T04:33:00.000Z</published>
     <updated>2017-07-05T13:57:44.000Z</updated>
     
     <content type="html">&lt;p&gt;继续整理在日本的照片，一千多张之中的一小部分。&lt;/p&gt;
@@ -829,7 +829,7 @@
     <title>筑地市场的清晨</title>
     <link href="http://nekolab.cn/2017/05/17/TsukijiDawn/"/>
     <id>http://nekolab.cn/2017/05/17/TsukijiDawn/</id>
-    <published>2017-05-16T16:13:00.000Z</published>
+    <published>2017-05-17T07:13:00.000Z</published>
     <updated>2017-05-17T02:58:54.000Z</updated>
     
     <content type="html">&lt;p&gt;筑地市场是全世界最大的鱼市场，每天有5万人在这里进行交易，供应东京2200万人鱼虾生鲜的巨量需求。市场的繁忙早上4点之前已经开始，拍卖会从早上5点开始。金枪鱼拍卖是对外人开放的，这只是20多场生鱼拍卖会的其中一场。早早赶到筑地市场，有幸目睹市场普通一天的工作状态。&lt;/p&gt;
@@ -870,7 +870,7 @@
     <title>日本人是如何读古汉语文言文的</title>
     <link href="http://nekolab.cn/2017/03/21/Kanbun/"/>
     <id>http://nekolab.cn/2017/03/21/Kanbun/</id>
-    <published>2017-03-21T13:43:53.000Z</published>
+    <published>2017-03-22T04:43:53.000Z</published>
     <updated>2017-03-21T13:58:04.000Z</updated>
     
     <content type="html">&lt;p&gt;&lt;span style=&quot;font-size: 14px;&quot;&gt;看松尾芭蕉的俳句集《奥州小路》，常有古汉语文本的引用、化用，比如：&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;font-size: 14px;&quot;&gt;&lt;br&gt;&lt;/span&gt;&lt;/p&gt;&lt;blockquote&gt;&lt;p&gt;&lt;span style=&quot;font-size: 14px;&quot;&gt;一辨を加るものは、無用の指を立るがごとし。&lt;/span&gt;&lt;/p&gt;&lt;/blockquote&gt;&lt;p&gt;&lt;span style=&quot;font-size: 14px;&quot;&gt;（假如增添一语，就如同树立一根无用之指。“&lt;span style=&quot;font-size: 14px;&quot;&gt;无用之指&lt;/span&gt;”出于《庄子·骈拇》“枝于手者，树无用之指也”）&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;font-size: 14px;&quot;&gt;&lt;br&gt;&lt;/span&gt;&lt;/p&gt;&lt;blockquote&gt;&lt;p&gt;&lt;span style=&quot;font-size: 14px;&quot;&gt;人跡稀に雉兎蒭蕘の往かふ道、そこともわかず。&lt;/span&gt;&lt;/p&gt;&lt;/blockquote&gt;&lt;p&gt;&lt;span style=&quot;font-size: 14px;&quot;&gt;（在刍荛和雉兔行走的人迹罕至的道路上，不知道往哪里去。借用《孟子·梁惠王上》“文王之囿，方七十里，刍荛者往焉，雉兔者往焉”。）&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;font-size: 14px;&quot;&gt;&lt;br&gt;&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;font-size: 14px;&quot;&gt;这些生僻的典故与意象，在芭蕉的散文集中随处可见。他必定是熟知古汉语作品，才会在文章中化用得天衣无缝。这些古文中国人都不太熟悉，但下面这句肯定似曾相识：&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;font-size: 14px;&quot;&gt;&lt;br&gt;&lt;/span&gt;&lt;/p&gt;&lt;blockquote&gt;&lt;p&gt;&lt;span style=&quot;font-size: 14px;&quot;&gt;国破れて山河在り、城春にして草木深し。&lt;/span&gt;&lt;/p&gt;&lt;/blockquote&gt;&lt;p&gt;&lt;span style=&quot;font-size: 14px;&quot;&gt;&lt;br&gt;&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;font-size: 14px;&quot;&gt;这不就是杜甫的《春望》吗！&lt;strong&gt;国破山河在，城春草木深。&lt;/strong&gt;不懂日语的人去掉那几个假名也能读出来。&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;font-size: 14px;&quot;&gt;其实古汉语不仅是日本文学家的专长，普通的中学生在学校里也要学“汉文”作为必修科目，也就是中国的古汉语。具备基本汉文能力的日本人，会熟读李白杜甫的名篇诗作，熟知中国历朝代历史变迁，也会了解古代中国的文化、政治、地理概况。通过汉文学习，&lt;strong&gt;一个合格的日本中学生对古代中国的了解程度，恐怕不会输于一个经过九年义务教育和高中教育、而后遗忘干净的普通中国人。&lt;/strong&gt;&lt;/span&gt;&lt;/p&gt;
@@ -896,7 +896,7 @@
     <title>京都的雪</title>
     <link href="http://nekolab.cn/2017/02/22/Kyotonoyuki/"/>
     <id>http://nekolab.cn/2017/02/22/Kyotonoyuki/</id>
-    <published>2017-02-22T12:16:16.000Z</published>
+    <published>2017-02-23T04:16:16.000Z</published>
     <updated>2017-02-22T12:28:04.000Z</updated>
     
     <content type="html">&lt;p&gt;京都的雪景照片集。&lt;a href=&quot;http://nekolab.cn/special/KyotoYuki/index.html&quot;&gt;戳这里&lt;/a&gt;&lt;/p&gt;

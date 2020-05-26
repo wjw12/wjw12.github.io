@@ -2,6 +2,20 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://nekolab.cn/about/index.html</loc>
+    
+    <lastmod>2020-05-26T05:21:59.999Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://nekolab.cn/friends/index.html</loc>
+    
+    <lastmod>2020-05-26T05:12:56.059Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://nekolab.cn/2018/09/23/sanhe/</loc>
     
     <lastmod>2018-11-03T16:58:14.890Z</lastmod>
@@ -54,13 +68,6 @@
     <loc>http://nekolab.cn/2018/02/10/CGexercise01/</loc>
     
     <lastmod>2018-02-10T07:07:14.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://nekolab.cn/friends/index.html</loc>
-    
-    <lastmod>2018-01-28T10:51:08.000Z</lastmod>
     
   </url>
   
@@ -187,13 +194,6 @@
     <loc>http://nekolab.cn/2017/01/11/%E7%A9%BA%E9%97%B4%E7%9A%84%E4%B8%80%E4%B8%AA%E6%A0%87%E8%AE%B0/</loc>
     
     <lastmod>2017-01-11T05:56:46.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://nekolab.cn/about/index.html</loc>
-    
-    <lastmod>2017-01-11T05:47:38.000Z</lastmod>
     
   </url>
   

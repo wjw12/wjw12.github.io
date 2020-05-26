@@ -175,8 +175,6 @@ function Boid(x,y,guideNode) {
   // Firstly, follow the guide
   // For the average location (i.e. center) of all nearby boids, calculate steering vector towards that location
   Boid.prototype.cohesion = function() {
-    var guideWeight = 0.5; // (between 0~1) how much cohesion results from the guide
-    //var neighbordist = 40;
     var sum = createVector(0,0);   // Start with empty vector to accumulate all locations
     var count = 0;
   
